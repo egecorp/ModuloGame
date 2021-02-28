@@ -1,25 +1,42 @@
-import logo from './logo.svg';
+import React from 'react'
 import './App.css';
+import './Common.css';
+import Game from './GamePages/Game.js';
+import Device from './Model/Device';
+import {LanguageContext, LanguagePacketsHolder} from './Language/LangPack'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends React.Component{
+  myDevice = undefined;
+  myLanguagePack = undefined;
+
+  constructor(props)
+  {
+    super(props);
+    var storedDeviceToken = localStorage.getItem("DeviceToken");
+    var storedServerToken = localStorage.getItem("ServerToken");
+
+    this.myDevice = new Device();
+    this.myDevice.DeviceToken = storedDeviceToken;
+    this.myDevice.ServerToken = storedServerToken;
+
+    this.myLanguagePack = LanguagePacketsHolder.Get().GetPack('ru');
+
+    
+  }
+
+  componentDidMount() 
+  {
+    console.log(this.myDevice);
+    //this.myDevice.TryAuth();
+  }
+  
+
+  render()   
+  {
+    return (<LanguageContext.Provider value={this.myLanguagePack}>
+      <Game></Game>  
+      </LanguageContext.Provider> );
+  }
 }
 
-export default App;
+

@@ -1,0 +1,196 @@
+html,body
+{
+  margin:0;
+  padding:0;
+  height: 100%;
+  width: 100%;
+  color: rgb(47,47,47);
+  background-color: papayawhip;
+}
+
+
+#game-body
+{
+  display:grid;
+  grid-template-rows: 1fr 568px 3fr;
+  padding-left:50px;
+  justify-content: left; 
+  height: 628px;
+  overflow: hidden;
+  position: relative;
+
+}
+
+/*
+#root
+{
+  display:grid;
+  grid-template-rows: 1fr 600px 3fr;
+  padding-left:50px;
+  justify-content: left; 
+  height: 100%;
+}
+*/
+#root > div
+{
+  background-color: transparent;
+}
+
+#modal-root
+{
+  position: absolute;
+  z-index: 99;
+  width:374px;
+  height: 100%;
+  overflow: hidden;
+  top:0px;
+  left:0px;
+  background-color: transparent;
+  pointer-events: none;
+  
+}
+
+#modal-root > div
+{
+  width:320px;
+  height:518px;
+  position: relative;
+/* Разобраться почему это потребовалось*/
+  top:15px;
+  left:50px;
+
+  background-color: rgba(128,0,0,0.5);
+  
+  overflow: hidden;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  grid-template-rows: 1fr min-content 10px 43px 2fr ;
+  pointer-events:all;
+
+}
+
+
+/** Scroll **/
+* { scrollbar-width: thin; }
+
+::-webkit-resizer,
+::-webkit-scrollbar-corner { display: none; }
+
+::-webkit-scrollbar { width: 9px; height: 11px; }
+
+::-webkit-scrollbar-thumb            { background-clip: padding-box; border-radius: 10px; }
+::-webkit-scrollbar-thumb:vertical   { border-left: 3px solid rgba(0, 0, 0, 0); border-right:  3px solid rgba(0, 0, 0, 0); }
+::-webkit-scrollbar-thumb:horizontal { border-top:  3px solid rgba(0, 0, 0, 0); border-bottom: 3px solid rgba(0, 0, 0, 0); }
+
+::-webkit-scrollbar-button            { width: 0px; height: 5px;}
+::-webkit-scrollbar { background-color:transparent; }
+::-webkit-scrollbar-thumb { background-color: #9A9; }
+
+/* Scroll */
+/*::-webkit-scrollbar-button:single-button:start:vertical   { background-image: url(../icons/img/icons/arrows/arrow-scroll-up-666.svg); background-size: 7px; }
+::-webkit-scrollbar-button:single-button:end:vertical     { background-image: url(../icons/img/icons/arrows/arrow-scroll-down-666.svg); background-size: 7px; }
+::-webkit-scrollbar-button:single-button:start:horizontal { background-image: url(../icons/img/icons/arrows/arrow-scroll-left-666.svg); background-size: 7px; }
+::-webkit-scrollbar-button:single-button:end:horizontal   { background-image: url(../icons/img/icons/arrows/arrow-scroll-right-666.svg); background-size: 7px; }
+*/
+
+
+.CheckBox
+{
+  margin-top: 7px;
+  margin-bottom: 7px;
+  height: 42px;
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  background-color: rgb(4,117,55);
+  border-radius: 6px;
+  border:solid rgb(4, 117, 55) 2px;
+  color:white;
+  cursor:pointer;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.CheckBox[data-select="1"]
+{
+  background-color: rgb(6,92,45) !important;
+  border:solid rgb(74, 190, 125) 2px !important;
+}
+.CheckBox > .Title
+{
+  
+  text-align: center;
+  margin-top: 8px;
+  width: 100%;
+  font-weight: 500;
+}
+
+
+.CheckBox > .CheckArea
+{
+  border: solid rgb(74, 190, 125) 1px;
+
+  display: block;
+  border: solid rgb(74, 190, 125) 3px;
+  border-radius: 6px;
+  width: 25px;
+  height: 25px;
+  margin: 5px;
+  background-color: rgb(4,117,55);
+
+}
+
+.CheckBox > .CheckArea > span
+{
+  display: block;
+  border: none;
+  border-radius: 5px;
+  width: 19px;
+  height: 19px;
+  margin: 3px;
+  background-color: rgb(4,117,55);
+}
+
+.CheckBox[data-checked="1"] > .CheckArea > span
+{
+  background-color: rgb(74, 190, 125) !important;
+}
+
+
+
+.LabelInput
+{
+  display: grid;
+  grid-template-rows: 28px 28px;
+  color:rgb(226,255,241);
+  font-size:13px;
+  padding-right: 4px;
+
+}
+
+.LabelInput > label
+{
+  height: 28px;
+  padding-top: 7px;
+  font-weight: 600;
+}
+
+.LabelInput > input,
+.LabelInput > select
+{
+  background-color: rgb(6,94,46);
+  color:rgb(226,255,241);
+  width: 100%;
+  border-radius: 4px;
+  border:none;
+  outline: none;
+  height: 28px;
+  padding-left: 4px;
+  box-sizing: border-box;
+}
+
+
+.Bold 
+{
+ font-weight: bold; 
+}
