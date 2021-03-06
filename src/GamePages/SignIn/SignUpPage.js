@@ -38,7 +38,7 @@ export default class SignUpPage extends React.Component {
       else if (this.props.modalstate === 'Success')
       {
         MsgBoxHTML = (
-        <MsgBox ModalButton="ПРОДОЛЖИТЬ">
+        <MsgBox ModalButton="Продолжить">
           <div>
             <p className='BoldTitle'>Благодарим за регистрацию!</p>
             <p>Для подтверждения Вашего почтового ящика и получения полных возможностей акаунта перейдите по ссылке в письме </p>
@@ -90,7 +90,7 @@ export default class SignUpPage extends React.Component {
                     <div className="SignUpTip">
                       {context.GetText('signup', 'tipCondition')}
                     </div>
-                    <div  className="NextButtonArea">
+                    <div  className="FooterArea">
                       <button>{context.GetText('signin', 'continueButton')}</button>
                     </div>
                   </div>

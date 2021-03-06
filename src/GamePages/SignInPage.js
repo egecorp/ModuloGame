@@ -1,7 +1,8 @@
 import React from 'react'
 import SignInLanguagePanel from '../Components/SignInLanguagePanel'
-import CheckBox from '../Components/CheckBox';
+import CheckBoxButton from '../Components/CheckBoxButton'
 import {LanguageContext} from '../Language/LangPack'
+import HeadNavigation from '../Components/HeadNavigation'
 
 
 export default class SignInPage extends React.Component {
@@ -46,54 +47,60 @@ export default class SignInPage extends React.Component {
       
     }
 
-    render() {
-       
-      
-          return (
-              <LanguageContext.Consumer>
-                {(context) =>
-                ( 
-                <div className='SignIn'>
+	render() {
+		
 
-                  <SignInLanguagePanel lang='ru'></SignInLanguagePanel>
-                  <div>
-                    <div className="Welcome">{context.GetText('signin', 'welcomeIn')}</div>
-                    <div className="WelcomeModulo">Modulo</div>
-                  </div>
-                    
-                    <CheckBox 
-                      changeItemState={this.changeItemState} 
-                      checkName="anonim" 
-                      IsChecked={this.state.checkedItem==="anonim"} 
-                      IsSelected={this.state.selectedItem==="anonim"} 
-                      title={context.GetText('signin', 'typeAnonimTitle')}></CheckBox>
-                    <CheckBox 
-                      changeItemState={this.changeItemState} 
-                      checkName="signup" 
-                      IsChecked={this.state.checkedItem==="signup"} 
-                      IsSelected={this.state.selectedItem==="signup"} 
-                      title={context.GetText('signin', 'typeSignUpTitle')}></CheckBox>
-                    <CheckBox
-                      changeItemState={this.changeItemState} 
-                      checkName="signin" 
-                      IsChecked={this.state.checkedItem==="signin"} 
-                      IsSelected={this.state.selectedItem==="signin"} 
-                      title={context.GetText('signin', 'typeSignInTitle')}></CheckBox>
-                    <div></div>
+		return (
+			
+				<LanguageContext.Consumer>
+				{(context) =>
+				( 
+					<>
+						<HeadNavigation title="none">
+							<SignInLanguagePanel lang='ru'></SignInLanguagePanel>
+						</HeadNavigation>
+						
+						<div className="SignIn">
+							<p className="Welcome">
+								<span className="WelcomeTitle">{context.GetText('signin', 'welcomeIn')}</span>
+								<br />
+								<span className="WelcomeModulo">Modulo</span>
+							</p>
+								
+							<CheckBoxButton 
+								changeItemState={this.changeItemState} 
+								checkName="anonim" 
+								IsChecked={this.state.checkedItem==="anonim"} 
+								IsSelected={this.state.selectedItem==="anonim"} 
+								title={context.GetText('signin', 'typeAnonimTitle')}></CheckBoxButton>
+							<CheckBoxButton 
+								changeItemState={this.changeItemState} 
+								checkName="signup" 
+								IsChecked={this.state.checkedItem==="signup"} 
+								IsSelected={this.state.selectedItem==="signup"} 
+								title={context.GetText('signin', 'typeSignUpTitle')}></CheckBoxButton>
+							<CheckBoxButton
+							changeItemState={this.changeItemState} 
+							checkName="signin" 
+							IsChecked={this.state.checkedItem==="signin"} 
+							IsSelected={this.state.selectedItem==="signin"} 
+							title={context.GetText('signin', 'typeSignInTitle')}></CheckBoxButton>
 
-                    <div className="SignInTip">
-                      <div>{this.state.tipText}</div>
-                    </div>
-                    <div  className="NextButtonArea">
-                      <button>{context.GetText('signin', 'continueButton')}</button>
-                    </div>
-                </div>
-                )}
-              </LanguageContext.Consumer>
-          );
-      
-    }
-  }
-  SignInPage.contextType = LanguageContext;
-  
-  
+							<div className="SignInTip">
+								<p>{this.state.tipText}</p>
+							</div>
+						</div>
+
+						<div className="FooterArea">
+							<button>{context.GetText('signin', 'continueButton')}</button>
+						</div>
+					</>
+				)}
+			</LanguageContext.Consumer>
+			
+		);
+
+	}
+}
+
+SignInPage.contextType = LanguageContext;

@@ -1,6 +1,7 @@
-import React from 'react'
-import SignInLanguagePanel from '../../Components/SignInLanguagePanel'
-import {LanguageContext} from '../../Language/LangPack'
+import React from 'react';
+import SignInLanguagePanel from '../../Components/SignInLanguagePanel';
+import {LanguageContext} from '../../Language/LangPack';
+import HeadNavigation from '../../Components/HeadNavigation';
 
 
 export default class SignInAuthPage extends React.Component {
@@ -25,37 +26,42 @@ export default class SignInAuthPage extends React.Component {
               <LanguageContext.Consumer>
                 {(context) =>
                 ( 
-                  
-                <div className='SignInAnonim'>
+						<>
+							<HeadNavigation>
+								<button className="ButtonBack"></button>
 
-                  <SignInLanguagePanel lang='ru'></SignInLanguagePanel>
-                  
-                  <div className='SignInNicName'>
-                    {context.GetText('signinanonim', 'labelYourNicName')} <span>anonim6045</span>
-                  </div>
-                    
-                  <div className='SignInAnonimImage'>
-                    <img src="/img/avatar/1/boy.1.png" alt="Anonim"></img>
-                  </div>
+								<p className="HeadNavigationTitle">Новый аккаунт</p>
 
-                  <div className="SignInAnonimTip" >
-                    {context.GetText('signinanonim', 'tipCannotChooseImg')}
-                  </div>
+								<SignInLanguagePanel lang='ru'></SignInLanguagePanel>
+							</HeadNavigation>
+							
+							<div className='SignInAnonim'>                  
+								<div className='SignInNicName'>
+								{context.GetText('signinanonim', 'labelYourNicName')} <span>anonim6045</span>
+								</div>
+								
+								<div className='SignInAnonimImage'>
+								<img src="/img/avatar/1/boy.1.png" alt="Anonim"></img>
+								</div>
 
-                  <div className="SignInAnonimSignUp" >
-                    {context.GetText('signinanonim', 'linkGoToSignUp')}
-                  </div>
+								<div className="SignInAnonimTip" >
+								{context.GetText('signinanonim', 'tipCannotChooseImg')}
+								</div>
 
-                  <div className="SignInAnonimTipCondition" >
-                  {context.GetText('signinanonim', 'tipCondition')}
-                  </div>
-                 
+								<div className="SignInAnonimSignUp" >
+								{context.GetText('signinanonim', 'linkGoToSignUp')}
+								</div>
 
-                  <div  className="NextButtonArea">
-                    <button>{context.GetText('signinanonim', 'continueButton')}</button>
-                  </div>
-                </div>
-                )}
+								<div className="SignInAnonimTipCondition" >
+								{context.GetText('signinanonim', 'tipCondition')}
+								</div>
+							</div>
+                	
+							<div className="FooterArea">
+								<button>{context.GetText('signinanonim', 'continueButton')}</button>
+							</div>
+						</>
+					 )}
               </LanguageContext.Consumer>
           );
       

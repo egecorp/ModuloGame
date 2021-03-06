@@ -76,7 +76,7 @@ export default class SignInAuthPage extends React.Component {
                         {context.GetText('signinauth', 'tipFAQ')}
                       </div>
 
-                      <div  className="NextButtonArea">
+                      <div  className="FooterArea">
                         <button>{context.GetText('signinauth', 'continueButton')}</button>
                       </div>
                     </div>

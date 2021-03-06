@@ -105,8 +105,10 @@ export default class PageHolder extends React.Component {
         }
         
         return ( 
-        <>          
-        {CPage} 
+        <>
+			<div className="Main">
+				{CPage} 
+			</div>
         </>
         );
     }

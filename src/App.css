@@ -1,14 +1,26 @@
+.Main {
+	margin-top: 20px; /* Статус бар */
+	padding: 0 10px;
+
+	height: calc(100% - 20px); /* Статус бар */
+
+	display: grid;
+	grid-template-rows: max-content 1fr max-content;
+
+	box-sizing: border-box;
+}
+
 .Game
 {
-  position: relative;
-  width:320px;
-  height:568px;
+	position: relative;
+	width:320px;
+	height:568px;
 	background: linear-gradient(to bottom, #12652f 0%,  #038D42 50%  ,   #0f6e34 100%);
-  border: 1px solid #044401;
-  overflow: hidden;
+	border: 1px solid #044401;
+	overflow: hidden;
 
-  display:grid;
-  grid-template-rows: 1fr 50px; 
+	display:grid;
+	grid-template-rows: 1fr max-content; 
 }
 
 .PageHolder
@@ -20,91 +32,100 @@
 .AdHolder
 {
   position: relative;
-  border: 1px solid black;
+  height: 50px;
 }
 
 .AdHolder select
 {
-  width:100%;
+  width: 100%;
   height: 100%;
 }
 
 
-.SignIn  
-{
-  padding-top:30px;
-  padding-left:10px;
-  padding-right:10px;
-  padding-bottom: 10px;
-  display: grid;
-  grid-template-rows: 30px 95px 50px 50px 50px 50px 1fr 43px ;
-
-}
-
-.Welcome,
-.WelcomeModulo
-{
-  color:white;
-  text-align: center;
-}
 
 .Welcome
 {
-  font-weight: lighter;
-  margin-top:10px;
-  font-size: 24px;
+	margin: 20px 0;
+	text-align: center;
+}
+
+.WelcomeTitle
+{
+	font-size: 22px;
+	font-weight: 300;
+	line-height: 28px;
 }
 
 .WelcomeModulo
 {
-  font-size: 30px;
-  font-weight: 600;
+	font-size: 28px;
+	font-weight: 600;
+	line-height: 34px;
 }
 
 .SignInLanguagePanel
 {
-  position:relative;
-  display:block;
-  height: 30px;
-  width: 105px;
-  
-  /*padding-left:11px;
-  padding-right:11px;*/
-  background-color: rgb(49,204,113);
-  
-  border-radius: 6px;
-  border: none;
+	justify-self: end;
+
+	padding: 5px 7px;
+	width: max-content;
+	height: 30px;
+
+	display: grid;
+	grid-gap: 0 7px;
+	grid-auto-flow: column;
+	grid-auto-columns: max-content;
+	align-items: center;
+
+	background-color: var(--button-green);
+	border-radius: 5px;
+	box-sizing: border-box;
 }
 
 .SignInLanguagePanelFlag
 {
-  position:absolute;
-  width:20px;
-  height:14px;
-  left:5px;
-  top:6px;
-  background-position: center;
-  background-repeat: none;
-  background-size: contain;
+	width: 20px;
+	height: 20px;
 }
 
 .SignInLanguagePanelFlag[data-country="ru"]
 {
- background-image: url(/src/img/flags/ru.png); 
+	background-image: url(/src/img/flags/ru.svg);
 }
 
 .SignInLanguagePanelFlag[data-country="eng"]
 {
-  background-image: url(/src/img/flags/usa.png); 
+	background-image: url(/src/img/flags/usa.svg); 
 }
 
 .SignInLanguagePanelName
 {
-  font-weight: bolder;
-  text-align: right;
-  right:10px;
-  top:2px;
-  position: absolute;
+	color: var(--button-font-color);
+	font-size: 13px;
+	font-weight: 500;
+}
+
+
+.HeadNavigation
+{
+	margin-top: 10px;
+	display: grid;
+	grid-auto-flow: column;
+	grid-template-columns: max-content 1fr max-content;
+	align-items: center;
+}
+
+.HeadNavigation[data-title="none"] {
+	grid-template-columns: unset;
+}
+
+.HeadNavigationTitle
+{
+	padding: 0 12px;
+	box-sizing: border-box;
+
+	font-size: 18px;
+	font-weight: 300;
 }
 
 
@@ -114,41 +135,44 @@
 
 .SignInTip
 {
-  background-color: rgb(4,117,55);
-  border:1px solid rgb(4,117,55);
-  border-radius:10px;
-  height: 70px;
-  text-align:center;
-  box-shadow: inset 0 0 2px 2px rgba(0,0,0,0.1);
-  color:white; 
-  align-items: center;
-  overflow-y: auto;
-  
+	margin: 15px auto;
+	padding: 10px 15px;
+	width: 90%;
+	max-height: 120px;
+
+	background: rgba(0, 0, 0, 0.1);
+	box-shadow: inset 0px 0px 6px 2px rgba(0, 0, 0, 0.1);
+	border-radius: 10px;
+
+	text-align: center;
+	box-shadow: inset 0 0 2px 2px rgba(0,0,0,0.1); 
+	box-sizing: border-box;
+
+	overflow-y: auto;
 }
 
-.SignInTip > div
+.SignInTip > p
 {
-  height: auto;
-  display: block;
-  text-align:justify;
-  padding:8px;
-  padding-top:1px;
+	font-size: 15px;
+	font-weight: 500;
+	line-height: 20px;;
+	text-align: center;
+	letter-spacing: 0.15px;
 }
 
 
-.NextButtonArea
+.FooterArea
 {
-  width:100%;
-  height: 42px;
-  margin:4px;
+	margin-bottom: 10px;
+	height: 42px;
 }
 
-.NextButtonArea > button
+.FooterArea > button
 {
   width: 100%;
   height: 100%;
   border-radius: 5px;
-  font-weight: bold;
+  font-weight: 500;
   font-size: 16px;
   outline: none !important;
   border:1ps solid;
@@ -172,7 +196,7 @@
 {
   color:white;
   text-align: center;
-  font-weight: lighter;
+  font-weight: 300;
   margin-top:13px;
   font-size: 20px;
 }
@@ -190,7 +214,7 @@
   padding:8px;
   padding-top:16px;  
   font-size: 14px;;
-  font-weight: lighter;
+  font-weight: 300;
 }
 
 
@@ -211,7 +235,7 @@
 {
   color:white;
   text-align: center;
-  font-weight: lighter;
+  font-weight: 300;
   margin-top:13px;
   font-size: 20px;
 }
@@ -229,7 +253,7 @@
   padding:8px;
   padding-top:16px;  
   font-size: 14px;;
-  font-weight: lighter;
+  font-weight: 300;
 }
 
 
@@ -240,24 +264,12 @@
 
 
 
-
-
-.SignInAnonim  
-{
-  padding-top:30px;
-  padding-left:10px;
-  padding-right:10px;
-  padding-bottom: 10px;
-  display: grid;
-  grid-template-rows: 27px 38px 200px 43px 40px 1fr 43px ;
-
-}
 
 .SignInNicName
 {
   color:white;
   text-align: center;
-  font-weight: lighter;
+  font-weight: 300;
   margin-top:13px;
   font-size: 20px;
 }
@@ -293,7 +305,7 @@
   padding:8px;
   padding-top:16px;  
   font-size: 15px;
-  font-weight: normal;
+  font-weight: 400;
 }
 
 .SignInAnonimSignUp
@@ -320,7 +332,7 @@
   padding:8px;
   padding-top:16px;  
   font-size: 14px;;
-  font-weight: lighter;
+  font-weight: 300;
 
 }
 
@@ -352,7 +364,7 @@
 {
   color:white;
   text-align: center;
-  font-weight: lighter;
+  font-weight: 300;
   margin-top:13px;
   font-size: 14px;
   overflow-y:scroll;
@@ -396,7 +408,7 @@
 .ModalBody .BoldTitle
 {
   font-size: 16px;;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .ModalBody > div
@@ -408,7 +420,7 @@
 
 .ModalBody label
 {
-  font-weight: bold;
+  font-weight: 500;
   float: left;
   margin-bottom: 2px;
 }
@@ -434,7 +446,7 @@
   width: 100%;
   height: 100%;
   border-radius: 6px;
-  font-weight: bold;
+  font-weight: 500;
   font-size: 15px;
   outline: none !important;
   border:1ps solid black;

@@ -37,7 +37,7 @@ export default class ConditionPage extends React.Component {
                   <div className='ConditionBody'>
                     <div>{context.GetText('condition', 'conditionBody')}</div>
                   </div>
-                  <div  className="NextButtonArea">
+                  <div  className="FooterArea">
                     <button>{context.GetText('condition', 'continueButton')}</button>
                   </div>
                 </div>

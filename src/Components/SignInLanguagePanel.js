@@ -10,19 +10,19 @@ export default class SignInLanguagePanel extends React.Component
         if (this.props.lang === 'eng')
         {
             return (
-                <div className='SignInLanguagePanel'>
+                <button className='SignInLanguagePanel'>
                     <div className='SignInLanguagePanelFlag' data-country="eng"></div>
-                    <div className='SignInLanguagePanelName'>English</div>
-                </div>
+                    <p className='SignInLanguagePanelName'>English</p>
+                </button>
                 );
         }
         else
         {
             return (
-                <div className='SignInLanguagePanel'>
+                <button className='SignInLanguagePanel'>
                     <div className='SignInLanguagePanelFlag' data-country="ru"></div>
-                    <div className='SignInLanguagePanelName'>Русский</div>
-                </div>
+                    <p className='SignInLanguagePanelName'>Русский</p>
+                </button>
                 );
         }
     }

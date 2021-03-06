@@ -50,7 +50,7 @@ export default class SettingsSettingsPage extends React.Component {
                   </div>
                  
 
-                  <div  className="NextButtonArea">
+                  <div  className="FooterArea">
                     <button>{context.GetText('signinanonim', 'continueButton')}</button>
                   </div>
                 </div>
