@@ -21,7 +21,7 @@ export default class App extends React.Component{
 
     this.myLanguagePack = LanguagePacketsHolder.Get().GetPack('ru');
 
-    
+   // test commiting string  
   }
 
   componentDidMount() 
