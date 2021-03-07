@@ -51,13 +51,13 @@ export default class SignInAuthPage extends React.Component {
 								<p className="SignInAnonimSignUp" >
 								{context.GetText('signinanonim', 'linkGoToSignUp')}
 								</p>
-
-								<p className="SignInAnonimTipCondition" >
-								{context.GetText('signinanonim', 'tipCondition')}
-								</p>
 							</div>
                 	
 							<div className="FooterArea">
+								<p className="AdditionalTip" >
+									{context.GetText('signinanonim', 'tipCondition')}
+								</p>
+
 								<button>{context.GetText('signinanonim', 'continueButton')}</button>
 							</div>
 						</>

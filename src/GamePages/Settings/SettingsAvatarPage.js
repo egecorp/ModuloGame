@@ -43,7 +43,7 @@ export default class SettingsAvatarPage extends React.Component {
                     {context.GetText('signinanonim', 'linkGoToSignUp')}
                   </p>
 
-                  <p className="SignInAnonimTipCondition" >
+                  <p className="AdditionalTip" >
                   {context.GetText('signinanonim', 'tipCondition')}
                   </p>
                  

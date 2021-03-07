@@ -3,6 +3,7 @@
 
 :root {
 	--button-green: #35CA71;
+	--button-green-hover: #2EB062;
 	--button-green-rgb: 53, 202, 113;
 	--button-darkgreen: #06371E;
 	--button-darkgreen-rgb: 6, 55, 30;
@@ -207,7 +208,23 @@ html,body
 .GeneralSubtitle span {
 	text-decoration: underline;
 }
+/* END */
 
+
+/* AdditionalTip */
+.AdditionalTip
+{
+	margin-bottom: 10px;
+	
+	font-weight: 300;
+	font-size: 13px;
+	line-height: 17px;
+	text-align: center;
+}
+
+.AdditionalTip > span {
+	font-weight: 500;
+}
 /* END */
 
 
@@ -258,6 +275,12 @@ html,body
 	box-sizing: border-box;
 }
 
+.ButtonBack:active
+{
+	background-color: var(--button-green-hover);
+	border: 1px solid var(--button-green-hover);
+}
+
 .ButtonGreen
 {
 	padding: 0 7px;
@@ -273,6 +296,11 @@ html,body
 	background-color: var(--button-green);
 	border-radius: 5px;
 	box-sizing: border-box;
+}
+
+.ButtonGreen:active
+{
+	background-color: var(--button-green-hover);
 }
 /* END */
 

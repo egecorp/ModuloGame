@@ -153,7 +153,6 @@
 .FooterArea
 {
 	margin: 10px 0;
-	height: 42px;
 }
 
 .FooterArea > button
@@ -293,16 +292,6 @@
 	line-height: 18px;
 	text-align: center;
 	text-decoration: underline;
-}
-
-.SignInAnonimTipCondition
-{
-	margin-top: 15px;
-	
-	font-weight: 300;
-	font-size: 13px;
-	line-height: 17px;
-	text-align: center;
 }
 
 
