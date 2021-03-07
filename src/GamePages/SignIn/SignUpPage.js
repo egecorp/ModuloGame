@@ -49,8 +49,6 @@ export default class SignUpPage extends React.Component {
       {this.currentContext.GetText('signin.modal.AlreadyExists', 'title')}
       {this.currentContext.GetText('signin.modal.AlreadyExists', 'text')}
       
-      
-
           return (
               <LanguageContext.Consumer>
                 {(context) =>
@@ -88,7 +86,9 @@ export default class SignUpPage extends React.Component {
                     </div>
                     
                     <div className="SignUpTip">
-                      {context.GetText('signup', 'tipCondition')}
+                        {this.currentContext.GetText('signup', 'tipConditionBegin')}
+                          <span style={{fontSize:"25px"}}>{this.currentContext.GetText('signup', 'tipConditionLink')}</span>
+                        {this.currentContext.GetText('signup', 'tipConditionEnd')}
                     </div>
                     <div  className="FooterArea">
                       <button>{context.GetText('signin', 'continueButton')}</button>

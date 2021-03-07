@@ -1,3 +1,4 @@
+import React from 'react'
 export function AddPackets(addPackFunction)
 {
     var pack = addPackFunction('ru');
@@ -29,7 +30,9 @@ export function AddPackets(addPackFunction)
         'labelCountry' : 'Страна:',
         'labelPhone' : 'Номер телефона:',
         'labelDOB' : 'Дата рождения:',
-        'tipCondition' : 'Нажимая кнопку «Продолжить», Вы принимаете наши Условия и Политику использования данных.',
+        'tipConditionBegin' : 'Нажимая кнопку «Продолжить», Вы принимаете наши',
+        'tipConditionLink' : 'Условия и Политику использования данных',
+        'tipConditionEnd' : '.',
         'continueButton' : 'Зарегистрироваться'
     });
 
@@ -57,7 +60,9 @@ export function AddPackets(addPackFunction)
         'labelYourNicName' : 'Ваш ник:',
         'tipCannotChooseImg' : 'Выбор персонажа недоступен в анонимной игре',
         'linkGoToSignUp' : 'Создать учётную запись',
-        'tipCondition' : 'Нажимая кнопку «Продолжить», Вы принимаете наши Условия и Политику использования данных.',
+        'tipConditionBegin' : 'Нажимая кнопку «Продолжить», Вы принимаете наши',
+        'tipConditionLink' : 'Условия и Политику использования данных',
+        'tipConditionEnd' : '.',
         'continueButton' : 'Продолжить'
     });
 
