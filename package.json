@@ -18,7 +18,7 @@
     "eject": "react-scripts eject",
 
     "postinstall": "winser -i -s -c",
-    "preuninstall": "winser -r -x -s",
+    "preuninstall": "winser -r -x -s"
       
 
   },
