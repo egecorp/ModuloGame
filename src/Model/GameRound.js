@@ -75,7 +75,7 @@ var GameRound = function()
     // Второй игрок использовал число 9
     var U2Use9 = false;
     // Второй игрок использовал джокера (11)
-    var U2Use11 = false;
+    var U2Use11 = false;  
 
 
     // Произвести подсчёт очков
