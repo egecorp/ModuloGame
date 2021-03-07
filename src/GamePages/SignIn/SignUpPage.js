@@ -86,9 +86,9 @@ export default class SignUpPage extends React.Component {
                     </div>
                     
                     <div className="SignUpTip">
-                        {this.currentContext.GetText('signup', 'tipConditionBegin')}
-                          <span style={{fontSize:"25px"}}>{this.currentContext.GetText('signup', 'tipConditionLink')}</span>
-                        {this.currentContext.GetText('signup', 'tipConditionEnd')}
+                        {context.GetText('signup', 'tipConditionBegin')}
+                          <span style={{fontSize:"25px"}}>{context.GetText('signup', 'tipConditionLink')}</span>
+                        {context.GetText('signup', 'tipConditionEnd')}
                     </div>
                     <div  className="FooterArea">
                       <button>{context.GetText('signin', 'continueButton')}</button>

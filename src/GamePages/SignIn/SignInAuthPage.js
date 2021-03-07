@@ -22,7 +22,7 @@ export default class SignInAuthPage extends React.Component {
     render() {
        
       var MsgBoxHTML = null;
-      if (this.props.modalstate == 'EnterCode')
+      if (this.props.modalstate === 'EnterCode')
       {
         MsgBoxHTML = (
         <MsgBox ModalButton="ОТПРАВИТЬ">
@@ -35,7 +35,7 @@ export default class SignInAuthPage extends React.Component {
         </MsgBox>
          )
       } 
-      else if (this.props.modalstate == 'FailCode')
+      else if (this.props.modalstate === 'FailCode')
       {
         MsgBoxHTML = (
         <MsgBox ModalButton="ОТПРАВИТЬ">

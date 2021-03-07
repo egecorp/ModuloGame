@@ -88,7 +88,7 @@ var GameRound = function()
         
         if  (this.U1D1 > this.U2D1) 
         {
-            if (this.U1D1 % this.U2D1 == 0)
+            if (this.U1D1 % this.U2D1 === 0)
             {
                 this.U2Score += Math.round(this.U1D1 / this.U2D1);
             }
@@ -99,7 +99,7 @@ var GameRound = function()
         }
         else if  (this.U2D1 > this.U1D1) 
         {
-            if (this.U2D1 % this.U1D1 == 0)
+            if (this.U2D1 % this.U1D1 === 0)
             {
                 this.U1Score += Math.round(this.U2D1 / this.U1D1);
             }
@@ -112,7 +112,7 @@ var GameRound = function()
                 
         if  (this.U1D2 > this.U2D2) 
         {
-            if (this.U1D2 % this.U2D2 == 0)
+            if (this.U1D2 % this.U2D2 === 0)
             {
                 this.U2Score += Math.round(this.U1D2 / this.U2D2);
             }
@@ -123,7 +123,7 @@ var GameRound = function()
         }
         else if  (this.U2D2 > this.U1D2) 
         {
-            if (this.U2D2 % this.U1D2 == 0)
+            if (this.U2D2 % this.U1D2 === 0)
             {
                 this.U1Score += Math.round(this.U2D2 / this.U1D2);
             }
@@ -136,7 +136,7 @@ var GameRound = function()
         
         if  (this.U1D3 > this.U2D3) 
         {
-            if (this.U1D3 % this.U2D3 == 0)
+            if (this.U1D3 % this.U2D3 === 0)
             {
                 this.U2Score += Math.round(this.U1D3 / this.U2D3);
             }
@@ -147,7 +147,7 @@ var GameRound = function()
         }
         else if  (this.U2D3 > this.U1D3) 
         {
-            if (this.U2D3 % this.U1D3 == 0)
+            if (this.U2D3 % this.U1D3 === 0)
             {
                 this.U1Score += Math.round(this.U2D3 / this.U1D3);
             }
@@ -157,24 +157,24 @@ var GameRound = function()
             }
         }
 
-        this.U1Use2 = (this.U1D1  ==  2) || (this.U1D2  ==  2) || (this.U1D3  ==  2);
-        this.U1Use3 = (this.U1D1  ==  3) || (this.U1D2  ==  3) || (this.U1D3  ==  3);
-        this.U1Use4 = (this.U1D1  ==  4) || (this.U1D2  ==  4) || (this.U1D3  ==  4);
-        this.U1Use5 = (this.U1D1  ==  5) || (this.U1D2  ==  5) || (this.U1D3  ==  5);
-        this.U1Use6 = (this.U1D1  ==  6) || (this.U1D2  ==  6) || (this.U1D3  ==  6);
-        this.U1Use7 = (this.U1D1  ==  7) || (this.U1D2  ==  7) || (this.U1D3  ==  7);
-        this.U1Use8 = (this.U1D1  ==  8) || (this.U1D2  ==  8) || (this.U1D3  ==  8);
-        this.U1Use9 = (this.U1D1  ==  9) || (this.U1D2  ==  9) || (this.U1D3  ==  9);
-        this.U1Use11 = (this.U1D1  ==  11) || (this.U1D2  ==  11) || (this.U1D3  ==  11);
+        this.U1Use2 = (this.U1D1  ===  2) || (this.U1D2  ===  2) || (this.U1D3  ===  2);
+        this.U1Use3 = (this.U1D1  ===  3) || (this.U1D2  ===  3) || (this.U1D3  ===  3);
+        this.U1Use4 = (this.U1D1  ===  4) || (this.U1D2  ===  4) || (this.U1D3  ===  4);
+        this.U1Use5 = (this.U1D1  ===  5) || (this.U1D2  ===  5) || (this.U1D3  ===  5);
+        this.U1Use6 = (this.U1D1  ===  6) || (this.U1D2  ===  6) || (this.U1D3  ===  6);
+        this.U1Use7 = (this.U1D1  ===  7) || (this.U1D2  ===  7) || (this.U1D3  ===  7);
+        this.U1Use8 = (this.U1D1  ===  8) || (this.U1D2  ===  8) || (this.U1D3  ===  8);
+        this.U1Use9 = (this.U1D1  ===  9) || (this.U1D2  ===  9) || (this.U1D3  ===  9);
+        this.U1Use11 = (this.U1D1  ===  11) || (this.U1D2  ===  11) || (this.U1D3  ===  11);
 
-        this.U2Use2 = (this.U2D1  ==  2) || (this.U2D2  ==  2) || (this.U2D3  ==  2);
-        this.U2Use3 = (this.U2D1  ==  3) || (this.U2D2  ==  3) || (this.U2D3  ==  3);
-        this.U2Use4 = (this.U2D1  ==  4) || (this.U2D2  ==  4) || (this.U2D3  ==  4);
-        this.U2Use5 = (this.U2D1  ==  5) || (this.U2D2  ==  5) || (this.U2D3  ==  5);
-        this.U2Use6 = (this.U2D1  ==  6) || (this.U2D2  ==  6) || (this.U2D3  ==  6);
-        this.U2Use7 = (this.U2D1  ==  7) || (this.U2D2  ==  7) || (this.U2D3  ==  7);
-        this.U2Use8 = (this.U2D1  ==  8) || (this.U2D2  ==  8) || (this.U2D3  ==  8);
-        this.U2Use9 = (this.U2D1  ==  9) || (this.U2D2  ==  9) || (this.U2D3  ==  9);
-        this.U2Use11 = (this.U2D1  ==  11) || (this.U2D2  ==  11) || (this.U2D3  ==  11);
+        this.U2Use2 = (this.U2D1  ===  2) || (this.U2D2  ===  2) || (this.U2D3  ===  2);
+        this.U2Use3 = (this.U2D1  ===  3) || (this.U2D2  ===  3) || (this.U2D3  ===  3);
+        this.U2Use4 = (this.U2D1  ===  4) || (this.U2D2  ===  4) || (this.U2D3  ===  4);
+        this.U2Use5 = (this.U2D1  ===  5) || (this.U2D2  ===  5) || (this.U2D3  ===  5);
+        this.U2Use6 = (this.U2D1  ===  6) || (this.U2D2  ===  6) || (this.U2D3  ===  6);
+        this.U2Use7 = (this.U2D1  ===  7) || (this.U2D2  ===  7) || (this.U2D3  ===  7);
+        this.U2Use8 = (this.U2D1  ===  8) || (this.U2D2  ===  8) || (this.U2D3  ===  8);
+        this.U2Use9 = (this.U2D1  ===  9) || (this.U2D2  ===  9) || (this.U2D3  ===  9);
+        this.U2Use11 = (this.U2D1  ===  11) || (this.U2D2  ===  11) || (this.U2D3  ===  11);
     }
 }
