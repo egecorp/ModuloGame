@@ -35,17 +35,17 @@ export default class SettingsSettingsPage extends React.Component {
                     <img src="/img/avatar/1/boy.1.png" alt="Anonim"></img>
                   </div>
 
-                  <div className="SignInAnonimTip" >
+                  <p className="SignInAnonimTip" >
                     {context.GetText('signinanonim', 'tipCannotChooseImg')}
-                  </div>
+                  </p>
 
-                  <div className="SignInAnonimSignUp" >
+                  <p className="SignInAnonimSignUp" >
                     {context.GetText('signinanonim', 'linkGoToSignUp')}
-                  </div>
+                  </p>
 
-                  <div className="SignInAnonimTipCondition" >
+                  <p className="SignInAnonimTipCondition" >
                   {context.GetText('signinanonim', 'tipCondition')}
-                  </div>
+                  </p>
                  
 
                   <div  className="FooterArea">
