@@ -31,7 +31,7 @@ export function AddPackets(addPackFunction)
         'labelPhone' : 'Номер телефона:',
         'labelDOB' : 'Дата рождения:',
         'tipConditionBegin' : 'Нажимая кнопку «Продолжить», Вы принимаете наши',
-        'tipConditionLink' : 'Условия и Политику использования данных',
+        'tipConditionLink' : ' Условия и Политику использования данных',
         'tipConditionEnd' : '.',
         'continueButton' : 'Зарегистрироваться'
     });
@@ -50,7 +50,7 @@ export function AddPackets(addPackFunction)
         'labelEMail' : 'E-mail:',
         'labelDeviceName' : 'Название устройства:',
         'labelPhone' : 'Номер телефона:',
-        'tipFAQ' : 'Введите e-mail для подключения устройства к учётной записи. После нажатия "ВОЙТИ" на указанный адрес придёт письмо с кодом подтверждения',
+        'tipFAQ' : 'Введите e-mail, чтобы связать устройство с учётной записью. Затем нажмите "Войти" и на указанный адрес придёт письмо с кодом подтверждения.',
         'continueButton' : 'Войти'
     });
 
@@ -61,7 +61,7 @@ export function AddPackets(addPackFunction)
         'tipCannotChooseImg' : 'Выбор персонажа недоступен в анонимной игре',
         'linkGoToSignUp' : 'Создать учётную запись',
         'tipConditionBegin' : 'Нажимая кнопку «Продолжить», Вы принимаете наши',
-        'tipConditionLink' : 'Условия и Политику использования данных',
+        'tipConditionLink' : ' Условия и Политику использования данных',
         'tipConditionEnd' : '.',
         'continueButton' : 'Продолжить'
     });

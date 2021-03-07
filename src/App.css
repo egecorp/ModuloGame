@@ -214,6 +214,18 @@
 }
 
 
+.SignInAuth .UserTip
+{
+	max-height: unset;
+}
+
+.SignInAuth .UserTip p
+{
+	font-size: 13px;
+	line-height: 18px;
+}
+
+
 
 
 
