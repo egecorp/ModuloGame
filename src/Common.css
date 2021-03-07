@@ -8,6 +8,9 @@
 	--button-darkgreen-rgb: 6, 55, 30;
 
 	--button-font-color: #000;
+
+	--button-footer-bg: #EEEEEE;
+	--button-footer-bg-hover: #D4D4D4;
 }
 
 *
@@ -225,7 +228,8 @@ html,body
 }
 
 /* Buttons */
-.ButtonBack {
+.ButtonBack
+{
 	width: 30px;
 	height: 30px;
 
@@ -236,6 +240,23 @@ html,body
 	border-radius: 5px;
 	border: 1px solid var(--button-green);
 
+	box-sizing: border-box;
+}
+
+.ButtonGreen
+{
+	padding: 0 7px;
+	width: max-content;
+	height: 30px;
+
+	display: grid;
+	grid-gap: 0 7px;
+	grid-auto-flow: column;
+	grid-auto-columns: max-content;
+	align-items: center;
+	
+	background-color: var(--button-green);
+	border-radius: 5px;
 	box-sizing: border-box;
 }
 /* END */

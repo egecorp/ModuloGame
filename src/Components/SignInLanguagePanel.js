@@ -10,7 +10,7 @@ export default class SignInLanguagePanel extends React.Component
         if (this.props.lang === 'eng')
         {
             return (
-                <button className='SignInLanguagePanel'>
+                <button className='SignInLanguagePanel ButtonGreen'>
                     <div className='SignInLanguagePanelFlag' data-country="eng"></div>
                     <p className='SignInLanguagePanelName'>English</p>
                 </button>
@@ -19,7 +19,7 @@ export default class SignInLanguagePanel extends React.Component
         else
         {
             return (
-                <button className='SignInLanguagePanel'>
+                <button className='SignInLanguagePanel ButtonGreen'>
                     <div className='SignInLanguagePanelFlag' data-country="ru"></div>
                     <p className='SignInLanguagePanelName'>Русский</p>
                 </button>

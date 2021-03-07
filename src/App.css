@@ -66,20 +66,6 @@
 .SignInLanguagePanel
 {
 	justify-self: end;
-
-	padding: 5px 7px;
-	width: max-content;
-	height: 30px;
-
-	display: grid;
-	grid-gap: 0 7px;
-	grid-auto-flow: column;
-	grid-auto-columns: max-content;
-	align-items: center;
-
-	background-color: var(--button-green);
-	border-radius: 5px;
-	box-sizing: border-box;
 }
 
 .SignInLanguagePanelFlag
@@ -162,6 +148,7 @@
 }
 
 
+/* FooterArea */
 .FooterArea
 {
 	margin-bottom: 10px;
@@ -170,16 +157,24 @@
 
 .FooterArea > button
 {
-  width: 100%;
-  height: 100%;
-  border-radius: 5px;
-  font-weight: 500;
-  font-size: 16px;
-  outline: none !important;
-  border:1ps solid;
+	width: 100%;
+	height: 100%;
 
+	background-color: var(--button-footer-bg);
+	border-radius: 5px;
+	box-shadow: 2px 4px 4px 0 rgba(0, 0, 0, 0.15);
+
+	font-size: 16px;
+	font-weight: 500;
+	text-transform: uppercase;
 }
 
+.FooterArea > button:active
+{
+	background-color: var(--button-footer-bg-hover);
+	box-shadow: 2px 4px 4px 0 rgba(0, 0, 0, 0.3);
+}
+/* END */
 
 
 .SignUp  
