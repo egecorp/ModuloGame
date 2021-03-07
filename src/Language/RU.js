@@ -58,17 +58,11 @@ export function AddPackets(addPackFunction)
     pack.AddDictionary('signinanonim', 
     {
         'labelYourNicName' : 'Ваш ник:',
-<<<<<<< HEAD
-        'tipCannotChooseImg' : 'Выбор персонажа недоступен в анонимной игре.',
-        'linkGoToSignUp' : 'Создать учётную запись?',
-        'tipCondition' : 'Нажимая кнопку «Продолжить», Вы принимаете наши Условия и Политику использования данных.',
-=======
         'tipCannotChooseImg' : 'Выбор персонажа недоступен в анонимной игре',
         'linkGoToSignUp' : 'Создать учётную запись',
         'tipConditionBegin' : 'Нажимая кнопку «Продолжить», Вы принимаете наши',
         'tipConditionLink' : 'Условия и Политику использования данных',
         'tipConditionEnd' : '.',
->>>>>>> c7447f48db64a9f999063ed7bc160174274b542d
         'continueButton' : 'Продолжить'
     });
 
