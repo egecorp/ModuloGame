@@ -195,6 +195,21 @@ html,body
 }
 
 
+/* GeneralSubtitle */
+.GeneralSubtitle {
+	margin: 12px 0;
+
+	font-size: 15px;
+	font-weight: 500;
+	line-height: 20px;
+}
+
+.GeneralSubtitle span {
+	text-decoration: underline;
+}
+
+/* END */
+
 
 .LabelInput
 {
@@ -254,7 +269,7 @@ html,body
 	grid-auto-flow: column;
 	grid-auto-columns: max-content;
 	align-items: center;
-	
+
 	background-color: var(--button-green);
 	border-radius: 5px;
 	box-sizing: border-box;

@@ -36,9 +36,9 @@ export default class SignInAuthPage extends React.Component {
 							</HeadNavigation>
 							
 							<div className='SignInAnonim'>                  
-								<div className='SignInNicName'>
+								<p className='GeneralSubtitle'>
 								{context.GetText('signinanonim', 'labelYourNicName')} <span>anonim6045</span>
-								</div>
+								</p>
 								
 								<div className='SignInAnonimImage'>
 								<img src="/img/avatar/1/boy.1.png" alt="Anonim"></img>
