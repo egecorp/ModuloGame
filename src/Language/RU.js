@@ -1,3 +1,4 @@
+import React from 'react'
 export function AddPackets(addPackFunction)
 {
     var pack = addPackFunction('ru');
@@ -29,7 +30,9 @@ export function AddPackets(addPackFunction)
         'labelCountry' : 'Страна:',
         'labelPhone' : 'Номер телефона:',
         'labelDOB' : 'Дата рождения:',
-        'tipCondition' : 'Нажимая кнопку «Продолжить», Вы принимаете наши Условия и Политику использования данных.',
+        'tipConditionBegin' : 'Нажимая кнопку «Продолжить», Вы принимаете наши',
+        'tipConditionLink' : 'Условия и Политику использования данных',
+        'tipConditionEnd' : '.',
         'continueButton' : 'Зарегистрироваться'
     });
 
@@ -47,7 +50,7 @@ export function AddPackets(addPackFunction)
         'labelEMail' : 'E-mail:',
         'labelDeviceName' : 'Название устройства:',
         'labelPhone' : 'Номер телефона:',
-        'tipFAQ' : 'Введите адрес электронной почты для присоединения устройства к учётной записи. После нажатия кнопки ВОЙТИ на указанный адрес придёт письмо с кодом подтверждения',
+        'tipFAQ' : 'Введите e-mail для подключения устройства к учётной записи. После нажатия "ВОЙТИ" на указанный адрес придёт письмо с кодом подтверждения',
         'continueButton' : 'Войти'
     });
 
@@ -55,9 +58,17 @@ export function AddPackets(addPackFunction)
     pack.AddDictionary('signinanonim', 
     {
         'labelYourNicName' : 'Ваш ник:',
+<<<<<<< HEAD
         'tipCannotChooseImg' : 'Выбор персонажа недоступен в анонимной игре.',
         'linkGoToSignUp' : 'Создать учётную запись?',
         'tipCondition' : 'Нажимая кнопку «Продолжить», Вы принимаете наши Условия и Политику использования данных.',
+=======
+        'tipCannotChooseImg' : 'Выбор персонажа недоступен в анонимной игре',
+        'linkGoToSignUp' : 'Создать учётную запись',
+        'tipConditionBegin' : 'Нажимая кнопку «Продолжить», Вы принимаете наши',
+        'tipConditionLink' : 'Условия и Политику использования данных',
+        'tipConditionEnd' : '.',
+>>>>>>> c7447f48db64a9f999063ed7bc160174274b542d
         'continueButton' : 'Продолжить'
     });
 

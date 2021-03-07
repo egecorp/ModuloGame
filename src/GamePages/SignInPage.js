@@ -3,7 +3,6 @@ import SignInLanguagePanel from '../Components/SignInLanguagePanel'
 import CheckBoxButton from '../Components/CheckBoxButton'
 import {LanguageContext} from '../Language/LangPack'
 import HeadNavigation from '../Components/HeadNavigation'
-import UserTip from '../Components/UserTip'
 
 
 export default class SignInPage extends React.Component {
@@ -87,9 +86,9 @@ export default class SignInPage extends React.Component {
 							IsSelected={this.state.selectedItem==="signin"} 
 							title={context.GetText('signin', 'typeSignInTitle')}></CheckBoxButton>
 
-							<UserTip>
+							<div className="UserTip">
 								<p>{this.state.tipText}</p>
-							</UserTip>
+							</div>
 						</div>
 
 						<div className="FooterArea">

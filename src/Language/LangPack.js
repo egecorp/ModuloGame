@@ -91,6 +91,14 @@ export class Pack
         let stringValue = selectedMap.get(stringName);
         return stringValue;
     }
+
+    GetJSX(dictName, stringName)
+    {
+        let selectedMap = this.Dictionaries.get(dictName);
+        if (!selectedMap) return undefined;
+        let stringValue = selectedMap.get(stringName);
+        return <>{stringValue}</>;
+    }
 }
 
 

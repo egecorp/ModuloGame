@@ -40,16 +40,17 @@ export default class SettingsSettingsPage extends React.Component {
                   </p>
 
                   <p className="SignInAnonimSignUp" >
-                    {context.GetText('signinanonim', 'linkGoToSignUp')}
+							{context.GetText('signinanonim', 'linkGoToSignUp')}
                   </p>
 
-                  <p className="AdditionalTip" >
-                  {context.GetText('signinanonim', 'tipCondition')}
-                  </p>
-                 
+                  <div className="FooterArea">
+							<p className="AdditionalTip">
+								{this.currentContext.GetText('signinanonim', 'tipConditionBegin')}
+								<span>{this.currentContext.GetText('signinanonim', 'tipConditionLink')}</span>
+								{this.currentContext.GetText('signinanonim', 'tipConditionEnd')}
+							</p>
 
-                  <div  className="FooterArea">
-                    <button>{context.GetText('signinanonim', 'continueButton')}</button>
+							<button>{context.GetText('signinanonim', 'continueButton')}</button>
                   </div>
                 </div>
                 )}

@@ -3,7 +3,6 @@ import SignInLanguagePanel from '../../Components/SignInLanguagePanel'
 import {LanguageContext} from '../../Language/LangPack'
 import MsgBox from "../../Components/MsgBox";
 import HeadNavigation from '../../Components/HeadNavigation'
-import UserTip from '../../Components/UserTip'
 
 
 export default class SignInAuthPage extends React.Component {
@@ -62,27 +61,29 @@ export default class SignInAuthPage extends React.Component {
 								<SignInLanguagePanel lang='ru'></SignInLanguagePanel>
 							</HeadNavigation>
 
-                    <div className='SignInAuth'>
-							<p className="GeneralSubtitle">{context.GetText('signinauth', 'signInAuthTitle')}</p>
+							<div className='SignInAuth'>
+								<p className="GeneralSubtitle">{context.GetText('signinauth', 'signInAuthTitle')}</p>
 
-                      <div className="LabelInput" >
-                        <label htmlFor="inputEMail">{context.GetText('signinauth', 'labelEMail')}</label>
-                        <input type="text" name="inputEMail" />
-                      </div>
-                      <div className="LabelInput" >
-                        <label htmlFor="inputDeviceName">{context.GetText('signinauth', 'labelDeviceName')}</label>
-                        <input type="text" name="inputDeviceName" />
-                      </div>
-                    
-                      <UserTip>
-                        <p>{context.GetText('signinauth', 'tipFAQ')}</p>
-                      </UserTip>
-                    </div>
+								<div className="LabelInput">
+									<label htmlFor="inputEMail">{context.GetText('signinauth', 'labelEMail')}</label>
+									<input type="text" name="inputEMail" />
+								</div>
+
+								<div className="LabelInput">
+									<label htmlFor="inputDeviceName">{context.GetText('signinauth', 'labelDeviceName')}</label>
+									<input type="text" name="inputDeviceName" />
+								</div>
+
+								<div className="UserTip">
+									<p>{context.GetText('signinauth', 'tipFAQ')}</p>
+								</div>
+							</div>
 
 							<div className="FooterArea">
 								<button>{context.GetText('signinauth', 'continueButton')}</button>
 							</div>
-                    {MsgBoxHTML}
+
+							{MsgBoxHTML}
                   </>
                 )}
               </LanguageContext.Consumer>
