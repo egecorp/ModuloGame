@@ -2,6 +2,8 @@ import React from 'react'
 import SignInLanguagePanel from '../../Components/SignInLanguagePanel'
 import {LanguageContext} from '../../Language/LangPack'
 import MsgBox from "../../Components/MsgBox";
+import HeadNavigation from '../../Components/HeadNavigation'
+import UserTip from '../../Components/UserTip'
 
 
 export default class SignInAuthPage extends React.Component {
@@ -52,13 +54,17 @@ export default class SignInAuthPage extends React.Component {
                 {(context) =>
                 ( 
                   <>
-                    <div className='SignInAuth'>
+							<HeadNavigation>
+								<button className="ButtonBack"></button>
 
-                      <SignInLanguagePanel lang='ru'></SignInLanguagePanel>
-                      <div>
-                        <div className="SignInAuthWelcome">{context.GetText('signinauth', 'signInAuthTitle')}</div>
-                      </div>
-                        
+								<p className="HeadNavigationTitle">Вход в аккаунт</p>
+
+								<SignInLanguagePanel lang='ru'></SignInLanguagePanel>
+							</HeadNavigation>
+
+                    <div className='SignInAuth'>
+							<p className="GeneralSubtitle">{context.GetText('signinauth', 'signInAuthTitle')}</p>
+
                       <div className="LabelInput" >
                         <label htmlFor="inputEMail">{context.GetText('signinauth', 'labelEMail')}</label>
                         <input type="text" name="inputEMail" />
@@ -68,20 +74,14 @@ export default class SignInAuthPage extends React.Component {
                         <input type="text" name="inputDeviceName" />
                       </div>
                     
-
-
-                    
-                      
-                      <div className="SignInAuthTip">
-                        {context.GetText('signinauth', 'tipFAQ')}
-                      </div>
-
-                      <div  className="FooterArea">
-                        <button>{context.GetText('signinauth', 'continueButton')}</button>
-                      </div>
+                      <UserTip>
+                        <p>{context.GetText('signinauth', 'tipFAQ')}</p>
+                      </UserTip>
                     </div>
 
-                    
+							<div className="FooterArea">
+								<button>{context.GetText('signinauth', 'continueButton')}</button>
+							</div>
                     {MsgBoxHTML}
                   </>
                 )}
