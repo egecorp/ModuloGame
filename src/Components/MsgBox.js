@@ -33,15 +33,13 @@ export default class MsgBox extends React.Component {
             {(context) =>
             ( 
 							<>
-								<div></div>
 								<div className='ModalBody'>
 									<div>{this.props.children ?? ""}</div>
 								</div>
-								<div></div>
+
 								<div  className="ModalButtonArea">
 									<button>{this.props.ModalButton ?? context.GetText('common', 'modalDefaultButton')}</button>
 								</div>
-								<div></div>
 							</>
 						)}
 						</LanguageContext.Consumer>
@@ -51,5 +49,3 @@ export default class MsgBox extends React.Component {
     }
   }
   MsgBox.contextType = LanguageContext;
-  
-  
