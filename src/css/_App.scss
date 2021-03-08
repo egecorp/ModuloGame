@@ -121,10 +121,10 @@
 
 	overflow-y: auto;
 
-	> p	{
+	> p {
 		font-size: 15px;
 		font-weight: 500;
-		line-height: 20px;;
+		line-height: 20px;
 		text-align: center;
 		letter-spacing: 0.15px;
 	}
@@ -147,11 +147,11 @@
 		font-size: 16px;
 		font-weight: 500;
 		text-transform: uppercase;
-	}
 
-	> button:active {
-		background-color: var(--button-footer-bg-hover);
-		box-shadow: 2px 4px 4px 0 rgba(0, 0, 0, 0.3);
+		&:active {
+			background-color: var(--button-footer-bg-hover);
+			box-shadow: 2px 4px 4px 0 rgba(0, 0, 0, 0.3);
+		}
 	}
 }
 
@@ -299,13 +299,20 @@
 
 .Modal {
 	p, span, label { color: var(--modal-font-color); }
-	b	{	font-weight: 500;	}
+	b { font-weight: 500; }
 
-	p > span { display: block; }
-	p > span:nth-child(n+2) { margin-top: 3px; }
+	p {
+		> span {
+			display: block;
+
+			&:nth-child(n+2) { margin-top: 3px; }
+		}
+	}
 
 
-	> *:nth-child(n+2) { margin-top: 12px; }
+	> * {
+		&:nth-child(n+2) { margin-top: 12px; }
+	}
 
 	
 	position: absolute;
@@ -331,12 +338,14 @@
 		border-radius: 5px;
 		box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.15);
 
-		> div > *:nth-child(n+2) { margin-top: 12px; }
+		> div {
+			> *:nth-child(n+2) { margin-top: 12px; }
 
-		> div > p	{
-			font-size: 13px;
-			font-weight: 300;
-			line-height: 17px;
+			> p {
+				font-size: 13px;
+				font-weight: 300;
+				line-height: 17px;
+			}
 		}
 
 
@@ -393,11 +402,11 @@
 			font-weight: 500;
 			font-size: 15px;
 			text-transform: uppercase;
-		}
 
-		> button:active {
-			background-color: var(--button-footer-bg-hover);
-			box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.3);
+			&:active {
+				background-color: var(--button-footer-bg-hover);
+				box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.3);
+			}
 		}
 	} 
 }

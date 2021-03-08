@@ -79,8 +79,7 @@ html, body {
 	width: 320px;
 	height: 568px;
 
-	> #root
-	{
+	> #root {
 		height: 100%;
 	}
 }
@@ -152,6 +151,7 @@ html, body {
 	-webkit-user-select: none;
 	user-select: none;
 
+
 	> .CheckBoxButtonTitle {
 		font-size: 14px;
 		font-weight: 600;
@@ -159,6 +159,7 @@ html, body {
 		text-transform: uppercase;
 		letter-spacing: 0.3px;
 	}
+
 
 	> .CheckBoxButtonIndicator {
 		position: relative;
@@ -175,8 +176,7 @@ html, body {
 	&[data-select="1"] {
 		background-color: rgba(var(--button-darkgreen-rgb), 0.5);
 	
-		> .CheckBoxButtonIndicator
-		{
+		> .CheckBoxButtonIndicator {
 			border: 2px solid rgba(var(--button-green-rgb), 1);
 
 			&::after {
@@ -226,7 +226,7 @@ html, body {
 .LabelInput {
 	margin-bottom: 8px;
 
-	> label	{
+	> label {
 		margin-bottom: 5px;
 
 		display: block;
