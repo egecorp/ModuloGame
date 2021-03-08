@@ -43,7 +43,7 @@ export default class SignInAuthPage extends React.Component {
 		  <MsgBox ModalButton="Отправить">
 			  <p>
 			  		<span>На почту <b>{this.props.UserMail ?? ""}</b> было отправлено письмо с кодом.</span>
-					<span>Неверный код, попробуйте ещё раз!</span>
+					<span className="Error">Неверный код, попробуйте ещё раз!</span>
 				</p>
 				<form className="MailCode">
 					<label htmlFor="CheckMailCode">Код из письма:</label>
