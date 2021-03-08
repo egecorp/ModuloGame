@@ -6,55 +6,57 @@ import HeadNavigation from '../../Components/HeadNavigation'
 
 
 export default class SignInAuthPage extends React.Component {
-    constructor(props, context) {
-      super(props);
-      this.state = {
-          currentLogin: 'Hello', 
-          currentToken: 'Token',
+	 constructor(props, context) {
+		super(props);
+		this.state = {
+			 currentLogin: 'Hello', 
+			 currentToken: 'Token',
 
-          selectedItem: null,
-          checkedItem: null
-      };
+			 selectedItem: null,
+			 checkedItem: null
+		};
 
-      //this.changeItemState = this.changeItemState.bind(this);
-    }
+		//this.changeItemState = this.changeItemState.bind(this);
+	 }
   
-    render() {
+	 render() {
 
-      var MsgBoxHTML = null;
-      if (this.props.modalstate === 'EnterCode')
-      {
-        MsgBoxHTML = (
-        <MsgBox ModalButton="Отправить">
-					<p>
-						<span>На почту <b>{this.props.UserMail ?? ""}</b> было отправлено письмо с кодом.</span>
-						<span>Пожалуйста, введите код в поле ниже для входа в игру:</span>
-					</p>
-					<form className="MailCode">
-						<label htmlFor="CheckMailCode">Код из письма:</label>
-						<input type="text" id="CheckMailCode" placeholder="Введите код..."></input>
-					</form>
-        </MsgBox>
+		var MsgBoxHTML = null;
+		if (this.props.modalstate === 'EnterCode')
+		{
+		  MsgBoxHTML = (
+		  <MsgBox ModalButton="Отправить">
+				<p>
+					<span>На почту <b>{this.props.UserMail ?? ""}</b> было отправлено письмо с кодом.</span>
+					<span>Пожалуйста, введите код в поле ниже для входа в игру:</span>
+				</p>
+				<form className="MailCode">
+					<label htmlFor="CheckMailCode">Код из письма:</label>
+					<input type="text" id="CheckMailCode" placeholder="Введите код..."></input>
+				</form>
+		  </MsgBox>
 				)
-      } 
-      else if (this.props.modalstate === 'FailCode')
-      {
-        MsgBoxHTML = (
-        <MsgBox ModalButton="Отправить">
-          <div>
-            <p>На почту {this.props.UserMail ?? ""} было отправлено письмо с кодом.</p>
-            <p>Неверый код, попробуйте ещё раз</p>
-            <label htmlFor="CheckMailCode">Код из письма:</label>
-            <input type="text" id="CheckMailCode" value={this.props.OldCode}></input>
-          </div>
-        </MsgBox>
+		} 
+		else if (this.props.modalstate === 'FailCode')
+		{
+		  MsgBoxHTML = (
+		  <MsgBox ModalButton="Отправить">
+			  <p>
+			  		<span>На почту <b>{this.props.UserMail ?? ""}</b> было отправлено письмо с кодом.</span>
+					<span>Неверный код, попробуйте ещё раз!</span>
+				</p>
+				<form className="MailCode">
+					<label htmlFor="CheckMailCode">Код из письма:</label>
+					<input type="text" id="CheckMailCode" value={this.props.OldCode} placeholder="Введите код..."></input>
+				</form>
+		  </MsgBox>
 				)
-      } 
-          return (
-              <LanguageContext.Consumer>
-                {(context) =>
-                ( 
-                  <>
+		} 
+			 return (
+				  <LanguageContext.Consumer>
+					 {(context) =>
+					 ( 
+						<>
 							<HeadNavigation>
 								<button className="ButtonBack"></button>
 
@@ -86,12 +88,12 @@ export default class SignInAuthPage extends React.Component {
 							</div>
 
 							{MsgBoxHTML}
-                  </>
-                )}
-              </LanguageContext.Consumer>
-          );
-      
-    }
+						</>
+					 )}
+				  </LanguageContext.Consumer>
+			 );
+		
+	 }
   }
   SignInAuthPage.contextType = LanguageContext;
   
