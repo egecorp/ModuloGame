@@ -66,18 +66,12 @@ export default class SignInAuthPage extends React.Component {
 
 								<div className="LabelInput">
 									<label htmlFor="inputEMail">{context.GetText('signinauth', 'labelEMail')}</label>
-									<input type="text" name="inputEMail" /> 
-									{ /*
-										! Стилизовать input
-									 */ }
+									<input type="text" name="inputEMail" placeholder="Введите e-mail..." /> 
 								</div>
 
 								<div className="LabelInput">
 									<label htmlFor="inputDeviceName">{context.GetText('signinauth', 'labelDeviceName')}</label>
-									<input type="text" name="inputDeviceName" />
-									{ /*
-										! Стилизовать input
-									 */ }
+									<input type="text" name="inputDeviceName" placeholder="Название вашего устройства..." />
 								</div>
 
 								<div className="UserTip">

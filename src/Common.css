@@ -2,6 +2,8 @@
 @import url(fonts.css);
 
 :root {
+	--font-color: #fff;
+
 	--button-green: #35CA71;
 	--button-green-hover: #2EB062;
 	--button-green-rgb: 53, 202, 113;
@@ -31,7 +33,20 @@ button {
 }
 
 
-p, span, h1, h2, h3, h4, h5, h6, label { color: #fff; }
+p, span, h1, h2, h3, h4, h5, h6, label { color: var(--font-color); }
+
+input, select { outline: 0; border: 0; }
+
+input, select {
+	color: #fff;
+	font-size: 14px;
+	font-weight: 300;
+}
+
+::-webkit-input-placeholder	{ color: var(--font-color); opacity: 0.4; }
+::-moz-placeholder					{ color: var(--font-color); opacity: 0.4; }
+:-ms-input-placeholder			{ color: var(--font-color); opacity: 0.4; }
+:-moz-placeholder						{ color: var(--font-color); opacity: 0.4; }
 
 html,body
 {
@@ -46,15 +61,15 @@ html,body
 
 #game-body
 {
+	position: relative;
 	/* padding-left: 50px; */
+	height: 628px;
 
 	display: grid;
 	grid-template-rows: 1fr 568px 3fr;
 	justify-content: center;
-	 
-	height: 628px;
+
 	overflow: hidden;
-	position: relative;
 }
 
 /*
@@ -248,14 +263,10 @@ html,body
 .LabelInput > input,
 .LabelInput > select
 {
-	background-color: rgb(6,94,46);
-	color:rgb(226,255,241);
+	padding: 5px 10px;
 	width: 100%;
-	border-radius: 4px;
-	border:none;
-	outline: none;
-	height: 28px;
-	padding-left: 4px;
+	background-color: rgba(var(--button-darkgreen-rgb), 0.5);
+	border-radius: 3px;
 	box-sizing: border-box;
 }
 /* END */
@@ -308,5 +319,5 @@ html,body
 
 .Bold 
 {
- font-weight: 600; 
+	font-weight: 600; 
 }
