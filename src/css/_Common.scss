@@ -1,0 +1,288 @@
+:root {
+	--font-color: #fff;
+
+	--modal-font-color: #000;
+
+	--button-green: #35CA71;
+	--button-green-hover: #2EB062;
+	--button-green-rgb: 53, 202, 113;
+	--button-darkgreen: #06371E;
+	--button-darkgreen-rgb: 6, 55, 30;
+
+	--button-font-color: #000;
+
+	--button-footer-bg: #EEEEEE;
+	--button-footer-bg-hover: #D4D4D4;
+}
+
+* {
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+	/* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif; */
+	font-family: 'Roboto Slab', sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+button {
+	padding: 0;
+	outline: none;
+	border: 0;
+}
+
+p, span, h1, h2, h3, h4, h5, h6, label { color: var(--font-color); }
+
+input, select {
+	outline: 0;
+	border: 0;
+
+	color: #fff;
+	font-size: 14px;
+	font-weight: 300;
+}
+
+::-webkit-input-placeholder	{ color: var(--font-color); opacity: 0.4; }
+::-moz-placeholder					{ color: var(--font-color); opacity: 0.4; }
+:-ms-input-placeholder			{ color: var(--font-color); opacity: 0.4; }
+:-moz-placeholder						{ color: var(--font-color); opacity: 0.4; }
+
+html, body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width: 100%;
+	color: rgb(47,47,47);
+	background-color: papayawhip;
+}
+
+.Bold { font-weight: 600; }
+
+
+#game-body {
+	position: relative;
+	padding-top: 20px;
+	height: 100%;
+
+	display: grid;
+	justify-items: center;
+}
+
+#playground {
+	position: relative;
+
+	width: 320px;
+	height: 568px;
+
+	> #root
+	{
+		height: 100%;
+	}
+}
+
+#modal-root {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 99;
+
+	width: 100%;
+	height: 100%;
+
+	pointer-events: none;
+
+	> div {
+		position: absolute;
+		top: 0;
+		left: 0;
+
+		width: 100%;
+		height: 100%;
+	}
+}
+
+
+
+/*** *** *** Scroll *** *** ***/
+* { scrollbar-width: thin; }
+
+::-webkit-resizer,
+::-webkit-scrollbar-corner { display: none; }
+
+::-webkit-scrollbar { width: 9px; height: 11px; }
+
+::-webkit-scrollbar-thumb            { background-clip: padding-box; border-radius: 10px; }
+::-webkit-scrollbar-thumb:vertical   { border-left: 3px solid rgba(0, 0, 0, 0); border-right:  3px solid rgba(0, 0, 0, 0); }
+::-webkit-scrollbar-thumb:horizontal { border-top:  3px solid rgba(0, 0, 0, 0); border-bottom: 3px solid rgba(0, 0, 0, 0); }
+
+::-webkit-scrollbar-button	{ width: 0px; height: 5px;}
+::-webkit-scrollbar { background-color:transparent; }
+::-webkit-scrollbar-thumb { background-color: #9A9; }
+
+/* Scroll */
+/*::-webkit-scrollbar-button:single-button:start:vertical   { background-image: url(../icons/img/icons/arrows/arrow-scroll-up-666.svg); background-size: 7px; }
+::-webkit-scrollbar-button:single-button:end:vertical     { background-image: url(../icons/img/icons/arrows/arrow-scroll-down-666.svg); background-size: 7px; }
+::-webkit-scrollbar-button:single-button:start:horizontal { background-image: url(../icons/img/icons/arrows/arrow-scroll-left-666.svg); background-size: 7px; }
+::-webkit-scrollbar-button:single-button:end:horizontal   { background-image: url(../icons/img/icons/arrows/arrow-scroll-right-666.svg); background-size: 7px; }
+*/
+/*** *** *** END *** *** ***/
+
+
+
+.CheckBoxButton {
+	margin: 7px 0;
+	padding: 8px;
+
+	display: grid;
+	grid-gap: 0 7px;
+	grid-template-columns: max-content 1fr;
+	align-items: center;
+
+	background-color: rgba(var(--button-darkgreen-rgb), 0.25);
+	border-radius: 5px;
+	border: 2px solid transparent;
+
+	box-sizing: border-box;
+
+	-webkit-user-select: none;
+	user-select: none;
+
+	> .CheckBoxButtonTitle {
+		font-size: 14px;
+		font-weight: 600;
+		text-align: center;
+		text-transform: uppercase;
+		letter-spacing: 0.3px;
+	}
+
+	> .CheckBoxButtonIndicator {
+		position: relative;
+
+		width: 24px;
+		height: 24px;
+
+		border: 2px solid rgba(var(--button-green-rgb), 0.5);
+		border-radius: 5px;
+		box-sizing: border-box;
+	}
+
+
+	&[data-select="1"] {
+		background-color: rgba(var(--button-darkgreen-rgb), 0.5);
+	
+		> .CheckBoxButtonIndicator
+		{
+			border: 2px solid rgba(var(--button-green-rgb), 1);
+		}
+	
+		> .CheckBoxButtonIndicator::after
+		{
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		
+			content: '';
+		
+			width: 16px;
+			height: 16px;
+			background-color: var(--button-green);
+			border-radius: 3px;
+		}
+	}
+}
+
+
+
+.GeneralSubtitle {
+	margin: 12px 0;
+
+	font-size: 15px;
+	font-weight: 500;
+	line-height: 20px;
+
+	span {
+		text-decoration: underline;
+	}
+}
+
+
+
+.AdditionalTip {
+	margin-bottom: 10px;
+	
+	font-weight: 300;
+	font-size: 13px;
+	line-height: 17px;
+	text-align: center;
+
+	> span
+	{
+		font-weight: 500;
+	}
+}
+
+
+
+.LabelInput {
+	margin-bottom: 8px;
+
+	> label	{
+		margin-bottom: 5px;
+
+		display: block;
+
+		font-weight: 500;
+		font-size: 13px;
+		line-height: 17px;
+	}
+
+	> input, select {
+		padding: 5px 10px;
+		width: 100%;
+		background-color: rgba(var(--button-darkgreen-rgb), 0.5);
+		border-radius: 3px;
+		box-sizing: border-box;
+	}
+}
+
+
+
+/*** *** *** Buttons *** *** ***/
+.ButtonBack {
+	width: 30px;
+	height: 30px;
+
+	background-image: url(../img/buttons/left-arrow.svg);
+	background-size: 16px;
+	background-position: 45%;
+	background-color: unset;
+	border-radius: 5px;
+	border: 1px solid var(--button-green);
+
+	box-sizing: border-box;
+}
+
+.ButtonBack:active {
+	background-color: var(--button-green-hover);
+	border: 1px solid var(--button-green-hover);
+}
+
+.ButtonGreen {
+	padding: 0 7px;
+	width: max-content;
+	height: 30px;
+
+	display: grid;
+	grid-gap: 0 7px;
+	grid-auto-flow: column;
+	grid-auto-columns: max-content;
+	align-items: center;
+
+	background-color: var(--button-green);
+	border-radius: 5px;
+	box-sizing: border-box;
+}
+
+.ButtonGreen:active {	background-color: var(--button-green-hover); }
+/*** *** *** END *** *** ***/
