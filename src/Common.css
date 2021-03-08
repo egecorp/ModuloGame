@@ -92,26 +92,7 @@ html,body
 	width: 100%;
 	height: 100%;
 
-	background-color: rgba(0,0,0,0.6);
-	
 	pointer-events: none;
-	overflow: hidden;
-}
-
-#modal-root > div
-{
-	/*
-	* height - вычитается нижние поле AdHolder.
-	* Необходимо убрать его после всей вёрстки игры
-	*/
-	
-	max-width: 300px;
-	height: calc(100% - 50px);
-	
-	
-
-	pointer-events: all;
-
 }
 
 
