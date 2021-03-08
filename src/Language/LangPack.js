@@ -5,34 +5,34 @@ const DefaultPackage = 'ru';
 
 class LanguagePacketsHolder 
 {
-  Packages = [];
+	Packages = [];
 
-  constructor(defaultPacket = DefaultPackage)
-  {
-    this.AddPacketHandler = this.AddPacketHandler.bind(this);
-      ruAddPackets(this.AddPacketHandler);
-  }
+	constructor(defaultPacket = DefaultPackage)
+	{
+		this.AddPacketHandler = this.AddPacketHandler.bind(this);
+		ruAddPackets(this.AddPacketHandler);
+	}
 
-  AddPacketHandler(packName)
-  {
-      var newPack = new Pack(packName);
-      this.Packages[packName] = newPack;
-      return newPack;
-  }
+	AddPacketHandler(packName)
+	{
+		var newPack = new Pack(packName);
+		this.Packages[packName] = newPack;
+		return newPack;
+	}
 
-  GetPack(lang = DefaultPackage)
-  {
-      if (this.Packages[lang]) return this.Packages[lang];
-      return this.Packages[DefaultPackage];
-  }
- 
-
+	GetPack(lang = DefaultPackage)
+	{
+		if (this.Packages[lang]) return this.Packages[lang];
+		return this.Packages[DefaultPackage];
+	}
 }
+
 LanguagePacketsHolder.SingletonObject = undefined;
+
 LanguagePacketsHolder.Get = function(defaultPacket = 'ru')
 {
-  if (LanguagePacketsHolder.SingletonObject) return LanguagePacketsHolder.SingletonObject;
-  return LanguagePacketsHolder.SingletonObject = new LanguagePacketsHolder(defaultPacket);
+	if (LanguagePacketsHolder.SingletonObject) return LanguagePacketsHolder.SingletonObject;
+	return LanguagePacketsHolder.SingletonObject = new LanguagePacketsHolder(defaultPacket);
 }
 
 
