@@ -65,18 +65,20 @@ export default class SignInAuthPage extends React.Component {
 								<SignInLanguagePanel lang='ru'></SignInLanguagePanel>
 							</HeadNavigation>
 
-							<div className='SignInAuth'>
+							<div className="SignInAuth">
 								<p className="GeneralSubtitle">{context.GetText('signinauth', 'signInAuthTitle')}</p>
 
-								<div className="LabelInput">
-									<label htmlFor="inputEMail">{context.GetText('signinauth', 'labelEMail')}</label>
-									<input type="text" name="inputEMail" placeholder="Введите e-mail..." /> 
-								</div>
+								<form>
+									<div className="LabelInput">
+										<label htmlFor="inputEMail">{context.GetText('signinauth', 'labelEMail')}</label>
+										<input type="text" name="inputEMail" placeholder="Введите e-mail..." /> 
+									</div>
 
-								<div className="LabelInput">
-									<label htmlFor="inputDeviceName">{context.GetText('signinauth', 'labelDeviceName')}</label>
-									<input type="text" name="inputDeviceName" placeholder="Название вашего устройства..." />
-								</div>
+									<div className="LabelInput">
+										<label htmlFor="inputDeviceName">{context.GetText('signinauth', 'labelDeviceName')}</label>
+										<input type="text" name="inputDeviceName" placeholder="Название вашего устройства..." />
+									</div>
+								</form>
 
 								<div className="UserTip">
 									<p>{context.GetText('signinauth', 'tipFAQ')}</p>

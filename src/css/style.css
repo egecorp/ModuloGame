@@ -339,6 +339,10 @@ html, body {
   margin-bottom: 8px;
 }
 
+.LabelInput:last-child {
+  margin-bottom: unset;
+}
+
 .LabelInput > label {
   margin-bottom: 5px;
   display: block;
@@ -354,6 +358,15 @@ html, body {
   border-radius: 3px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+}
+
+.LabelInput > select {
+  background-image: url(../img/icon/arrow-down.svg);
+  background-size: 12px;
+  background-position-x: 97%;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
 }
 
 /*** *** *** Buttons *** *** ***/
@@ -562,39 +575,6 @@ html, body {
   background-color: var(--button-footer-bg-hover);
   -webkit-box-shadow: 2px 4px 4px 0 rgba(0, 0, 0, 0.3);
           box-shadow: 2px 4px 4px 0 rgba(0, 0, 0, 0.3);
-}
-
-.SignUp {
-  padding-top: 30px;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-bottom: 10px;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-rows: 27px 38px 58px 58px 58px 58px 58px 1fr 43px;
-      grid-template-rows: 27px 38px 58px 58px 58px 58px 58px 1fr 43px;
-}
-
-.SignUp .SignUpWelcome {
-  color: white;
-  text-align: center;
-  font-weight: 300;
-  margin-top: 13px;
-  font-size: 20px;
-}
-
-.SignUp .SignUpTip {
-  border: none;
-  line-height: 1.2em;
-  text-align: center;
-  color: white;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  padding: 8px;
-  padding-top: 16px;
-  font-size: 14px;
-  font-weight: 300;
 }
 
 .SignInAuth .UserTip {

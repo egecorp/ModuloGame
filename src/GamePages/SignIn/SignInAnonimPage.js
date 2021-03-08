@@ -32,23 +32,23 @@ export default class SignInAuthPage extends React.Component {
 
 								<p className="HeadNavigationTitle">Новый аккаунт</p>
 
-								<SignInLanguagePanel lang='ru'></SignInLanguagePanel>
+								<SignInLanguagePanel lang="ru"></SignInLanguagePanel>
 							</HeadNavigation>
 							
-							<div className='SignInAnonim'>                  
-								<p className='GeneralSubtitle'>
-								{context.GetText('signinanonim', 'labelYourNicName')} <span>anonim6045</span>
+							<div className="SignInAnonim">                  
+								<p className="GeneralSubtitle">
+									{context.GetText('signinanonim', 'labelYourNicName')} <span>anonim6045</span>
 								</p>
 								
-								<div className='SignInAnonimImage'>
-								<img src="/img/avatar/1/boy.1.png" alt="Anonim"></img>
+								<div className="SignInAnonimImage">
+									<img src="/img/avatar/1/boy.1.png" alt="Anonim"></img>
 								</div>
 
-								<p className="SignInAnonimTip" >
-								{context.GetText('signinanonim', 'tipCannotChooseImg')}
+								<p className="SignInAnonimTip">
+									{context.GetText('signinanonim', 'tipCannotChooseImg')}
 								</p>
 
-								<p className="SignInAnonimSignUp" >{context.GetText('signinanonim', 'linkGoToSignUp')}</p>
+								<p className="SignInAnonimSignUp">{context.GetText('signinanonim', 'linkGoToSignUp')}</p>
 							</div>
 
 							<div className="FooterArea">
