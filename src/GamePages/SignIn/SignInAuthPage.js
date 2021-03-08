@@ -67,13 +67,13 @@ render() {
 						<HeadNavigation>
 							<button className="ButtonBack"></button>
 
-							<p className="HeadNavigationTitle">Вход в аккаунт</p>
+							<p className="HeadNavigationTitle">{context.GetText('signinauth', 'labelWindow')}</p>
 
 							<SignInLanguagePanel lang='ru'></SignInLanguagePanel>
 						</HeadNavigation>
 
 						<div className="SignInAuth">
-							<p className="GeneralSubtitle">{context.GetText('signinauth', 'signInAuthTitle')}:</p>
+							<p className="GeneralSubtitle">{context.GetText('signinauth', 'sublabelWindow')}:</p>
 
 							<form>
 								<div className="LabelInput">

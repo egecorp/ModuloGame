@@ -28,7 +28,7 @@ export default class SettingsSettingsPage extends React.Component {
                   
                 <div className="SignInAnonim">                  
                   <p className="GeneralSubtitle">
-                    {context.GetText('signinanonim', 'labelYourNicName')} <span>anonim6045</span>
+                    {context.GetText('signinanonim', 'labelYourNickname')} <span>anonim6045</span>
                   </p>
                     
                   <div className="SignInAnonimImage">

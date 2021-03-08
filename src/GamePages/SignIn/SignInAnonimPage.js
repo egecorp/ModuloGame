@@ -30,14 +30,14 @@ export default class SignInAuthPage extends React.Component {
 							<HeadNavigation>
 								<button className="ButtonBack"></button>
 
-								<p className="HeadNavigationTitle">Новый аккаунт</p>
+								<p className="HeadNavigationTitle">{context.GetText('signinanonim', 'labelWindow')}</p>
 
 								<SignInLanguagePanel lang="ru"></SignInLanguagePanel>
 							</HeadNavigation>
 							
 							<div className="SignInAnonim">                  
 								<p className="GeneralSubtitle">
-									{context.GetText('signinanonim', 'labelYourNicName')} <span>anonim6045</span>
+									{context.GetText('signinanonim', 'labelYourNickname')} <span>anonim6045</span>
 								</p>
 								
 								<div className="SignInAnonimImage">
