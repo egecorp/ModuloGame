@@ -25,18 +25,22 @@ export default class SignInAuthPage extends React.Component {
       if (this.props.modalstate === 'EnterCode')
       {
         MsgBoxHTML = (
-        <MsgBox ModalButton="ОТПРАВИТЬ">
-					<p>На почту {this.props.UserMail ?? ""} было отправлено письмо с кодом.</p>
-					<p>Пожалуста, введите код в поле ниже для входа в игру:</p>
-					<label htmlFor="CheckMailCode">Код из письма:</label>
-					<input type="text" id="CheckMailCode" ></input>
+        <MsgBox ModalButton="Отправить">
+					<p>
+						<span>На почту <b>{this.props.UserMail ?? ""}</b> было отправлено письмо с кодом.</span>
+						<span>Пожалуйста, введите код в поле ниже для входа в игру:</span>
+					</p>
+					<form className="MailCode">
+						<label htmlFor="CheckMailCode">Код из письма:</label>
+						<input type="text" id="CheckMailCode" placeholder="Введите код..."></input>
+					</form>
         </MsgBox>
 				)
       } 
       else if (this.props.modalstate === 'FailCode')
       {
         MsgBoxHTML = (
-        <MsgBox ModalButton="ОТПРАВИТЬ">
+        <MsgBox ModalButton="Отправить">
           <div>
             <p>На почту {this.props.UserMail ?? ""} было отправлено письмо с кодом.</p>
             <p>Неверый код, попробуйте ещё раз</p>

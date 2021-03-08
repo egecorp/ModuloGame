@@ -4,6 +4,8 @@
 :root {
 	--font-color: #fff;
 
+	--modal-font-color: #000;
+
 	--button-green: #35CA71;
 	--button-green-hover: #2EB062;
 	--button-green-rgb: 53, 202, 113;
@@ -28,6 +30,7 @@
 }
 
 button {
+	padding: 0;
 	outline: none;
 	border: 0;
 }
