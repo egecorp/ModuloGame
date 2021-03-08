@@ -20,7 +20,7 @@ export default class SignInAuthPage extends React.Component {
     }
   
     render() {
-       
+
       var MsgBoxHTML = null;
       if (this.props.modalstate === 'EnterCode')
       {
@@ -33,7 +33,7 @@ export default class SignInAuthPage extends React.Component {
             <input type="text" id="CheckMailCode" ></input>
           </div>
         </MsgBox>
-         )
+				)
       } 
       else if (this.props.modalstate === 'FailCode')
       {
@@ -46,7 +46,7 @@ export default class SignInAuthPage extends React.Component {
             <input type="text" id="CheckMailCode" value={this.props.OldCode}></input>
           </div>
         </MsgBox>
-         )
+				)
       } 
           return (
               <LanguageContext.Consumer>
@@ -66,12 +66,18 @@ export default class SignInAuthPage extends React.Component {
 
 								<div className="LabelInput">
 									<label htmlFor="inputEMail">{context.GetText('signinauth', 'labelEMail')}</label>
-									<input type="text" name="inputEMail" />
+									<input type="text" name="inputEMail" /> 
+									{ /*
+										! Стилизовать input
+									 */ }
 								</div>
 
 								<div className="LabelInput">
 									<label htmlFor="inputDeviceName">{context.GetText('signinauth', 'labelDeviceName')}</label>
 									<input type="text" name="inputDeviceName" />
+									{ /*
+										! Стилизовать input
+									 */ }
 								</div>
 
 								<div className="UserTip">
