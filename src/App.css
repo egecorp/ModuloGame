@@ -13,8 +13,7 @@
 .Game
 {
 	position: relative;
-	width: 320px;
-	height: 568px;
+	height: 100%;
 	
 	display:grid;
 	grid-template-rows: 1fr max-content;

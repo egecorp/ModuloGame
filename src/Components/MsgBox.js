@@ -32,19 +32,19 @@ export default class MsgBox extends React.Component {
             <LanguageContext.Consumer>
             {(context) =>
             ( 
-              
-                <>
-                  <div></div>
-                  <div className='ModalBody'>
-                    <div>{this.props.children ?? ""}</div>
-                  </div>
-                  <div></div>
-                  <div  className="ModalButtonArea">
-                    <button>{this.props.ModalButton ?? context.GetText('common', 'modalDefaultButton')}</button>
-                  </div>
-                  <div></div>
-                </>)}
-              </LanguageContext.Consumer>
+							<>
+								<div></div>
+								<div className='ModalBody'>
+									<div>{this.props.children ?? ""}</div>
+								</div>
+								<div></div>
+								<div  className="ModalButtonArea">
+									<button>{this.props.ModalButton ?? context.GetText('common', 'modalDefaultButton')}</button>
+								</div>
+								<div></div>
+							</>
+						)}
+						</LanguageContext.Consumer>
             ), this.el
           );
       
