@@ -1,5 +1,4 @@
-.Main
-{
+.Main {
 	margin-top: 20px; /* Статус бар */
 	padding: 0 10px;
 
@@ -11,8 +10,7 @@
 	box-sizing: border-box;
 }
 
-.Game
-{
+.Game {
 	position: relative;
 	height: 100%;
 	
@@ -24,21 +22,18 @@
 	overflow: hidden;
 }
 
-.PageHolder
-{
+.PageHolder {
 	position: relative;
 	display: flex;
 }
 
-.AdHolder
-{
-  position: relative;
-  height: 50px;
+.AdHolder {
+	position: relative;
+	height: 50px;
 	border: 1px solid #000;
 	box-sizing: border-box;
 
-	select
-	{
+	select {
 		width: 100%;
 		height: 100%;
 		color: #000;
@@ -47,20 +42,17 @@
 
 
 
-.Welcome
-{
+.Welcome {
 	margin: 20px 0;
 	text-align: center;
 
-	.WelcomeTitle
-	{
+	.WelcomeTitle {
 		font-size: 22px;
 		font-weight: 300;
 		line-height: 28px;
 	}
 
-	.WelcomeModulo
-	{
+	.WelcomeModulo {
 		font-size: 28px;
 		font-weight: 600;
 		line-height: 34px;
@@ -69,12 +61,10 @@
 
 
 
-.SignInLanguagePanel
-{
+.SignInLanguagePanel {
 	justify-self: end;
 
-	.SignInLanguagePanelFlag
-	{
+	.SignInLanguagePanelFlag {
 		width: 20px;
 		height: 20px;
 
@@ -83,8 +73,7 @@
 	}
 
 	
-	.SignInLanguagePanelName
-	{
+	.SignInLanguagePanelName {
 		color: var(--button-font-color);
 		font-size: 13px;
 		font-weight: 500;
@@ -105,8 +94,7 @@
 	align-items: center;
 
 
-	.HeadNavigationTitle
-	{
+	.HeadNavigationTitle {
 		padding: 0 12px;
 		box-sizing: border-box;
 
@@ -117,8 +105,7 @@
 
 
 
-.UserTip
-{
+.UserTip {
 	margin: 15px auto 0 auto;
 	padding: 10px 15px;
 	width: 95%;
@@ -134,8 +121,7 @@
 
 	overflow-y: auto;
 
-	> p
-	{
+	> p	{
 		font-size: 15px;
 		font-weight: 500;
 		line-height: 20px;;
@@ -146,12 +132,10 @@
 
 
 
-.FooterArea
-{
+.FooterArea {
 	margin: 10px 0;
 
-	> button
-	{
+	> button {
 		padding: 10px 0;
 
 		width: 100%;
@@ -165,8 +149,7 @@
 		text-transform: uppercase;
 	}
 
-	> button:active
-	{
+	> button:active {
 		background-color: var(--button-footer-bg-hover);
 		box-shadow: 2px 4px 4px 0 rgba(0, 0, 0, 0.3);
 	}
@@ -174,17 +157,15 @@
 
 
 
-.SignUp  
-{
-  padding-top:30px;
-  padding-left:10px;
-  padding-right:10px;
-  padding-bottom: 10px;
-  display: grid;
-  grid-template-rows: 27px 38px 58px 58px 58px 58px 58px 1fr 43px ;
+.SignUp {
+	padding-top:30px;
+	padding-left:10px;
+	padding-right:10px;
+	padding-bottom: 10px;
+	display: grid;
+	grid-template-rows: 27px 38px 58px 58px 58px 58px 58px 1fr 43px ;
 
-	.SignUpWelcome
-	{
+	.SignUpWelcome {
 		color:white;
 		text-align: center;
 		font-weight: 300;
@@ -192,10 +173,8 @@
 		font-size: 20px;
 	}
 
-	.SignUpTip
-	{
-		
-		border:none;
+	.SignUpTip {
+		border: none;
 		
 		line-height: 1.2em;
 		text-align:center;
@@ -217,8 +196,7 @@
 	{
 		max-height: unset;
 
-		p
-		{
+		p {
 			font-size: 13px;
 			line-height: 18px;
 		}
@@ -229,23 +207,17 @@
 
 
 
-.SignInAnonim
-{
-	.SignInAnonimImage
-	{
+.SignInAnonim {
+	.SignInAnonimImage {
 		display: grid;
 		align-items: center;
 		justify-items: center;
 
-		img
-		{
-			height: 180px;
-		}
+		img	{	height: 180px; }
 	}
 
 
-	.SignInAnonimTip
-	{
+	.SignInAnonimTip {
 		margin-top: 10px;
 	
 		font-weight: 500;
@@ -255,8 +227,7 @@
 	}
 
 
-	.SignInAnonimSignUp
-	{
+	.SignInAnonimSignUp {
 		margin-top: 5px;
 		
 		font-weight: 500;
@@ -269,19 +240,17 @@
 
 
 
-.ConditionPage  
-{
-  padding-top:30px;
-  padding-left:10px;
-  padding-right:10px;
-  padding-bottom: 10px;
-  display: grid;
-  grid-template-rows: 27px 46px 1fr 43px ;
-  position: relative;
+.ConditionPage {
+	padding-top:30px;
+	padding-left:10px;
+	padding-right:10px;
+	padding-bottom: 10px;
+	display: grid;
+	grid-template-rows: 27px 46px 1fr 43px ;
+	position: relative;
 
 
-	.ConditionTitle
-	{
+	.ConditionTitle {
 		color:white;
 		text-align: center;
 		font-weight: 400;
@@ -290,8 +259,7 @@
 	}
 
 
-	.ConditionBody
-	{
+	.ConditionBody {
 		color:white;
 		text-align: center;
 		font-weight: 300;
@@ -301,8 +269,7 @@
 		height: 340px;
 		box-shadow: inset 0 0 2px 2px rgba(0,0,0,0.1);
 
-		div
-		{
+		div {
 			height: auto;
 			display: block;
 			text-align: justify;
@@ -314,8 +281,7 @@
 
 
 
-.ModalBG
-{ 
+.ModalBG { 
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -331,8 +297,7 @@
 	background-color: rgba(0,0,0,0.6);
 }
 
-.Modal
-{
+.Modal {
 	p, span, label { color: var(--modal-font-color); }
 	b	{	font-weight: 500;	}
 
@@ -340,7 +305,7 @@
 	p > span:nth-child(n+2) { margin-top: 3px; }
 
 
-	> *:nth-child(n+2) {	margin-top: 12px; }
+	> *:nth-child(n+2) { margin-top: 12px; }
 
 	
 	position: absolute;
@@ -358,8 +323,7 @@
 	pointer-events: all;
 
 
-	.ModalBody
-	{
+	.ModalBody {
 		padding: 12px;
 		min-height: 100px;
 
@@ -367,13 +331,9 @@
 		border-radius: 5px;
 		box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.15);
 
-		> div > *:nth-child(n+2)
-		{
-			margin-top: 12px;
-		}
+		> div > *:nth-child(n+2) { margin-top: 12px; }
 
-		> div > p
-		{
+		> div > p	{
 			font-size: 13px;
 			font-weight: 300;
 			line-height: 17px;
@@ -382,15 +342,13 @@
 
 		/* MailCode */
 		.MailCode {
-			label
-			{
+			label	{
 				font-size: 13px;
 				font-weight: 500;
 				line-height: 17px;
 			}
 
-			input
-			{
+			input	{
 				margin-top: 5px;
 				padding: 7px 10px;
 
@@ -405,14 +363,11 @@
 				line-height: 17px;
 			}
 
-			input {
-				@include placeholder { opacity: 0.6; }
-			} 
+			input { @include placeholder { opacity: 0.6; } } 
 		}
 		/* END */
 
-		.WarningIcon
-		{
+		.WarningIcon {
 			position: relative;
 			background-image: url(/src/img/icon/warning.svg);
 			background-repeat: no-repeat;
@@ -425,10 +380,8 @@
 		.BoldTitle { font-size: 16px; font-weight: 600; }
 	}
 
-	> .Button
-	{
-		> button
-		{
+	> .Button {
+		> button {
 			padding: 10px 0;
 		
 			width: 100%;
@@ -442,8 +395,7 @@
 			text-transform: uppercase;
 		}
 
-		> button:active
-		{
+		> button:active {
 			background-color: var(--button-footer-bg-hover);
 			box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.3);
 		}

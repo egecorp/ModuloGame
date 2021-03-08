@@ -44,10 +44,10 @@ input, select {
 
 @mixin placeholder {
 	&::placeholder { @content; }
-  &:-moz-placeholder { @content; }
-  &::-moz-placeholder { @content; }
-  &:-ms-input-placeholder { @content; }
-  &::-webkit-input-placeholder { @content; }
+	&:-moz-placeholder { @content; }
+	&::-moz-placeholder { @content; }
+	&:-ms-input-placeholder { @content; }
+	&::-webkit-input-placeholder { @content; }
 }
 
 @include placeholder { color: var(--font-color); opacity: 0.4; }
@@ -178,21 +178,20 @@ html, body {
 		> .CheckBoxButtonIndicator
 		{
 			border: 2px solid rgba(var(--button-green-rgb), 1);
-		}
-	
-		> .CheckBoxButtonIndicator::after
-		{
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-		
-			content: '';
-		
-			width: 16px;
-			height: 16px;
-			background-color: var(--button-green);
-			border-radius: 3px;
+
+			&::after {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+			
+				content: '';
+			
+				width: 16px;
+				height: 16px;
+				background-color: var(--button-green);
+				border-radius: 3px;
+			}
 		}
 	}
 }
@@ -206,9 +205,7 @@ html, body {
 	font-weight: 500;
 	line-height: 20px;
 
-	span {
-		text-decoration: underline;
-	}
+	span { text-decoration: underline; }
 }
 
 
@@ -221,10 +218,7 @@ html, body {
 	line-height: 17px;
 	text-align: center;
 
-	> span
-	{
-		font-weight: 500;
-	}
+	> span { font-weight: 500; }
 }
 
 
@@ -266,11 +260,11 @@ html, body {
 	border: 1px solid var(--button-green);
 
 	box-sizing: border-box;
-}
 
-.ButtonBack:active {
-	background-color: var(--button-green-hover);
-	border: 1px solid var(--button-green-hover);
+	&:active {
+		background-color: var(--button-green-hover);
+		border: 1px solid var(--button-green-hover);
+	}
 }
 
 .ButtonGreen {
@@ -287,7 +281,7 @@ html, body {
 	background-color: var(--button-green);
 	border-radius: 5px;
 	box-sizing: border-box;
-}
 
-.ButtonGreen:active {	background-color: var(--button-green-hover); }
+	&:active { background-color: var(--button-green-hover); }
+}
 /*** *** *** END *** *** ***/
