@@ -364,7 +364,7 @@ html, body {
 .LabelInput > select {
   background-image: url(../img/icon/arrow-down.svg);
   background-size: 12px;
-  background-position-x: 97%;
+  background-position-x: 96%;
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
