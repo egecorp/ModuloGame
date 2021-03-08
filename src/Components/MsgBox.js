@@ -9,7 +9,7 @@ export default class MsgBox extends React.Component {
     constructor(props, context) {
       super(props);
       this.el = document.createElement('div');
-
+      this.el.className = 'Modal';
 
     }
     componentDidMount() {
