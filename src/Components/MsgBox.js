@@ -34,7 +34,7 @@ export default class MsgBox extends React.Component {
             ( 
 							<>
 								<div className='ModalBody'>
-									<div>{this.props.children ?? ""}</div>
+									{this.props.children ?? ""}
 								</div>
 
 								<div  className="ModalButtonArea">

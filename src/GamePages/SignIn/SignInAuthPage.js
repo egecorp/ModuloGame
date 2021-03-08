@@ -26,12 +26,10 @@ export default class SignInAuthPage extends React.Component {
       {
         MsgBoxHTML = (
         <MsgBox ModalButton="ОТПРАВИТЬ">
-          <div>
-            <p>На почту {this.props.UserMail ?? ""} было отправлено письмо с кодом.</p>
-            <p>Пожалуста, введите код в поле ниже для входа в игру:</p>
-            <label htmlFor="CheckMailCode">Код из письма:</label>
-            <input type="text" id="CheckMailCode" ></input>
-          </div>
+					<p>На почту {this.props.UserMail ?? ""} было отправлено письмо с кодом.</p>
+					<p>Пожалуста, введите код в поле ниже для входа в игру:</p>
+					<label htmlFor="CheckMailCode">Код из письма:</label>
+					<input type="text" id="CheckMailCode" ></input>
         </MsgBox>
 				)
       } 

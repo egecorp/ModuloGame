@@ -317,9 +317,9 @@
 
 .ModalBody
 {
-  background-color: white;
-  width: 260px;
   min-height: 100px;
+
+	background-color: #fff;
   border-radius: 6px;
   font-size: 13px;
   font-weight: 500;
