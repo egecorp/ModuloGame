@@ -42,10 +42,15 @@ input, select {
 	font-weight: 300;
 }
 
-::-webkit-input-placeholder	{ color: var(--font-color); opacity: 0.4; }
-::-moz-placeholder					{ color: var(--font-color); opacity: 0.4; }
-:-ms-input-placeholder			{ color: var(--font-color); opacity: 0.4; }
-:-moz-placeholder						{ color: var(--font-color); opacity: 0.4; }
+@mixin placeholder {
+	&::placeholder { @content; }
+  &:-moz-placeholder { @content; }
+  &::-moz-placeholder { @content; }
+  &:-ms-input-placeholder { @content; }
+  &::-webkit-input-placeholder { @content; }
+}
+
+@include placeholder { color: var(--font-color); opacity: 0.4; }
 
 html, body {
 	margin: 0;

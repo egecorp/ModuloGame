@@ -110,6 +110,26 @@ input, select {
   opacity: 0.4;
 }
 
+:-ms-input-placeholder {
+  color: var(--font-color);
+  opacity: 0.4;
+}
+
+::-ms-input-placeholder {
+  color: var(--font-color);
+  opacity: 0.4;
+}
+
+::placeholder {
+  color: var(--font-color);
+  opacity: 0.4;
+}
+
+:-moz-placeholder {
+  color: var(--font-color);
+  opacity: 0.4;
+}
+
 ::-moz-placeholder {
   color: var(--font-color);
   opacity: 0.4;
@@ -120,7 +140,7 @@ input, select {
   opacity: 0.4;
 }
 
-:-moz-placeholder {
+::-webkit-input-placeholder {
   color: var(--font-color);
   opacity: 0.4;
 }
@@ -752,6 +772,22 @@ html, body {
 }
 
 .Modal .ModalBody .MailCode input::placeholder {
+  opacity: 0.6;
+}
+
+.Modal .ModalBody .MailCode input:-moz-placeholder {
+  opacity: 0.6;
+}
+
+.Modal .ModalBody .MailCode input::-moz-placeholder {
+  opacity: 0.6;
+}
+
+.Modal .ModalBody .MailCode input:-ms-input-placeholder {
+  opacity: 0.6;
+}
+
+.Modal .ModalBody .MailCode input::-webkit-input-placeholder {
   opacity: 0.6;
 }
 

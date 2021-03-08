@@ -405,7 +405,9 @@
 				line-height: 17px;
 			}
 
-			input::placeholder { opacity: 0.6; }
+			input {
+				@include placeholder { opacity: 0.6; }
+			} 
 		}
 		/* END */
 
