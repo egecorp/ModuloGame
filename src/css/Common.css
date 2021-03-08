@@ -265,7 +265,7 @@ html,body
 	width: 30px;
 	height: 30px;
 
-	background-image: url(img/buttons/left-arrow.svg);
+	background-image: url(../img/buttons/left-arrow.svg);
 	background-size: 16px;
 	background-position: 45%;
 	background-color: unset;

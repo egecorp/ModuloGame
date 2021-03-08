@@ -32,7 +32,7 @@ export default class SettingsAvatarPage extends React.Component {
                   </p>
                     
                   <div className='SignInAnonimImage'>
-                    <img src="/img/avatar/1/boy.1.png" alt="Anonim"></img>
+                    <img src="../img/avatar/1/boy.1.png" alt="Anonim"></img>
                   </div>
 
                   <p className="SignInAnonimTip" >

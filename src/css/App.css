@@ -79,12 +79,12 @@
 
 .SignInLanguagePanelFlag[data-country="ru"]
 {
-	background-image: url(/src/img/flags/ru.svg);
+	background-image: url(../img/flags/ru.svg);
 }
 
 .SignInLanguagePanelFlag[data-country="eng"]
 {
-	background-image: url(/src/img/flags/usa.svg); 
+	background-image: url(../img/flags/usa.svg); 
 }
 
 .SignInLanguagePanelName
