@@ -316,30 +316,38 @@
 
 
 
-.Modal
-{
-	/*
-	* height - вычитается нижние поле AdHolder.
-	* Необходимо убрать его после всей вёрстки игры
-	*/
-	
-	max-width: 300px;
-	height: calc(100% - 50px);
-	
-	pointer-events: all;
-}
-
 .ModalBG
 { 
 	position: absolute;
 	top: 0;
 	left: 0;
-	z-index: -10;
+
+	/*
+	! height - вычитается нижние поле AdHolder.
+	! Необходимо убрать его после всей вёрстки игры
+	*/
 
 	width: 100%;
-	height: 100%;
+	height: calc(100% - 50px);
 
 	background-color: rgba(0,0,0,0.6);
+}
+
+.Modal
+{
+	position: absolute;
+	/*
+	* Поднимаем чуть выше середины, чтобы визуально лучше воспринималось
+	*/
+	top: 40%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 10;
+
+	width: calc(100% - 60px);
+	max-width: 300px;
+	
+	pointer-events: all;
 }
 
 .Modal > .ModalBody

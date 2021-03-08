@@ -9,7 +9,7 @@ export default class MsgBox extends React.Component {
     constructor(props, context) {
       super(props);
       this.el = document.createElement('div');
-      this.el.className = 'Modal';
+      // this.el.className = 'Modal';
     }
     componentDidMount() {
       // Элемент портала добавляется в DOM-дерево после того, как
@@ -33,13 +33,15 @@ export default class MsgBox extends React.Component {
             ( 
 							<>
 								<div className="ModalBG"></div>
-								
-								<div className="ModalBody">
-									<div>{this.props.children ?? ""}</div>
-								</div>
 
-								<div  className="ModalButtonArea">
-									<button>{this.props.ModalButton ?? context.GetText('common', 'modalDefaultButton')}</button>
+								<div className="Modal">
+									<div className="ModalBody">
+										<div>{this.props.children ?? ""}</div>
+									</div>
+
+									<div  className="ModalButtonArea">
+										<button>{this.props.ModalButton ?? context.GetText('common', 'modalDefaultButton')}</button>
+									</div>
 								</div>
 							</>
 						)}
