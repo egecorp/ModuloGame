@@ -21,7 +21,7 @@ export default class SignInLanguagePanel extends React.Component
             return (
                 <button className='SignInLanguagePanel ButtonGreen'>
                     <div className='SignInLanguagePanelFlag' data-country="ru"></div>
-                    <p className='SignInLanguagePanelName'>Русский</p>
+                    <p>Русский</p>
                 </button>
                 );
         }

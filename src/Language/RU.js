@@ -76,6 +76,14 @@ export function AddPackets(addPackFunction)
 		'continueButton' : 'Закрыть'
 	});
 
+	pack.AddDictionary('gamelist', 
+	{
+		'labelWindow' : 'Список игр',
+		'sublabelNowPlaying' : 'Активные игры',
+		'sublabelFinished' : 'Завершённые игры',
+		'buttonHeaderLabel' : 'Новая игра'
+	});
+
 
 	pack.AddDictionary('country',
 	{

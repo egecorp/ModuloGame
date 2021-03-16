@@ -293,6 +293,16 @@ html, body {
 	border-radius: 5px;
 	box-sizing: border-box;
 
+	color: var(--button-font-color);
+	font-size: 13px;
+	font-weight: 500;
+
+	> p {
+		color: var(--button-font-color);
+		font-size: 13px;
+		font-weight: 500;
+	}
+
 	&:active { background-color: var(--button-green-hover); }
 }
 /*** *** *** END *** *** ***/

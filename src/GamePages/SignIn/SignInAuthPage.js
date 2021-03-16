@@ -1,8 +1,8 @@
-import React from 'react'
-import SignInLanguagePanel from '../../Components/SignInLanguagePanel'
-import {LanguageContext} from '../../Language/LangPack'
+import React from 'react';
+import SignInLanguagePanel from '../../Components/SignInLanguagePanel';
+import {LanguageContext} from '../../Language/LangPack';
 import MsgBox from "../../Components/MsgBox";
-import HeadNavigation from '../../Components/HeadNavigation'
+import HeadNavigation from '../../Components/HeadNavigation';
 
 
 export default class SignInAuthPage extends React.Component {
