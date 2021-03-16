@@ -25,6 +25,10 @@ export default class GameStartPage extends React.Component {
 					
 					<div className="GameStart">
 						<p class="GeneralSubtitle">{context.GetText('gamestart', 'sublabelWindow')}:</p>
+					
+						<div class="UserTip">
+							<p>{context.GetText('gamestart', 'tip')}</p>
+						</div>
 					</div>
 				</>
 			)}
