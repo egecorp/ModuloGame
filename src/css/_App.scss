@@ -76,10 +76,8 @@
 
 
 .HeadNavigation {
-	&[data-title="none"] { grid-template-columns: unset; }
-	
 	margin-top: 10px;
-	
+
 	min-height: 30px;
 
 	display: grid;
@@ -88,7 +86,10 @@
 	grid-template-columns: max-content 1fr max-content;
 	align-items: center;
 
+	&[data-title="none"] { grid-template-columns: unset; }
 
+
+	
 	.HeadNavigationTitle {
 		font-size: 18px;
 		font-weight: 300;
@@ -150,8 +151,7 @@
 
 
 .SignInAuth {
-	.UserTip
-	{
+	.UserTip {
 		max-height: unset;
 
 		p {
@@ -171,9 +171,8 @@
 		align-items: center;
 		justify-items: center;
 
-		img	{	height: 180px; }
+		img {	height: 180px; }
 	}
-
 
 	.SignInAnonimTip {
 		margin-top: 10px;
@@ -184,7 +183,6 @@
 		text-align: center;
 	}
 
-
 	.SignInAnonimSignUp {
 		margin-top: 5px;
 		
@@ -193,47 +191,6 @@
 		line-height: 18px;
 		text-align: center;
 		text-decoration: underline;
-	}
-}
-
-
-
-.ConditionPage {
-	padding-top:30px;
-	padding-left:10px;
-	padding-right:10px;
-	padding-bottom: 10px;
-	display: grid;
-	grid-template-rows: 27px 46px 1fr 43px ;
-	position: relative;
-
-
-	.ConditionTitle {
-		color:white;
-		text-align: center;
-		font-weight: 400;
-		margin-top:13px;
-		font-size: 17px;
-	}
-
-
-	.ConditionBody {
-		color:white;
-		text-align: center;
-		font-weight: 300;
-		margin-top:13px;
-		font-size: 14px;
-		overflow-y:scroll;
-		height: 340px;
-		box-shadow: inset 0 0 2px 2px rgba(0,0,0,0.1);
-
-		div {
-			height: auto;
-			display: block;
-			text-align: justify;
-			padding: 8px;
-			padding-top: 1px;
-		}
 	}
 }
 
@@ -255,6 +212,7 @@
 			}
 		}
 
+
 		.IconCup {
 			width: 10px;
 			height: 10px;
@@ -266,6 +224,18 @@
 			grid-gap: 5px 0;
 
 			li {
+				position: relative;
+				padding: 5px;
+	
+				display: grid;
+				grid-auto-flow: column;
+				grid-template-columns: max-content 1fr max-content;
+				align-items: center;
+				justify-items: center;
+	
+				background-color: rgba(6, 55, 30, 0.25);
+				border-radius: 5px;
+
 				&[data-cup="1"][data-win] {
 					&::after { display: none; }
 
@@ -303,38 +273,15 @@
 
 				&[data-win="left"]::after { left: 25%; }
 				&[data-win="right"]::after { right: 25%; }
-				
+	
 
-				position: relative;
-				padding: 5px;
-	
-				display: grid;
-				grid-auto-flow: column;
-				grid-template-columns: max-content 1fr max-content;
-				align-items: center;
-				justify-items: center;
-	
-				background-color: rgba(6, 55, 30, 0.25);
-				border-radius: 5px;
-	
 
 				.Status {
 					font-weight: 500;
 					text-transform: uppercase;
 				}
 	
-	
 				.Player {
-					&.Computer {
-						> p { font-weight: 500; }
-
-						.Logo {
-							background-size: 14px auto;
-							background-image: url(../img/icon/computer.svg);
-						}
-					}
-
-
 					width: 55px;
 					height: 100%;
 	
@@ -343,8 +290,18 @@
 					justify-items: center;
 	
 					overflow: hidden;
+
+					&.Computer {
+						> p { font-weight: 500; }
+
+						.Logo {
+							background-size: 14px auto;
+							background-image: url(../img/icon/computer.svg);
+						}
+					}
 	
 	
+
 					.Logo {
 						position: relative;
 
@@ -354,7 +311,7 @@
 						background-color: rgba(0,0,0,0.2); // ! delete
 						border-radius: 3px;
 					}
-	
+
 					p {
 						font-size: 10px;
 						font-weight: 300;
@@ -365,7 +322,6 @@
 						@include textWrapDots;
 					}
 				}
-
 
 				.Cup {
 					width: 100%;

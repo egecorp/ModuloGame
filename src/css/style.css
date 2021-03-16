@@ -276,25 +276,8 @@ html, body {
        user-select: none;
 }
 
-.CheckBoxButton > .CheckBoxButtonTitle {
-  font-size: 14px;
-  font-weight: 600;
-  text-align: center;
-  text-transform: uppercase;
-  letter-spacing: 0.3px;
-}
-
-.CheckBoxButton > .CheckBoxButtonIndicator {
-  position: relative;
-  width: 24px;
-  height: 24px;
-  border: 2px solid rgba(var(--button-green-rgb), 0.5);
-  border-radius: 5px;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-}
-
 .CheckBoxButton[data-select="1"] {
+  border: 2px solid var(--button-green);
   background-color: rgba(var(--button-darkgreen-rgb), 0.5);
 }
 
@@ -313,6 +296,24 @@ html, body {
   height: 16px;
   background-color: var(--button-green);
   border-radius: 3px;
+}
+
+.CheckBoxButton > .CheckBoxButtonTitle {
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.CheckBoxButton > .CheckBoxButtonIndicator {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  border: 2px solid rgba(var(--button-green-rgb), 0.5);
+  border-radius: 5px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 .GeneralSubtitle {
@@ -415,14 +416,14 @@ html, body {
   font-weight: 500;
 }
 
+.ButtonGreen:active {
+  background-color: var(--button-green-hover);
+}
+
 .ButtonGreen > p {
   color: var(--button-font-color);
   font-size: 13px;
   font-weight: 500;
-}
-
-.ButtonGreen:active {
-  background-color: var(--button-green-hover);
 }
 
 /*** *** *** END *** *** ***/
@@ -619,46 +620,6 @@ html, body {
   line-height: 18px;
   text-align: center;
   text-decoration: underline;
-}
-
-.ConditionPage {
-  padding-top: 30px;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-bottom: 10px;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-rows: 27px 46px 1fr 43px;
-      grid-template-rows: 27px 46px 1fr 43px;
-  position: relative;
-}
-
-.ConditionPage .ConditionTitle {
-  color: white;
-  text-align: center;
-  font-weight: 400;
-  margin-top: 13px;
-  font-size: 17px;
-}
-
-.ConditionPage .ConditionBody {
-  color: white;
-  text-align: center;
-  font-weight: 300;
-  margin-top: 13px;
-  font-size: 14px;
-  overflow-y: scroll;
-  height: 340px;
-  -webkit-box-shadow: inset 0 0 2px 2px rgba(0, 0, 0, 0.1);
-          box-shadow: inset 0 0 2px 2px rgba(0, 0, 0, 0.1);
-}
-
-.ConditionPage .ConditionBody div {
-  height: auto;
-  display: block;
-  text-align: justify;
-  padding: 8px;
-  padding-top: 1px;
 }
 
 .GameList .Games.NowPlaying .Status {
