@@ -27,9 +27,9 @@ export default class GameStartPage extends React.Component {
 						<p class="GeneralSubtitle">{context.GetText('gamestart', 'sublabelWindow')}:</p>
 					
 						<div className="Buttons">
-							<button>{context.GetText('gamestart', 'buttonRandomPlayer')}</button>
-							<button>{context.GetText('gamestart', 'buttonChoosePlayer')}</button>
-							<button>{context.GetText('gamestart', 'buttonChooseBot')}</button>
+							<button className="ButtonGreenBorder">{context.GetText('gamestart', 'buttonRandomPlayer')}</button>
+							<button className="ButtonGreenBorder">{context.GetText('gamestart', 'buttonChoosePlayer')}</button>
+							<button className="ButtonGreenBorder">{context.GetText('gamestart', 'buttonChooseBot')}</button>
 						</div>
 
 						<div class="UserTip">
