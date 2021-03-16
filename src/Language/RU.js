@@ -85,6 +85,12 @@ export function AddPackets(addPackFunction)
 		'labelCup' : 'Турнир'
 	});
 
+	pack.AddDictionary('gamestart', 
+	{
+		'labelWindow' : 'Новая игра'
+	});
+
+
 
 	pack.AddDictionary('country',
 	{

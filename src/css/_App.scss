@@ -79,16 +79,15 @@
 	&[data-title="none"] { grid-template-columns: unset; }
 	
 	margin-top: 10px;
+
 	display: grid;
+	grid-gap: 0 12px;
 	grid-auto-flow: column;
 	grid-template-columns: max-content 1fr max-content;
 	align-items: center;
 
 
 	.HeadNavigationTitle {
-		padding: 0 12px;
-		box-sizing: border-box;
-
 		font-size: 18px;
 		font-weight: 300;
 	}
@@ -333,7 +332,7 @@
 						}
 					}
 
-					
+
 					width: 55px;
 					height: 100%;
 	
@@ -423,6 +422,12 @@
 			}
 		}
 	}
+}
+
+
+
+.GameStart {
+
 }
 
 
