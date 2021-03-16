@@ -829,6 +829,13 @@ html, body {
   text-transform: uppercase;
 }
 
+.GameStart .Buttons {
+  margin: 10px 0;
+  display: -ms-grid;
+  display: grid;
+  grid-gap: 7px 0;
+}
+
 .ModalBG {
   position: absolute;
   top: 0;

@@ -89,7 +89,7 @@
 	&[data-title="none"] { grid-template-columns: unset; }
 
 
-	
+
 	.HeadNavigationTitle {
 		font-size: 18px;
 		font-weight: 300;
@@ -385,7 +385,12 @@
 
 
 .GameStart {
+	.Buttons {
+		margin: 10px 0;
 
+		display: grid;
+		grid-gap: 7px 0;
+	}
 }
 
 
