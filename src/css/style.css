@@ -512,6 +512,7 @@ html, body {
 
 .HeadNavigation {
   margin-top: 10px;
+  min-height: 30px;
   display: -ms-grid;
   display: grid;
   grid-gap: 0 12px;

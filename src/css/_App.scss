@@ -79,6 +79,8 @@
 	&[data-title="none"] { grid-template-columns: unset; }
 	
 	margin-top: 10px;
+	
+	min-height: 30px;
 
 	display: grid;
 	grid-gap: 0 12px;
