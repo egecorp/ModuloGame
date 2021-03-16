@@ -40,7 +40,7 @@ export default class GameListPage extends React.Component {
 										<p>Vinni</p>
 									</div>
 
-									<p className="Status">Идёт раунд 5</p>
+									<p className="Status">Идёт 3 раунд</p>
 									
 									<div className="Player">
 										<div className="Logo"></div>
@@ -54,9 +54,9 @@ export default class GameListPage extends React.Component {
 										<p>Kanunita</p>
 									</div>
 
-									<p className="Status">Идёт раунд 5</p>
+									<p className="Status">Идёт 5 раунд</p>
 									
-									<div className="Player">
+									<div className="Player Computer">
 										<div className="Logo"></div>
 										<p>Бот</p>
 									</div>

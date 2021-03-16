@@ -324,11 +324,21 @@
 	
 	
 				.Player {
+					&.Computer {
+						> p { font-weight: 500; }
+
+						.Logo {
+							background-size: 14px auto;
+							background-image: url(../img/icon/computer.svg);
+						}
+					}
+
+					
 					width: 55px;
 					height: 100%;
 	
 					display: grid;
-					grid-gap: 2px 0;
+					grid-gap: 3px 0;
 					justify-items: center;
 	
 					overflow: hidden;
@@ -340,7 +350,7 @@
 						width: 24px;
 						height: 24px;
 	
-						background-color: #fff; // ! delete
+						background-color: rgba(0,0,0,0.2); // ! delete
 						border-radius: 3px;
 					}
 	

@@ -754,16 +754,25 @@ html, body {
   height: 100%;
   display: -ms-grid;
   display: grid;
-  grid-gap: 2px 0;
+  grid-gap: 3px 0;
   justify-items: center;
   overflow: hidden;
+}
+
+.GameList .Games ul li .Player.Computer > p {
+  font-weight: 500;
+}
+
+.GameList .Games ul li .Player.Computer .Logo {
+  background-size: 14px auto;
+  background-image: url(../img/icon/computer.svg);
 }
 
 .GameList .Games ul li .Player .Logo {
   position: relative;
   width: 24px;
   height: 24px;
-  background-color: #fff;
+  background-color: rgba(0, 0, 0, 0.2);
   border-radius: 3px;
 }
 
