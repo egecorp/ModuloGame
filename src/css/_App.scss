@@ -151,6 +151,11 @@
 
 
 .SignIn {
+	.Buttons {
+		display: grid;
+		grid-gap: 7px 0;
+	}
+
 	.UserTip {
 		max-height: 120px;
 	}
@@ -394,7 +399,7 @@
 
 .GameStart {
 	.Buttons {
-		margin: 10px 0;
+		margin: 20px 0;
 
 		display: grid;
 		grid-gap: 7px 0;

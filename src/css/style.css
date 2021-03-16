@@ -254,7 +254,6 @@ html, body {
 */
 /*** *** *** END *** *** ***/
 .CheckBoxButton {
-  margin: 7px 0;
   padding: 8px;
   display: -ms-grid;
   display: grid;
@@ -602,6 +601,12 @@ html, body {
           box-shadow: 2px 4px 4px 0 rgba(0, 0, 0, 0.3);
 }
 
+.SignIn .Buttons {
+  display: -ms-grid;
+  display: grid;
+  grid-gap: 7px 0;
+}
+
 .SignIn .UserTip {
   max-height: 120px;
 }
@@ -834,7 +839,7 @@ html, body {
 }
 
 .GameStart .Buttons {
-  margin: 10px 0;
+  margin: 20px 0;
   display: -ms-grid;
   display: grid;
   grid-gap: 7px 0;
