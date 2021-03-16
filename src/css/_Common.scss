@@ -53,6 +53,24 @@ input, select {
 
 @include placeholder { color: var(--font-color); opacity: 0.4; }
 
+@mixin textWrapDots {
+	width: 100%;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow-wrap: anywhere;
+	overflow: hidden;
+}
+
+@mixin textWrapDots_Vert($strokes: 1) {
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	white-space: unset;
+	overflow-y: hidden;
+	-webkit-line-clamp: $strokes;
+}
+
+
+
 html, body {
 	margin: 0;
 	padding: 0;
@@ -64,6 +82,7 @@ html, body {
 
 .Bold { font-weight: 600; }
 .Error { color: red !important; font-weight: 400; }
+
 
 
 #game-body {

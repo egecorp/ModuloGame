@@ -40,7 +40,7 @@ export default class GameListPage extends React.Component {
 										<p>Vinni</p>
 									</div>
 
-									<p>Идёт раунд 5</p>
+									<p className="Status">Идёт раунд 5</p>
 									
 									<div className="Player">
 										<div className="Logo"></div>
@@ -54,7 +54,7 @@ export default class GameListPage extends React.Component {
 										<p>Kanunita</p>
 									</div>
 
-									<p>Идёт раунд 5</p>
+									<p className="Status">Идёт раунд 5</p>
 									
 									<div className="Player">
 										<div className="Logo"></div>
@@ -63,9 +63,23 @@ export default class GameListPage extends React.Component {
 								</li>
 
 								<li>
-									<div></div>
-									<p>Идёт раунд 2</p>
-									<div></div>
+									<div className="Player">
+										<div className="Logo"></div>
+										<p>WOLF_F</p>
+									</div>
+
+									<div className="Cup">
+										<p className="Status">Счёт 8:6</p>
+										<div className="Info">
+											<p>{context.GetText('gamelist', 'labelCup')}</p>
+											<div className="IconCup"></div>
+										</div>
+									</div>
+									
+									<div className="Player">
+										<div className="Logo"></div>
+										<p>ЧёКаво?</p>
+									</div>
 								</li>
 							</ul>
 						</div>
