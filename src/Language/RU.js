@@ -87,7 +87,8 @@ export function AddPackets(addPackFunction)
 
 	pack.AddDictionary('gamestart', 
 	{
-		'labelWindow' : 'Новая игра'
+		'labelWindow' : 'Новая игра',
+		'sublabelWindow' : 'Выберите режим'
 	});
 
 
