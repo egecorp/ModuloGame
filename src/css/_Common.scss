@@ -16,7 +16,9 @@
 	--button-footer-bg-hover: #D4D4D4;
 }
 
-* {
+*,
+*::after,
+*::before {
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: contain;
