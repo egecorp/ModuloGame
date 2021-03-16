@@ -602,6 +602,10 @@ html, body {
           box-shadow: 2px 4px 4px 0 rgba(0, 0, 0, 0.3);
 }
 
+.SignIn .UserTip {
+  max-height: 120px;
+}
+
 .SignInAuth .UserTip {
   max-height: unset;
 }
