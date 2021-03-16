@@ -164,6 +164,5 @@ export default class GameListPage extends React.Component {
 			)}
 			</LanguageContext.Consumer>
 		);
-	
 	}
 }
