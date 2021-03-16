@@ -89,6 +89,9 @@ export function AddPackets(addPackFunction)
 	{
 		'labelWindow' : 'Новая игра',
 		'sublabelWindow' : 'Выберите режим',
+		'buttonRandomPlayer' : 'Случайный соперник',
+		'buttonChoosePlayer' : 'Выбрать соперника',
+		'buttonChooseBot' : 'Выбрать компьютер',
 		'tip' : 'Выберите способ запуска новой игры.'
 	});
 
