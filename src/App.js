@@ -1,6 +1,7 @@
 import React from 'react'
-import './App.css';
-import './Common.css';
+import './css/style.css';
+// import './css/App.css';
+// import './css/Common.css';
 import Game from './GamePages/Game.js';
 import Device from './Model/Device';
 import {LanguageContext, LanguagePacketsHolder} from './Language/LangPack'

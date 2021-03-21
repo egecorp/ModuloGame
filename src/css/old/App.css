@@ -79,12 +79,12 @@
 
 .SignInLanguagePanelFlag[data-country="ru"]
 {
-	background-image: url(/src/img/flags/ru.svg);
+	background-image: url(../img/flags/ru.svg);
 }
 
 .SignInLanguagePanelFlag[data-country="eng"]
 {
-	background-image: url(/src/img/flags/usa.svg); 
+	background-image: url(../img/flags/usa.svg); 
 }
 
 .SignInLanguagePanelName
@@ -159,8 +159,9 @@
 
 .FooterArea > button
 {
+	padding: 10px 0;
+
 	width: 100%;
-	height: 42px;
 
 	background-color: var(--button-footer-bg);
 	border-radius: 5px;
@@ -315,17 +316,101 @@
 
 
 
-.ModalBody
-{
-  background-color: white;
-  width: 260px;
-  min-height: 100px;
-  border-radius: 6px;
-  font-size: 13px;
-  font-weight: 500;
+
+.ModalBG
+{ 
+	position: absolute;
+	top: 0;
+	left: 0;
+
+	/*
+	! height - вычитается нижние поле AdHolder.
+	! Необходимо убрать его после всей вёрстки игры
+	*/
+
+	width: 100%;
+	height: calc(100% - 50px);
+
+	background-color: rgba(0,0,0,0.6);
 }
 
-.ModalBody  .WarningIcon
+.Modal
+{
+	position: absolute;
+	/*
+	* Поднимаем чуть выше середины, чтобы визуально лучше воспринималось
+	*/
+	top: 40%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 10;
+
+	width: calc(100% - 60px);
+	max-width: 300px;
+	
+	pointer-events: all;
+}
+
+.Modal p,
+.Modal span,
+.Modal label { color: var(--modal-font-color); }
+.Modal b { font-weight: 500; }
+
+.Modal p > span {	display: block; }
+.Modal p > span:nth-child(n+2) { margin-top: 3px; }
+
+.Modal > *:nth-child(n+2) {	margin-top: 12px; }
+
+.ModalBody
+{
+	padding: 12px;
+  min-height: 100px;
+
+	background-color: #fff;
+	border-radius: 5px;
+	box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.15);
+}
+
+.ModalBody > div > *:nth-child(n+2) {	margin-top: 12px; }
+
+.ModalBody > div > p
+{
+	font-size: 13px;
+	font-weight: 300;
+	line-height: 17px;
+}
+
+/* MailCode */
+.ModalBody .MailCode label
+{
+	font-size: 13px;
+	font-weight: 500;
+	line-height: 17px;
+}
+
+.ModalBody .MailCode input
+{
+	margin-top: 5px;
+	padding: 7px 10px;
+
+	width: 100%;
+
+	background-color: rgba(0, 0, 0, 0.5);
+	border-radius: 3px;
+	box-sizing: border-box;
+
+	font-size: 13px;
+	font-weight: 300;
+	line-height: 17px;
+}
+
+.ModalBody .MailCode input::-webkit-input-placeholder	{ opacity: 0.6; }
+.ModalBody .MailCode input::-moz-placeholder					{ opacity: 0.6; }
+.ModalBody .MailCode input:-ms-input-placeholder			{ opacity: 0.6; }
+.ModalBody .MailCode input:-moz-placeholder						{ opacity: 0.6; }
+/* END */
+
+.ModalBody .WarningIcon
 {
   position: relative;
   background-image: url(/src/img/icon/warning.svg);
@@ -343,44 +428,23 @@
   font-weight: 600;
 }
 
-.ModalBody > div
+.Modal > .Button > button
 {
-  margin:7px;
-  justify-content: center;
-  text-align: center;
-}
+	padding: 10px 0;
 
-.ModalBody label
-{
-  font-weight: 500;
-  float: left;
-  margin-bottom: 2px;
-}
-
-.ModalBody input[type="text"]
-{
-  width: calc(100% - 12px);
-  background-color: rgb(191, 191, 191) ;
-  outline: none;
-  border: none;
-  border-radius: 4px;
-  padding:7px;
-}
-
-.ModalButtonArea
-{
-  width: 260px;
-  height: 43px;
-}
-
-.ModalButtonArea > button
-{
   width: 100%;
-  height: 100%;
-  border-radius: 6px;
-  font-weight: 500;
-  font-size: 15px;
-  outline: none !important;
-  border:1ps solid black;
 
+	background-color: var(--button-footer-bg);
+  border-radius: 5px;
+	box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.15);
+
+	font-weight: 500;
+  font-size: 15px;
+	text-transform: uppercase;
+}
+
+.Modal > .Button > button:active
+{
+	background-color: var(--button-footer-bg-hover);
+	box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.3);
 }

@@ -66,25 +66,27 @@ export default class SignInPage extends React.Component {
 								<br />
 								<span className="WelcomeModulo">Modulo</span>
 							</p>
-								
-							<CheckBoxButton 
-								changeItemState={this.changeItemState} 
-								checkName="anonim" 
-								IsChecked={this.state.checkedItem==="anonim"} 
-								IsSelected={this.state.selectedItem==="anonim"} 
-								title={context.GetText('signin', 'typeAnonimTitle')}></CheckBoxButton>
-							<CheckBoxButton 
-								changeItemState={this.changeItemState} 
-								checkName="signup" 
-								IsChecked={this.state.checkedItem==="signup"} 
-								IsSelected={this.state.selectedItem==="signup"} 
-								title={context.GetText('signin', 'typeSignUpTitle')}></CheckBoxButton>
-							<CheckBoxButton
+
+							<div className="Buttons">
+								<CheckBoxButton 
+									changeItemState={this.changeItemState} 
+									checkName="anonim" 
+									IsChecked={this.state.checkedItem==="anonim"} 
+									IsSelected={this.state.selectedItem==="anonim"} 
+									title={context.GetText('signin', 'typeAnonimTitle')}></CheckBoxButton>
+								<CheckBoxButton 
+									changeItemState={this.changeItemState} 
+									checkName="signup" 
+									IsChecked={this.state.checkedItem==="signup"} 
+									IsSelected={this.state.selectedItem==="signup"} 
+									title={context.GetText('signin', 'typeSignUpTitle')}></CheckBoxButton>
+								<CheckBoxButton
 							changeItemState={this.changeItemState} 
 							checkName="signin" 
 							IsChecked={this.state.checkedItem==="signin"} 
 							IsSelected={this.state.selectedItem==="signin"} 
 							title={context.GetText('signin', 'typeSignInTitle')}></CheckBoxButton>
+							</div>
 
 							<div className="UserTip">
 								<p>{this.state.tipText}</p>

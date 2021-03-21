@@ -4,6 +4,8 @@
 :root {
 	--font-color: #fff;
 
+	--modal-font-color: #000;
+
 	--button-green: #35CA71;
 	--button-green-hover: #2EB062;
 	--button-green-rgb: 53, 202, 113;
@@ -28,6 +30,7 @@
 }
 
 button {
+	padding: 0;
 	outline: none;
 	border: 0;
 }
@@ -48,7 +51,7 @@ input, select {
 :-ms-input-placeholder			{ color: var(--font-color); opacity: 0.4; }
 :-moz-placeholder						{ color: var(--font-color); opacity: 0.4; }
 
-html,body
+html, body
 {
 	margin: 0;
 	padding: 0;
@@ -56,6 +59,11 @@ html,body
 	width: 100%;
 	color: rgb(47,47,47);
 	background-color: papayawhip;
+}
+
+.Bold 
+{
+	font-weight: 600; 
 }
 
 
@@ -77,10 +85,7 @@ html,body
 	height: 568px;
 }
 
-#playground > #root
-{
-	height: 100%;
-}
+#playground > #root { height: 100%; }
 
 #modal-root
 {
@@ -91,24 +96,18 @@ html,body
 
 	width: 100%;
 	height: 100%;
-	
+
 	pointer-events: none;
-	overflow: hidden;
 }
 
 #modal-root > div
 {
-	height: 100%;
-	
-	background-color: rgba(128,0,0,0.5);
-	
-	overflow: hidden;
-	display: grid;
-	align-items: center;
-	justify-content: center;
-	grid-template-rows: 1fr min-content 10px 43px 2fr ;
-	pointer-events:all;
+	position: absolute;
+	top: 0;
+	left: 0;
 
+	width: 100%;
+	height: 100%;
 }
 
 
@@ -268,7 +267,7 @@ html,body
 	width: 30px;
 	height: 30px;
 
-	background-image: url(img/buttons/left-arrow.svg);
+	background-image: url(../img/buttons/left-arrow.svg);
 	background-size: 16px;
 	background-position: 45%;
 	background-color: unset;
@@ -306,8 +305,3 @@ html,body
 	background-color: var(--button-green-hover);
 }
 /* END */
-
-.Bold 
-{
-	font-weight: 600; 
-}

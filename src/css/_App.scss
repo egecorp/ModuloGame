@@ -1,0 +1,560 @@
+.Main {
+	margin-top: 20px; /* Статус бар */
+	padding: 0 10px;
+
+	height: calc(100% - 20px); /* Статус бар */
+
+	display: grid;
+	grid-template-rows: max-content 1fr max-content;
+
+	box-sizing: border-box;
+}
+
+.Game {
+	position: relative;
+	height: 100%;
+	
+	display:grid;
+	grid-template-rows: 1fr max-content;
+	
+	background: linear-gradient(to bottom, #12652f 0%,  #038D42 50%  ,   #0f6e34 100%);
+
+	overflow: hidden;
+}
+
+.PageHolder {
+	position: relative;
+	display: flex;
+}
+
+.AdHolder {
+	position: relative;
+	height: 50px;
+	border: 1px solid #000;
+	box-sizing: border-box;
+
+	select {
+		width: 100%;
+		height: 100%;
+		color: #000;
+	}
+}
+
+
+
+.Welcome {
+	margin: 20px 0;
+	text-align: center;
+
+	.WelcomeTitle {
+		font-size: 22px;
+		font-weight: 300;
+		line-height: 28px;
+	}
+
+	.WelcomeModulo {
+		font-size: 28px;
+		font-weight: 600;
+		line-height: 34px;
+	}
+}
+
+
+
+.SignInLanguagePanel {
+	justify-self: end;
+
+	.SignInLanguagePanelFlag {
+		width: 20px;
+		height: 20px;
+
+		&[data-country="ru"]	{ background-image: url(../img/flags/ru.svg);	}
+		&[data-country="eng"] { background-image: url(../img/flags/usa.svg); }
+	}
+}
+
+
+
+.HeadNavigation {
+	margin-top: 10px;
+
+	min-height: 30px;
+
+	display: grid;
+	grid-gap: 0 12px;
+	grid-auto-flow: column;
+	grid-template-columns: max-content 1fr max-content;
+	align-items: center;
+
+	&[data-title="none"] { grid-template-columns: unset; }
+
+
+
+	.HeadNavigationTitle {
+		font-size: 18px;
+		font-weight: 300;
+	}
+}
+
+
+
+.UserTip {
+	margin: 15px auto 0 auto;
+	padding: 10px 15px;
+	width: 95%;
+	max-height: 80px;
+
+	background: rgba(0, 0, 0, 0.1);
+	box-shadow: inset 0px 0px 6px 2px rgba(0, 0, 0, 0.1);
+	border-radius: 10px;
+
+	text-align: center;
+	box-shadow: inset 0 0 2px 2px rgba(0,0,0,0.1); 
+	box-sizing: border-box;
+
+	overflow-y: auto;
+
+	> p {
+		font-size: 15px;
+		font-weight: 500;
+		line-height: 20px;
+		text-align: center;
+		letter-spacing: 0.15px;
+	}
+}
+
+
+
+.FooterArea {
+	margin: 10px 0;
+
+	> button {
+		padding: 10px 0;
+
+		width: 100%;
+
+		background-color: var(--button-footer-bg);
+		border-radius: 5px;
+		box-shadow: 2px 4px 4px 0 rgba(0, 0, 0, 0.15);
+
+		font-size: 16px;
+		font-weight: 500;
+		text-transform: uppercase;
+
+		&:active {
+			background-color: var(--button-footer-bg-hover);
+			box-shadow: 2px 4px 4px 0 rgba(0, 0, 0, 0.3);
+		}
+	}
+}
+
+
+
+.SignIn {
+	.Buttons {
+		display: grid;
+		grid-gap: 7px 0;
+	}
+
+	.UserTip {
+		max-height: 120px;
+	}
+}
+
+
+
+.SignInAuth {
+	.UserTip {
+		max-height: unset;
+
+		p {
+			font-size: 13px;
+			line-height: 18px;
+		}
+	}
+
+
+}
+
+
+
+.SignInAnonim {
+	.SignInAnonimImage {
+		display: grid;
+		align-items: center;
+		justify-items: center;
+
+		img {	height: 180px; }
+	}
+
+	.SignInAnonimTip {
+		margin-top: 10px;
+	
+		font-weight: 500;
+		font-size: 14px;
+		line-height: 18px;
+		text-align: center;
+	}
+
+	.SignInAnonimSignUp {
+		margin-top: 5px;
+		
+		font-weight: 500;
+		font-size: 14px;
+		line-height: 18px;
+		text-align: center;
+		text-decoration: underline;
+	}
+}
+
+
+
+.GameList {
+	.Games {
+		&.NowPlaying {
+			.Status {
+				font-size: 13px;
+				line-height: 17px;
+			}
+		}
+
+		&.Finished {
+			.Status {
+				font-size: 18px;
+				line-height: 20px;
+			}
+		}
+
+
+		.IconCup {
+			width: 10px;
+			height: 10px;
+			background-image: url(../img/icon/cup.svg);
+		}
+
+		ul {
+			display: grid;
+			grid-gap: 5px 0;
+
+			li {
+				position: relative;
+				padding: 5px;
+	
+				display: grid;
+				grid-auto-flow: column;
+				grid-template-columns: max-content 1fr max-content;
+				align-items: center;
+				justify-items: center;
+	
+				background-color: rgba(6, 55, 30, 0.25);
+				border-radius: 5px;
+
+				&[data-cup="1"][data-win] {
+					&::after { display: none; }
+
+					.Player .Logo::after {
+						position: absolute;
+						right: -5px;
+						bottom: -5px;
+
+						content: '';
+
+						display: block;
+
+						width: 14px;
+						height: 14px;
+						background-image: url(../img/icon/medal.svg);
+					}
+				}
+
+				&[data-cup="1"][data-win="right"] .Player:first-child .Logo::after { display: none; }
+				&[data-cup="1"][data-win="left"] .Player:last-child .Logo::after { display: none; }
+
+				&[data-win]::after {
+					position: absolute;
+					top: 50%;
+					transform: translateY(-50%);
+
+					content: '';
+
+					display: block;
+
+					width: 20px;
+					height: 20px;
+					background-image: url(../img/icon/medal.svg);
+				}
+
+				&[data-win="left"]::after { left: 25%; }
+				&[data-win="right"]::after { right: 25%; }
+	
+
+
+				.Status {
+					font-weight: 500;
+					text-transform: uppercase;
+				}
+	
+				.Player {
+					width: 55px;
+					height: 100%;
+	
+					display: grid;
+					grid-gap: 3px 0;
+					justify-items: center;
+	
+					overflow: hidden;
+
+					&.Computer {
+						> p { font-weight: 500; }
+
+						.Logo {
+							background-size: 14px auto;
+							background-image: url(../img/icon/computer.svg);
+						}
+					}
+	
+	
+
+					.Logo {
+						position: relative;
+
+						width: 24px;
+						height: 24px;
+	
+						background-color: rgba(0,0,0,0.2); // ! delete
+						border-radius: 3px;
+					}
+
+					p {
+						font-size: 10px;
+						font-weight: 300;
+						line-height: 13px;
+						text-align: center;
+						text-transform: uppercase;
+	
+						@include textWrapDots;
+					}
+				}
+
+				.Cup {
+					width: 100%;
+
+					display: grid;
+					grid-gap: 0 10px;
+					grid-auto-flow: column;
+					grid-template-columns: 1fr max-content 1fr;
+					align-items: center;
+
+
+					.ELO {
+						display: grid;
+						grid-gap: 2px 0;
+	
+	
+						p {
+							font-weight: 300;
+							text-align: center;
+						}
+	
+						> p:nth-child(1) { 
+							font-size: 13px;
+							line-height: 15px;
+						}
+	
+						> p:nth-child(2) { 
+							font-size: 10px;
+							line-height: 12px;
+						}
+					}
+					
+	
+					.Score {
+						display: grid;
+						grid-gap: 3px 0;
+						justify-items: center;
+	
+	
+						.Info {
+							display: grid;
+							grid-gap: 0 5px;
+							grid-auto-flow: column;
+							grid-auto-columns: max-content;
+							align-items: center;
+	
+							p {
+								font-size: 10px;
+								font-weight: 300;
+								line-height: 13px;
+								text-transform: uppercase;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+
+
+.GameStart {
+	.Buttons {
+		margin: 20px 0;
+
+		display: grid;
+		grid-gap: 7px 0;
+	}
+}
+
+
+
+.ModalBG { 
+	position: absolute;
+	top: 0;
+	left: 0;
+
+	/*
+	! height - вычитается нижние поле AdHolder.
+	! Необходимо убрать его после всей вёрстки игры
+	*/
+
+	width: 100%;
+	height: calc(100% - 50px);
+
+	background-color: rgba(0,0,0,0.6);
+}
+
+.Modal {
+	p, span, label { color: var(--modal-font-color); }
+	b { font-weight: 500; }
+
+	p {
+		> span {
+			display: block;
+
+			&:nth-child(n+2) { margin-top: 3px; }
+		}
+	}
+
+
+	> * {
+		&:nth-child(n+2) { margin-top: 12px; }
+	}
+
+	
+	position: absolute;
+	/*
+	* Поднимаем чуть выше середины, чтобы визуально лучше воспринималось
+	*/
+	top: 40%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 10;
+
+	width: calc(100% - 60px);
+	max-width: 300px;
+	
+	pointer-events: all;
+
+
+	.ModalBody {
+		padding: 12px;
+		min-height: 100px;
+
+		background-color: #fff;
+		border-radius: 5px;
+		box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.15);
+
+		> div {
+			> *:nth-child(n+2) { margin-top: 12px; }
+
+			> .Content {
+				> *:nth-child(n+2) { margin-top: 7px; }
+
+				.Title {
+					font-size: 15px;
+					font-weight: 500;
+
+					line-height: 19px;
+					text-align: center;
+				}
+	
+				> p {
+					font-size: 13px;
+					font-weight: 300;
+					line-height: 17px;
+				}
+
+				> a {
+					display: block;
+
+					color: var(--link-color);
+					font-size: 13px;
+					font-weight: 500;
+
+					line-height: 17px;
+					text-align: center;
+					text-decoration: none;
+
+					&:active { text-decoration: underline; }
+				}
+			}
+		}
+
+
+		/* MailCode */
+		.MailCode {
+			label	{
+				font-size: 13px;
+				font-weight: 500;
+				line-height: 17px;
+			}
+
+			input	{
+				margin-top: 5px;
+				padding: 7px 10px;
+
+				width: 100%;
+
+				background-color: rgba(0, 0, 0, 0.5);
+				border-radius: 3px;
+				box-sizing: border-box;
+
+				font-size: 13px;
+				font-weight: 300;
+				line-height: 17px;
+			}
+
+			input { @include placeholder { opacity: 0.6; } } 
+		}
+		/* END */
+
+
+		.WarningIcon {
+			height: 30px;
+
+			background-image: url(/src/img/icon/warning.svg);
+		}
+	}
+
+	> .Button {
+		> button {
+			padding: 10px 0;
+		
+			width: 100%;
+		
+			background-color: var(--button-footer-bg);
+			border-radius: 5px;
+			box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.15);
+		
+			font-weight: 500;
+			font-size: 15px;
+			text-transform: uppercase;
+
+			&:active {
+				background-color: var(--button-footer-bg-hover);
+				box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.3);
+			}
+		}
+	} 
+}
