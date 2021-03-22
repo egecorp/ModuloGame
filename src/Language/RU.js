@@ -95,6 +95,13 @@ export function AddPackets(addPackFunction)
 		'tip' : 'Выберите способ запуска новой игры.'
 	});
 
+	pack.AddDictionary('finduser', 
+	{
+		'labelWindow' : 'Выбор соперника',
+		'sublabelFavoriteUsers' : 'Избранные соперники',
+		'sublabelRecentUsers' : 'Недавние соперники'
+	});
+
 
 
 	pack.AddDictionary('country',
