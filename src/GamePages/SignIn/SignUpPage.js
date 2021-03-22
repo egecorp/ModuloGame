@@ -92,7 +92,7 @@ render() {
 
 							<div className="LabelInput" >
 								<label htmlFor="inputDOB">{context.GetText('signup', 'formLabelDOB')}</label>
-								<input type="date" name="inputDOB" placeholder={context.GetText('signup', 'formPlaceholderDOB')} />
+								<input type="date" name="inputDOB" placeholder={context.GetText('signup', 'formPlaceholderDOB')} onfocus="(this.type='date')" />
 							</div>
 						</form>
 					</div>
