@@ -30,7 +30,7 @@ export default class GameStartUserPage extends React.Component {
 					<div className="FindUser">
 						<form className="Search">
 							<div className="LabelInput">
-								<input type="text" name="Search" placeholder="Поиск..." />
+								<input type="text" name="Search" placeholder={context.GetText('finduser', 'inputPlaceholderSearch')} />
 							</div>
 						</form>
 
