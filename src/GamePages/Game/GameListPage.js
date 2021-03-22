@@ -31,7 +31,7 @@ export default class GameListPage extends React.Component {
 					
 					<div className="GameList">
 						<div className="Games NowPlaying">
-							<p className="GeneralSubtitle">{context.GetText('gamelist', 'sublabelNowPlaying')}:</p>
+							<p className="GeneralSubtitle">{context.GetText('gamelist', 'sublabelNowPlaying')}</p>
 						
 							<ul>
 								<li>
@@ -95,7 +95,7 @@ export default class GameListPage extends React.Component {
 						</div>
 
 						<div className="Games Finished">
-							<p className="GeneralSubtitle">{context.GetText('gamelist', 'sublabelFinished')}:</p>
+							<p className="GeneralSubtitle">{context.GetText('gamelist', 'sublabelFinished')}</p>
 						
 							<ul>
 								<li data-win="left">

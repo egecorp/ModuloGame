@@ -73,7 +73,7 @@ render() {
 						</HeadNavigation>
 
 						<div className="SignInAuth">
-							<p className="GeneralSubtitle">{context.GetText('signinauth', 'sublabelWindow')}:</p>
+							<p className="GeneralSubtitle">{context.GetText('signinauth', 'sublabelWindow')}</p>
 
 							<form>
 								<div className="LabelInput">

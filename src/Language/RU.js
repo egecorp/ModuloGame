@@ -14,10 +14,10 @@ export function AddPackets(addPackFunction)
 		'typeAnonimTitle' : 'Играть анонимно',
 		'typeSignUpTitle' : 'Создать уч. запись',
 		'typeSignInTitle' : 'Войти в аккаунт',
-		'typeDefaultTipText' : 'Для продолжения игры выберите способ регистрации',
+		'typeDefaultTipText' : 'Для продолжения игры выберите способ регистрации.',
 		'typeAnonimTipText' : 'Вы сможете играть одиночные партии, вы не сможете менять персонажа и восстановить рейтинг в случае смены устройства или удаления приложения. Вы не сможете подключить данное устройство к аккаунту без потери набранного рейтинга.',
 		'typeSignUpTipText' : 'Создание новой учётной записи для доступа ко всем функциям приложения, возможность участия в рейтинговых турнирах.',
-		'typeSignInTipText' : 'Добавить данное устройство к уже существующей учётной записи',
+		'typeSignInTipText' : 'Добавить данное устройство к уже существующей учётной записи.',
 		'continueButton' : 'Продолжить'
 	});
 
@@ -47,7 +47,7 @@ export function AddPackets(addPackFunction)
 	pack.AddDictionary('signinauth', 
 	{
 		'labelWindow' : 'Вход в аккаунт',
-		'sublabelWindow' : 'Авторизация',
+		'sublabelWindow' : 'Авторизация:',
 		'labelEMail' : 'E-mail:',
 		'labelDeviceName' : 'Название устройства:',
 		'labelPhone' : 'Номер телефона:',
@@ -60,7 +60,7 @@ export function AddPackets(addPackFunction)
 	{
 		'labelWindow' : 'Новый аккаунт',
 		'labelYourNickname' : 'Ваш ник:',
-		'tipCannotChooseImg' : 'Выбор персонажа недоступен в анонимной игре',
+		'tipCannotChooseImg' : 'Выбор персонажа недоступен в анонимной игре.',
 		'linkGoToSignUp' : 'Создать учётную запись',
 		'tipConditionBegin' : 'Нажимая кнопку «Продолжить», Вы принимаете наши',
 		'tipConditionLink' : ' Условия и Политику использования данных',
@@ -98,8 +98,8 @@ export function AddPackets(addPackFunction)
 	pack.AddDictionary('finduser', 
 	{
 		'labelWindow' : 'Выбор соперника',
-		'sublabelFavoriteUsers' : 'Избранные соперники',
-		'sublabelRecentUsers' : 'Недавние соперники',
+		'sublabelFavoriteUsers' : 'Избранные соперники:',
+		'sublabelRecentUsers' : 'Недавние соперники:',
 		'inputPlaceholderSearch' : 'Поиск...'
 	});
 

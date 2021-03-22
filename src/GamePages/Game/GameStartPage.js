@@ -24,7 +24,7 @@ export default class GameStartPage extends React.Component {
 					</HeadNavigation>
 					
 					<div className="GameStart">
-						<p class="GeneralSubtitle">{context.GetText('gamestart', 'sublabelWindow')}:</p>
+						<p class="GeneralSubtitle">{context.GetText('gamestart', 'sublabelWindow')}</p>
 					
 						<div className="Buttons">
 							<button className="ButtonGreenBorder">{context.GetText('gamestart', 'buttonRandomPlayer')}</button>
