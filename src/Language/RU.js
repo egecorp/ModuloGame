@@ -79,8 +79,8 @@ export function AddPackets(addPackFunction)
 	pack.AddDictionary('gamelist', 
 	{
 		'labelWindow' : 'Список игр',
-		'sublabelNowPlaying' : 'Активные игры',
-		'sublabelFinished' : 'Завершённые игры',
+		'sublabelNowPlaying' : 'Активные игры:',
+		'sublabelFinished' : 'Завершённые игры:',
 		'buttonHeaderLabel' : 'Новая игра',
 		'labelCup' : 'Турнир'
 	});
@@ -88,7 +88,7 @@ export function AddPackets(addPackFunction)
 	pack.AddDictionary('gamestart', 
 	{
 		'labelWindow' : 'Новая игра',
-		'sublabelWindow' : 'Выберите режим',
+		'sublabelWindow' : 'Выберите режим:',
 		'buttonRandomPlayer' : 'Случайный соперник',
 		'buttonChoosePlayer' : 'Выбрать соперника',
 		'buttonChooseBot' : 'Выбрать компьютер',
