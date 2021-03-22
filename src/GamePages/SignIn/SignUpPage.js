@@ -68,31 +68,31 @@ render() {
 
 						<form>
 							<div className="LabelInput">
-								<label htmlFor="inputNicName">{context.GetText('signup', 'labelNicName')}</label>
-								<input type="text" name="inputNicName" placeholder="Введите ник..." />
+								<label htmlFor="inputNicName">{context.GetText('signup', 'formLabelNicName')}</label>
+								<input type="text" name="inputNicName" placeholder={context.GetText('signup', 'formPlaceholderNicName')} />
 							</div>
 
 							<div className="LabelInput" >
-								<label htmlFor="inputEMail">{context.GetText('signup', 'labelEMail')}</label>
-								<input type="text" name="inputEMail" placeholder="Введите e-mail..." />
+								<label htmlFor="inputEMail">{context.GetText('signup', 'formLabelEMail')}</label>
+								<input type="text" name="inputEMail" placeholder={context.GetText('signup', 'formPlaceholderEMail')} />
 							</div>
 
 							<div className="LabelInput" >
-								<label htmlFor="inputCountry">{context.GetText('signup', 'labelCountry')}</label>
-								<select name="inputCountry" placeholder="Выберите страну...">
+								<label htmlFor="inputCountry">{context.GetText('signup', 'formLabelCountry')}</label>
+								<select name="inputCountry" placeholder={context.GetText('signup', 'formPlaceholderCountry')}>
 									{Array.from(context.GetDictionary('country').entries()).map(x => <option key={x[0]} value={x[0]}>{x[1]}</option>)}
 									{/*context.GetDictionary('country')  */}
 								</select>
 							</div>
 
 							<div className="LabelInput" >
-								<label htmlFor="inputPhone">{context.GetText('signup', 'labelPhone')}</label>
-								<input type="tel" name="inputPhone" placeholder="+7 (XXX) XXX-XX-XX" />
+								<label htmlFor="inputPhone">{context.GetText('signup', 'formLabelPhone')}</label>
+								<input type="tel" name="inputPhone" placeholder={context.GetText('signup', 'formPlaceholderPhone')} />
 							</div>
 
 							<div className="LabelInput" >
-								<label htmlFor="inputDOB">{context.GetText('signup', 'labelDOB')}</label>
-								<input type="date" name="inputDOB" placeholder="дд.мм.гггг" />
+								<label htmlFor="inputDOB">{context.GetText('signup', 'formLabelDOB')}</label>
+								<input type="date" name="inputDOB" placeholder={context.GetText('signup', 'formPlaceholderDOB')} />
 							</div>
 						</form>
 					</div>

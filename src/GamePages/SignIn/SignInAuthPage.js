@@ -77,13 +77,13 @@ render() {
 
 							<form>
 								<div className="LabelInput">
-									<label htmlFor="inputEMail">{context.GetText('signinauth', 'labelEMail')}</label>
-									<input type="text" name="inputEMail" placeholder="Введите e-mail..." /> 
+									<label htmlFor="inputEMail">{context.GetText('signinauth', 'formLabelEMail')}</label>
+									<input type="text" name="inputEMail" placeholder={context.GetText('signinauth', 'formPlaceholderEMail')} /> 
 								</div>
 
 								<div className="LabelInput">
-									<label htmlFor="inputDeviceName">{context.GetText('signinauth', 'labelDeviceName')}</label>
-									<input type="text" name="inputDeviceName" placeholder="Название вашего устройства..." />
+									<label htmlFor="inputDeviceName">{context.GetText('signinauth', 'formLabelDeviceName')}</label>
+									<input type="text" name="inputDeviceName" placeholder={context.GetText('signinauth', 'formPlaceholderDeviceName')} />
 								</div>
 							</form>
 
