@@ -14,7 +14,6 @@ export default class GameListPage extends React.Component {
 
 	render() {
 		
-		
 
 		return (
 			<LanguageContext.Consumer>
