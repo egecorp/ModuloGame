@@ -1111,12 +1111,52 @@ html, body {
 
 .ConditionPage {
   height: 100%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: max-content 1fr;
+      grid-template-rows: -webkit-max-content 1fr;
+      grid-template-rows: max-content 1fr;
   overflow: hidden;
 }
 
 .ConditionPage .Content {
+  position: relative;
   height: 100%;
   overflow: hidden;
+}
+
+.ConditionPage .Content[data-shadow="top"]::after, .ConditionPage .Content[data-shadow="bottom"]::before, .ConditionPage .Content[data-shadow="both"]::after, .ConditionPage .Content[data-shadow="both"]::before {
+  display: block;
+}
+
+.ConditionPage .Content::after, .ConditionPage .Content::before {
+  position: absolute;
+  left: 0;
+  content: "";
+  display: none;
+  width: calc(100% - 9px);
+  height: 20px;
+}
+
+.ConditionPage .Content::after {
+  top: 0;
+  background: -webkit-gradient(linear, left top, left bottom, from(#0b7738), to(rgba(11, 119, 56, 0)));
+  background: linear-gradient(#0b7738 0%, rgba(11, 119, 56, 0) 100%);
+}
+
+.ConditionPage .Content::before {
+  bottom: 0;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(9, 122, 58, 0)), to(#097a3a));
+  background: linear-gradient(rgba(9, 122, 58, 0) 0%, #097a3a 100%);
+}
+
+.ConditionPage .Content p {
+  height: 100%;
+  overflow: auto;
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 17px;
+  text-align: justify;
 }
 
 code {
