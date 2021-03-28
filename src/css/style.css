@@ -1054,7 +1054,7 @@ html, body {
   width: 29px;
   height: 100%;
   background-image: url(../img/icon/search.svg);
-  background-size: 18px;
+  background-size: 16px;
 }
 
 .FindUser .Search button:disabled {
@@ -1068,7 +1068,6 @@ html, body {
 }
 
 .FindUser .Players > li {
-  position: relative;
   padding: 5px;
   width: 100%;
   height: 34px;
@@ -1097,6 +1096,11 @@ html, body {
 }
 
 .FindUser .Players > li p {
+  width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow-wrap: anywhere;
+  overflow: hidden;
   font-size: 14px;
   font-weight: 300;
   line-height: 19px;
@@ -1104,14 +1108,9 @@ html, body {
 }
 
 .FindUser .Players > li button {
-  position: absolute;
-  top: 50%;
-  right: 5px;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
-  width: 29px;
+  width: 24px;
   height: 100%;
-  background-image: url(../img/icon/search.svg);
+  background-image: url(../img/icon/sword.svg);
   background-size: 18px;
 }
 

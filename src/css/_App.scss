@@ -576,7 +576,7 @@
 			height: 100%;
 
 			background-image: url(../img/icon/search.svg);
-			background-size: 18px;
+			background-size: 16px;
 		}
 
 		button:disabled { opacity: 0.4; }
@@ -587,7 +587,6 @@
 		grid-gap: 5px 0;
 
 		> li {
-			position: relative;
 			padding: 5px;
 
 			width: 100%;
@@ -612,6 +611,7 @@
 			}
 
 			p {
+				@include textWrapDots;
 				font-size: 14px;
 				font-weight: 300;
 				line-height: 19px;
@@ -619,15 +619,10 @@
 			}
 
 			button {
-				position: absolute;
-				top: 50%;
-				right: 5px;
-				transform: translateY(-50%);
-	
-				width: 29px;
+				width: 24px;
 				height: 100%;
 	
-				background-image: url(../img/icon/search.svg);
+				background-image: url(../img/icon/sword.svg);
 				background-size: 18px;
 			}
 		}
