@@ -37,12 +37,29 @@ button {
 p, span, h1, h2, h3, h4, h5, h6, label { color: var(--font-color); }
 
 input, select {
+	position: relative;
+	appearance: none;
 	outline: 0;
 	border: 0;
 
 	color: #fff;
 	font-size: 14px;
 	font-weight: 300;
+}
+
+input[type="text"].Date { background-image: url(../img/icon/calendar-op40.svg); }
+
+input.Date {
+	background-image: url(../img/icon/calendar.svg);
+	background-size: 18px;
+	background-position-x: 97%;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+	
+	background-image: unset;
+
+	outline: none;
 }
 
 @mixin placeholder {
@@ -265,9 +282,14 @@ html, body {
 	> input, select {
 		padding: 5px 10px;
 		width: 100%;
+
 		background-color: rgba(var(--button-darkgreen-rgb), 0.5);
 		border-radius: 3px;
 		box-sizing: border-box;
+	}
+
+	input[type="date"] {
+		padding: 4px 10px;
 	}
 
 	> select {

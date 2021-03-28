@@ -72,12 +72,12 @@ render() {
 								<input type="text" name="inputNicName" placeholder={context.GetText('signup', 'formPlaceholderNicName')} />
 							</div>
 
-							<div className="LabelInput" >
+							<div className="LabelInput">
 								<label htmlFor="inputEMail">{context.GetText('signup', 'formLabelEMail')}</label>
 								<input type="text" name="inputEMail" placeholder={context.GetText('signup', 'formPlaceholderEMail')} />
 							</div>
 
-							<div className="LabelInput" >
+							<div className="LabelInput">
 								<label htmlFor="inputCountry">{context.GetText('signup', 'formLabelCountry')}</label>
 								<select name="inputCountry" placeholder={context.GetText('signup', 'formPlaceholderCountry')}>
 									{Array.from(context.GetDictionary('country').entries()).map(x => <option key={x[0]} value={x[0]}>{x[1]}</option>)}
@@ -85,14 +85,21 @@ render() {
 								</select>
 							</div>
 
-							<div className="LabelInput" >
+							<div className="LabelInput">
 								<label htmlFor="inputPhone">{context.GetText('signup', 'formLabelPhone')}</label>
 								<input type="tel" name="inputPhone" placeholder={context.GetText('signup', 'formPlaceholderPhone')} />
 							</div>
 
-							<div className="LabelInput" >
+							<div className="LabelInput">
 								<label htmlFor="inputDOB">{context.GetText('signup', 'formLabelDOB')}</label>
-								<input type="date" name="inputDOB" placeholder={context.GetText('signup', 'formPlaceholderDOB')} onfocus="(this.type='date')" />
+								{/* <input type="date" name="inputDOB" placeholder={context.GetText('signup', 'formPlaceholderDOB')} /> */}
+								<input
+									type="text"
+									className="Date"
+									onFocus={(e) => (e.currentTarget.type = "date")}
+									onBlur={(e) => (e.currentTarget.type = "text")}
+									placeholder={context.GetText('signup', 'formPlaceholderDOB')}
+								/>
 							</div>
 						</form>
 					</div>
