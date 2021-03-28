@@ -28,11 +28,10 @@ export default class GameStartUserPage extends React.Component {
 					</HeadNavigation>
 					
 					<div className="FindUser">
-						<form className="Search">
-							<div className="LabelInput">
-								<input type="text" name="Search" placeholder={context.GetText('finduser', 'inputPlaceholderSearch')} />
-							</div>
-						</form>
+						<div className="LabelInput Search">
+							<input type="text" name="Search" placeholder={context.GetText('finduser', 'inputPlaceholderSearch')} />
+							<button disabled></button>
+						</div>
 
 						<p className="GeneralSubtitle">{context.GetText('finduser', 'sublabelFavoriteUsers')}</p>
 

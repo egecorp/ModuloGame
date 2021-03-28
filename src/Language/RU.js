@@ -107,7 +107,7 @@ export function AddPackets(addPackFunction)
 		'labelWindow' : 'Выбор соперника',
 		'sublabelFavoriteUsers' : 'Избранные соперники:',
 		'sublabelRecentUsers' : 'Недавние соперники:',
-		'inputPlaceholderSearch' : 'Поиск...'
+		'inputPlaceholderSearch' : 'Поиск по нику...'
 	});
 
 

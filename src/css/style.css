@@ -94,6 +94,7 @@ button {
   padding: 0;
   outline: none;
   border: 0;
+  background-color: unset;
 }
 
 p, span, h1, h2, h3, h4, h5, h6, label {
@@ -112,14 +113,14 @@ input, select {
   font-weight: 300;
 }
 
-input[type="text"].Date {
-  background-image: url(../img/icon/calendar-op40.svg);
-}
-
 input.Date {
   background-image: url(../img/icon/calendar.svg);
   background-size: 18px;
   background-position-x: 97%;
+}
+
+input[type="text"].Date {
+  background-image: url(../img/icon/calendar-op40.svg);
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
@@ -393,6 +394,27 @@ html, body {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
+}
+
+.FindUser .Search {
+  position: relative;
+  margin: 12px 0;
+}
+
+.FindUser .Search button {
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  width: 29px;
+  height: 100%;
+  background-image: url(../img/icon/search.svg);
+  background-size: 16px;
+}
+
+.FindUser .Search button:disabled {
+  opacity: 0.4;
 }
 
 /*** *** *** Buttons *** *** ***/
