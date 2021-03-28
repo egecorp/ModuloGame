@@ -34,6 +34,14 @@ export default class GameStartUserPage extends React.Component {
 						</div>
 
 						<p className="GeneralSubtitle">{context.GetText('finduser', 'sublabelFavoriteUsers')}</p>
+						
+						<ul className="Players">
+							<li>
+								<div className="Avatar"></div>
+								<p>Nickname</p>
+								<button></button>
+							</li>
+						</ul>
 
 						<p className="GeneralSubtitle">{context.GetText('finduser', 'sublabelRecentUsers')}</p>
 					</div>

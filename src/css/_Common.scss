@@ -14,6 +14,8 @@
 
 	--button-footer-bg: #EEEEEE;
 	--button-footer-bg-hover: #D4D4D4;
+
+	--bg-dark: rgba(6, 55, 30, 0.25);
 }
 
 *,
@@ -298,29 +300,6 @@ html, body {
 		background-size: 12px;
 		background-position-x: 96%;
 		appearance: none;
-	}
-}
-
-.FindUser {
-	.Search {
-		position: relative;
-
-		margin: 12px 0;
-
-		button {
-			position: absolute;
-			top: 50%;
-			right: 5px;
-			transform: translateY(-50%);
-
-			width: 29px;
-			height: 100%;
-
-			background-image: url(../img/icon/search.svg);
-			background-size: 16px;
-		}
-
-		button:disabled { opacity: 0.4; }
 	}
 }
 
