@@ -15,7 +15,7 @@ export default class App extends React.Component{
     super(props);
     var storedDeviceToken = localStorage.getItem("DeviceToken");
     var storedServerToken = localStorage.getItem("ServerToken");
-
+ 
     this.myDevice = new Device();
     this.myDevice.DeviceToken = storedDeviceToken;
     this.myDevice.ServerToken = storedServerToken;
@@ -28,7 +28,7 @@ export default class App extends React.Component{
   componentDidMount() 
   {
     console.log(this.myDevice);
-    //this.myDevice.TryAuth();
+    this.myDevice.TryAuth();
   }
   
 

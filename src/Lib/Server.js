@@ -1,4 +1,4 @@
-const SERVER_URL = 'https://localhost:44335/';
+const SERVER_URL = 'https://localhost:44335/API/';
 
 
 const URL_RegisterDevice = 'RegisterDevice';
@@ -48,51 +48,51 @@ export default class Server {
 
     async RegisterDevice(data)
     {
-        return await this.postData( SERVER_URL +  URL_RegisterDevice);
+        return await this.postData( SERVER_URL +  URL_RegisterDevice, data);
     }
     async GetWorkToken(data)
     {
-        return await this.postData( SERVER_URL +  URL_GetWorkToken);
+        return await this.postData( SERVER_URL +  URL_GetWorkToken, data);
     }
     async GetUserInfo(data)
     {
-        return await this.postData( SERVER_URL +  URL_GetUserInfo);
+        return await this.postData( SERVER_URL +  URL_GetUserInfo, data);
     }
     async CreateAnonimUser(data)
     {
-        return await this.postData( SERVER_URL +  URL_CreateAnonimUser);
+        return await this.postData( SERVER_URL +  URL_CreateAnonimUser, data);
     }
     async CreateVerifiedUser(data)
     {
-        return await this.postData( SERVER_URL +  URL_CreateVerifiedUser);
+        return await this.postData( SERVER_URL +  URL_CreateVerifiedUser, data);
     }
     async SignInExistUser(data)
     {
-        return await this.postData( SERVER_URL +  URL_SignInExistUser);
+        return await this.postData( SERVER_URL +  URL_SignInExistUser, data);
     }
     async AnonimUserAddMail(data)
     {
-        return await this.postData( SERVER_URL +  URL_AnonimUserAddMail);
+        return await this.postData( SERVER_URL +  URL_AnonimUserAddMail, data);
     }
     async RepeateVerifyingMail(data)
     {
-        return await this.postData( SERVER_URL +  URL_RepeateVerifyingMail);
+        return await this.postData( SERVER_URL +  URL_RepeateVerifyingMail, data);
     }
     async EnterVerifyingCode(data)
     {
-        return await this.postData( SERVER_URL +  URL_EnterVerifyingCode);
+        return await this.postData( SERVER_URL +  URL_EnterVerifyingCode, data);
     }
     async SignOutVerifyingUser(data)
     {
-        return await this.postData( SERVER_URL +  URL_SignOutVerifyingUser);
+        return await this.postData( SERVER_URL +  URL_SignOutVerifyingUser, data);
     }
     async RemoveDevice(data)
     {
-        return await this.postData( SERVER_URL +  URL_RemoveDevice);
+        return await this.postData( SERVER_URL +  URL_RemoveDevice, data);
     }
     async SetUserInfo(data)
     {
-        return await this.postData( SERVER_URL +  URL_SetUserInfo);
+        return await this.postData( SERVER_URL +  URL_SetUserInfo, data);
     }
     
     static Get(){

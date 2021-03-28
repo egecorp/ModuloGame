@@ -40,11 +40,11 @@ export default class Device
     {
         var NeedRegisterDevice = false;
 
-        if ((this.IsDisabled === true) || (("" + this.DeviceToken ?? "").lenght < MIN_DEVICE_TOKEN_LENGHT))
+        if ((this.IsDisabled === true) || (("" + (this.DeviceToken || "")).length < MIN_DEVICE_TOKEN_LENGHT))
         {
-            const CharArray = "1234567890PLOKIJUHYGTFRDESWAQZVXCBMNmlnkjbhgvfdcsxzaqpwoeiruty".split('');
-            this.DeviceToken = "12345678901234567890123456789012345678901234567890".split('').map((x) => (CharArray[Math.floor(62 * Math.random())])).join('');
-
+            //const CharArray = "1234567890PLOKIJUHYGTFRDESWAQZVXCBMNmlnkjbhgvfdcsxzaqpwoeiruty".split('');
+            //this.DeviceToken = "12345678901234567890123456789012345678901234567890".split('').map((x) => (CharArray[Math.floor(62 * Math.random())])).join('');
+            this.DeviceToken =  this.uuidv4();
             NeedRegisterDevice = true;
         }
 
@@ -71,6 +71,14 @@ export default class Device
             Server.Get().GetWorkToken(postObject).then(GoodAuth, ErrorAuth);
         }
         
+    }
+
+    uuidv4() 
+    {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+          var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+          return v.toString(16);
+        });
     }
 
 }
