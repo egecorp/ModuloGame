@@ -35,35 +35,35 @@ export default class GameListPage extends React.Component {
 							<ul>
 								<li>
 									<div className="Player">
-										<div className="Logo"></div>
+										<div className="Avatar"></div>
 										<p>Vinni</p>
 									</div>
 
 									<p className="Status">Идёт 3 раунд</p>
 									
 									<div className="Player">
-										<div className="Logo"></div>
+										<div className="Avatar"></div>
 										<p>Калашников</p>
 									</div>
 								</li>
 
 								<li>
 									<div className="Player">
-										<div className="Logo"></div>
+										<div className="Avatar"></div>
 										<p>Kanunita</p>
 									</div>
 
 									<p className="Status">Идёт 5 раунд</p>
 									
 									<div className="Player Computer">
-										<div className="Logo"></div>
+										<div className="Avatar"></div>
 										<p>Бот</p>
 									</div>
 								</li>
 
 								<li>
 									<div className="Player">
-										<div className="Logo"></div>
+										<div className="Avatar"></div>
 										<p>WOLF_F</p>
 									</div>
 
@@ -86,7 +86,7 @@ export default class GameListPage extends React.Component {
 									</div>
 
 									<div className="Player">
-										<div className="Logo"></div>
+										<div className="Avatar"></div>
 										<p>ЧёКаво?</p>
 									</div>
 								</li>
@@ -99,21 +99,21 @@ export default class GameListPage extends React.Component {
 							<ul>
 								<li data-win="left">
 									<div className="Player">
-										<div className="Logo"></div>
+										<div className="Avatar"></div>
 										<p>Clown02</p>
 									</div>
 
 									<p className="Status">10:5</p>
 									
 									<div className="Player">
-										<div className="Logo"></div>
+										<div className="Avatar"></div>
 										<p>ANIM</p>
 									</div>
 								</li>
 
 								<li data-cup="1" data-win="left">
 									<div className="Player">
-										<div className="Logo"></div>
+										<div className="Avatar"></div>
 										<p>ЧёКаво?</p>
 									</div>
 
@@ -138,21 +138,21 @@ export default class GameListPage extends React.Component {
 									</div>
 
 									<div className="Player">
-										<div className="Logo"></div>
+										<div className="Avatar"></div>
 										<p>Кирик</p>
 									</div>
 								</li>
 
 								<li data-win="right">
 									<div className="Player">
-										<div className="Logo"></div>
+										<div className="Avatar"></div>
 										<p>EZWINB4</p>
 									</div>
 
 									<p className="Status">2:10</p>
 									
 									<div className="Player">
-										<div className="Logo"></div>
+										<div className="Avatar"></div>
 										<p>Vinni</p>
 									</div>
 								</li>
