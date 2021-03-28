@@ -2,20 +2,16 @@
 	margin-top: 20px; /* Статус бар */
 	padding: 0 10px;
 
-	height: calc(100% - 20px); /* Статус бар */
+	height: calc(100% - 20px - 50px); /* Статус бар */
 
 	display: grid;
 	grid-template-rows: max-content 1fr max-content;
-
 	box-sizing: border-box;
 }
 
 .Game {
 	position: relative;
 	height: 100%;
-	
-	display:grid;
-	grid-template-rows: 1fr max-content;
 	
 	background: linear-gradient(to bottom, #12652f 0%,  #038D42 50%  ,   #0f6e34 100%);
 
@@ -626,5 +622,15 @@
 				background-size: 18px;
 			}
 		}
+	}
+}
+
+.ConditionPage {
+	height: 100%;
+	overflow: hidden;
+
+	.Content {
+		height: 100%;
+		overflow: hidden;
 	}
 }

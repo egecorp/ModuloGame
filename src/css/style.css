@@ -476,7 +476,7 @@ html, body {
   margin-top: 20px;
   /* Статус бар */
   padding: 0 10px;
-  height: calc(100% - 20px);
+  height: calc(100% - 20px - 50px);
   /* Статус бар */
   display: -ms-grid;
   display: grid;
@@ -490,11 +490,6 @@ html, body {
 .Game {
   position: relative;
   height: 100%;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-rows: 1fr max-content;
-      grid-template-rows: 1fr -webkit-max-content;
-      grid-template-rows: 1fr max-content;
   background: -webkit-gradient(linear, left top, left bottom, from(#12652f), color-stop(50%, #038D42), to(#0f6e34));
   background: linear-gradient(to bottom, #12652f 0%, #038D42 50%, #0f6e34 100%);
   overflow: hidden;
@@ -1112,6 +1107,16 @@ html, body {
   height: 100%;
   background-image: url(../img/icon/sword.svg);
   background-size: 18px;
+}
+
+.ConditionPage {
+  height: 100%;
+  overflow: hidden;
+}
+
+.ConditionPage .Content {
+  height: 100%;
+  overflow: hidden;
 }
 
 code {
