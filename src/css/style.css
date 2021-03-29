@@ -917,7 +917,7 @@ html, body {
 
 .Modal .ModalBody {
   padding: 12px;
-  min-height: 100px;
+  min-height: 40px;
   background-color: #fff;
   border-radius: 5px;
   -webkit-box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.15);

@@ -111,6 +111,12 @@ export function AddPackets(addPackFunction)
 		'inputPlaceholderSearch' : 'Поиск по нику...'
 	});
 
+	pack.AddDictionary('findrandom', 
+	{
+		'labelWindow' : 'Идёт поиск соперника...',
+		'content' : 'Мы ищем случайного соперника для вашей игры. Будьте готовы!'
+	});
+
 
 	pack.AddDictionary('country',
 	{
