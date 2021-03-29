@@ -26,7 +26,7 @@ render() {
 	if (this.props.modalstate === 'AlreadyExists')
 	{
 		MsgBoxHTML = (
-		<MsgBox ModalButton={this.currentContext.GetText('signin.modal.AlreadyExists', 'continueButton')}>
+		<MsgBox ModalButton={this.currentContext.GetText('common', 'popupButtonBack')}>
 			<div className="Content">
 				<div className="WarningIcon"></div>
 				<p className="Title">Пользователь с таким ником уже существует.</p>
@@ -39,7 +39,7 @@ render() {
 	else if (this.props.modalstate === 'Success')
 	{
 		MsgBoxHTML = (
-		<MsgBox ModalButton="Продолжить">
+		<MsgBox ModalButton={this.currentContext.GetText('common', 'popupButtonContinue')}>
 			<div className="Content">
 				<p className="Title">Благодарим за регистрацию!</p>
 				<p>Для подтверждения Вашего почтового ящика и получения полных возможностей аккаунта - перейдите по ссылке в письме.</p>

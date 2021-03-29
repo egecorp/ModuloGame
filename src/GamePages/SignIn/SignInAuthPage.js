@@ -25,37 +25,47 @@ render() {
 		if (this.props.modalstate === 'EnterCode')
 		{
 			MsgBoxHTML = (
-				<MsgBox ModalButton="Отправить">
-					<div className="Content">
-						<p>
-							<span>На почту <b>{this.props.UserMail ?? ""}</b> было отправлено письмо с кодом.</span>
-							<span>Пожалуйста, введите код в поле ниже для входа в игру:</span>
-						</p>
-					</div>
+				<LanguageContext.Consumer>
+				{(context) =>
+				( 
+					<MsgBox ModalButton={context.GetText('common', 'popupButtonSend')}>
+						<div className="Content">
+							<p>
+								<span>На почту <b>{this.props.UserMail ?? ""}</b> было отправлено письмо с кодом.</span>
+								<span>Пожалуйста, введите код в поле ниже для входа в игру:</span>
+							</p>
+						</div>
 
-					<form className="MailCode">
-						<label htmlFor="CheckMailCode">Код из письма:</label>
-						<input type="text" id="CheckMailCode" placeholder="Введите код..."></input>
-					</form>
-				</MsgBox>
+						<form className="MailCode">
+							<label htmlFor="CheckMailCode">Код из письма:</label>
+							<input type="text" id="CheckMailCode" placeholder="Введите код..."></input>
+						</form>
+					</MsgBox>
+				)}
+				</LanguageContext.Consumer>
 			)
 		} 
 		else if (this.props.modalstate === 'FailCode')
 		{
 			MsgBoxHTML = (
-				<MsgBox ModalButton="Отправить">
-					<div className="Content">
-						<p>
-							<span>На почту <b>{this.props.UserMail ?? ""}</b> было отправлено письмо с кодом.</span>
-							<span className="Error">Неверный код, попробуйте ещё раз!</span>
-						</p>
-					</div>
+				<LanguageContext.Consumer>
+				{(context) =>
+				( 
+					<MsgBox ModalButton={context.GetText('common', 'popupButtonSend')}>
+						<div className="Content">
+							<p>
+								<span>На почту <b>{this.props.UserMail ?? ""}</b> было отправлено письмо с кодом.</span>
+								<span className="Error">Неверный код, попробуйте ещё раз!</span>
+							</p>
+						</div>
 
-					<form className="MailCode">
-						<label htmlFor="CheckMailCode">Код из письма:</label>
-						<input type="text" id="CheckMailCode" value={this.props.OldCode} placeholder="Введите код..."></input>
-					</form>
-				</MsgBox>
+						<form className="MailCode">
+							<label htmlFor="CheckMailCode">Код из письма:</label>
+							<input type="text" id="CheckMailCode" value={this.props.OldCode} placeholder="Введите код..."></input>
+						</form>
+					</MsgBox>
+				)}
+				</LanguageContext.Consumer>
 			)
 		} 
 
