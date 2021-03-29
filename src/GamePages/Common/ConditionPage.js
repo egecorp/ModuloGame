@@ -44,7 +44,7 @@ export default class ConditionPage extends React.Component {
 						</div>
 
 						<div className="FooterArea">
-							<button>{context.GetText('condition', 'continueButton')}</button>
+							<button>{context.GetText('common', 'modalButtonClose')}</button>
 						</div>
 					</>
 				)}

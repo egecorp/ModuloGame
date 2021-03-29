@@ -107,7 +107,7 @@ render() {
 					<div className="FooterArea">
 						<p class="AdditionalTip">{context.GetText('signup', 'tipConditionBegin')}<span>{context.GetText('signup', 'tipConditionLink')}</span>{context.GetText('signup', 'tipConditionEnd')}</p>
 
-						<button>{context.GetText('signin', 'continueButton')}</button>
+						<button>{context.GetText('signup', 'continueButton')}</button>
 					</div>
 
 					{MsgBoxHTML}

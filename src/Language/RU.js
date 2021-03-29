@@ -19,8 +19,7 @@ export function AddPackets(addPackFunction)
 		'typeDefaultTipText' : 'Для продолжения игры выберите способ регистрации.',
 		'typeAnonimTipText' : 'Вы сможете играть одиночные партии, вы не сможете менять персонажа и восстановить рейтинг в случае смены устройства или удаления приложения. Вы не сможете подключить данное устройство к аккаунту без потери набранного рейтинга.',
 		'typeSignUpTipText' : 'Создание новой учётной записи для доступа ко всем функциям приложения, возможность участия в рейтинговых турнирах.',
-		'typeSignInTipText' : 'Добавить данное устройство к уже существующей учётной записи.',
-		'continueButton' : 'Продолжить'
+		'typeSignInTipText' : 'Добавить данное устройство к уже существующей учётной записи.'
 	});
 
 	pack.AddDictionary('signup', 
@@ -37,7 +36,7 @@ export function AddPackets(addPackFunction)
 		'formPlaceholderPhone' : '+7 (XXX) XXX-XX-XX',
 		'formLabelDOB' : 'Дата рождения:',
 		'formPlaceholderDOB' : 'дд.мм.гггг',
-		'tipConditionBegin' : 'Нажимая кнопку «Продолжить», Вы принимаете наши',
+		'tipConditionBegin' : 'Нажимая кнопку «Зарегистрироваться», Вы принимаете наши',
 		'tipConditionLink' : ' Условия и Политику использования данных',
 		'tipConditionEnd' : '.',
 		'continueButton' : 'Зарегистрироваться'
@@ -73,8 +72,7 @@ export function AddPackets(addPackFunction)
 		'linkGoToSignUp' : 'Создать учётную запись',
 		'tipConditionBegin' : 'Нажимая кнопку «Продолжить», Вы принимаете наши',
 		'tipConditionLink' : ' Условия и Политику использования данных',
-		'tipConditionEnd' : '.',
-		'continueButton' : 'Продолжить'
+		'tipConditionEnd' : '.'
 	});
 
 
@@ -82,8 +80,7 @@ export function AddPackets(addPackFunction)
 	{
 		'labelWindow' : 'Соглашение',
 		'sublabelWindow' : 'Условия использования приложения Modulo:',
-		'license' : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-		'continueButton' : 'Закрыть'
+		'license' : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
 	});
 
 	pack.AddDictionary('gamelist', 
