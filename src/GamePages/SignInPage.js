@@ -6,46 +6,45 @@ import HeadNavigation from '../Components/HeadNavigation'
 
 
 export default class SignInPage extends React.Component {
-    constructor(props, context) {
-      super(props);
-      this.state = {
-          currentLogin: 'Hello', 
-          currentToken: 'Token',
+	constructor(props, context) {
+		super(props);
+		this.state = {
+				currentLogin: 'Hello', 
+				currentToken: 'Token',
 
-          selectedItem: null,
-          checkedItem: null,
-          tipText: context.GetText('signin', 'typeDefaultTipText')
-      };
+				selectedItem: null,
+				checkedItem: null,
+				tipText: context.GetText('signin', 'typeDefaultTipText')
+		};
 
-      this.changeItemState = this.changeItemState.bind(this);
-    }
-  
-    changeItemState(checkBoxName, isSetSelected, isSetChecked)
-    {
-      this.setState(oldState => ({
-        selectedItem: (isSetSelected ? checkBoxName : oldState.selectedItem),
-        checkedItem: (isSetChecked ? checkBoxName : oldState.checkedItem)
-      }));
+	this.changeItemState = this.changeItemState.bind(this);
+	}
 
-      if (isSetSelected)
-      {
-        switch(checkBoxName)
-        {
-          case 'anonim':
-            this.setState(oldState => ({ tipText: this.context.GetText('signin', 'typeAnonimTipText') }));
-            break;
-          case 'signup':
-            this.setState(oldState => ({ tipText: this.context.GetText('signin', 'typeSignUpTipText') }));
-            break;
-          case 'signin':
-            this.setState(oldState => ({ tipText: this.context.GetText('signin', 'typeSignInTipText') }));
-            break;
-          default:
-            this.setState(oldState => ({ tipText: this.context.GetText('signin', 'typeDefaultTipText') }));
-        }
-      }
-      
-    }
+	changeItemState(checkBoxName, isSetSelected, isSetChecked) {
+		this.setState(oldState => ({
+			selectedItem: (isSetSelected ? checkBoxName : oldState.selectedItem),
+			checkedItem: (isSetChecked ? checkBoxName : oldState.checkedItem)
+		}));
+
+		if (isSetSelected) {
+			switch(checkBoxName)
+			{
+				case 'anonim':
+				this.setState(oldState => ({ tipText: this.context.GetText('signin', 'typeAnonimTipText') }));
+				break;
+				case 'signup':
+				this.setState(oldState => ({ tipText: this.context.GetText('signin', 'typeSignUpTipText') }));
+				break;
+				case 'signin':
+				this.setState(oldState => ({ tipText: this.context.GetText('signin', 'typeSignInTipText') }));
+				break;
+				default:
+				this.setState(oldState => ({ tipText: this.context.GetText('signin', 'typeDefaultTipText') }));
+			}
+		}
+	}
+
+
 
 	render() {
 		
@@ -73,19 +72,24 @@ export default class SignInPage extends React.Component {
 									checkName="anonim" 
 									IsChecked={this.state.checkedItem==="anonim"} 
 									IsSelected={this.state.selectedItem==="anonim"} 
-									title={context.GetText('signin', 'typeAnonimTitle')}></CheckBoxButton>
+									title={context.GetText('signin', 'typeAnonimTitle')}>
+								</CheckBoxButton>
+
 								<CheckBoxButton 
 									changeItemState={this.changeItemState} 
 									checkName="signup" 
 									IsChecked={this.state.checkedItem==="signup"} 
 									IsSelected={this.state.selectedItem==="signup"} 
-									title={context.GetText('signin', 'typeSignUpTitle')}></CheckBoxButton>
+									title={context.GetText('signin', 'typeSignUpTitle')}>
+								</CheckBoxButton>
+
 								<CheckBoxButton
-							changeItemState={this.changeItemState} 
-							checkName="signin" 
-							IsChecked={this.state.checkedItem==="signin"} 
-							IsSelected={this.state.selectedItem==="signin"} 
-							title={context.GetText('signin', 'typeSignInTitle')}></CheckBoxButton>
+									changeItemState={this.changeItemState} 
+									checkName="signin" 
+									IsChecked={this.state.checkedItem==="signin"} 
+									IsSelected={this.state.selectedItem==="signin"} 
+									title={context.GetText('signin', 'typeSignInTitle')}>
+								</CheckBoxButton>
 							</div>
 
 							<div className="UserTip">
@@ -94,14 +98,12 @@ export default class SignInPage extends React.Component {
 						</div>
 
 						<div className="FooterArea">
-							<button>{context.GetText('signin', 'continueButton')}</button>
+							<button>{context.GetText('common', 'modalButtonContinue')}</button>
 						</div>
 					</>
 				)}
 			</LanguageContext.Consumer>
-			
 		);
-
 	}
 }
 

@@ -5,6 +5,8 @@ export function AddPackets(addPackFunction)
 
 	pack.AddDictionary('common', 
 	{
+		'modalButtonContinue' : 'Продолжить',
+		'modalButtonClose' : 'Закрыть',
 		'modalDefaultButton' : 'Закрыть'
 	});
 
