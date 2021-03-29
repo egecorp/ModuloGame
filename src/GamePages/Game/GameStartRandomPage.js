@@ -19,7 +19,7 @@ export default class GameStartRandomPage extends React.Component {
 				<LanguageContext.Consumer>
 				{(context) =>
 				( 
-					<MsgBox ModalButton="Отменить">
+					<MsgBox ModalButton={context.GetText('common', 'popupButtonCancel')}>
 						<div className="Content">
 							<p class="Title">{context.GetText('findrandom', 'labelWindow')}</p>
 

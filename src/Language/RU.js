@@ -7,7 +7,7 @@ export function AddPackets(addPackFunction)
 	{
 		'modalButtonContinue' : 'Продолжить',
 		'modalButtonClose' : 'Закрыть',
-		'modalDefaultButton' : 'Закрыть'
+		'popupButtonCancel' : 'Отменить'
 	});
 
 	pack.AddDictionary('signin', 

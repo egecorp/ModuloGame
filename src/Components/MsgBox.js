@@ -42,7 +42,7 @@ export default class MsgBox extends React.Component {
 							</div>
 
 							<div className="Button">
-								<button>{this.props.ModalButton ?? context.GetText('common', 'modalDefaultButton')}</button>
+								<button>{this.props.ModalButton ?? context.GetText('common', 'modalButtonClose')}</button>
 							</div>
 						</div>
 					</>
