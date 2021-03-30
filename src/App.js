@@ -5,6 +5,7 @@ import './css/style.css';
 import Game from './GamePages/Game.js';
 import Device from './Model/Device';
 import {LanguageContext, LanguagePacketsHolder} from './Language/LangPack'
+import LocalData from './Model/LocalData.js'
 
 export default class App extends React.Component{
   myDevice = undefined;
@@ -13,21 +14,12 @@ export default class App extends React.Component{
   constructor(props)
   {
     super(props);
-    var storedDeviceToken = localStorage.getItem("DeviceToken");
-    var storedServerToken = localStorage.getItem("ServerToken");
- 
     this.myDevice = new Device();
-    this.myDevice.DeviceToken = storedDeviceToken;
-    this.myDevice.ServerToken = storedServerToken;
-
     this.myLanguagePack = LanguagePacketsHolder.Get().GetPack('ru');
-
-   // test commiting string  
   }
 
   componentDidMount() 
   {
-    console.log(this.myDevice);
     this.myDevice.TryAuth();
   }
   

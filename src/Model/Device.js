@@ -1,4 +1,5 @@
 import Server from '../Lib/Server'
+import LocalData from '../Model/LocalData.js'
 
 const MIN_DEVICE_TOKEN_LENGHT = 10;
 
@@ -25,6 +26,32 @@ export default class Device
     // Пользовательское описание устройства
     Caption = undefined;
 
+    //Необходимо зарегистрировать устройство
+    NeedRegisterDevice = false;
+
+
+    constructor()
+    {
+        let myData = LocalData.GetSingleton();
+        this.DeviceToken = myData['DeviceToken'];
+        this.ServerToken = myData['ServerToken'];
+        this.DeviceWorkToken = myData['DeviceWorkToken'];
+        
+        if ((this.IsDisabled === true) || (("" + (this.DeviceToken || "")).length < MIN_DEVICE_TOKEN_LENGHT))
+        {
+            console.log("Устройство не было зарегистрировано ранее");
+            this.DeviceToken =  this.uuidv4();
+            LocalData.SetValue('DeviceToken', this.DeviceToken);
+            this.NeedRegisterDevice = true;
+        }
+        else
+        {
+            console.log("Устройство было зарегистрировано ранее, DeviceToken = " + this.DeviceToken);
+        }
+
+        
+    }
+
     GetPostObject()
     {
         return {
@@ -38,20 +65,26 @@ export default class Device
 
     TryAuth()
     {
-        var NeedRegisterDevice = false;
-
-        if ((this.IsDisabled === true) || (("" + (this.DeviceToken || "")).length < MIN_DEVICE_TOKEN_LENGHT))
+        
+       
+        function GoodAuth(response)
         {
-            //const CharArray = "1234567890PLOKIJUHYGTFRDESWAQZVXCBMNmlnkjbhgvfdcsxzaqpwoeiruty".split('');
-            //this.DeviceToken = "12345678901234567890123456789012345678901234567890".split('').map((x) => (CharArray[Math.floor(62 * Math.random())])).join('');
-            this.DeviceToken =  this.uuidv4();
-            NeedRegisterDevice = true;
-        }
+            console.log('Good auth');
+            console.log(response);
 
-        function GoodAuth(a)
-        {
-            console.log('Good');
-            console.log(a);
+            if (response.DeviceToken && response.ServerToken)
+            {
+                if (response.ServerToken !== this.ServerToken)
+                LocalData.SetValue('ServerToken', this.ServerToken = response.ServerToken, !!response.WorkToken);
+            }
+            
+            if (response.WorkToken)
+            {
+                if (this.DeviceWorkToken !== response.WorkToken)
+                LocalData.SetValue('DeviceWorkToken', this.DeviceWorkToken = response.WorkToken);
+                console.log('Set WorkToken = ' + response.WorkToken);
+            }
+
         }
         
         function ErrorAuth(e)
@@ -62,7 +95,7 @@ export default class Device
 
         var postObject = this.GetPostObject();
 
-        if (NeedRegisterDevice)
+        if (this.NeedRegisterDevice)
         {
             Server.Get().RegisterDevice(postObject).then(GoodAuth, ErrorAuth);
         }
@@ -76,7 +109,7 @@ export default class Device
     uuidv4() 
     {
         return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-          var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+          var r = Math.random() * 16 | 0, v = c === 'x' ? r : ((r & 0x3) | 0x8);
           return v.toString(16);
         });
     }
