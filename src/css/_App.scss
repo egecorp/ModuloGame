@@ -505,23 +505,6 @@
 				font-weight: 500;
 				line-height: 17px;
 			}
-
-			input	{
-				margin-top: 5px;
-				padding: 7px 10px;
-
-				width: 100%;
-
-				background-color: rgba(0, 0, 0, 0.5);
-				border-radius: 3px;
-				box-sizing: border-box;
-
-				font-size: 13px;
-				font-weight: 300;
-				line-height: 17px;
-			}
-
-			input { @include placeholder { opacity: 0.6; } } 
 		}
 		/* END */
 

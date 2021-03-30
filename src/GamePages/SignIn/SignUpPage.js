@@ -69,17 +69,17 @@ render() {
 						<form>
 							<div className="LabelInput">
 								<label htmlFor="inputNicName">{context.GetText('signup', 'formLabelNicName')}</label>
-								<input type="text" name="inputNicName" placeholder={context.GetText('signup', 'formPlaceholderNicName')} />
+								<input type="text" className="General" name="inputNicName" placeholder={context.GetText('signup', 'formPlaceholderNicName')} />
 							</div>
 
 							<div className="LabelInput">
 								<label htmlFor="inputEMail">{context.GetText('signup', 'formLabelEMail')}</label>
-								<input type="text" name="inputEMail" placeholder={context.GetText('signup', 'formPlaceholderEMail')} />
+								<input type="text" className="General" name="inputEMail" placeholder={context.GetText('signup', 'formPlaceholderEMail')} />
 							</div>
 
 							<div className="LabelInput">
 								<label htmlFor="inputCountry">{context.GetText('signup', 'formLabelCountry')}</label>
-								<select name="inputCountry" placeholder={context.GetText('signup', 'formPlaceholderCountry')}>
+								<select className="General" name="inputCountry" placeholder={context.GetText('signup', 'formPlaceholderCountry')}>
 									{Array.from(context.GetDictionary('country').entries()).map(x => <option key={x[0]} value={x[0]}>{x[1]}</option>)}
 									{/*context.GetDictionary('country')  */}
 								</select>
@@ -87,7 +87,7 @@ render() {
 
 							<div className="LabelInput">
 								<label htmlFor="inputPhone">{context.GetText('signup', 'formLabelPhone')}</label>
-								<input type="tel" name="inputPhone" placeholder={context.GetText('signup', 'formPlaceholderPhone')} />
+								<input type="tel" className="General" name="inputPhone" placeholder={context.GetText('signup', 'formPlaceholderPhone')} />
 							</div>
 
 							<div className="LabelInput">
@@ -95,7 +95,7 @@ render() {
 								{/* <input type="date" name="inputDOB" placeholder={context.GetText('signup', 'formPlaceholderDOB')} /> */}
 								<input
 									type="text"
-									className="Date"
+									className="General Date"
 									onFocus={(e) => (e.currentTarget.type = "date")}
 									onBlur={(e) => (e.currentTarget.type = "text")}
 									placeholder={context.GetText('signup', 'formPlaceholderDOB')}

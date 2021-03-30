@@ -38,7 +38,7 @@ render() {
 
 						<form className="MailCode">
 							<label htmlFor="CheckMailCode">Код из письма:</label>
-							<input type="text" id="CheckMailCode" placeholder="Введите код..."></input>
+							<input type="text" className="InPopup" placeholder="Введите код..."></input>
 						</form>
 					</MsgBox>
 				)}
@@ -61,7 +61,7 @@ render() {
 
 						<form className="MailCode">
 							<label htmlFor="CheckMailCode">Код из письма:</label>
-							<input type="text" id="CheckMailCode" value={this.props.OldCode} placeholder="Введите код..."></input>
+							<input type="text" className="InPopup" id="CheckMailCode" value={this.props.OldCode} placeholder="Введите код..."></input>
 						</form>
 					</MsgBox>
 				)}
@@ -79,7 +79,7 @@ render() {
 
 							<p className="HeadNavigationTitle">{context.GetText('signinauth', 'labelWindow')}</p>
 
-							<SignInLanguagePanel lang='ru'></SignInLanguagePanel>
+							<SignInLanguagePanel lang="ru"></SignInLanguagePanel>
 						</HeadNavigation>
 
 						<div className="SignInAuth">
@@ -88,12 +88,12 @@ render() {
 							<form>
 								<div className="LabelInput">
 									<label htmlFor="inputEMail">{context.GetText('signinauth', 'formLabelEMail')}</label>
-									<input type="text" name="inputEMail" placeholder={context.GetText('signinauth', 'formPlaceholderEMail')} /> 
+									<input type="text" className="General" name="inputEMail" placeholder={context.GetText('signinauth', 'formPlaceholderEMail')} /> 
 								</div>
 
 								<div className="LabelInput">
 									<label htmlFor="inputDeviceName">{context.GetText('signinauth', 'formLabelDeviceName')}</label>
-									<input type="text" name="inputDeviceName" placeholder={context.GetText('signinauth', 'formPlaceholderDeviceName')} />
+									<input type="text" className="General" name="inputDeviceName" placeholder={context.GetText('signinauth', 'formPlaceholderDeviceName')} />
 								</div>
 							</form>
 

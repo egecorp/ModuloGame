@@ -51,21 +51,6 @@ input, select {
 	font-weight: 300;
 }
 
-input.Date {
-	background-image: url(../img/icon/calendar.svg);
-	background-size: 18px;
-	background-position-x: 97%;
-}
-
-input[type="text"].Date { background-image: url(../img/icon/calendar-op40.svg); }
-
-input[type="date"]::-webkit-calendar-picker-indicator {
-	
-	background-image: unset;
-
-	outline: none;
-}
-
 @mixin placeholder {
 	&::placeholder { @content; }
 	&:-moz-placeholder { @content; }
@@ -271,8 +256,6 @@ html, body {
 
 	&:last-child { margin-bottom: unset; }
 
-	
-
 	> label {
 		margin-bottom: 5px;
 
@@ -282,28 +265,61 @@ html, body {
 		font-size: 13px;
 		line-height: 17px;
 	}
+}
 
-	> input, select {
-		padding: 5px 10px;
-		width: 100%;
-		height: 30px;
+/*** Типы элементов формы ***/
+/* General */
+input.General,
+select.General {
+	padding: 0 10px;
+	width: 100%;
+	height: 30px;
 
-		background-color: rgba(var(--button-darkgreen-rgb), 0.5);
-		border-radius: 3px;
-		box-sizing: border-box;
-	}
+	background-color: rgba(var(--button-darkgreen-rgb), 0.5);
+	border-radius: 3px;
+	box-sizing: border-box;	
 
-	input[type="date"] {
-		padding: 4px 10px;
-	}
-
-	> select {
-		background-image: url(../img/icon/arrow-down.svg);
-		background-size: 12px;
-		background-position-x: 96%;
-		appearance: none;
+	&.Date {
+		background-image: url(../img/icon/calendar.svg);
+		background-size: 18px;
+		background-position-x: 97%;
 	}
 }
+
+select.General {
+	background-image: url(../img/icon/arrow-down.svg);
+	background-size: 12px;
+	background-position-x: 96%;
+	appearance: none;
+}
+
+input[type="text"].General.Date { background-image: url(../img/icon/calendar-op40.svg); }
+
+input[type="date"].General::-webkit-calendar-picker-indicator {
+	background-image: unset;
+	outline: none;
+}
+/* End */
+
+/* InPopup */
+input.InPopup	{
+	margin-top: 5px;
+	padding: 7px 10px;
+
+	width: 100%;
+
+	background-color: rgba(0, 0, 0, 0.5);
+	border-radius: 3px;
+	box-sizing: border-box;
+
+	font-size: 13px;
+	font-weight: 300;
+	line-height: 17px;
+}
+
+input.InPopup { @include placeholder { opacity: 0.6; } } 
+/* End */
+
 
 
 
