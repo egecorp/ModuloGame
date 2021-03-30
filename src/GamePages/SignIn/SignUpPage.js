@@ -29,9 +29,9 @@ render() {
 		<MsgBox ModalButton={this.currentContext.GetText('common', 'popupButtonBack')}>
 			<div className="Content">
 				<div className="WarningIcon"></div>
-				<p className="Title">Пользователь с таким ником уже существует.</p>
-				<p>Возможно, Вы уже были зарегистрированы в Modulo.</p>
-				<a href="#">{this.currentContext.GetText('signin.modal.AlreadyExists', 'goauth')}</a>
+				<p className="Title">{this.currentContext.GetText('signin.modal.AlreadyExists', 'title')}</p>
+				<p>{this.currentContext.GetText('signin.modal.AlreadyExists', 'text')}</p>
+				<a href="#">{this.currentContext.GetText('signin.modal.AlreadyExists', 'goAuth')}</a>
 			</div>
 		</MsgBox>
 		)
@@ -41,8 +41,8 @@ render() {
 		MsgBoxHTML = (
 		<MsgBox ModalButton={this.currentContext.GetText('common', 'popupButtonContinue')}>
 			<div className="Content">
-				<p className="Title">Благодарим за регистрацию!</p>
-				<p>Для подтверждения Вашего почтового ящика и получения полных возможностей аккаунта - перейдите по ссылке в письме.</p>
+				<p className="Title">{this.currentContext.GetText('signin.modal.Success', 'title')}</p>
+				<p>{this.currentContext.GetText('signin.modal.Success', 'text')}</p>
 			</div>
 		</MsgBox>
 		)
