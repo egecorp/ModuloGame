@@ -54,6 +54,16 @@ export function AddPackets(addPackFunction)
 		'continueButton' : 'Назад'
 	});
 
+	pack.AddDictionary('signin.modal.MailCode', 
+	{
+		'text_1_Start' : 'На почту ',
+		'text_1_End' : ' было отправлено письмо с кодом.',
+		'text_2' : 'Пожалуйста, введите код в поле ниже для входа в игру:',
+		'formLabel' : 'Код из письма:',
+		'formPlaceholderCode' : 'Введите код...',
+		'formError' : 'Неверный код, попробуйте ещё раз!'
+	});
+
 	pack.AddDictionary('signinauth', 
 	{
 		'labelWindow' : 'Вход в аккаунт',

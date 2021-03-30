@@ -31,14 +31,19 @@ render() {
 					<MsgBox ModalButton={context.GetText('common', 'popupButtonSend')}>
 						<div className="Content">
 							<p>
-								<span>На почту <b>{this.props.UserMail ?? ""}</b> было отправлено письмо с кодом.</span>
-								<span>Пожалуйста, введите код в поле ниже для входа в игру:</span>
+								<span>
+									{context.GetText('signin.modal.MailCode', 'text_1_Start')}
+									<b>{this.props.UserMail ?? ""}</b>
+									{context.GetText('signin.modal.MailCode', 'text_1_End')}
+								</span>
+
+								<span>{context.GetText('signin.modal.MailCode', 'text_2')}</span>
 							</p>
 						</div>
 
 						<form className="MailCode">
-							<label htmlFor="CheckMailCode">Код из письма:</label>
-							<input type="text" className="InPopup" placeholder="Введите код..."></input>
+							<label htmlFor="CheckMailCode">{context.GetText('signin.modal.MailCode', 'formLabel')}</label>
+							<input type="text" className="InPopup" placeholder={context.GetText('signin.modal.MailCode', 'formPlaceholderCode')}></input>
 						</form>
 					</MsgBox>
 				)}
@@ -54,14 +59,19 @@ render() {
 					<MsgBox ModalButton={context.GetText('common', 'popupButtonSend')}>
 						<div className="Content">
 							<p>
-								<span>На почту <b>{this.props.UserMail ?? ""}</b> было отправлено письмо с кодом.</span>
-								<span className="Error">Неверный код, попробуйте ещё раз!</span>
+								<span>
+									{context.GetText('signin.modal.MailCode', 'text_1_Start')}
+									<b>{this.props.UserMail ?? ""}</b>
+									{context.GetText('signin.modal.MailCode', 'text_1_End')}
+								</span>
+
+								<span className="Error">{context.GetText('signin.modal.MailCode', 'formError')}</span>
 							</p>
 						</div>
 
 						<form className="MailCode">
-							<label htmlFor="CheckMailCode">Код из письма:</label>
-							<input type="text" className="InPopup" id="CheckMailCode" value={this.props.OldCode} placeholder="Введите код..."></input>
+							<label htmlFor="CheckMailCode">{context.GetText('signin.modal.MailCode', 'formLabel')}</label>
+							<input type="text" className="InPopup" id="CheckMailCode" value={this.props.OldCode} placeholder={context.GetText('signin.modal.MailCode', 'formPlaceholderCode')}></input>
 						</form>
 					</MsgBox>
 				)}
