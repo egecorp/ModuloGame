@@ -37,7 +37,7 @@ export default class Device
         this.ServerToken = myData['ServerToken'];
         this.DeviceWorkToken = myData['DeviceWorkToken'];
         
-        if ((this.IsDisabled === true) || (("" + (this.DeviceToken || "")).length < MIN_DEVICE_TOKEN_LENGHT))
+        if ((this.IsDisabled === true) || (("" + (this.DeviceToken || "")).length < MIN_DEVICE_TOKEN_LENGHT) || ((this.ServerToken || "") === ""))
         {
             console.log("Устройство не было зарегистрировано ранее");
             this.DeviceToken =  this.uuidv4();
@@ -66,22 +66,24 @@ export default class Device
     TryAuth()
     {
         
-       
+       let deviceObject = this;
+
         function GoodAuth(response)
         {
             console.log('Good auth');
             console.log(response);
-
             if (response.DeviceToken && response.ServerToken)
             {
-                if (response.ServerToken !== this.ServerToken)
-                LocalData.SetValue('ServerToken', this.ServerToken = response.ServerToken, !!response.WorkToken);
+                if (response.ServerToken !==  deviceObject.ServerToken)
+                {
+                    LocalData.SetValue('ServerToken',  deviceObject.ServerToken = response.ServerToken, !!response.WorkToken);
+                }
             }
             
             if (response.WorkToken)
             {
-                if (this.DeviceWorkToken !== response.WorkToken)
-                LocalData.SetValue('DeviceWorkToken', this.DeviceWorkToken = response.WorkToken);
+                if ( deviceObject.DeviceWorkToken !== response.WorkToken)
+                LocalData.SetValue('DeviceWorkToken',  deviceObject.DeviceWorkToken = response.WorkToken);
                 console.log('Set WorkToken = ' + response.WorkToken);
             }
 
