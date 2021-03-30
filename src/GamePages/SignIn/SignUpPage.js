@@ -29,7 +29,7 @@ render() {
 		<MsgBox ModalButton={this.currentContext.GetText('common', 'popupButtonBack')}>
 			<div className="Content">
 				<div className="WarningIcon"></div>
-				<p className="Title">{this.currentContext.GetText('signin.modal.AlreadyExists', 'title')}</p>
+				<p className="Title">{this.currentContext.GetText('signin.modal.AlreadyExists', 'labelWindow')}</p>
 				<p>{this.currentContext.GetText('signin.modal.AlreadyExists', 'text')}</p>
 				<a href="#">{this.currentContext.GetText('signin.modal.AlreadyExists', 'goAuth')}</a>
 			</div>
@@ -41,7 +41,7 @@ render() {
 		MsgBoxHTML = (
 		<MsgBox ModalButton={this.currentContext.GetText('common', 'popupButtonContinue')}>
 			<div className="Content">
-				<p className="Title">{this.currentContext.GetText('signin.modal.Success', 'title')}</p>
+				<p className="Title">{this.currentContext.GetText('signin.modal.Success', 'labelWindow')}</p>
 				<p>{this.currentContext.GetText('signin.modal.Success', 'text')}</p>
 			</div>
 		</MsgBox>

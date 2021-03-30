@@ -23,7 +23,7 @@ export default class GameStartRandomPage extends React.Component {
 						<div className="Content">
 							<p class="Title">{context.GetText('findrandom', 'labelWindow')}</p>
 
-							<p>{context.GetText('findrandom', 'content')}</p>
+							<p>{context.GetText('findrandom', 'text')}</p>
 						</div>
 					</MsgBox>
 				)}

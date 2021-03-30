@@ -1,8 +1,8 @@
-import React from 'react';
-import SignInLanguagePanel from '../../Components/SignInLanguagePanel';
-import {LanguageContext} from '../../Language/LangPack';
-import MsgBox from "../../Components/MsgBox";
-import HeadNavigation from '../../Components/HeadNavigation';
+import React from 'react'
+import SignInLanguagePanel from '../../Components/SignInLanguagePanel'
+import {LanguageContext} from '../../Language/LangPack'
+import MsgBox from "../../Components/MsgBox"
+import HeadNavigation from '../../Components/HeadNavigation'
 
 
 export default class SignInAuthPage extends React.Component {
@@ -15,6 +15,7 @@ export default class SignInAuthPage extends React.Component {
 			selectedItem: null,
 			checkedItem: null
 	};
+	this.currentContext = context;
 
 	//this.changeItemState = this.changeItemState.bind(this);
 	}
@@ -25,57 +26,47 @@ render() {
 		if (this.props.modalstate === 'EnterCode')
 		{
 			MsgBoxHTML = (
-				<LanguageContext.Consumer>
-				{(context) =>
-				( 
-					<MsgBox ModalButton={context.GetText('common', 'popupButtonSend')}>
-						<div className="Content">
-							<p>
-								<span>
-									{context.GetText('signin.modal.MailCode', 'text_1_Start')}
-									<b>{this.props.UserMail ?? ""}</b>
-									{context.GetText('signin.modal.MailCode', 'text_1_End')}
-								</span>
+				<MsgBox ModalButton={this.currentContext.GetText('common', 'popupButtonSend')}>
+					<div className="Content">
+						<p>
+							<span>
+								{this.currentContext.GetText('signin.modal.MailCode', 'text_1_Start')}
+								<b>{this.props.UserMail ?? ""}</b>
+								{this.currentContext.GetText('signin.modal.MailCode', 'text_1_End')}
+							</span>
 
-								<span>{context.GetText('signin.modal.MailCode', 'text_2')}</span>
-							</p>
-						</div>
+							<span>{this.currentContext.GetText('signin.modal.MailCode', 'text_2')}</span>
+						</p>
+					</div>
 
-						<form className="MailCode">
-							<label htmlFor="CheckMailCode">{context.GetText('signin.modal.MailCode', 'formLabel')}</label>
-							<input type="text" className="InPopup" placeholder={context.GetText('signin.modal.MailCode', 'formPlaceholderCode')}></input>
-						</form>
-					</MsgBox>
-				)}
-				</LanguageContext.Consumer>
+					<form className="MailCode">
+						<label htmlFor="CheckMailCode">{this.currentContext.GetText('signin.modal.MailCode', 'formLabel')}</label>
+						<input type="text" className="InPopup" placeholder={this.currentContext.GetText('signin.modal.MailCode', 'formPlaceholderCode')}></input>
+					</form>
+				</MsgBox>
 			)
 		} 
 		else if (this.props.modalstate === 'FailCode')
 		{
 			MsgBoxHTML = (
-				<LanguageContext.Consumer>
-				{(context) =>
-				( 
-					<MsgBox ModalButton={context.GetText('common', 'popupButtonSend')}>
-						<div className="Content">
-							<p>
-								<span>
-									{context.GetText('signin.modal.MailCode', 'text_1_Start')}
-									<b>{this.props.UserMail ?? ""}</b>
-									{context.GetText('signin.modal.MailCode', 'text_1_End')}
-								</span>
+				<MsgBox ModalButton={this.currentContext.GetText('common', 'popupButtonSend')}>
+					<div className="Content">
+						<p>
+							<span>
+								{this.currentContext.GetText('signin.modal.MailCode', 'text_1_Start')}
+								<b>{this.props.UserMail ?? ""}</b>
+								{this.currentContext.GetText('signin.modal.MailCode', 'text_1_End')}
+							</span>
 
-								<span className="Error">{context.GetText('signin.modal.MailCode', 'formError')}</span>
-							</p>
-						</div>
+							<span className="Error">{this.currentContext.GetText('signin.modal.MailCode', 'formError')}</span>
+						</p>
+					</div>
 
-						<form className="MailCode">
-							<label htmlFor="CheckMailCode">{context.GetText('signin.modal.MailCode', 'formLabel')}</label>
-							<input type="text" className="InPopup" id="CheckMailCode" value={this.props.OldCode} placeholder={context.GetText('signin.modal.MailCode', 'formPlaceholderCode')}></input>
-						</form>
-					</MsgBox>
-				)}
-				</LanguageContext.Consumer>
+					<form className="MailCode">
+						<label htmlFor="CheckMailCode">{this.currentContext.GetText('signin.modal.MailCode', 'formLabel')}</label>
+						<input type="text" className="InPopup" id="CheckMailCode" value={this.props.OldCode} placeholder={this.currentContext.GetText('signin.modal.MailCode', 'formPlaceholderCode')}></input>
+					</form>
+				</MsgBox>
 			)
 		} 
 

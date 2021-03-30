@@ -48,14 +48,14 @@ export function AddPackets(addPackFunction)
 
 	pack.AddDictionary('signin.modal.AlreadyExists', 
 	{
-		'title' : 'Пользователь с таким ником уже существует!',
+		'labelWindow' : 'Пользователь с таким ником уже существует!',
 		'text' : 'Возможно, Вы уже были зарегистрированы в Modulo.',
 		'goAuth' : 'Авторизироваться?'
 	});
 
 	pack.AddDictionary('signin.modal.Success', 
 	{
-		'title' : 'Благодарим за регистрацию!',
+		'labelWindow' : 'Благодарим за регистрацию!',
 		'text' : 'Для подтверждения Вашего почтового ящика и получения полных возможностей аккаунта - перейдите по ссылке в письме.'
 	});
 
@@ -133,7 +133,7 @@ export function AddPackets(addPackFunction)
 	pack.AddDictionary('findrandom', 
 	{
 		'labelWindow' : 'Идёт поиск соперника...',
-		'content' : 'Мы ищем случайного соперника для вашей игры. Будьте готовы!'
+		'text' : 'Мы ищем случайного соперника для вашей игры. Будьте готовы!'
 	});
 
 
