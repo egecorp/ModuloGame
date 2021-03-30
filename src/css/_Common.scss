@@ -317,9 +317,9 @@ input.InPopup	{
 	font-size: 13px;
 	font-weight: 300;
 	line-height: 17px;
-}
 
-input.InPopup { @include placeholder { opacity: 0.6; } } 
+	@include placeholder { opacity: 0.6; }
+}
 /* End */
 
 
