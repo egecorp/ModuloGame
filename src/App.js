@@ -5,7 +5,6 @@ import './css/style.css';
 import Game from './GamePages/Game.js';
 import Device from './Model/Device';
 import {LanguageContext, LanguagePacketsHolder} from './Language/LangPack'
-import LocalData from './Model/LocalData.js'
 
 export default class App extends React.Component{
   myDevice = undefined;
@@ -18,16 +17,12 @@ export default class App extends React.Component{
     this.myLanguagePack = LanguagePacketsHolder.Get().GetPack('ru');
   }
 
-  componentDidMount() 
-  {
-    this.myDevice.TryAuth();
-  }
-  
+
 
   render()   
   {
     return (<LanguageContext.Provider value={this.myLanguagePack}>
-      <Game></Game>  
+      <Game Device={this.myDevice}></Game>  
       </LanguageContext.Provider> );
   }
 }

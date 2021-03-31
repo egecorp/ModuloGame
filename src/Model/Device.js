@@ -1,5 +1,6 @@
 import Server from '../Lib/Server'
 import LocalData from '../Model/LocalData.js'
+import DEVICE_STATUS from '../Lib/DeviceStatus'
 
 const MIN_DEVICE_TOKEN_LENGHT = 10;
 
@@ -36,7 +37,9 @@ export default class Device
         this.DeviceToken = myData['DeviceToken'];
         this.ServerToken = myData['ServerToken'];
         this.DeviceWorkToken = myData['DeviceWorkToken'];
-        
+        this.Caption = myData['Caption'];
+        this.UserId = myData['UserId'];
+
         if ((this.IsDisabled === true) || (("" + (this.DeviceToken || "")).length < MIN_DEVICE_TOKEN_LENGHT) || ((this.ServerToken || "") === ""))
         {
             console.log("Устройство не было зарегистрировано ранее");
@@ -52,18 +55,18 @@ export default class Device
         
     }
 
-    GetPostObject()
+    GetPostObject(withServerToken)
     {
         return {
             Id: this.Id, 
             DeviceToken : this.DeviceToken, 
-            ServerToken : this.ServerToken, 
+            ServerToken : (withServerToken === true) ? this.ServerToken : null, 
             DeviceWorkToken: this.DeviceWorkToken, 
             Caption: this.Caption
         } ;
     }
 
-    TryAuth()
+    TryAuth(callBack, context)
     {
         
        let deviceObject = this;
@@ -85,6 +88,11 @@ export default class Device
                 if ( deviceObject.DeviceWorkToken !== response.WorkToken)
                 LocalData.SetValue('DeviceWorkToken',  deviceObject.DeviceWorkToken = response.WorkToken);
                 console.log('Set WorkToken = ' + response.WorkToken);
+                callBack.call(context,  DEVICE_STATUS.AUTH_GOOD);
+            }
+            else
+            {
+                callBack.call(context,  DEVICE_STATUS.AUTH_FORBIDDEN);
             }
 
         }
@@ -93,18 +101,50 @@ export default class Device
         {
             console.log('Error');
             console.log(e);
+            callBack.call(context,  DEVICE_STATUS.AUTH_FAIL);
         }
 
-        var postObject = this.GetPostObject();
+        var postObject = this.GetPostObject(true);
 
         if (this.NeedRegisterDevice)
         {
             Server.Get().RegisterDevice(postObject).then(GoodAuth, ErrorAuth);
+            callBack.call(context,  DEVICE_STATUS.AUTH_CONNTECTING);
         }
         else
         {
             Server.Get().GetWorkToken(postObject).then(GoodAuth, ErrorAuth);
+            callBack.call(context,  DEVICE_STATUS.AUTH_CONNTECTING);
         }
+    }
+
+
+    GetUserInfo(callBack, context)
+    {
+        if (!this.UserId)
+        {
+            callBack.call(context,  DEVICE_STATUS.USERINFO_NOUSER);
+            return;
+        }
+        
+        function GoodResult(response)
+        {
+            console.log('Good auth');
+            console.log(response);
+            callBack.call(context,  DEVICE_STATUS.USERINFO_GOOD);
+        }
+        
+        function ErrorResult(e)
+        {
+            console.log('Error');
+            console.log(e);
+            callBack.call(context,  DEVICE_STATUS.USERINFO_FAIL);
+        }
+
+        var postObject = this.GetPostObject();
+    
+        Server.Get().RegisterDevice(postObject).then(GoodResult, ErrorResult);
+        callBack.call(context,  DEVICE_STATUS.USERINFO_GETIING);
         
     }
 

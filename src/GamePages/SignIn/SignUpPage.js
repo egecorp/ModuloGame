@@ -3,8 +3,10 @@ import SignInLanguagePanel from '../../Components/SignInLanguagePanel'
 import {LanguageContext} from '../../Language/LangPack'
 import MsgBox from "../../Components/MsgBox";
 import HeadNavigation from '../../Components/HeadNavigation'
+import DEVICE_STATUS from '../../Lib/DeviceStatus'
 
 export default class SignUpPage extends React.Component {
+    nextButtonCallBack;
 constructor(props, context) {
 	super(props);
 	this.state = {
@@ -15,8 +17,21 @@ constructor(props, context) {
 		checkedItem: null
 	};
 	this.currentContext = context;
-	//this.changeItemState = this.changeItemState.bind(this);
 
+    this.nextButtonOnClick = this.nextButtonOnClick.bind(this);
+    this.backButtonOnClick = this.backButtonOnClick.bind(this);
+    this.nextButtonCallBack = props.NextButtonCallBack;
+}
+  
+nextButtonOnClick()
+{
+    console.log("Next button is not implemented");
+    return;
+}
+
+backButtonOnClick()
+{
+    this.nextButtonCallBack(DEVICE_STATUS.USERINFO_NOUSER);
 }
 
 render() {
@@ -56,7 +71,7 @@ render() {
 				( 
 				<>
 					<HeadNavigation>
-						<button className="ButtonBack"></button>
+						<button className="ButtonBack"  onClick={this.backButtonOnClick}></button>
 
 						<p className="HeadNavigationTitle">{context.GetText('signup', 'labelWindow')}</p>
 
@@ -100,7 +115,7 @@ render() {
 					<div className="FooterArea">
 						<p class="AdditionalTip">{context.GetText('signup', 'tipConditionBegin')}<span>{context.GetText('signup', 'tipConditionLink')}</span>{context.GetText('signup', 'tipConditionEnd')}</p>
 
-						<button>{context.GetText('signin', 'continueButton')}</button>
+						<button  onClick={this.nextButtonOnClick}>{context.GetText('signin', 'continueButton')}</button>
 					</div>
 
 					{MsgBoxHTML}

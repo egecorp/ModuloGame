@@ -3,9 +3,11 @@ import SignInLanguagePanel from '../Components/SignInLanguagePanel'
 import CheckBoxButton from '../Components/CheckBoxButton'
 import {LanguageContext} from '../Language/LangPack'
 import HeadNavigation from '../Components/HeadNavigation'
+import DEVICE_STATUS from '../Lib/DeviceStatus'
 
 
 export default class SignInPage extends React.Component {
+    nextButtonCallBack;
     constructor(props, context) {
       super(props);
       this.state = {
@@ -18,6 +20,9 @@ export default class SignInPage extends React.Component {
       };
 
       this.changeItemState = this.changeItemState.bind(this);
+      this.nextButtonOnClick = this.nextButtonOnClick.bind(this);
+
+      this.nextButtonCallBack = props.NextButtonCallBack;
     }
   
     changeItemState(checkBoxName, isSetSelected, isSetChecked)
@@ -43,8 +48,24 @@ export default class SignInPage extends React.Component {
           default:
             this.setState(oldState => ({ tipText: this.context.GetText('signin', 'typeDefaultTipText') }));
         }
-      }
-      
+      }      
+    }
+    
+    nextButtonOnClick()
+    {
+        //TODO CRIITICAL SECTION - заменить на checkedItem и заставить работать
+        if (this.state.selectedItem === 'anonim')
+        {
+            this.nextButtonCallBack(DEVICE_STATUS.USERINFO_SHOW_CREATEANONIM);
+        }
+        else if (this.state.selectedItem === 'signup')
+        {
+            this.nextButtonCallBack(DEVICE_STATUS.USERINFO_SHOW_CREATE);
+        }
+        else if (this.state.selectedItem === 'signin')
+        {
+            this.nextButtonCallBack(DEVICE_STATUS.USERINFO_SHOW_SIGNIN);
+        }
     }
 
 	render() {
@@ -94,7 +115,7 @@ export default class SignInPage extends React.Component {
 						</div>
 
 						<div className="FooterArea">
-							<button>{context.GetText('signin', 'continueButton')}</button>
+							<button onClick={this.nextButtonOnClick}>{context.GetText('signin', 'continueButton')}</button>
 						</div>
 					</>
 				)}

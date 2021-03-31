@@ -2,9 +2,10 @@ import React from 'react';
 import SignInLanguagePanel from '../../Components/SignInLanguagePanel';
 import {LanguageContext} from '../../Language/LangPack';
 import HeadNavigation from '../../Components/HeadNavigation';
-
+import DEVICE_STATUS from '../../Lib/DeviceStatus'
 
 export default class SignInAuthPage extends React.Component {
+    nextButtonCallBack;
     constructor(props, context) {
       super(props);
       this.state = {
@@ -15,10 +16,23 @@ export default class SignInAuthPage extends React.Component {
           checkedItem: null
       };
 
-      //this.changeItemState = this.changeItemState.bind(this);
+      this.nextButtonOnClick = this.nextButtonOnClick.bind(this);
+      this.backButtonOnClick = this.backButtonOnClick.bind(this);
+      this.nextButtonCallBack = props.NextButtonCallBack;
 
     }
   
+    nextButtonOnClick()
+    {
+        console.log("Next button is not implemented");
+        return;
+    }
+
+    backButtonOnClick()
+    {
+        this.nextButtonCallBack(DEVICE_STATUS.USERINFO_NOUSER);
+    }
+
     render() {
        
       
@@ -28,7 +42,7 @@ export default class SignInAuthPage extends React.Component {
                 ( 
 						<>
 							<HeadNavigation>
-								<button className="ButtonBack"></button>
+								<button className="ButtonBack"  onClick={this.backButtonOnClick}></button>
 
 								<p className="HeadNavigationTitle">{context.GetText('signinanonim', 'labelWindow')}</p>
 
@@ -58,7 +72,7 @@ export default class SignInAuthPage extends React.Component {
 									{context.GetText('signinanonim', 'tipConditionEnd')}
 								</p>
 
-								<button>{context.GetText('signinanonim', 'continueButton')}</button>
+								<button  onClick={this.nextButtonOnClick}>{context.GetText('signinanonim', 'continueButton')}</button>
 							</div>
 						</>
 					 )}

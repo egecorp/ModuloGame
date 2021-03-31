@@ -17,52 +17,47 @@ import SettingsSettingsPage from './Settings/SettingsSettingsPage.js'
 
 
 export default class PageHolder extends React.Component {
-/*
-    constructor(props) {
-        super(props);
-      }
-    */
-      
-  
+
+ 
     render() {
         
         let CPage;
 
         if (this.props.currentPage === 'Hello')
         {
-            CPage = (<HelloPage></HelloPage>);
+            CPage = (<HelloPage Status={this.props.Status}></HelloPage>);
         }
         else if (this.props.currentPage === 'SignIn')
         {
-            CPage = (<SignInPage></SignInPage>)
+            CPage = (<SignInPage NextButtonCallBack={this.props.NextButtonCallBack}></SignInPage>)
         } 
         else if (this.props.currentPage === 'SignIn:Anonim')
         {
-            CPage = (<SignInAnonim></SignInAnonim>)
+            CPage = (<SignInAnonim NextButtonCallBack={this.props.NextButtonCallBack}></SignInAnonim>)
         }
         else if (this.props.currentPage === 'SignIn:SignIn')
         {
-            CPage = (<SignInAuthPage></SignInAuthPage>)
+            CPage = (<SignInAuthPage NextButtonCallBack={this.props.NextButtonCallBack}></SignInAuthPage>)
         }
         else if (this.props.currentPage === 'SignIn:SignIn:EnterCode')
         {
-            CPage = (<SignInAuthPage modalstate='EnterCode' UserMail='acid@gmail.dot'></SignInAuthPage>)
+            CPage = (<SignInAuthPage modalstate='EnterCode' UserMail='acid@gmail.dot' NextButtonCallBack={this.props.NextButtonCallBack}></SignInAuthPage>)
         }
         else if (this.props.currentPage === 'SignIn:SignIn:FailCode')
         {
-            CPage = (<SignInAuthPage modalstate='FailCode' OldCode='321' UserMail='acid@gmail.dot'></SignInAuthPage>)
+            CPage = (<SignInAuthPage modalstate='FailCode' OldCode='321' UserMail='acid@gmail.dot' NextButtonCallBack={this.props.NextButtonCallBack}></SignInAuthPage>)
         }
         else if (this.props.currentPage === 'SignIn:SignUp')
         {
-            CPage = (<SignUpPage></SignUpPage>)
+            CPage = (<SignUpPage NextButtonCallBack={this.props.NextButtonCallBack}></SignUpPage>)
         }
         else if (this.props.currentPage === 'SignIn:SignUp:AlreadyExists')
         {
-            CPage = (<SignUpPage  modalstate='AlreadyExists'></SignUpPage>)
+            CPage = (<SignUpPage  modalstate='AlreadyExists' NextButtonCallBack={this.props.NextButtonCallBack}></SignUpPage>)
         }
         else if (this.props.currentPage === 'SignIn:SignUp:Success')
         {
-            CPage = (<SignUpPage  modalstate='Success'></SignUpPage>)
+            CPage = (<SignUpPage  modalstate='Success' NextButtonCallBack={this.props.NextButtonCallBack}></SignUpPage>)
         }
         else if (this.props.currentPage === 'Game:GameList')
         {
