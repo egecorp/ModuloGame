@@ -30,6 +30,8 @@ export default class Device
     //Необходимо зарегистрировать устройство
     NeedRegisterDevice = false;
 
+    // Текущий пользователь
+    myUser = null;
 
     constructor()
     {
@@ -62,8 +64,29 @@ export default class Device
             DeviceToken : this.DeviceToken, 
             ServerToken : (withServerToken === true) ? this.ServerToken : null, 
             DeviceWorkToken: this.DeviceWorkToken, 
-            Caption: this.Caption
+            Caption: this.Caption,
+            WorkToken: this.DeviceWorkToken
         } ;
+    }
+
+    GetUserPostObject()
+    {
+        let result = {
+            WorkToken: this.DeviceWorkToken
+        } ;
+
+        if (this.myUser)
+        {
+            result.Id = this.myUser.Id;
+            result.NicName = this.myUser.NicName;
+            result.Birthday = this.myUser.Birthday;
+            result.EMail = this.myUser.EMail;
+            result.TNumber = this.myUser.TNumber;
+            result.Country = this.myUser.Country;
+        }
+
+
+        return result;
     }
 
     TryAuth(callBack, context)
@@ -147,6 +170,30 @@ export default class Device
         callBack.call(context,  DEVICE_STATUS.USERINFO_GETIING);
         
     }
+
+
+    CreateAnonim(callBack, context)
+    {
+        
+        function GoodResult(response)
+        {
+            console.log('Good CreateAnonim');
+            console.log(response);
+            callBack.call(context,  DEVICE_STATUS.USERINFO_SHOW_CREATEANONIM_DONE);
+        }
+        
+        function ErrorResult(e)
+        {
+            console.log('Error');
+            console.log(e);
+            callBack.call(context,  DEVICE_STATUS.USERINFO_SHOW_CREATEANONIM_FAIL);
+        }
+
+        var postObject = this.GetUserPostObject();
+        Server.Get().CreateAnonimUser(postObject).then(GoodResult, ErrorResult);
+        
+    }
+
 
     uuidv4() 
     {

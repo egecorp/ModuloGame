@@ -98,43 +98,78 @@ export default class Game extends React.Component {
         }
     }
 
+    checkCreateUser(result)
+    {
+        console.log("checkCreateUser");
+        console.log(result);
+        /*if (result === DEVICE_STATUS.AUTH_CONNTECTING)
+        {
+            this.setState(state => ({ currentDeviceStatus: DEVICE_STATUS.AUTH_CONNTECTING }));
+        }
+        else if (result === DEVICE_STATUS.AUTH_FAIL)
+        {
+            this.setState(state => ({ currentDeviceStatus: DEVICE_STATUS.AUTH_FAIL }));
+            setTimeout(  () => (this.myDevice.TryAuth(this.checkDeviceAuth, this)), 1000);
+        }
+        else if (result === DEVICE_STATUS.AUTH_FORBIDDEN)
+        {
+            this.setState(state => ({ currentDeviceStatus: DEVICE_STATUS.AUTH_FORBIDDEN }));
+        }
+        else if (result === DEVICE_STATUS.AUTH_GOOD)
+        {
+            let thisObject = this;
+            this.setState(state => ({ currentDeviceStatus: DEVICE_STATUS.AUTH_GOOD }));
+            setTimeout( () => thisObject.myDevice.GetUserInfo(thisObject.checkUserInfo, thisObject), 1000);
+        }*/
+    }
+
     nextButtonCallBack(nextState, stateProperties)
     {
         console.log("nextButton");
         console.log(nextState);
-        if (nextState == DEVICE_STATUS.USERINFO_NOUSER)
+        switch(nextState)
         {
-            this.setState(state => (
-                { 
-                    currentDeviceStatus: DEVICE_STATUS.USERINFO_SHOW_CREATE, 
-                    currentPage: 'SignIn'
-                }));
-        }
-        else if (nextState == DEVICE_STATUS.USERINFO_SHOW_CREATEANONIM)
-        {
-            this.setState(state => (
-                { 
-                    currentDeviceStatus: DEVICE_STATUS.USERINFO_SHOW_CREATEANONIM, 
-                    currentPage: 'SignIn:Anonim'
-                }));
-        }
-        else if (nextState === DEVICE_STATUS.USERINFO_SHOW_CREATE)
-        {
-            this.setState(state => (
-                { 
-                    currentDeviceStatus: DEVICE_STATUS.USERINFO_SHOW_CREATE, 
-                    currentPage: 'SignIn:SignUp'
-                }));
+            case DEVICE_STATUS.USERINFO_NOUSER:
+                this.setState(state => (
+                    { 
+                        currentDeviceStatus: DEVICE_STATUS.USERINFO_SHOW_CREATE, 
+                        currentPage: 'SignIn'
+                    }));
+                break;
             
-        }
-        else if (nextState === DEVICE_STATUS.USERINFO_SHOW_SIGNIN)
-        {
+            case DEVICE_STATUS.USERINFO_SHOW_CREATEANONIM:
+                this.setState(state => (
+                    { 
+                        currentDeviceStatus: DEVICE_STATUS.USERINFO_SHOW_CREATEANONIM, 
+                        currentPage: 'SignIn:Anonim'
+                    }));
+                break;
+            case DEVICE_STATUS.USERINFO_SHOW_CREATE:
+                this.setState(state => (
+                    { 
+                        currentDeviceStatus: DEVICE_STATUS.USERINFO_SHOW_CREATE, 
+                        currentPage: 'SignIn:SignUp'
+                    }));
+                break;
+        
+            case DEVICE_STATUS.USERINFO_SHOW_SIGNIN:
             this.setState(state => (
                 { 
                     currentDeviceStatus: DEVICE_STATUS.USERINFO_SHOW_SIGNIN, 
                     currentPage: 'SignIn:SignIn'
                 }));
-            
+            break;
+
+            case DEVICE_STATUS.USERINFO_SHOW_CREATEANONIM_CREATING:
+                this.myDevice.CreateAnonim(this.checkCreateUser, this);
+                break;
+            case DEVICE_STATUS.MODAL_POLICY:
+                this.setState(state => (
+                    { 
+                        currentDeviceStatus: DEVICE_STATUS.MODAL_POLICY, 
+                        currentPage: 'ConditionPage'
+                    }));
+                break;
         }
     }
 

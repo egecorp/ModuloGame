@@ -18,19 +18,32 @@ export default class SignInAuthPage extends React.Component {
 
       this.nextButtonOnClick = this.nextButtonOnClick.bind(this);
       this.backButtonOnClick = this.backButtonOnClick.bind(this);
+
+      this.signUpLabelOnClick = this.signUpLabelOnClick.bind(this);
+      this.policyLabelOnClick = this.policyLabelOnClick.bind(this);
+
       this.nextButtonCallBack = props.NextButtonCallBack;
 
     }
   
     nextButtonOnClick()
     {
-        console.log("Next button is not implemented");
-        return;
+        this.nextButtonCallBack(DEVICE_STATUS.USERINFO_SHOW_CREATEANONIM_CREATING);
     }
 
     backButtonOnClick()
     {
         this.nextButtonCallBack(DEVICE_STATUS.USERINFO_NOUSER);
+    }
+
+    signUpLabelOnClick()
+    {
+        this.nextButtonCallBack(DEVICE_STATUS.USERINFO_SHOW_CREATE);
+    }
+    
+    policyLabelOnClick()
+    {
+        this.nextButtonCallBack(DEVICE_STATUS.MODAL_POLICY);
     }
 
     render() {
@@ -51,7 +64,7 @@ export default class SignInAuthPage extends React.Component {
 							
 							<div className="SignInAnonim">                  
 								<p className="GeneralSubtitle">
-									{context.GetText('signinanonim', 'labelYourNickname')} <span>anonim6045</span>
+									{context.GetText('signinanonim', 'labelYourNickname')} <span>anonim</span>
 								</p>
 								
 								<div className="SignInAnonimImage">
@@ -62,13 +75,13 @@ export default class SignInAuthPage extends React.Component {
 									{context.GetText('signinanonim', 'tipCannotChooseImg')}
 								</p>
 
-								<p className="SignInAnonimSignUp">{context.GetText('signinanonim', 'linkGoToSignUp')}</p>
+								<p className="SignInAnonimSignUp" onClick={this.signUpLabelOnClick}>{context.GetText('signinanonim', 'linkGoToSignUp')}</p>
 							</div>
 
 							<div className="FooterArea">
 								<p className="AdditionalTip">
 									{context.GetText('signinanonim', 'tipConditionBegin')}
-									<span>{context.GetText('signinanonim', 'tipConditionLink')}</span>
+									<span onClick={this.policyLabelOnClick}>{context.GetText('signinanonim', 'tipConditionLink')}</span>
 									{context.GetText('signinanonim', 'tipConditionEnd')}
 								</p>
 
