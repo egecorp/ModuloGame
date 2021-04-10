@@ -1,96 +1,82 @@
 import Server from '../Lib/Server'
-import LocalData from '../Model/LocalData.js'
+import LocalData from './LocalData.js'
 import DEVICE_STATUS from '../Lib/DeviceStatus'
 
 const MIN_DEVICE_TOKEN_LENGHT = 10;
 
-export default class Device 
+export default class User
 {
-    // Id устройства
+    // Id ползьвателя
     Id = undefined;
 
-    // Login устройства
-    DeviceToken = undefined;
+    // Ник
+    NicName = undefined;
 
-    // Токен авторизации (пароль)
-    ServerToken = undefined;
+    // Дата рождения
+    Birthday = undefined;
 
-    // Рабочий токен
+    // Электронная почта
+    EMail = undefined;
+
+    // Номер телефона
+    TNumber = undefined;
+
+    // Пользователь аноним
+    IsAnonim = true;
+
+    // Пользователь верифицирован
+    IsVerified = false;
+
+    // Пользователь заблокирован
+    IsBlocked = false;
+
+    // Заблокирован до
+    BlockedUntil = undefined;
+
+    // Динамическая информация о текущем пользователе
+    DynamicUserInfo = null;
+
+
+    // Рабочий токен для отправки запросов на сервер
     DeviceWorkToken = undefined;
+    
 
-    // Устройство в стоп-листе
-    IsDisabled = false;
-
-    // Id пользователя
-    UserId = undefined;
-
-    // Пользовательское описание устройства
-    Caption = undefined;
-
-    //Необходимо зарегистрировать устройство
-    NeedRegisterDevice = false;
-
-    // Текущий пользователь
-    myUser = null;
-
-    // TODO - понять, зачем я так делаю
-    myServer = Server;
-
-    constructor()
+    constructor(serverJsonData, DeviceWorkToken)
     {
-        let myData = LocalData.GetSingleton();
-        this.DeviceToken = myData['DeviceToken'];
-        this.ServerToken = myData['ServerToken'];
-        this.DeviceWorkToken = myData['DeviceWorkToken'];
-        this.Caption = myData['Caption'];
-        this.UserId = myData['UserId'];
+        if (serverJsonData)
+        {
+            this.Id = serverJsonData.Id;
+            this.NicName = serverJsonData.NicName;
+            this.Birthday = serverJsonData.Birthday;
+            this.EMail = serverJsonData.EMail;
+            this.TNumber = serverJsonData.TNumber;
+            this.IsAnonim = serverJsonData.IsAnonim;
+            this.IsVerified = serverJsonData.IsVerified;
+            this.IsBlocked = serverJsonData.IsBlocked;
+            this.BlockedUntil = serverJsonData.BlockedUntil;
 
-        if ((this.IsDisabled === true) || (("" + (this.DeviceToken || "")).length < MIN_DEVICE_TOKEN_LENGHT) || ((this.ServerToken || "") === ""))
-        {
-            console.log("Устройство не было зарегистрировано ранее");
-            this.DeviceToken =  this.uuidv4();
-            LocalData.SetValue('DeviceToken', this.DeviceToken);
-            this.NeedRegisterDevice = true;
+            if (serverJsonData.DynamicUserInfo)
+            {
+                this.DynamicUserInfo = serverJsonData.DynamicUserInfo;
+            }
         }
-        else
-        {
-            console.log("Устройство было зарегистрировано ранее, DeviceToken = " + this.DeviceToken);
-        }        
+        this.DeviceWorkToken = DeviceWorkToken;        
     }
 
-    GetPostObject(withServerToken)
+    GetPostObject()
     {
         return {
-            Id: this.Id, 
-            DeviceToken : this.DeviceToken, 
-            ServerToken : (withServerToken === true) ? this.ServerToken : null, 
-            DeviceWorkToken: this.DeviceWorkToken, 
-            Caption: this.Caption,
-            WorkToken: this.DeviceWorkToken
+            Id : this.Id,
+            NicName : this.NicName,
+            Birthday : this.Birthday,
+            EMail : this.EMail,
+            TNumber : this.TNumber,
+            WorkToken : this.DeviceWorkToken
         } ;
     }
 
-    GetUserPostObject()
-    {
-        let result = {
-            DeviceWorkToken: this.DeviceWorkToken
-        } ;
 
-        if (this.myUser)
-        {
-            result.Id = this.myUser.Id;
-            result.NicName = this.myUser.NicName;
-            result.Birthday = this.myUser.Birthday;
-            result.EMail = this.myUser.EMail;
-            result.TNumber = this.myUser.TNumber;
-            result.Country = this.myUser.Country;
-        }
-
-
-        return result;
-    }
-
-    TryAuth(callBack, context)
+    GetInfo(callBack, context)
     {
         
        let deviceObject = this;
@@ -112,15 +98,6 @@ export default class Device
                 if ( deviceObject.DeviceWorkToken !== response.WorkToken)
                 LocalData.SetValue('DeviceWorkToken',  deviceObject.DeviceWorkToken = response.WorkToken);
                 console.log('Set WorkToken = ' + response.WorkToken);
-
-                if (response.UserId)
-                {
-                    console.info("Device has UserId = " + response.UserId);
-                    deviceObject.UserId = response.UserId;
-                    deviceObject.myUser = {};
-                }
-
-
                 callBack.call(context,  DEVICE_STATUS.AUTH_GOOD);
             }
             else
@@ -176,7 +153,7 @@ export default class Device
 
         var postObject = this.GetPostObject();
     
-        Server.Get().GetUserInfo(postObject).then(GoodResult, ErrorResult);
+        Server.Get().RegisterDevice(postObject).then(GoodResult, ErrorResult);
         callBack.call(context,  DEVICE_STATUS.USERINFO_GETIING);
         
     }
@@ -204,26 +181,6 @@ export default class Device
         
     }
 
-    CreateUser(callBack, context, postObject)
-    {
-        
-        function GoodResult(response)
-        {
-            console.log('Good CreateUser');
-            console.log(response);
-            callBack.call(context,  DEVICE_STATUS.USERINFO_SHOW_CREATE_DONE);
-        }
-        
-        function ErrorResult(e)
-        {
-            console.log('Error');
-            console.log(e);
-            callBack.call(context,  DEVICE_STATUS.USERINFO_SHOW_CREATE_FAIL);
-        }
-
-        this.myServer.Get.call(this.myServer).CreateVerifiedUser(postObject).then(GoodResult, ErrorResult);
-        
-    }
 
     uuidv4() 
     {

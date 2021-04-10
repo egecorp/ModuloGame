@@ -18,9 +18,15 @@ import SettingsSettingsPage from './Settings/SettingsSettingsPage.js'
 
 export default class PageHolder extends React.Component {
 
- 
+    constructor(props)
+    {
+        super(props);
+        this.myDevice = props.Device;
+    }
+
     render() {
-        
+        console.log("this.props.Device");
+        console.log(this.props.Device);
         let CPage;
 
         if (this.props.currentPage === 'Hello')
@@ -49,15 +55,15 @@ export default class PageHolder extends React.Component {
         }
         else if (this.props.currentPage === 'SignIn:SignUp')
         {
-            CPage = (<SignUpPage NextButtonCallBack={this.props.NextButtonCallBack}></SignUpPage>)
+            CPage = (<SignUpPage Device={this.props.Device} NextButtonCallBack={this.props.NextButtonCallBack}></SignUpPage>)
         }
         else if (this.props.currentPage === 'SignIn:SignUp:AlreadyExists')
         {
-            CPage = (<SignUpPage  modalstate='AlreadyExists' NextButtonCallBack={this.props.NextButtonCallBack}></SignUpPage>)
+            CPage = (<SignUpPage  Device={this.props.Device}  modalstate='AlreadyExists' NextButtonCallBack={this.props.NextButtonCallBack}></SignUpPage>)
         }
         else if (this.props.currentPage === 'SignIn:SignUp:Success')
         {
-            CPage = (<SignUpPage  modalstate='Success' NextButtonCallBack={this.props.NextButtonCallBack}></SignUpPage>)
+            CPage = (<SignUpPage  Device={this.props.Device}   modalstate='Success' NextButtonCallBack={this.props.NextButtonCallBack}></SignUpPage>)
         }
         else if (this.props.currentPage === 'Game:GameList')
         {

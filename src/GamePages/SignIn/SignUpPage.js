@@ -10,9 +10,6 @@ export default class SignUpPage extends React.Component {
 constructor(props, context) {
 	super(props);
 	this.state = {
-		currentLogin: 'Hello', 
-		currentToken: 'Token',
-
 		selectedItem: null,
 		checkedItem: null
 	};
@@ -21,22 +18,48 @@ constructor(props, context) {
     this.nextButtonOnClick = this.nextButtonOnClick.bind(this);
     this.backButtonOnClick = this.backButtonOnClick.bind(this);
     this.nextButtonCallBack = props.NextButtonCallBack;
+
+    this.myDevice = props.Device;
+
+    this.inputNicName = React.createRef();
+    this.inputEmail = React.createRef();
+    this.inputCountry = React.createRef();
+    this.inputPhoneNumber = React.createRef();
+    this.inputDob = React.createRef();
+
 }
   
 nextButtonOnClick()
 {
-    console.log("Next button is not implemented");
-    return;
+
+    let postObject = {};
+
+    postObject.NicName = this.inputNicName.current.value;
+    postObject.EMail = this.inputEmail.current.value;
+    postObject.NicCountryName = this.inputCountry.current.value;
+    postObject.TNumber = this.inputPhoneNumber.current.value;
+    //postObject.Birthday = this.inputDob.current.value;
+    postObject.DeviceWorkToken = this.props.Device.DeviceWorkToken;
+
+    console.log("postObject : ");
+    console.log(postObject);
+    //this.nextButtonCallBack(DEVICE_STATUS.USERINFO_SHOW_CREATE_CREATING);
+    this.myDevice.CreateUser.call(this.myDevice, this.checkCreateUser, this, postObject);
 }
+
+checkCreateUser(a)
+{
+    console.log("checkCreateUser");
+    console.log(a);
+}
+
 
 backButtonOnClick()
 {
     this.nextButtonCallBack(DEVICE_STATUS.USERINFO_NOUSER);
 }
 
-render() {
-	
-	
+render() {	
 	var MsgBoxHTML = null;
 	if (this.props.modalstate === 'AlreadyExists')
 	{
@@ -46,11 +69,11 @@ render() {
 				<div className="WarningIcon"></div>
 				<p className="Title">Пользователь с таким ником уже существует.</p>
 				<p>Возможно, Вы уже были зарегистрированы в Modulo.</p>
-				<a href="#">{this.currentContext.GetText('signin.modal.AlreadyExists', 'goauth')}</a>
+				<a href="/">{this.currentContext.GetText('signin.modal.AlreadyExists', 'goauth')}</a>
 			</div>
 		</MsgBox>
 		)
-	} 
+	}
 	else if (this.props.modalstate === 'Success')
 	{
 		MsgBoxHTML = (
@@ -61,9 +84,9 @@ render() {
 			</div>
 		</MsgBox>
 		)
-	} 
-	{this.currentContext.GetText('signin.modal.AlreadyExists', 'title')}
-	{this.currentContext.GetText('signin.modal.AlreadyExists', 'text')}
+	}
+	//{this.currentContext.GetText('signin.modal.AlreadyExists', 'title')}
+	//{this.currentContext.GetText('signin.modal.AlreadyExists', 'text')}
 	
 		return (
 			<LanguageContext.Consumer>
@@ -79,22 +102,22 @@ render() {
 					</HeadNavigation>
 
 					<div className="SignUp">
-						<p class="GeneralSubtitle">{context.GetText('signup', 'sublabelWindow')}</p>
+						<p className="GeneralSubtitle">{context.GetText('signup', 'sublabelWindow')}</p>
 
 						<form>
 							<div className="LabelInput">
 								<label htmlFor="inputNicName">{context.GetText('signup', 'labelNicName')}</label>
-								<input type="text" name="inputNicName" placeholder="Введите ник..." />
+								<input ref={this.inputNicName} type="text" name="inputNicName" placeholder="Введите ник..." />
 							</div>
 
 							<div className="LabelInput" >
 								<label htmlFor="inputEMail">{context.GetText('signup', 'labelEMail')}</label>
-								<input type="text" name="inputEMail" placeholder="Введите e-mail..." />
+								<input  ref={this.inputEmail} type="text" name="inputEMail" placeholder="Введите e-mail..." />
 							</div>
 
 							<div className="LabelInput" >
 								<label htmlFor="inputCountry">{context.GetText('signup', 'labelCountry')}</label>
-								<select name="inputCountry" placeholder="Выберите страну...">
+								<select  ref={this.inputCountry} name="inputCountry" placeholder="Выберите страну...">
 									{Array.from(context.GetDictionary('country').entries()).map(x => <option key={x[0]} value={x[0]}>{x[1]}</option>)}
 									{/*context.GetDictionary('country')  */}
 								</select>
@@ -102,18 +125,18 @@ render() {
 
 							<div className="LabelInput" >
 								<label htmlFor="inputPhone">{context.GetText('signup', 'labelPhone')}</label>
-								<input type="tel" name="inputPhone" placeholder="+7 (XXX) XXX-XX-XX" />
+								<input  ref={this.inputPhoneNumber} type="tel" name="inputPhone" placeholder="+7 (XXX) XXX-XX-XX" />
 							</div>
 
 							<div className="LabelInput" >
 								<label htmlFor="inputDOB">{context.GetText('signup', 'labelDOB')}</label>
-								<input type="date" name="inputDOB" placeholder="дд.мм.гггг" />
+								<input  ref={this.inputDob} type="date" name="inputDOB" placeholder="дд.мм.гггг" />
 							</div>
 						</form>
 					</div>
 
 					<div className="FooterArea">
-						<p class="AdditionalTip">{context.GetText('signup', 'tipConditionBegin')}<span>{context.GetText('signup', 'tipConditionLink')}</span>{context.GetText('signup', 'tipConditionEnd')}</p>
+						<p className="AdditionalTip">{context.GetText('signup', 'tipConditionBegin')}<span>{context.GetText('signup', 'tipConditionLink')}</span>{context.GetText('signup', 'tipConditionEnd')}</p>
 
 						<button  onClick={this.nextButtonOnClick}>{context.GetText('signin', 'continueButton')}</button>
 					</div>

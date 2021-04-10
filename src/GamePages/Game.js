@@ -94,7 +94,10 @@ export default class Game extends React.Component {
         }
         else if (result === DEVICE_STATUS.USERINFO_GOOD)
         {
-            this.setState(state => ({ currentDeviceStatus: DEVICE_STATUS.USERINFO_GOOD }));
+            this.setState(state => ({ 
+                currentDeviceStatus: DEVICE_STATUS.USERINFO_GOOD ,
+                currentPage: 'Game:GameList'            
+            }));
         }
     }
 
@@ -163,6 +166,11 @@ export default class Game extends React.Component {
             case DEVICE_STATUS.USERINFO_SHOW_CREATEANONIM_CREATING:
                 this.myDevice.CreateAnonim(this.checkCreateUser, this);
                 break;
+
+            case DEVICE_STATUS.USERINFO_SHOW_CREATE_CREATING:
+                this.myDevice.CreateUser(this.checkCreateUser, this);
+                break;
+
             case DEVICE_STATUS.MODAL_POLICY:
                 this.setState(state => (
                     { 
@@ -170,6 +178,8 @@ export default class Game extends React.Component {
                         currentPage: 'ConditionPage'
                     }));
                 break;
+            default:
+                console.log("WTF?")
         }
     }
 
@@ -177,7 +187,13 @@ export default class Game extends React.Component {
 
         return ( 
         <div className='Game'> 
-            <PageHolder currentPage={this.state.currentPage} Status={this.state.currentDeviceStatus}  NextButtonCallBack={this.nextButtonCallBack}></PageHolder>
+            <PageHolder 
+                currentPage={this.state.currentPage} 
+                Status={this.state.currentDeviceStatus}  
+                NextButtonCallBack={this.nextButtonCallBack} 
+                Device={this.myDevice}>
+   
+            </PageHolder>
             <div className="AdHolder"> 
                 <select onChange={this.handleChangePage}>
                     {this.Pages.map(x=> <option key={x} value={x}>{x}</option>)}
