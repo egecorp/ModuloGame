@@ -1,6 +1,9 @@
 import Server from '../Lib/Server'
 import LocalData from '../Model/LocalData.js'
 import DEVICE_STATUS from '../Lib/DeviceStatus'
+import SERVER_ERROR from '../Lib/ServerError'
+import { GetErrorOrDefault as GetErrorOrDefault} from '../Lib/ServerError'
+
 
 const MIN_DEVICE_TOKEN_LENGHT = 10;
 
@@ -36,6 +39,17 @@ export default class Device
     // TODO - понять, зачем я так делаю
     myServer = Server;
 
+    // TODO - подумать, может быть, переместить в другое место
+    // Последняя ошибка запроса
+    CurrentError = null;
+
+
+    _SERVER_ERROR = SERVER_ERROR;
+    _GetErrorOrDefault = GetErrorOrDefault;
+
+
+
+
     constructor()
     {
         let myData = LocalData.GetSingleton();
@@ -56,6 +70,8 @@ export default class Device
         {
             console.log("Устройство было зарегистрировано ранее, DeviceToken = " + this.DeviceToken);
         }        
+
+       // this._GetErrorOrDefault =  this._GetErrorOrDefault.bind(this);
     }
 
     GetPostObject(withServerToken)
@@ -206,22 +222,46 @@ export default class Device
 
     CreateUser(callBack, context, postObject)
     {
-        
         function GoodResult(response)
         {
             console.log('Good CreateUser');
             console.log(response);
+
+            if (!response)
+            {
+                this.CurrentError = this._SERVER_ERROR.SERVER_ERROR;
+                callBack.call(context,  DEVICE_STATUS.USERINFO_SHOW_CREATE_FAIL);
+                return;
+            }
+            else if (response.Error)
+            {
+                if (response.IsWorkflowError === true)
+                {
+                    this.CurrentError = this._GetErrorOrDefault(response.Error);
+                }
+                else
+                {
+                    this.CurrentError = this._SERVER_ERROR.SERVER_ERROR;
+                }
+                callBack.call(context,  DEVICE_STATUS.USERINFO_SHOW_CREATE_FAIL);
+                return;
+            }
+            this.CurrentError = null;
             callBack.call(context,  DEVICE_STATUS.USERINFO_SHOW_CREATE_DONE);
         }
         
         function ErrorResult(e)
         {
-            console.log('Error');
             console.log(e);
+            this.CurrentError = this._SERVER_ERROR.SERVER_ERROR;
             callBack.call(context,  DEVICE_STATUS.USERINFO_SHOW_CREATE_FAIL);
         }
 
-        this.myServer.Get.call(this.myServer).CreateVerifiedUser(postObject).then(GoodResult, ErrorResult);
+        this.CurrentError = null;
+
+        var _GoodResult = GoodResult.bind(this);
+        var _ErrorResult = ErrorResult.bind(this);
+        this.myServer.Get.call(this.myServer).CreateVerifiedUser(postObject).then(_GoodResult, _ErrorResult);
         
     }
 

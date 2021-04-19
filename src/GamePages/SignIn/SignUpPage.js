@@ -4,6 +4,7 @@ import {LanguageContext} from '../../Language/LangPack'
 import MsgBox from "../../Components/MsgBox";
 import HeadNavigation from '../../Components/HeadNavigation'
 import DEVICE_STATUS from '../../Lib/DeviceStatus'
+import SERVER_ERROR from '../../Lib/ServerError'
 
 export default class SignUpPage extends React.Component {
     nextButtonCallBack;
@@ -17,6 +18,9 @@ constructor(props, context) {
 
     this.nextButtonOnClick = this.nextButtonOnClick.bind(this);
     this.backButtonOnClick = this.backButtonOnClick.bind(this);
+    this.policyLabelOnClick = this.policyLabelOnClick.bind(this);
+    this.modalButtonOnClick = this.modalButtonOnClick.bind(this);
+
     this.nextButtonCallBack = props.NextButtonCallBack;
 
     this.myDevice = props.Device;
@@ -47,29 +51,92 @@ nextButtonOnClick()
     this.myDevice.CreateUser.call(this.myDevice, this.checkCreateUser, this, postObject);
 }
 
-checkCreateUser(a)
+checkCreateUser(newStatus)
 {
-    console.log("checkCreateUser");
-    console.log(a);
+
+    if (newStatus === DEVICE_STATUS.USERINFO_SHOW_CREATE_DONE)
+    {
+        console.log('ALL GOOD, SOON DO SMTH...');
+        this.nextButtonCallBack(DEVICE_STATUS.USERINFO_SHOW_CREATE_DONE);
+    }
+    else if (newStatus === DEVICE_STATUS.USERINFO_SHOW_CREATE_FAIL)
+    {
+        console.log('Create user error');
+        if (!this.myDevice.CurrentError) this.myDevice.CurrentError = 'Что-то пошло не так, попробуйте снова';
+        console.log(this.myDevice.CurrentError);
+        this.nextButtonCallBack(DEVICE_STATUS.USERINFO_SHOW_CREATE_FAIL);
+    }
+
+    
 }
 
+modalButtonOnClick()
+{
+
+    this.nextButtonCallBack(DEVICE_STATUS.USERINFO_SHOW_CREATE_CREATING);
+    //this.myDevice.CreateUser.call(this.myDevice, this.checkCreateUser, this, postObject);
+}
 
 backButtonOnClick()
 {
     this.nextButtonCallBack(DEVICE_STATUS.USERINFO_NOUSER);
 }
+    
+policyLabelOnClick()
+{
+    this.nextButtonCallBack(DEVICE_STATUS.MODAL_POLICY);
+}
 
 render() {	
 	var MsgBoxHTML = null;
-	if (this.props.modalstate === 'AlreadyExists')
+	if (this.props.modalstate === 'ShowError')
 	{
+        let errorTitle = this.currentContext.GetText('signup.ShowError.ServerError', 'title');
+        let errorText = this.currentContext.GetText('signup.ShowError.ServerError', 'text');
+        let errorLink = null;
+        let errorNextButton = this.currentContext.GetText('signup.ShowError.ServerError', 'continueButton');
+        
+          
+
+    //SERVER_ERROR.SERVER_ERROR 
+    //SERVER_ERROR.ACCESS_ERROR
+    //SERVER_ERROR.BAD_DATA 
+    //SERVER_ERROR.SIGNUP_ALREADY_BOUND 
+    //SERVER_ERROR.SIGNUP_EMAIL_EXISTS 
+    //SERVER_ERROR.SIGNUP_BAD_EMAIL 
+    //SERVER_ERROR.SIGNUP_BAD_NICKNAME
+    //SERVER_ERROR.SIGNUP_PHONE_EXISTS 
+
+
+        if (this.props.Device.CurrentError === SERVER_ERROR.SIGNUP_EMAIL_EXISTS)
+        {
+            errorTitle = this.currentContext.GetText('signup.ShowError.EmailExists', 'title');
+            errorText = this.currentContext.GetText('signup.ShowError.EmailExists', 'text');
+            errorLink = this.currentContext.GetText('signup.ShowError.EmailExists', 'goauth');
+            errorNextButton = this.currentContext.GetText('signup.ShowError.EmailExists', 'continueButton');
+        }
+        else if (this.props.Device.CurrentError === SERVER_ERROR.SIGNUP_BAD_EMAIL)
+        {
+            errorTitle = this.currentContext.GetText('signup.ShowError.BadEmail', 'title');
+            errorText = this.currentContext.GetText('signup.ShowError.BadEmail', 'text');
+            errorNextButton = this.currentContext.GetText('signup.ShowError.BadEmail', 'continueButton');
+        }
+        else if (this.props.Device.CurrentError === SERVER_ERROR.SIGNUP_BAD_DATA)
+        {
+            errorTitle = this.currentContext.GetText('signup.ShowError.BadData', 'title');
+            errorText = this.currentContext.GetText('signup.ShowError.BadData', 'text');
+            errorNextButton = this.currentContext.GetText('signup.ShowError.BadData', 'continueButton');
+        }
+
 		MsgBoxHTML = (
 		<MsgBox ModalButton={this.currentContext.GetText('signin.modal.AlreadyExists', 'continueButton')}>
 			<div className="Content">
 				<div className="WarningIcon"></div>
-				<p className="Title">Пользователь с таким ником уже существует.</p>
-				<p>Возможно, Вы уже были зарегистрированы в Modulo.</p>
-				<a href="/">{this.currentContext.GetText('signin.modal.AlreadyExists', 'goauth')}</a>
+				<p className="Title">{errorTitle}</p>
+				<p>{errorText}</p>
+				{
+                    errorLink ? (<span href="/">{errorLink}</span>) : null
+                }                
 			</div>
 		</MsgBox>
 		)
@@ -77,7 +144,7 @@ render() {
 	else if (this.props.modalstate === 'Success')
 	{
 		MsgBoxHTML = (
-		<MsgBox ModalButton="Продолжить">
+		<MsgBox ModalButton="Продолжить" onClick={this.M}>
 			<div className="Content">
 				<p className="Title">Благодарим за регистрацию!</p>
 				<p>Для подтверждения Вашего почтового ящика и получения полных возможностей аккаунта - перейдите по ссылке в письме.</p>
@@ -136,7 +203,11 @@ render() {
 					</div>
 
 					<div className="FooterArea">
-						<p className="AdditionalTip">{context.GetText('signup', 'tipConditionBegin')}<span>{context.GetText('signup', 'tipConditionLink')}</span>{context.GetText('signup', 'tipConditionEnd')}</p>
+						<p className="AdditionalTip">
+                            {context.GetText('signup', 'tipConditionBegin')}
+                            <span onClick={this.policyLabelOnClick}>{context.GetText('signup', 'tipConditionLink')}</span>
+                            {context.GetText('signup', 'tipConditionEnd')}
+                        </p>
 
 						<button  onClick={this.nextButtonOnClick}>{context.GetText('signin', 'continueButton')}</button>
 					</div>

@@ -27,7 +27,7 @@ export default class Game extends React.Component {
                 'SignIn:SignIn:EnterCode',
                 'SignIn:SignIn:FailCode',
                 'SignIn:SignUp', 
-                'SignIn:SignUp:AlreadyExists', 
+                'SignIn:SignUp:ShowError', 
                 'SignIn:SignUp:Success', 
                 'Game:GameList', 
                 'Game:GameStart', 
@@ -135,7 +135,7 @@ export default class Game extends React.Component {
             case DEVICE_STATUS.USERINFO_NOUSER:
                 this.setState(state => (
                     { 
-                        currentDeviceStatus: DEVICE_STATUS.USERINFO_SHOW_CREATE, 
+                        currentDeviceStatus: DEVICE_STATUS.USERINFO_NOUSER, 
                         currentPage: 'SignIn'
                     }));
                 break;
@@ -169,6 +169,17 @@ export default class Game extends React.Component {
 
             case DEVICE_STATUS.USERINFO_SHOW_CREATE_CREATING:
                 this.myDevice.CreateUser(this.checkCreateUser, this);
+                break;
+
+            case DEVICE_STATUS.USERINFO_SHOW_CREATE_DONE:
+                console.log('WTF 175?')
+                break;
+            case DEVICE_STATUS.USERINFO_SHOW_CREATE_FAIL:
+                this.setState(state => (
+                    { 
+                        currentDeviceStatus: DEVICE_STATUS.USERINFO_SHOW_CREATE, 
+                        currentPage: 'SignIn:SignUp:ShowError'
+                    }));
                 break;
 
             case DEVICE_STATUS.MODAL_POLICY:

@@ -36,15 +36,37 @@ export function AddPackets(addPackFunction)
 		'continueButton' : 'Зарегистрироваться'
 	});
 
-	pack.AddDictionary('signin.modal.AlreadyExists', 
+	pack.AddDictionary('signup.ShowError.EmailExists', 
 	{
-		'title' : 'Пользователь с таким ником уже существует!',
+		'title' : 'Пользователь с такой электронной почтой уже существует!',
 		'text' : 'Возможно, Вы уже были зарегистрированы в Modulo',
 		'goauth' : 'Авторизироваться?',
 		'continueButton' : 'Назад'
 	});
 
-	pack.AddDictionary('signinauth', 
+	pack.AddDictionary('signup.ShowError.BadEmail', 
+	{
+		'title' : 'Проверьте указанные данные!',
+		'text' : 'Неверно указанна электронная почта',
+		'continueButton' : 'Назад'
+	});
+
+	pack.AddDictionary('signup.ShowError.BadData', 
+	{
+		'title' : 'Проверьте указанные данные',
+		'text' : 'Проверьте введённые данные и попробуйте ещё раз.',
+		'continueButton' : 'Назад'
+	});
+
+	pack.AddDictionary('signup.ShowError.ServerError', 
+	{
+		'title' : 'Что-то пошло не так...',
+		'text' : 'Проверьте подключение и попробуйте ещё раз.',
+		'continueButton' : 'Назад'
+	});
+
+
+    pack.AddDictionary('signinauth', 
 	{
 		'labelWindow' : 'Вход в аккаунт',
 		'sublabelWindow' : 'Авторизация',

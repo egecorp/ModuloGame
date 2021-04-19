@@ -57,9 +57,9 @@ export default class PageHolder extends React.Component {
         {
             CPage = (<SignUpPage Device={this.props.Device} NextButtonCallBack={this.props.NextButtonCallBack}></SignUpPage>)
         }
-        else if (this.props.currentPage === 'SignIn:SignUp:AlreadyExists')
+        else if (this.props.currentPage === 'SignIn:SignUp:ShowError')
         {
-            CPage = (<SignUpPage  Device={this.props.Device}  modalstate='AlreadyExists' NextButtonCallBack={this.props.NextButtonCallBack}></SignUpPage>)
+            CPage = (<SignUpPage  Device={this.props.Device}  modalstate='ShowError' NextButtonCallBack={this.props.NextButtonCallBack}></SignUpPage>)
         }
         else if (this.props.currentPage === 'SignIn:SignUp:Success')
         {
