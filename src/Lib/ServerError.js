@@ -13,7 +13,7 @@ const SERVER_ERROR =
     SIGNUP_PHONE_EXISTS : "SIGNUP_PHONE_EXISTS"
 };
 
-var cachedErrors = undefined;
+
 export function GetErrorOrDefault(serverAnswer)
 {
     serverAnswer = (serverAnswer + "").toUpperCase();

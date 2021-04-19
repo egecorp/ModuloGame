@@ -6,11 +6,26 @@ import {LanguageContext} from '../Language/LangPack'
 const modalRoot = document.getElementById('modal-root');
 
 export default class MsgBox extends React.Component {
+
+    callBackFunction = null;
+
     constructor(props, context) {
       super(props);
       this.el = document.createElement('div');
       // this.el.className = 'Modal';
+
+      this.callBackFunction = props.OnButtonClick;
+      this.buttonOnClick = this.buttonOnClick.bind(this);
     }
+
+    
+    buttonOnClick()
+    {
+        if (typeof(this.callBackFunction) === "function") this.callBackFunction();
+    }
+
+
+
     componentDidMount() {
       // Элемент портала добавляется в DOM-дерево после того, как
       // потомки компонента Modal будут смонтированы, это значит,

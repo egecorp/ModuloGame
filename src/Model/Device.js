@@ -2,7 +2,7 @@ import Server from '../Lib/Server'
 import LocalData from '../Model/LocalData.js'
 import DEVICE_STATUS from '../Lib/DeviceStatus'
 import SERVER_ERROR from '../Lib/ServerError'
-import { GetErrorOrDefault as GetErrorOrDefault} from '../Lib/ServerError'
+import { GetErrorOrDefault } from '../Lib/ServerError'
 
 
 const MIN_DEVICE_TOKEN_LENGHT = 10;

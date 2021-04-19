@@ -73,7 +73,8 @@ checkCreateUser(newStatus)
 modalButtonOnClick()
 {
 
-    this.nextButtonCallBack(DEVICE_STATUS.USERINFO_SHOW_CREATE_CREATING);
+    console.log("Modal button onclick");
+    //this.nextButtonCallBack(DEVICE_STATUS.USERINFO_SHOW_CREATE_CREATING);
     //this.myDevice.CreateUser.call(this.myDevice, this.checkCreateUser, this, postObject);
 }
 
@@ -129,7 +130,7 @@ render() {
         }
 
 		MsgBoxHTML = (
-		<MsgBox ModalButton={this.currentContext.GetText('signin.modal.AlreadyExists', 'continueButton')}>
+		<MsgBox ModalButton={errorNextButton}  OnButtonClick={this.modalButtonOnClick}>
 			<div className="Content">
 				<div className="WarningIcon"></div>
 				<p className="Title">{errorTitle}</p>
@@ -144,7 +145,7 @@ render() {
 	else if (this.props.modalstate === 'Success')
 	{
 		MsgBoxHTML = (
-		<MsgBox ModalButton="Продолжить" onClick={this.M}>
+		<MsgBox ModalButton="Продолжить" OnButtonClick={this.modalButtonOnClick}>
 			<div className="Content">
 				<p className="Title">Благодарим за регистрацию!</p>
 				<p>Для подтверждения Вашего почтового ящика и получения полных возможностей аккаунта - перейдите по ссылке в письме.</p>
