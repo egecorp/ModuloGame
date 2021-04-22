@@ -175,7 +175,6 @@ html, body {
 
 #game-body {
   position: relative;
-  padding-top: 20px;
   height: 100%;
   display: -ms-grid;
   display: grid;
