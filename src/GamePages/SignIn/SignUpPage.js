@@ -73,6 +73,17 @@ checkCreateUser(newStatus)
 modalButtonOnClick()
 {
 
+    if (this.props.Device.CurrentError)
+    {
+        this.nextButtonCallBack(DEVICE_STATUS.USERINFO_SHOW_CREATE);
+    }
+    else
+    {
+        this.nextButtonCallBack(DEVICE_STATUS.USERINFO_GOOD);
+    }
+
+
+
     console.log("Modal button onclick");
     //this.nextButtonCallBack(DEVICE_STATUS.USERINFO_SHOW_CREATE_CREATING);
     //this.myDevice.CreateUser.call(this.myDevice, this.checkCreateUser, this, postObject);
