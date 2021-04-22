@@ -3,48 +3,70 @@ import SignInLanguagePanel from '../Components/SignInLanguagePanel'
 import CheckBoxButton from '../Components/CheckBoxButton'
 import {LanguageContext} from '../Language/LangPack'
 import HeadNavigation from '../Components/HeadNavigation'
+import DEVICE_STATUS from '../Lib/DeviceStatus'
 
 
 export default class SignInPage extends React.Component {
-	constructor(props, context) {
-		super(props);
-		this.state = {
-				currentLogin: 'Hello', 
-				currentToken: 'Token',
+    nextButtonCallBack;
+    constructor(props, context) {
+      super(props);
+      this.state = {
+          currentLogin: 'Hello', 
+          currentToken: 'Token',
 
-				selectedItem: null,
-				checkedItem: null,
-				tipText: context.GetText('signin', 'typeDefaultTipText')
-		};
+          selectedItem: null,
+          checkedItem: null,
+          tipText: context.GetText('signin', 'typeDefaultTipText')
+      };
 
-	this.changeItemState = this.changeItemState.bind(this);
-	}
+      this.changeItemState = this.changeItemState.bind(this);
+      this.nextButtonOnClick = this.nextButtonOnClick.bind(this);
 
-	changeItemState(checkBoxName, isSetSelected, isSetChecked) {
-		this.setState(oldState => ({
-			selectedItem: (isSetSelected ? checkBoxName : oldState.selectedItem),
-			checkedItem: (isSetChecked ? checkBoxName : oldState.checkedItem)
-		}));
+      this.nextButtonCallBack = props.NextButtonCallBack;
+    }
+  
+    changeItemState(checkBoxName, isSetSelected, isSetChecked)
+    {
+      this.setState(oldState => ({
+        selectedItem: (isSetSelected ? checkBoxName : oldState.selectedItem),
+        checkedItem: (isSetChecked ? checkBoxName : oldState.checkedItem)
+      }));
 
-		if (isSetSelected) {
-			switch(checkBoxName)
-			{
-				case 'anonim':
-				this.setState(oldState => ({ tipText: this.context.GetText('signin', 'typeAnonimTipText') }));
-				break;
-				case 'signup':
-				this.setState(oldState => ({ tipText: this.context.GetText('signin', 'typeSignUpTipText') }));
-				break;
-				case 'signin':
-				this.setState(oldState => ({ tipText: this.context.GetText('signin', 'typeSignInTipText') }));
-				break;
-				default:
-				this.setState(oldState => ({ tipText: this.context.GetText('signin', 'typeDefaultTipText') }));
-			}
-		}
-	}
-
-
+      if (isSetSelected)
+      {
+        switch(checkBoxName)
+        {
+          case 'anonim':
+            this.setState(oldState => ({ tipText: this.context.GetText('signin', 'typeAnonimTipText') }));
+            break;
+          case 'signup':
+            this.setState(oldState => ({ tipText: this.context.GetText('signin', 'typeSignUpTipText') }));
+            break;
+          case 'signin':
+            this.setState(oldState => ({ tipText: this.context.GetText('signin', 'typeSignInTipText') }));
+            break;
+          default:
+            this.setState(oldState => ({ tipText: this.context.GetText('signin', 'typeDefaultTipText') }));
+        }
+      }      
+    }
+    
+    nextButtonOnClick()
+    {
+        //TODO CRIITICAL SECTION - заменить на checkedItem и заставить работать
+        if (this.state.selectedItem === 'anonim')
+        {
+            this.nextButtonCallBack(DEVICE_STATUS.USERINFO_SHOW_CREATEANONIM);
+        }
+        else if (this.state.selectedItem === 'signup')
+        {
+            this.nextButtonCallBack(DEVICE_STATUS.USERINFO_SHOW_CREATE);
+        }
+        else if (this.state.selectedItem === 'signin')
+        {
+            this.nextButtonCallBack(DEVICE_STATUS.USERINFO_SHOW_SIGNIN);
+        }
+    }
 
 	render() {
 		
@@ -98,7 +120,7 @@ export default class SignInPage extends React.Component {
 						</div>
 
 						<div className="FooterArea">
-							<button>{context.GetText('common', 'modalButtonContinue')}</button>
+							<button onClick={this.nextButtonOnClick}>{context.GetText('common', 'modalButtonContinue')}</button>
 						</div>
 					</>
 				)}

@@ -2,33 +2,60 @@ import React from 'react';
 import SignInLanguagePanel from '../../Components/SignInLanguagePanel';
 import {LanguageContext} from '../../Language/LangPack';
 import HeadNavigation from '../../Components/HeadNavigation';
-
+import DEVICE_STATUS from '../../Lib/DeviceStatus'
 
 export default class SignInAuthPage extends React.Component {
-	constructor(props, context) {
-		super(props);
-		this.state = {
-			currentLogin: 'Hello', 
-			currentToken: 'Token',
+    nextButtonCallBack;
+    constructor(props, context) {
+      super(props);
+      this.state = {
+          currentLogin: 'Hello', 
+          currentToken: 'Token',
 
 			selectedItem: null,
 			checkedItem: null
 		};
 
-	//this.changeItemState = this.changeItemState.bind(this);
+      this.nextButtonOnClick = this.nextButtonOnClick.bind(this);
+      this.backButtonOnClick = this.backButtonOnClick.bind(this);
 
-	}
+      this.signUpLabelOnClick = this.signUpLabelOnClick.bind(this);
+      this.policyLabelOnClick = this.policyLabelOnClick.bind(this);
 
-	render() {
-		
+      this.nextButtonCallBack = props.NextButtonCallBack;
+
+    }
+  
+    nextButtonOnClick()
+    {
+        this.nextButtonCallBack(DEVICE_STATUS.USERINFO_SHOW_CREATEANONIM_CREATING);
+    }
+
+    backButtonOnClick()
+    {
+        this.nextButtonCallBack(DEVICE_STATUS.USERINFO_NOUSER);
+    }
+
+    signUpLabelOnClick()
+    {
+        this.nextButtonCallBack(DEVICE_STATUS.USERINFO_SHOW_CREATE);
+    }
+    
+    policyLabelOnClick()
+    {
+        this.nextButtonCallBack(DEVICE_STATUS.MODAL_POLICY);
+    }
+
+    render() {
+       
       
-		return (
-			<LanguageContext.Consumer>
-				{(context) =>
-				( 
-					<>
-						<HeadNavigation>
-							<button className="ButtonBack"></button>
+          return (
+              <LanguageContext.Consumer>
+                {(context) =>
+                ( 
+						<>
+							<HeadNavigation>
+								<button className="ButtonBack" onClick={this.backButtonOnClick}></button>
 
 							<p className="HeadNavigationTitle">{context.GetText('signinanonim', 'labelWindow')}</p>
 
@@ -48,7 +75,7 @@ export default class SignInAuthPage extends React.Component {
 								{context.GetText('signinanonim', 'tipCannotChooseImg')}
 							</p>
 
-							<p className="SignInAnonimSignUp">{context.GetText('signinanonim', 'linkGoToSignUp')}</p>
+							<p className="SignInAnonimSignUp" onClick={this.signUpLabelOnClick}>{context.GetText('signinanonim', 'linkGoToSignUp')}</p>
 						</div>
 
 						<div className="FooterArea">
@@ -58,7 +85,7 @@ export default class SignInAuthPage extends React.Component {
 								{context.GetText('signinanonim', 'tipConditionEnd')}
 							</p>
 
-							<button>{context.GetText('common', 'modalButtonContinue')}</button>
+							<button onClick={this.nextButtonOnClick}>{context.GetText('common', 'modalButtonContinue')}</button>
 						</div>
 					</>
 				)}

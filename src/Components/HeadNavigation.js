@@ -1,6 +1,5 @@
 import React from 'react'
-import ReactDOM from  'react-dom'
-import {LanguageContext} from '../Language/LangPack'
+
 
 export default class HeadNavigation extends React.Component {
 	render() { 

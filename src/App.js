@@ -13,29 +13,16 @@ export default class App extends React.Component{
   constructor(props)
   {
     super(props);
-    var storedDeviceToken = localStorage.getItem("DeviceToken");
-    var storedServerToken = localStorage.getItem("ServerToken");
- 
     this.myDevice = new Device();
-    this.myDevice.DeviceToken = storedDeviceToken;
-    this.myDevice.ServerToken = storedServerToken;
-
     this.myLanguagePack = LanguagePacketsHolder.Get().GetPack('ru');
-
-   // test commiting string  
   }
 
-  componentDidMount() 
-  {
-    console.log(this.myDevice);
-    this.myDevice.TryAuth();
-  }
-  
+
 
   render()   
   {
     return (<LanguageContext.Provider value={this.myLanguagePack}>
-      <Game></Game>  
+      <Game Device={this.myDevice}></Game>  
       </LanguageContext.Provider> );
   }
 }
