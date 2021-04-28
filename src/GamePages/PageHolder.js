@@ -67,24 +67,24 @@ export default class PageHolder extends React.Component {
         }
         else if (this.props.currentPage === 'Game:GameList')
         {
-            CPage = (<GameListPage></GameListPage>)
+            CPage = (<GameListPage   Device={this.props.Device} NavigationButtonCallBack={this.props.NavigationButtonCallBack}></GameListPage>)
         }
 
         else if (this.props.currentPage === 'Game:GameStart')
         {
-            CPage = (<GameStartPage></GameStartPage>)
+            CPage = (<GameStartPage   Device={this.props.Device} NavigationButtonCallBack={this.props.NavigationButtonCallBack}></GameStartPage>)
         }
         else if (this.props.currentPage === 'Game:FindRandom')
         {
-            CPage = (<GameStartRandomPage></GameStartRandomPage>)
+            CPage = (<GameStartRandomPage   Device={this.props.Device} NavigationButtonCallBack={this.props.NavigationButtonCallBack}></GameStartRandomPage>)
         }
         else if (this.props.currentPage === 'Game:FindBot')
         {
-            CPage = (<GameStartBotPage></GameStartBotPage>)
+            CPage = (<GameStartBotPage   Device={this.props.Device} NavigationButtonCallBack={this.props.NavigationButtonCallBack}></GameStartBotPage>)
         }
         else if (this.props.currentPage === 'Game:FindUser')
         {
-            CPage = (<GameStartUserPage></GameStartUserPage>)
+            CPage = (<GameStartUserPage   Device={this.props.Device} NavigationButtonCallBack={this.props.NavigationButtonCallBack}></GameStartUserPage>)
         }
         else if (this.props.currentPage === 'ConditionPage')
         {

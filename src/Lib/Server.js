@@ -14,6 +14,15 @@ const URL_SignOutVerifyingUser = 'SignOutVerifyingUser';
 const URL_RemoveDevice = 'RemoveDevice';
 const URL_SetUserInfo = 'SetUserInfo';
 
+const URL_GetGameList = "GetGameList";
+const URL_GetGameInfo = "GetGameInfo";
+const URL_FindUsersByNick = "FindUsersByNick";
+const URL_CreateGame = "CreateGame";
+const URL_AcceptGame = "AcceptGame";
+const URL_RefuseGame = "RefuseGame";
+const URL_CancelGame = "CancelGame";
+const URL_DoRound = "DoRound";
+const URL_GiveUp = "GiveUp";
 
 var MySingletonObject = undefined;
 
@@ -95,6 +104,49 @@ export default class Server {
         return await this.postData( SERVER_URL +  URL_SetUserInfo, data);
     }
     
+
+
+    async GetGameList(data)
+    {
+        return await this.postData( SERVER_URL +  URL_GetGameList, data);
+    }
+    async GetGameInfo(data)
+    {
+        return await this.postData( SERVER_URL +  URL_GetGameInfo, data);
+    }
+    async FindUsersByNick(data)
+    {
+        return await this.postData( SERVER_URL +  URL_FindUsersByNick, data);
+    }
+    async CreateGame(data)
+    {
+        return await this.postData( SERVER_URL +  URL_CreateGame, data);
+    }
+
+    async AcceptGame(data)
+    {
+        return await this.postData( SERVER_URL +  URL_AcceptGame, data);
+    }
+    async RefuseGame(data)
+    {
+        return await this.postData( SERVER_URL +  URL_RefuseGame, data);
+    }
+    async CancelGame(data)
+    {
+        return await this.postData( SERVER_URL +  URL_CancelGame, data);
+    }
+
+    
+    async DoRound(data)
+    {
+        return await this.postData( SERVER_URL +  URL_DoRound, data);
+    }
+    
+    async GiveUp(data)
+    {
+        return await this.postData( SERVER_URL +  URL_GiveUp, data);
+    }
+
     static Get(){
         if (MySingletonObject) return MySingletonObject;
         return MySingletonObject = new Server();

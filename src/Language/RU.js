@@ -140,7 +140,7 @@ export function AddPackets(addPackFunction)
 		'sublabelWindow' : 'Выберите режим:',
 		'buttonRandomPlayer' : 'Случайный соперник',
 		'buttonChoosePlayer' : 'Выбрать соперника',
-		'buttonChooseBot' : 'Выбрать компьютер',
+		'buttonChooseBot' : 'Выбрать бота',
 		'tip' : 'Выберите способ запуска новой игры.'
 	});
 

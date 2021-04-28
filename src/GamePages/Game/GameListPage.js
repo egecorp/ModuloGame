@@ -1,6 +1,7 @@
 import React from 'react';
 import {LanguageContext} from '../../Language/LangPack';
 import HeadNavigation from '../../Components/HeadNavigation';
+import DEVICE_STATUS from '../../Lib/DeviceStatus'
 
 
 export default class GameListPage extends React.Component {
@@ -10,7 +11,13 @@ export default class GameListPage extends React.Component {
 				currentLogin: 'Hello', 
 				currentToken: 'Token',
 		};
+
+        this.createGame = this.createGame.bind(this);
 	}
+
+    createGame() {
+        this.props.NavigationButtonCallBack(DEVICE_STATUS.GAME_CREATING_CHOOSE);
+    }
 
 	render() {
 		
@@ -25,7 +32,7 @@ export default class GameListPage extends React.Component {
 
 						<p className="HeadNavigationTitle">{context.GetText('gamelist', 'labelWindow')}</p>
 
-						<button className="ButtonGreen">{context.GetText('gamelist', 'buttonHeaderLabel')}</button>
+						<button onClick={this.createGame} className="ButtonGreen">{context.GetText('gamelist', 'buttonHeaderLabel')}</button>
 					</HeadNavigation>
 					
 					<div className="GameList">

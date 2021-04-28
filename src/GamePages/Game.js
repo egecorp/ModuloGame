@@ -18,6 +18,7 @@ export default class Game extends React.Component {
 
       this.myDevice = props.Device;
       this.nextButtonCallBack = this.nextButtonCallBack.bind(this);
+      this.navigationButtonCallBack = this.navigationButtonCallBack.bind(this);
     }
   
     Pages = [   'Hello', 
@@ -94,36 +95,25 @@ export default class Game extends React.Component {
         }
         else if (result === DEVICE_STATUS.USERINFO_GOOD)
         {
+            let thisObject = this;
             this.setState(state => ({ 
                 currentDeviceStatus: DEVICE_STATUS.USERINFO_GOOD ,
                 currentPage: 'Game:GameList'            
             }));
+            setInterval( () => thisObject.myDevice.GetGameList.call(thisObject.myDevice, thisObject.CheckGameList, thisObject), 10000);
+
         }
+    }
+
+    CheckGameList(result)
+    {
+        console.log(result);
     }
 
     checkCreateUser(result)
     {
         console.log("checkCreateUser");
         console.log(result);
-        /*if (result === DEVICE_STATUS.AUTH_CONNTECTING)
-        {
-            this.setState(state => ({ currentDeviceStatus: DEVICE_STATUS.AUTH_CONNTECTING }));
-        }
-        else if (result === DEVICE_STATUS.AUTH_FAIL)
-        {
-            this.setState(state => ({ currentDeviceStatus: DEVICE_STATUS.AUTH_FAIL }));
-            setTimeout(  () => (this.myDevice.TryAuth(this.checkDeviceAuth, this)), 1000);
-        }
-        else if (result === DEVICE_STATUS.AUTH_FORBIDDEN)
-        {
-            this.setState(state => ({ currentDeviceStatus: DEVICE_STATUS.AUTH_FORBIDDEN }));
-        }
-        else if (result === DEVICE_STATUS.AUTH_GOOD)
-        {
-            let thisObject = this;
-            this.setState(state => ({ currentDeviceStatus: DEVICE_STATUS.AUTH_GOOD }));
-            setTimeout( () => thisObject.myDevice.GetUserInfo(thisObject.checkUserInfo, thisObject), 1000);
-        }*/
     }
 
     nextButtonCallBack(nextState, stateProperties)
@@ -194,6 +184,94 @@ export default class Game extends React.Component {
         }
     }
 
+
+    navigationButtonCallBack(nextState, stateProperties)
+    {
+        console.log("NavigationButtonCallBack");
+        console.log(nextState);
+        switch(nextState)
+        {
+            case DEVICE_STATUS.GAME_CREATING_CHOOSE:
+                this.setState(state => (
+                    { 
+                        currentDeviceStatus: DEVICE_STATUS.GAME_CREATING_CHOOSE, 
+                        currentPage: 'Game:GameStart'
+                    }));
+                break;
+            
+            case DEVICE_STATUS.GAME_CREATING_RANDOM:
+                this.setState(state => (
+                    { 
+                        currentDeviceStatus: DEVICE_STATUS.GAME_CREATING_RANDOM, 
+                        currentPage: 'Game:FindRandom'
+                    }));
+                break;
+            case DEVICE_STATUS.GAME_CREATING_RANDOM_DONE:
+                this.setState(state => (
+                    { 
+                        currentDeviceStatus: DEVICE_STATUS.GAME_CREATING_RANDOM_DONE, 
+                        currentPage: 'Game:FindRandom'
+                    }));
+                break;
+        
+            case DEVICE_STATUS.GAME_CREATING_RANDOM_FAIL:
+                this.setState(state => (
+                    { 
+                        currentDeviceStatus: DEVICE_STATUS.GAME_CREATING_RANDOM_FAIL, 
+                        currentPage: 'Game:FindRandom'
+                    }));
+                break;
+
+            case DEVICE_STATUS.GAME_CREATING_FINDUSER:
+                this.setState(state => (
+                    { 
+                        currentDeviceStatus: DEVICE_STATUS.GAME_CREATING_RANDOM_FAIL, 
+                        currentPage: 'Game:FindUser'
+                    }));                
+                    break;
+
+            case DEVICE_STATUS.GAME_CREATING_FINDUSER_RESULT:
+                this.setState(state => (
+                    { 
+                        currentDeviceStatus: DEVICE_STATUS.GAME_CREATING_FINDUSER_RESULT, 
+                        currentPage: 'Game:FindUser'
+                    }));                
+                    break;
+
+            case DEVICE_STATUS.GAME_CREATING_FINDUSER_NORESULT:
+                this.setState(state => (
+                    { 
+                        currentDeviceStatus: DEVICE_STATUS.GAME_CREATING_FINDUSER_NORESULT, 
+                        currentPage: 'GameGame:FindUser'
+                    }));               
+                    break;
+            case DEVICE_STATUS.GAME_CREATING_FINDUSER_DONE:
+                this.setState(state => (
+                    { 
+                        currentDeviceStatus: DEVICE_STATUS.GAME_CREATING_FINDUSER_DONE, 
+                        currentPage: 'Game:FindUser'
+                    }));
+                break;
+
+            case DEVICE_STATUS.GAME_CREATING_FINDUSER_FAIL:
+                this.setState(state => (
+                    { 
+                        currentDeviceStatus: DEVICE_STATUS.GAME_CREATING_FINDUSER_FAIL, 
+                        currentPage: 'Game:FindUser'
+                    }));
+                break;
+            default:
+
+                this.setState(state => (
+                    { 
+                        currentDeviceStatus: DEVICE_STATUS.GAME_SHOW_LIST, 
+                        currentPage: 'Game:GameList'
+                    }));
+                break;
+        }
+    }
+
+
     render() {
 
         return ( 
@@ -202,6 +280,7 @@ export default class Game extends React.Component {
                 currentPage={this.state.currentPage} 
                 Status={this.state.currentDeviceStatus}  
                 NextButtonCallBack={this.nextButtonCallBack} 
+                NavigationButtonCallBack={this.navigationButtonCallBack} 
                 Device={this.myDevice}>
    
             </PageHolder>

@@ -265,6 +265,32 @@ export default class Device
         
     }
 
+
+    GetGameList(callBack, context)
+    {
+        if (!this.UserId) return;
+        
+        function GoodResult(response)
+        {
+            console.log('Good CheckGameList');
+            console.log(response);
+            callBack.call(context,  DEVICE_STATUS.USERINFO_GOOD);
+        }
+        
+        function ErrorResult(e)
+        {
+            console.log('Error');
+            console.log(e);
+            callBack.call(context,  DEVICE_STATUS.USERINFO_FAIL);
+        }
+
+        var postObject = this.GetPostObject();
+    
+        Server.Get().GetGameList(postObject).then(GoodResult, ErrorResult);
+        callBack.call(context,  DEVICE_STATUS.USERINFO_GETIING);
+        
+    }
+
     uuidv4() 
     {
         return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
