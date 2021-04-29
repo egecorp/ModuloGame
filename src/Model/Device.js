@@ -291,6 +291,32 @@ export default class Device
         
     }
 
+
+    GetUserList(searchString, callBack, context)
+    {
+        if (!this.UserId) return;
+        
+        function GoodResult(response)
+        {
+            console.log('Good GetUserList');
+            console.log(response);
+            callBack.call(context, response);
+        }
+        
+        function ErrorResult(e)
+        {
+            console.log('Error');
+            console.log(e);
+            callBack.call(context, "FAIL");
+        }
+
+        var postObject = this.GetPostObject();
+        postObject.NicName = searchString;
+    
+        Server.Get().FindUsersByNick(postObject).then(GoodResult, ErrorResult);
+        
+    }
+
     uuidv4() 
     {
         return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {

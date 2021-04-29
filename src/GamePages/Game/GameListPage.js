@@ -28,8 +28,7 @@ export default class GameListPage extends React.Component {
 			( 
 				<>
 					<HeadNavigation>
-						<button className="ButtonBack"></button>
-
+                        <div></div>
 						<p className="HeadNavigationTitle">{context.GetText('gamelist', 'labelWindow')}</p>
 
 						<button onClick={this.createGame} className="ButtonGreen">{context.GetText('gamelist', 'buttonHeaderLabel')}</button>

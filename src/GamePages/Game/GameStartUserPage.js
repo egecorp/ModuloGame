@@ -2,6 +2,7 @@ import React from 'react';
 import {LanguageContext} from '../../Language/LangPack';
 import HeadNavigation from '../../Components/HeadNavigation';
 
+const MIN_LENGTH_TO_SEARCH = 3;
 
 export default class GameStartUserPage extends React.Component {
     constructor(props) {
@@ -10,8 +11,27 @@ export default class GameStartUserPage extends React.Component {
           currentLogin: 'Hello', 
           currentToken: 'Token',
       };
+      this.searchOnInput = this.searchOnInput.bind(this);
     }
-  
+    
+
+    searchOnInput(ev)
+    {
+        if ((ev.target.value || "").length < MIN_LENGTH_TO_SEARCH)
+        {
+            this.onUserListUpdate("MIN");
+        }
+        else
+        {
+            this.props.Device.GetUserList(ev.target.value, this.onUserListUpdate, this);
+        }
+    }
+
+    onUserListUpdate(data)
+    {
+        console.log(data);
+    }
+    
     render() {
         
        
@@ -29,7 +49,7 @@ export default class GameStartUserPage extends React.Component {
 					
 					<div className="FindUser">
 						<div className="Search">
-							<input type="text" className="General" name="Search" placeholder={context.GetText('finduser', 'inputPlaceholderSearch')} />
+							<input type="text" className="General" name="Search" onInput={this.searchOnInput} placeholder={context.GetText('finduser', 'inputPlaceholderSearch')} />
 							<button disabled></button>
 						</div>
 
