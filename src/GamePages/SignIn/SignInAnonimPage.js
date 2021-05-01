@@ -9,9 +9,6 @@ export default class SignInAuthPage extends React.Component {
     constructor(props, context) {
       super(props);
       this.state = {
-          currentLogin: 'Hello', 
-          currentToken: 'Token',
-
 			selectedItem: null,
 			checkedItem: null
 		};

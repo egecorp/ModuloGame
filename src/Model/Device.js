@@ -113,8 +113,6 @@ export default class Device
 
         function GoodAuth(response)
         {
-            console.log('Good auth');
-            console.log(response);
             if (response.DeviceToken && response.ServerToken)
             {
                 if (response.ServerToken !==  deviceObject.ServerToken)
@@ -148,8 +146,8 @@ export default class Device
         
         function ErrorAuth(e)
         {
-            console.log('Error');
-            console.log(e);
+            console.log('TryAuth Error');
+            console.error(e);
             callBack.call(context,  DEVICE_STATUS.AUTH_FAIL);
         }
 
@@ -178,15 +176,13 @@ export default class Device
         
         function GoodResult(response)
         {
-            console.log('Good auth');
-            console.log(response);
             callBack.call(context,  DEVICE_STATUS.USERINFO_GOOD);
         }
         
         function ErrorResult(e)
         {
-            console.log('Error');
-            console.log(e);
+            console.log('GetUserInfo Error');
+            console.error(e);
             callBack.call(context,  DEVICE_STATUS.USERINFO_FAIL);
         }
 
@@ -203,15 +199,13 @@ export default class Device
         
         function GoodResult(response)
         {
-            console.log('Good CreateAnonim');
-            console.log(response);
             callBack.call(context,  DEVICE_STATUS.USERINFO_SHOW_CREATEANONIM_DONE);
         }
         
         function ErrorResult(e)
         {
-            console.log('Error');
-            console.log(e);
+            console.log('CreateAnonim Error');
+            console.error(e);
             callBack.call(context,  DEVICE_STATUS.USERINFO_SHOW_CREATEANONIM_FAIL);
         }
 
@@ -224,9 +218,6 @@ export default class Device
     {
         function GoodResult(response)
         {
-            console.log('Good CreateUser');
-            console.log(response);
-
             if (!response)
             {
                 this.CurrentError = this._SERVER_ERROR.SERVER_ERROR;
@@ -252,7 +243,7 @@ export default class Device
         
         function ErrorResult(e)
         {
-            console.log(e);
+            console.error(e);
             this.CurrentError = this._SERVER_ERROR.SERVER_ERROR;
             callBack.call(context,  DEVICE_STATUS.USERINFO_SHOW_CREATE_FAIL);
         }
@@ -272,15 +263,13 @@ export default class Device
         
         function GoodResult(response)
         {
-            console.log('Good CheckGameList');
-            console.log(response);
             callBack.call(context,  DEVICE_STATUS.USERINFO_GOOD);
         }
         
         function ErrorResult(e)
         {
-            console.log('Error');
-            console.log(e);
+            console.log('GetGameList Error');
+            console.error(e);
             callBack.call(context,  DEVICE_STATUS.USERINFO_FAIL);
         }
 
@@ -298,15 +287,13 @@ export default class Device
         
         function GoodResult(response)
         {
-            console.log('Good GetUserList');
-            console.log(response);
             callBack.call(context, response);
         }
         
         function ErrorResult(e)
         {
-            console.log('Error');
-            console.log(e);
+            console.log('GetUserList Error');
+            console.error(e);
             callBack.call(context, "FAIL");
         }
 

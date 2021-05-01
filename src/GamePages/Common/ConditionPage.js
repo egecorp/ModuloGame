@@ -7,13 +7,7 @@ import HeadNavigation from '../../Components/HeadNavigation';
 export default class ConditionPage extends React.Component {
 	constructor(props, context) {
 	super(props);
-	this.state = {
-			currentLogin: 'Hello', 
-			currentToken: 'Token',
-
-			selectedItem: null,
-			checkedItem: null
-	};
+	this.state = {};
 
 	//this.changeItemState = this.changeItemState.bind(this);
 

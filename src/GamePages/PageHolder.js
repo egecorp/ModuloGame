@@ -25,8 +25,6 @@ export default class PageHolder extends React.Component {
     }
 
     render() {
-        console.log("this.props.Device");
-        console.log(this.props.Device);
         let CPage;
 
         if (this.props.currentPage === 'Hello')

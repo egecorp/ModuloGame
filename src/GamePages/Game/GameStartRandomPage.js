@@ -6,10 +6,7 @@ import {LanguageContext} from '../../Language/LangPack';
 export default class GameStartRandomPage extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-				currentLogin: 'Hello', 
-				currentToken: 'Token',
-		};
+		this.state = {};
 	}
 
 	render() {

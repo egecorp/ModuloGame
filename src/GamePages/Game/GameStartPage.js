@@ -7,10 +7,7 @@ import DEVICE_STATUS from '../../Lib/DeviceStatus'
 export default class GameStartPage extends React.Component {
 	constructor(props) {
         super(props);
-        this.state = {
-                currentLogin: 'Hello', 
-                currentToken: 'Token',
-	    };
+        this.state = {};
 
         this.selectBack = this.selectBack.bind(this);
         this.selectRandom = this.selectRandom.bind(this);
@@ -47,7 +44,7 @@ export default class GameStartPage extends React.Component {
 					</HeadNavigation>
 					
 					<div className="GameStart">
-						<p class="GeneralSubtitle">{context.GetText('gamestart', 'sublabelWindow')}</p>
+						<p className="GeneralSubtitle">{context.GetText('gamestart', 'sublabelWindow')}</p>
 					
 						<div className="Buttons">
 							<button className="ButtonGreenBorder" onClick={this.selectRandom}>{context.GetText('gamestart', 'buttonRandomPlayer')}</button>
@@ -55,7 +52,7 @@ export default class GameStartPage extends React.Component {
 							<button className="ButtonGreenBorder"  onClick={this.selectBot}>{context.GetText('gamestart', 'buttonChooseBot')}</button>
 						</div>
 
-						<div class="UserTip">
+						<div className="UserTip">
 							<p>{context.GetText('gamestart', 'tip')}</p>
 						</div>
 					</div>

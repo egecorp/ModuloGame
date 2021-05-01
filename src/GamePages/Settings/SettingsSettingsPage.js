@@ -6,13 +6,7 @@ import {LanguageContext} from '../../Language/LangPack'
 export default class SettingsSettingsPage extends React.Component {
     constructor(props, context) {
       super(props);
-      this.state = {
-          currentLogin: 'Hello', 
-          currentToken: 'Token',
-
-          selectedItem: null,
-          checkedItem: null
-      };
+      this.state = {};
 
       //this.changeItemState = this.changeItemState.bind(this);
 

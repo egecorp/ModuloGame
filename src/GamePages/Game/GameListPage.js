@@ -7,11 +7,7 @@ import DEVICE_STATUS from '../../Lib/DeviceStatus'
 export default class GameListPage extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-				currentLogin: 'Hello', 
-				currentToken: 'Token',
-		};
-
+		this.state = {};
         this.createGame = this.createGame.bind(this);
 	}
 

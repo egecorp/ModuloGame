@@ -11,9 +11,6 @@ export default class SignInPage extends React.Component {
     constructor(props, context) {
       super(props);
       this.state = {
-          currentLogin: 'Hello', 
-          currentToken: 'Token',
-
           selectedItem: null,
           checkedItem: null,
           tipText: context.GetText('signin', 'typeDefaultTipText')

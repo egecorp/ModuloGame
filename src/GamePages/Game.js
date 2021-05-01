@@ -54,7 +54,7 @@ export default class Game extends React.Component {
     
     checkDeviceAuth(result)
     {
-        console.log(result);
+        //console.log(result);
         if (result === DEVICE_STATUS.AUTH_CONNTECTING)
         {
             this.setState(state => ({ currentDeviceStatus: DEVICE_STATUS.AUTH_CONNTECTING }));
@@ -79,7 +79,7 @@ export default class Game extends React.Component {
 
     checkUserInfo(result)
     {
-        console.log(result);
+        //console.log(result);
         if (result === DEVICE_STATUS.USERINFO_GETIING)
         {
             this.setState(state => ({ currentDeviceStatus: DEVICE_STATUS.USERINFO_GETIING }));
@@ -107,7 +107,7 @@ export default class Game extends React.Component {
 
     CheckGameList(result)
     {
-        console.log(result);
+
     }
 
     checkCreateUser(result)
@@ -118,8 +118,8 @@ export default class Game extends React.Component {
 
     nextButtonCallBack(nextState, stateProperties)
     {
-        console.log("nextButton");
-        console.log(nextState);
+        //console.log("nextButton");
+        //console.log(nextState);
         switch(nextState)
         {
             case DEVICE_STATUS.USERINFO_NOUSER:
@@ -187,8 +187,8 @@ export default class Game extends React.Component {
 
     navigationButtonCallBack(nextState, stateProperties)
     {
-        console.log("NavigationButtonCallBack");
-        console.log(nextState);
+        //console.log("NavigationButtonCallBack");
+        //console.log(nextState);
         switch(nextState)
         {
             case DEVICE_STATUS.GAME_CREATING_CHOOSE:
