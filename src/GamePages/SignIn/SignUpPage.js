@@ -45,8 +45,6 @@ nextButtonOnClick()
     //postObject.Birthday = this.inputDob.current.value;
     postObject.DeviceWorkToken = this.props.Device.DeviceWorkToken;
 
-    console.log("postObject : ");
-    console.log(postObject);
     //this.nextButtonCallBack(DEVICE_STATUS.USERINFO_SHOW_CREATE_CREATING);
     this.myDevice.CreateUser.call(this.myDevice, this.checkCreateUser, this, postObject);
 }
@@ -56,12 +54,11 @@ checkCreateUser(newStatus)
 
     if (newStatus === DEVICE_STATUS.USERINFO_SHOW_CREATE_DONE)
     {
-        console.log('ALL GOOD, SOON DO SMTH...');
         this.nextButtonCallBack(DEVICE_STATUS.USERINFO_SHOW_CREATE_DONE);
     }
     else if (newStatus === DEVICE_STATUS.USERINFO_SHOW_CREATE_FAIL)
     {
-        console.log('Create user error');
+        console.log('Creating user error');
         if (!this.myDevice.CurrentError) this.myDevice.CurrentError = 'Что-то пошло не так, попробуйте снова';
         console.log(this.myDevice.CurrentError);
         this.nextButtonCallBack(DEVICE_STATUS.USERINFO_SHOW_CREATE_FAIL);

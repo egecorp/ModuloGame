@@ -49,8 +49,18 @@ export default class GameStartUserPage extends React.Component {
     
     onUserClick(ev)
     {
-        console.log("Create game with user id = ");
-        console.log(ev.target.dataset.userid);
+        var postData = {};
+        postData.CompetitorUserId = +ev.target.dataset.userid;
+        postData.DeviceWorkToken = this.props.Device.DeviceWorkToken;
+        postData.IsRandomCompetitor = false; 
+        this.props.Device.CreateGame(this.onCreateGame, this, postData);
+    }
+
+    onCreateGame(newStatus, result)
+    {
+        console.log("onCreateGame");
+        console.log(newStatus);
+        console.log(result);
     }
 
     render() {

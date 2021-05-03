@@ -199,6 +199,15 @@ export default class Device
         
         function GoodResult(response)
         {
+
+            this.CurrentError = null;
+            if (response.Id)
+            {
+                console.info("Device has got UserId = " + response.Id);
+                this.UserId = response.Id;
+                this.myUser = {};
+                this.NeedRegisterDevice = false;
+            }
             callBack.call(context,  DEVICE_STATUS.USERINFO_SHOW_CREATEANONIM_DONE);
         }
         
@@ -210,7 +219,11 @@ export default class Device
         }
 
         var postObject = this.GetUserPostObject();
-        Server.Get().CreateAnonimUser(postObject).then(GoodResult, ErrorResult);
+
+        
+        var _GoodResult = GoodResult.bind(this);
+        var _ErrorResult = ErrorResult.bind(this);
+        Server.Get().CreateAnonimUser(postObject).then(_GoodResult, _ErrorResult);
         
     }
 
@@ -238,6 +251,13 @@ export default class Device
                 return;
             }
             this.CurrentError = null;
+            if (response.Id)
+            {
+                console.info("Device has got UserId = " + response.Id);
+                this.UserId = response.Id;
+                this.myUser = {};
+                this.NeedRegisterDevice = false;
+            }
             callBack.call(context,  DEVICE_STATUS.USERINFO_SHOW_CREATE_DONE);
         }
         
@@ -303,6 +323,55 @@ export default class Device
         Server.Get().FindUsersByNick(postObject).then(GoodResult, ErrorResult);
         
     }
+
+
+
+    CreateGame(callBack, context, postObject)
+    {
+        function GoodResult(response)
+        {
+            if (!response)
+            {
+                this.CurrentError = this._SERVER_ERROR.SERVER_ERROR;
+                callBack.call(context,  DEVICE_STATUS.GAME_CREATING_PROCESS_FAIL); // CHangre status
+                return;
+            }
+            else if (response.Error)
+            {
+                if (response.IsWorkflowError === true)
+                {
+                    this.CurrentError = this._GetErrorOrDefault(response.Error);
+                }
+                else
+                {
+                    this.CurrentError = this._SERVER_ERROR.SERVER_ERROR;
+                }
+                callBack.call(context,  DEVICE_STATUS.GAME_CREATING_PROCESS_FAIL);
+                return;
+            }
+            this.CurrentError = null;
+            if (response.Id)
+            {
+                console.info("Device has created, GameId = " + response.Id);
+            }
+            callBack.call(context,  DEVICE_STATUS.GAME_CREATING_PROCESS_DONE, response);
+        }
+        
+        function ErrorResult(e)
+        {
+            console.error(e);
+            this.CurrentError = this._SERVER_ERROR.SERVER_ERROR;
+            callBack.call(context,  DEVICE_STATUS.GAME_CREATING_PROCESS_FAIL);
+        }
+
+        this.CurrentError = null;
+
+        var _GoodResult = GoodResult.bind(this);
+        var _ErrorResult = ErrorResult.bind(this);
+        this.myServer.Get.call(this.myServer).CreateGame(postObject).then(_GoodResult, _ErrorResult);
+        
+    }
+
 
     uuidv4() 
     {

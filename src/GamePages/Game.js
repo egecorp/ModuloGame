@@ -114,6 +114,7 @@ export default class Game extends React.Component {
     {
         console.log("checkCreateUser");
         console.log(result);
+        this.nextButtonCallBack(result);
     }
 
     nextButtonCallBack(nextState, stateProperties)
@@ -161,8 +162,10 @@ export default class Game extends React.Component {
                 this.myDevice.CreateUser(this.checkCreateUser, this);
                 break;
 
+            case DEVICE_STATUS.USERINFO_SHOW_CREATEANONIM_DONE:
             case DEVICE_STATUS.USERINFO_SHOW_CREATE_DONE:
-                console.log('WTF 175?')
+                console.log("User has been created. Try reauth...");
+                this.myDevice.TryAuth(this.checkDeviceAuth, this);
                 break;
             case DEVICE_STATUS.USERINFO_SHOW_CREATE_FAIL:
                 this.setState(state => (
