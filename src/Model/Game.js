@@ -1,39 +1,48 @@
-
-var OneModuloGame = function()
+export default class OneModuloGame
 {
-            
-        /// Идентификатор
-        this.Id = 0;
 
-        /// Время начала игры
-        this.StartStamp = null;
+        constructor(data)
+        {
+                this.Id = data.Id ;
+                this.StartStamp = data.StartStamp ;
+                this.MinutesPerRound = data.MinutesPerRound ;
+                this.User1Id = data.User1Id ;
+                this.User2Id = data.User2Id ;
+                this.IsStart = data.IsStart ;
+                this.IsFinish = data.IsFinish ;
+                this.IsTimeout = data.IsTimeout ;
+                this.IsCancel = data.IsCancel ;
+                this.Rounds = [];
+                if (data.Round)
+                {
+                        for(var i in data.Rounds)
+                        {
+                                
+                        }
+                }
+        }
 
-        /// Количество минут на один раунд
-        this.MinutesPerRound = null;
+        Id = 0;
 
-        /// Первый игрок
-        this.User1Id = null;
+        StartStamp = null;
 
-        /// Второй игрок
-        this.User2Id = null;
+        MinutesPerRound = null;
 
-        /// Игра началась
-        this.IsStart = false;
+        User1Id = null;
 
-        /// Игра завершилась
-        this.IsFinish = false;
+        User2Id = null;
 
-        /// Был таймаут
-        this.IsTimeout = false;
+        IsStart = false;
 
-        /// Игра была отменена 
-        this.IsCancel = false;
+        IsFinish = false;
 
-        /// Ходы первого игрока
-        this.User1Rounds = [];
+        IsTimeout = false;
 
-        /// Ход второго игрока
-        this.User2Rounds = [];
+        IsCancel = false;
 
+        
+        Rounds = [];
+
+        
         
 }

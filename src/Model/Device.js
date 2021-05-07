@@ -3,6 +3,7 @@ import LocalData from '../Model/LocalData.js'
 import DEVICE_STATUS from '../Lib/DeviceStatus'
 import SERVER_ERROR from '../Lib/ServerError'
 import { GetErrorOrDefault } from '../Lib/ServerError'
+import User from './User'
 
 
 const MIN_DEVICE_TOKEN_LENGHT = 10;
@@ -176,7 +177,19 @@ export default class Device
         
         function GoodResult(response)
         {
-            callBack.call(context,  DEVICE_STATUS.USERINFO_GOOD);
+            if (response.Error)
+            {
+                console.warn(response.Error);
+                callBack.call(context,  DEVICE_STATUS.USERINFO_FAIL);
+
+            }
+            else
+            {
+                console.log(response);
+                this.myUser = new User(response, this.DeviceWorkToken);
+                
+                callBack.call(context,  DEVICE_STATUS.USERINFO_GOOD);
+            }
         }
         
         function ErrorResult(e)
@@ -188,7 +201,10 @@ export default class Device
 
         var postObject = this.GetPostObject();
     
-        Server.Get().GetUserInfo(postObject).then(GoodResult, ErrorResult);
+        var _GoodResult = GoodResult.bind(this);
+        var _ErrorResult = ErrorResult.bind(this);
+
+        Server.Get().GetUserInfo(postObject).then(_GoodResult, _ErrorResult);
         callBack.call(context,  DEVICE_STATUS.USERINFO_GETIING);
         
     }
@@ -281,12 +297,20 @@ export default class Device
     {
         if (!this.UserId) return;
         
-        function GoodResult(response)
+        var GoodResult = function(response)
         {
+            if (!this.myUser)
+            {
+                this.myUser = new User(response, this.DeviceWorkToken);
+            }
+            else
+            {
+                this.myUser.UpdateData(response, this.DeviceWorkToken);
+            }
             callBack.call(context,  DEVICE_STATUS.USERINFO_GOOD);
         }
         
-        function ErrorResult(e)
+        var ErrorResult = function(e)
         {
             console.log('GetGameList Error');
             console.error(e);
@@ -294,8 +318,9 @@ export default class Device
         }
 
         var postObject = this.GetPostObject();
-    
-        Server.Get().GetGameList(postObject).then(GoodResult, ErrorResult);
+        var _GoodResult = GoodResult.bind(this);
+        var _ErrorResult = ErrorResult.bind(this);
+        Server.Get().GetGameList(postObject).then(_GoodResult, _ErrorResult);
         callBack.call(context,  DEVICE_STATUS.USERINFO_GETIING);
         
     }

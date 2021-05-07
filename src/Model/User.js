@@ -1,6 +1,7 @@
 import Server from '../Lib/Server'
 import LocalData from './LocalData.js'
 import DEVICE_STATUS from '../Lib/DeviceStatus'
+import Game from '../Model/Game';
 
 const MIN_DEVICE_TOKEN_LENGHT = 10;
 
@@ -40,8 +41,16 @@ export default class User
     // Рабочий токен для отправки запросов на сервер
     DeviceWorkToken = undefined;
     
+    ActiveGames = [];
+
+    RecentGames = [];
 
     constructor(serverJsonData, DeviceWorkToken)
+    {
+        this.UpdateData(serverJsonData, DeviceWorkToken);
+    }
+
+    UpdateData(serverJsonData, DeviceWorkToken)
     {
         if (serverJsonData)
         {
@@ -58,9 +67,31 @@ export default class User
             if (serverJsonData.DynamicUserInfo)
             {
                 this.DynamicUserInfo = serverJsonData.DynamicUserInfo;
+                this.ActiveGames = [];
+                if (Array.isArray(serverJsonData.DynamicUserInfo.ActiveGameList))
+                {
+                    for(let i in serverJsonData.DynamicUserInfo.ActiveGameList)
+                    {
+                        let g = serverJsonData.DynamicUserInfo.ActiveGameList[i];
+                        if (!g.Id) continue;
+                        this.ActiveGames.push(new Game(g));
+                    }
+                }
+
+                this.RecentGames = [];
+                if (Array.isArray(serverJsonData.DynamicUserInfo.RecentGameList))
+                {
+                    for(let i in serverJsonData.DynamicUserInfo.RecentGameList)
+                    {
+                        let g = serverJsonData.DynamicUserInfo.RecentGameList[i];
+                        if (!g.Id) continue;
+                        this.RecentGames.push(new Game(g));
+                    }
+                }
             }
         }
         this.DeviceWorkToken = DeviceWorkToken;        
+
     }
 
     GetPostObject()
@@ -76,6 +107,7 @@ export default class User
     }
 
 
+ // TODO проверить на использование
     GetInfo(callBack, context)
     {
         
@@ -129,6 +161,7 @@ export default class User
     }
 
 
+ // TODO проверить на использование
     GetUserInfo(callBack, context)
     {
         if (!this.UserId)
@@ -158,7 +191,7 @@ export default class User
         
     }
 
-
+ // TODO проверить на использование
     CreateAnonim(callBack, context)
     {
         
