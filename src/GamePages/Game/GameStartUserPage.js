@@ -2,6 +2,7 @@ import React from 'react';
 import {LanguageContext} from '../../Language/LangPack';
 import HeadNavigation from '../../Components/HeadNavigation';
 import OneUser from '../../Components/OneUser';
+import DEVICE_STATUS from '../../Lib/DeviceStatus';
 
 const MIN_LENGTH_TO_SEARCH = 2;
 
@@ -9,13 +10,19 @@ export default class GameStartUserPage extends React.Component {
     constructor(props) {
       super(props);
       this.state = { 
-          searchList:[  {Name:"Vinni", Id:2400}, {Name:"Чёкаво?", Id:2440}, {Name:"Anonim477", Id:477} ],
-          recentList:[  {Name:"Pooh", Id:3111}, {Name:"Nagibator4441", Id:3600}, {Name:"Anonist", Id:100} ]
+          searchList:[],
+          recentList:[]
       };
       this.searchOnInput = this.searchOnInput.bind(this);
       this.onUserClick = this.onUserClick.bind(this);
+
+      this.cancelButtonOnClick = this.cancelButtonOnClick.bind(this);
     }
     
+    cancelButtonOnClick()
+    {
+        this.props.NavigationButtonCallBack(DEVICE_STATUS.GAME_SHOW_LIST);
+    }
 
     searchOnInput(ev)
     {
@@ -80,7 +87,7 @@ export default class GameStartUserPage extends React.Component {
 			( 
 				<>
 					<HeadNavigation>
-						<button className="ButtonBack"></button>
+						<button className="ButtonBack" onClick={this.cancelButtonOnClick}></button>
 
 						<p className="HeadNavigationTitle">{context.GetText('finduser', 'labelWindow')}</p>
 					</HeadNavigation>

@@ -1,7 +1,9 @@
+import { RevertStatus as RevertStatus } from '../Lib/GameStatus'
+
 export default class OneModuloGame
 {
 
-        constructor(data)
+        constructor(data, currentUserId)
         {
                 this.Id = data.Id ;
                 this.StartStamp = data.StartStamp ;
@@ -12,15 +14,34 @@ export default class OneModuloGame
                 this.IsFinish = data.IsFinish ;
                 this.IsTimeout = data.IsTimeout ;
                 this.IsCancel = data.IsCancel ;
+                this.IsGiveUp = data.IsGiveUp;
+                this.IsDeclined = data.IsDeclined;
+
+                this.GameStatus = data.GameStatus;
+
+                this.User1Name = data.User1Name;
+                this.User2Name = data.User2Name;
+        
+                this.User1Character = data.User1Character;        
+                this.User2Character = data.User2Character;
+
+                if (this.User2Id == currentUserId)
+                {
+                    this.GameStatus = RevertStatus(this.GameStatus);
+                }
+
                 this.Rounds = [];
                 if (data.Round)
                 {
-                        for(var i in data.Rounds)
-                        {
-                                
-                        }
+                    for(var i in data.Rounds)
+                    {
+                        var r = data.Rounds[i];
+                        if (r.GameId) this.Rounds.push(r);
+                    }
                 }
         }
+
+        
 
         Id = 0;
 
@@ -40,7 +61,20 @@ export default class OneModuloGame
 
         IsCancel = false;
 
-        
+        IsGiveUp = false;
+
+        IsDeclined = false;
+
+        User1Name = "User1";
+
+        User2Name = "User2";
+
+        User1Character = null;
+
+        User2Character = null;
+
+        GameStatus = 0;
+
         Rounds = [];
 
         

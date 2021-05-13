@@ -1,4 +1,5 @@
-//import React from 'react'
+import GAME_STATUS from '../Lib/GameStatus';
+import GameStatus  from '../Lib/GameStatus'
 export function AddPackets(addPackFunction)
 {
 	var pack = addPackFunction('ru');
@@ -158,6 +159,145 @@ export function AddPackets(addPackFunction)
 		'text' : 'Мы ищем случайного соперника для вашей игры. Будьте готовы!'
 	});
 
+
+    let dict = [];
+    dict["" + GAME_STATUS.GAME_CREATING] =  'Новая игра';
+    dict["" + GAME_STATUS.GAME_WAIT_USER1] =  'Новая игра';
+    dict["" + GAME_STATUS.GAME_WAIT_USER2] =  'Новая игра';
+    dict["" + GAME_STATUS.GAME_ACCEPT] =  'Новая игра';
+    dict["" + GAME_STATUS.GAME_DECLINE_USER1] =  'Новая игра';
+    dict["" + GAME_STATUS.GAME_DECLINE_USER2] =  'Новая игра';
+    dict["" + GAME_STATUS.GAME_CANCEL] =  'Новая игра';
+    dict["" + GAME_STATUS.GAME_TIMEOUT] =  'Новая игра';
+    dict["" + GAME_STATUS.GAME_RANDOM_CREATING] =  'Новая игра';
+    dict["" + GAME_STATUS.GAME_RANDOM_FOUND] =  'Новая игра';
+    dict["" + GAME_STATUS.GAME_RANDOM_CANCEL] =  'Новая игра';
+    dict["" + GAME_STATUS.GAME_RANDOM_TIMEOUT] =  'Новая игра';
+    
+    // 1 ROUND
+    dict["" + GAME_STATUS.GAME_ROUND_1_NOUSER] =  'Раунд 1';
+    dict["" + GAME_STATUS.GAME_ROUND_1_USER1_DONE] =  'Раунд 1';
+    dict["" + GAME_STATUS.GAME_ROUND_1_USER2_DONE] =  'Раунд 1';
+    dict["" + GAME_STATUS.GAME_ROUND_1_USER1_GIVEUP] = 'Раунд 1';
+    dict["" + GAME_STATUS.GAME_ROUND_1_USER2_GIVEUP] = 'Раунд 1';
+    dict["" + GAME_STATUS.GAME_ROUND_1_TIMEOUT] =  'Раунд 1';
+    
+    // 2 ROUND
+    dict["" + GAME_STATUS.GAME_ROUND_2_NOUSER] =  'Раунд 2.';
+    dict["" + GAME_STATUS.GAME_ROUND_2_USER1_DONE] =  'Раунд 2.';
+    dict["" + GAME_STATUS.GAME_ROUND_2_USER2_DONE] =  'Раунд 2.';
+    dict["" + GAME_STATUS.GAME_ROUND_2_USER1_GIVEUP] = 'Раунд 2.';
+    dict["" + GAME_STATUS.GAME_ROUND_2_USER2_GIVEUP] = 'Раунд 2.';
+    dict["" + GAME_STATUS.GAME_ROUND_2_TIMEOUT] =  'Раунд 2.';
+    
+    // 3 ROUND
+    dict["" + GAME_STATUS.GAME_ROUND_3_NOUSER] =  'Раунд 3.';
+    dict["" + GAME_STATUS.GAME_ROUND_3_USER1_DONE] =  'Раунд 3.';
+    dict["" + GAME_STATUS.GAME_ROUND_3_USER2_DONE] =  'Раунд 3.';
+    dict["" + GAME_STATUS.GAME_ROUND_3_USER1_GIVEUP] = 'Раунд 3.';
+    dict["" + GAME_STATUS.GAME_ROUND_3_USER2_GIVEUP] = 'Раунд 3.';
+    dict["" + GAME_STATUS.GAME_ROUND_3_TIMEOUT] =  'Раунд 3.';
+
+    // 4 ROUND
+    dict["" + GAME_STATUS.GAME_ROUND_4_NOUSER] = 'Раунд 4.';
+    dict["" + GAME_STATUS.GAME_ROUND_4_USER1_DONE] =  'Раунд 4.';
+    dict["" + GAME_STATUS.GAME_ROUND_4_USER2_DONE] =  'Раунд 4.';
+    dict["" + GAME_STATUS.GAME_ROUND_4_USER1_GIVEUP] = 'Раунд 4.';
+    dict["" + GAME_STATUS.GAME_ROUND_4_USER2_GIVEUP] = 'Раунд 4.';
+    dict["" + GAME_STATUS.GAME_ROUND_4_TIMEOUT] =  'Раунд 4.';
+    
+    // 5 ROUND
+    dict["" + GAME_STATUS.GAME_ROUND_5_NOUSER] =  'Раунд 5.';
+    dict["" + GAME_STATUS.GAME_ROUND_5_USER1_DONE] = 'Раунд 5.';
+    dict["" + GAME_STATUS.GAME_ROUND_5_USER2_DONE] = 'Раунд 5.';
+    dict["" + GAME_STATUS.GAME_ROUND_5_USER1_GIVEUP] = 'Раунд 5.';
+    dict["" + GAME_STATUS.GAME_ROUND_5_USER2_GIVEUP] = 'Раунд 5.';
+    dict["" + GAME_STATUS.GAME_ROUND_5_TIMEOUT] =  'Раунд 5.';
+    
+    // 6 ROUND
+    dict["" + GAME_STATUS.GAME_ROUND_6_NOUSER] =  'Раунд 6.';
+    dict["" + GAME_STATUS.GAME_ROUND_6_USER1_DONE] = 'Раунд 6.';
+    dict["" + GAME_STATUS.GAME_ROUND_6_USER2_DONE] = 'Раунд 6.';
+    dict["" + GAME_STATUS.GAME_ROUND_6_USER1_GIVEUP] = 'Раунд 6.';
+    dict["" + GAME_STATUS.GAME_ROUND_6_USER2_GIVEUP] = 'Раунд 6.';
+    dict["" + GAME_STATUS.GAME_ROUND_6_TIMEOUT] =  'Раунд 6.';
+
+    // FINISH
+    dict["" + GAME_STATUS.GAME_FINISH_USER1_WIN] =  'Игра завершена';
+    dict["" + GAME_STATUS.GAME_FINISH_USER2_WIN] =  'Игра завершена';
+    dict["" + GAME_STATUS.GAME_FINISH_USER2_DRAW] =  'Игра завершена';
+
+	pack.AddDictionary('gamestatus.round', dict);
+
+
+    dict = [];
+    dict["" + GAME_STATUS.GAME_CREATING] =  'Идёт создание...';
+    dict["" + GAME_STATUS.GAME_WAIT_USER1] =  'Приглашение поиграть';
+    dict["" + GAME_STATUS.GAME_WAIT_USER2] =  'Ожидание соперника';
+    dict["" + GAME_STATUS.GAME_ACCEPT] =  'Игра начинается...';
+    dict["" + GAME_STATUS.GAME_DECLINE_USER1] =  'Вы отказались играть';
+    dict["" + GAME_STATUS.GAME_DECLINE_USER2] =  'Соперник отказался';
+    dict["" + GAME_STATUS.GAME_CANCEL] =  'Игра отменена';
+    dict["" + GAME_STATUS.GAME_TIMEOUT] =  'Истекло время ожидания';
+    dict["" + GAME_STATUS.GAME_RANDOM_CREATING] =  'Идёт поиск соперника...';
+    dict["" + GAME_STATUS.GAME_RANDOM_FOUND] =  'Игра начинается...';
+    dict["" + GAME_STATUS.GAME_RANDOM_CANCEL] =  'Игра отменена';
+    dict["" + GAME_STATUS.GAME_RANDOM_TIMEOUT] =  'Истекло время поиска';
+    
+    // 1 ROUND
+    dict["" + GAME_STATUS.GAME_ROUND_1_NOUSER] =  'Ваш ход';
+    dict["" + GAME_STATUS.GAME_ROUND_1_USER1_DONE] =  'Ожидание соперника...';
+    dict["" + GAME_STATUS.GAME_ROUND_1_USER2_DONE] =  'Ваш ход';
+    dict["" + GAME_STATUS.GAME_ROUND_1_USER1_GIVEUP] = 'Вы сдались';
+    dict["" + GAME_STATUS.GAME_ROUND_1_USER2_GIVEUP] = 'Соперник сдался';
+    dict["" + GAME_STATUS.GAME_ROUND_1_TIMEOUT] =  'Время истекло';
+    
+    // 2 ROUND
+    dict["" + GAME_STATUS.GAME_ROUND_2_NOUSER] =  'Ваш ход';
+    dict["" + GAME_STATUS.GAME_ROUND_2_USER1_DONE] =  'Ожидание соперника...';
+    dict["" + GAME_STATUS.GAME_ROUND_2_USER2_DONE] =  'Ваш ход';
+    dict["" + GAME_STATUS.GAME_ROUND_2_USER1_GIVEUP] = 'Вы сдались';
+    dict["" + GAME_STATUS.GAME_ROUND_2_USER2_GIVEUP] = 'Соперник сдался';
+    dict["" + GAME_STATUS.GAME_ROUND_2_TIMEOUT] =  'Время истекло';
+    
+    // 3 ROUND
+    dict["" + GAME_STATUS.GAME_ROUND_3_NOUSER] =  'Ваш ход';
+    dict["" + GAME_STATUS.GAME_ROUND_3_USER1_DONE] =  'Ожидание соперника...';
+    dict["" + GAME_STATUS.GAME_ROUND_3_USER2_DONE] =  'Ваш ход';
+    dict["" + GAME_STATUS.GAME_ROUND_3_USER1_GIVEUP] = 'Вы сдались';
+    dict["" + GAME_STATUS.GAME_ROUND_3_USER2_GIVEUP] = 'Соперник сдался';
+    dict["" + GAME_STATUS.GAME_ROUND_3_TIMEOUT] =  'Время истекло';
+
+    // 4 ROUND
+    dict["" + GAME_STATUS.GAME_ROUND_4_NOUSER] = 'Ваш ход';
+    dict["" + GAME_STATUS.GAME_ROUND_4_USER1_DONE] =  'Ожидание соперника...';
+    dict["" + GAME_STATUS.GAME_ROUND_4_USER2_DONE] =  'Ваш ход';
+    dict["" + GAME_STATUS.GAME_ROUND_4_USER1_GIVEUP] = 'Вы сдались';
+    dict["" + GAME_STATUS.GAME_ROUND_4_USER2_GIVEUP] = 'Соперник сдался';
+    dict["" + GAME_STATUS.GAME_ROUND_4_TIMEOUT] =  'Время истекло';
+    
+    // 5 ROUND
+    dict["" + GAME_STATUS.GAME_ROUND_5_NOUSER] =  'Ваш ход';
+    dict["" + GAME_STATUS.GAME_ROUND_5_USER1_DONE] = 'Ожидание соперника...';
+    dict["" + GAME_STATUS.GAME_ROUND_5_USER2_DONE] = 'Ваш ход';
+    dict["" + GAME_STATUS.GAME_ROUND_5_USER1_GIVEUP] = 'Вы сдались';
+    dict["" + GAME_STATUS.GAME_ROUND_5_USER2_GIVEUP] = 'Соперник сдался';
+    dict["" + GAME_STATUS.GAME_ROUND_5_TIMEOUT] =  'Время истекло';
+    
+    // 6 ROUND
+    dict["" + GAME_STATUS.GAME_ROUND_6_NOUSER] =  'Ваш ход';
+    dict["" + GAME_STATUS.GAME_ROUND_6_USER1_DONE] = 'Ожидание соперника...';
+    dict["" + GAME_STATUS.GAME_ROUND_6_USER2_DONE] = 'Ваш ход';
+    dict["" + GAME_STATUS.GAME_ROUND_6_USER1_GIVEUP] = 'Вы сдались';
+    dict["" + GAME_STATUS.GAME_ROUND_6_USER2_GIVEUP] = 'Соперник сдался';
+    dict["" + GAME_STATUS.GAME_ROUND_6_TIMEOUT] =  'Время истекло';
+
+    // FINISH
+    dict["" + GAME_STATUS.GAME_FINISH_USER1_WIN] =  'Победа';
+    dict["" + GAME_STATUS.GAME_FINISH_USER2_WIN] =  'Поражение';
+    dict["" + GAME_STATUS.GAME_FINISH_USER2_DRAW] =  'Ничья';
+
+	pack.AddDictionary('gamestatus.action', dict);
 
 	pack.AddDictionary('country',
 	{

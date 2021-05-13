@@ -30,7 +30,7 @@ export default class ConditionPage extends React.Component {
 						</HeadNavigation>
 						
 						<div className="ConditionPage">
-							<p class="GeneralSubtitle">{context.GetText('condition', 'sublabelWindow')}</p>
+							<p classNamw="GeneralSubtitle">{context.GetText('condition', 'sublabelWindow')}</p>
 								
 							<div className="Content" data-shadow="both">
 								<p>{context.GetText('condition', 'license')}</p>

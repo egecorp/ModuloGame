@@ -88,7 +88,7 @@ export class Pack
     {
         let selectedMap = this.Dictionaries.get(dictName);
         if (!selectedMap) return undefined;
-        let stringValue = selectedMap.get(stringName);
+        let stringValue = selectedMap.get("" + stringName);
         return stringValue;
     }
 

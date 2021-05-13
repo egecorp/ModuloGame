@@ -1,9 +1,13 @@
 import React from 'react'
+import {LanguageContext} from '../Language/LangPack'
 
 
 export default class OneGame extends React.Component {
 
-    
+    User1Name = "User1";
+    User2Name = "User2";
+    GameStatus = null;
+
     constructor(props, context) {
         super(props);
         /*
@@ -12,9 +16,15 @@ export default class OneGame extends React.Component {
             isFinish: false
         };*/
 
-        this.context = context;
+        //this.context = context;
         this.isCup = props.IsCup;
         this.onGameClick = this.onGameClick.bind(this);
+
+        this.User1Name = props.game.User1Name;
+        this.User2Name = props.game.User2Name;
+
+        this.GameStatus = props.game.GameStatus;
+        //this.GameStatus = this.context.GetText('gamestatus', props.game.GameStatus);
 
     }
 
@@ -32,16 +42,16 @@ export default class OneGame extends React.Component {
                 <li>
                     <div className="Player">
                         <div className="Avatar"></div>
-                        <p>WOLF_F</p>
+                        <p>{this.User1Name}</p>
                     </div>
 
                     <div className="Cup">
                         <div className="ELO">
-                            <p>(1056)</p>
+                            <p>(0)</p>
                         </div>
 
                         <div className="Score">
-                            <p className="Status">Счёт 8:6</p>
+                            <p className="Status">{this.GameStatus}</p>
                             <div className="Info">
                                 <p>{context.GetText('gamelist', 'labelCup')}</p>
                                 <div className="IconCup"></div>
@@ -49,35 +59,45 @@ export default class OneGame extends React.Component {
                         </div>
 
                         <div className="ELO">
-                            <p>(1086)</p>
+                            <p>(0)</p>
                         </div>
                     </div>
 
                     <div className="Player">
                         <div className="Avatar"></div>
-                        <p>ЧёКаво?</p>
+                        <p>{this.User2Name}</p>
                     </div>                </li>
 				
 			);
         }
         else
         {
+            var context = this.context;
 
 			return (
+                <LanguageContext.Consumer>
+				{(context) =>
+				(
                 <li>
                     <div className="Player">
                         <div className="Avatar"></div>
-                        <p>Vinni</p>
+                        <p>{this.User1Name}</p>
                     </div>
 
-                    <p className="Status">Идёт 3 раунд</p>
+                    <div className="Score">
+                        <p className="Status">{context.GetText('gamestatus.round', this.GameStatus)}</p>
+                        <div className="Info">
+                            <p>{context.GetText('gamestatus.action', this.GameStatus)}</p>
+                        </div>
+                    </div>
                     
                     <div className="Player">
                         <div className="Avatar"></div>
-                        <p>Калашников</p>
+                        <p>{this.User2Name}</p>
                     </div>
                 </li>
-				
+                )}
+                </LanguageContext.Consumer>
 			);
         }
 

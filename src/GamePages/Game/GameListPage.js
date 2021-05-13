@@ -30,7 +30,7 @@ export default class GameListPage extends React.Component {
             <OneGame key={g.Id} game={g}  onGameClickCallBack={this.onGameClick}/>
         );
 
-        const recentGames = this.props.Device.myUser.ActiveGames.map((g)=>
+        let recentGames = this.props.Device.myUser.RecentGames.map((g)=>
             <OneGame key={g.Id} game={g} onGameClickCallBack={this.onGameClick} />
         );
 

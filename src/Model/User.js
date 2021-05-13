@@ -3,7 +3,6 @@ import LocalData from './LocalData.js'
 import DEVICE_STATUS from '../Lib/DeviceStatus'
 import Game from '../Model/Game';
 
-const MIN_DEVICE_TOKEN_LENGHT = 10;
 
 export default class User
 {
@@ -74,7 +73,7 @@ export default class User
                     {
                         let g = serverJsonData.DynamicUserInfo.ActiveGameList[i];
                         if (!g.Id) continue;
-                        this.ActiveGames.push(new Game(g));
+                        this.ActiveGames.push(new Game(g, this.Id));
                     }
                 }
 
@@ -85,7 +84,7 @@ export default class User
                     {
                         let g = serverJsonData.DynamicUserInfo.RecentGameList[i];
                         if (!g.Id) continue;
-                        this.RecentGames.push(new Game(g));
+                        this.RecentGames.push(new Game(g, this.Id));
                     }
                 }
             }
@@ -110,7 +109,7 @@ export default class User
  // TODO проверить на использование
     GetInfo(callBack, context)
     {
-        
+        console.log("112 НЕ УДАЛЯТЬ!!!!!");
        let deviceObject = this;
 
         function GoodAuth(response)
@@ -164,6 +163,7 @@ export default class User
  // TODO проверить на использование
     GetUserInfo(callBack, context)
     {
+        console.log("166 НЕ УДАЛЯТЬ!!!!!");
         if (!this.UserId)
         {
             callBack.call(context,  DEVICE_STATUS.USERINFO_NOUSER);
@@ -194,7 +194,7 @@ export default class User
  // TODO проверить на использование
     CreateAnonim(callBack, context)
     {
-        
+        console.log("197 НЕ УДАЛЯТЬ!!!!!");   
         function GoodResult(response)
         {
             console.log('Good CreateAnonim');
