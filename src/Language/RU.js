@@ -335,7 +335,18 @@ export function AddPackets(addPackFunction)
         'StartGame.Defease' : 'Вы проиграли.',
         'StartGame.Draw' : 'Ничья',
 
+        'GameHeader'  : 'Modulo',
 
+        'FooterButtonPlayRound'  : 'Сделать ход',
+        'FooterButtonWait'  : 'Ожидаем соперника',
+        
+        'StartGame.NoGame':'Игра не состоялась',
+
+        'RoundName1':'Раунд 1',
+        'RoundName2':'Раунд 2',
+        'RoundName3':'Раунд 3',
+        'RoundName4':'Раунд 4',
+        'RoundName5':'Раунд 5',
 	});
 
 	pack.AddDictionary('country',

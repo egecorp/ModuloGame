@@ -41,14 +41,18 @@ export default class GameListPage extends React.Component {
 			( 
 				<>
 					<HeadNavigation>
-                        <div></div>
-						<p className="HeadUserNicName">{this.props.Device.myUser.NicName}</p>
-                        <p className="HeadNavigationTitle">{context.GetText('gamelist', 'labelWindow')}</p>
-
+                        <div className="HeadAvatar">
+                            <img src='/img/avatar/1/boy.1.png' alt="No Avatar"></img>
+                        </div>
+						<div></div>
+                        <p className="HeadUserNicName">{this.props.Device.myUser.NicName}</p>
 						<button onClick={this.createGame} className="ButtonGreen">{context.GetText('gamelist', 'buttonHeaderLabel')}</button>
 					</HeadNavigation>
-					
 					<div className="GameList">
+                        <div className="GameListHeader2">
+                            <div></div>
+                            <p className="HeadNavigationTitle">{context.GetText('gamelist', 'labelWindow')}</p>
+                        </div>
 						<div className="Games NowPlaying">
 							<p className="GeneralSubtitle">{context.GetText('gamelist', 'sublabelNowPlaying')}</p>
 						

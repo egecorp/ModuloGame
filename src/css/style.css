@@ -1164,3 +1164,156 @@ input.InPopup::-webkit-input-placeholder {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
+
+
+
+/** ************************ ГОВНОКОД НИЖЕ *******************/
+/* ПЕРЕНЕСТИ КУДА НАДО*/
+.Avatar img,
+.HeadAvatar img {
+    width:100%;
+    height: 100%;
+}
+
+.HeadAvatar{
+    position: absolute;
+    width:40px;
+    height:40px;
+}
+
+.GameListHeader2
+{
+    height: 25px;
+}
+
+.GamePage
+{
+    border:1px solid black;
+    width: 100%;
+    overflow: hidden;
+
+}
+
+
+.GamerArea
+{
+    border:1px solid yellowgreen;
+    width: 100%;
+    height: 110px;
+    position: relative;
+}
+
+.Gamer
+{
+    border:1px solid red;
+    width: 80px;
+    height: 100px;
+    position: absolute;
+    top:2px;
+}
+.Gamer img
+{
+    top:20px !important;
+    width:75px;
+    height:90px;
+}
+
+.Gamer .Name
+{
+    position: absolute;
+    top:1px;
+}
+.Gamer1
+{
+    left:5px;
+}
+.Gamer2
+{
+    right:5px;
+}
+
+
+.GameStatus
+{
+    border: 1px solid #c7c9a6;
+    position: absolute;
+    
+    height: 50px;
+    width:80px;
+    top:50px;
+    left:110px;
+}
+
+.GameStatusIcon
+{
+    position: absolute;
+    border: 1px solid #111111;
+    width: 26px;
+    height: 26px;
+    left:30px;
+}
+.GameStatusText
+{
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    bottom:1px;
+    left:30px;
+    color:yellowgreen;
+}
+
+.GameResult
+{
+    border: 1px solid #00DEDE;
+    position: absolute;
+    
+    height: 40px;
+    width:80px;
+    top:5px;
+    left:110px;
+}
+
+
+.GameResult .My,
+.GameResult .Divider,
+.GameResult .Competitor
+{
+    float:left;
+    font-size: 30px;
+}
+
+
+.GameArea
+{
+    border:1px solid aqua;
+    width: 290px;
+    top:180px;
+    height: 270px;
+    position: absolute;
+}
+
+.GameArea .OneRound
+{
+    width: 100%;
+    height: 35px;
+    border-top:1px solid white;
+    margin-top:5px;
+    display: grid;
+    grid-template-columns: 35px 35px 35px  1fr 35px 35px 35px  ;
+
+}
+
+.GameArea .OneRound .OneDigit
+{
+    margin-top:2px;
+    border:1px solid;
+    margin-left:2px;
+}
+
+
+.GameArea .OneRound .RoundName
+{
+    
+    margin-top:3px;
+    color:white;
+}

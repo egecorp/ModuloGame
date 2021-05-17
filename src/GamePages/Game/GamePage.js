@@ -78,6 +78,9 @@ export default class GamePage extends React.Component {
         var MsgBoxFirstButton = null;
         var MsgBoxSecondButton = null;
 
+        var FooterButtonText = null;
+        var FooterLabelText = null;
+
         switch (this.currentGame.GameStatus)
         {
             case GAME_STATUS.GAME_WAIT_USER1:
@@ -94,6 +97,70 @@ export default class GamePage extends React.Component {
                 break;
             default:
                 MsgBoxTitle = null;
+        }
+
+        switch(this.currentGame.GameStatus)
+        {
+            case GAME_STATUS.GAME_ROUND_1_NOUSER:
+            case GAME_STATUS.GAME_ROUND_1_USER2_DONE:
+            case GAME_STATUS.GAME_ROUND_2_NOUSER:
+            case GAME_STATUS.GAME_ROUND_2_USER2_DONE:
+            case GAME_STATUS.GAME_ROUND_3_NOUSER:
+            case GAME_STATUS.GAME_ROUND_3_USER2_DONE:
+            case GAME_STATUS.GAME_ROUND_4_NOUSER:
+            case GAME_STATUS.GAME_ROUND_4_USER2_DONE:
+            case GAME_STATUS.GAME_ROUND_5_NOUSER:
+            case GAME_STATUS.GAME_ROUND_5_USER2_DONE:
+                FooterButtonText = this.currentContext.GetText('game.page', 'FooterButtonPlayRound');
+                break;
+
+            case GAME_STATUS.GAME_ROUND_1_USER1_DONE:
+            case GAME_STATUS.GAME_ROUND_2_USER1_DONE:
+            case GAME_STATUS.GAME_ROUND_3_USER1_DONE:
+            case GAME_STATUS.GAME_ROUND_4_USER1_DONE:
+            case GAME_STATUS.GAME_ROUND_5_USER1_DONE:
+                FooterLabelText = this.currentContext.GetText('game.page', 'FooterButtonPlayRound');
+                break;
+
+            case GAME_STATUS.GAME_ROUND_1_USER1_GIVEUP:
+            case GAME_STATUS.GAME_ROUND_2_USER1_GIVEUP:
+            case GAME_STATUS.GAME_ROUND_3_USER1_GIVEUP:
+            case GAME_STATUS.GAME_ROUND_4_USER1_GIVEUP:
+            case GAME_STATUS.GAME_ROUND_5_USER1_GIVEUP:
+                FooterLabelText = this.currentContext.GetText('game.page', 'StartGame.GiveUpMe');
+                break;
+                
+            case GAME_STATUS.GAME_ROUND_1_USER2_GIVEUP:
+            case GAME_STATUS.GAME_ROUND_2_USER2_GIVEUP:
+            case GAME_STATUS.GAME_ROUND_3_USER2_GIVEUP:
+            case GAME_STATUS.GAME_ROUND_4_USER2_GIVEUP:
+            case GAME_STATUS.GAME_ROUND_5_USER2_GIVEUP:
+                FooterLabelText = this.currentContext.GetText('game.page', 'StartGame.GiveUp');
+                break;
+
+            case GAME_STATUS.GAME_ROUND_1_TIMEOUT:
+            case GAME_STATUS.GAME_ROUND_2_TIMEOUT:
+            case GAME_STATUS.GAME_ROUND_3_TIMEOUT:
+            case GAME_STATUS.GAME_ROUND_4_TIMEOUT:
+            case GAME_STATUS.GAME_ROUND_5_TIMEOUT:
+                FooterLabelText = this.currentContext.GetText('game.page', 'StartGame.RoundDoneTimeout');
+                break;
+
+            case GAME_STATUS.GAME_FINISH_USER1_WIN:
+                FooterLabelText = this.currentContext.GetText('game.page', 'StartGame.Win');
+                break;
+
+            case GAME_STATUS.GAME_FINISH_USER2_WIN:        
+                FooterLabelText = this.currentContext.GetText('game.page', 'StartGame.Defease');
+                break;
+
+            case GAME_STATUS.GAME_FINISH_USER2_DRAW:
+                FooterLabelText = this.currentContext.GetText('game.page', 'StartGame.Draw');            
+                break;
+
+            default:
+                FooterLabelText = this.currentContext.GetText('game.page', 'StartGame.NoGame');            
+                break;
         }
 
         if (MsgBoxText)
@@ -113,6 +180,16 @@ export default class GamePage extends React.Component {
             )
         }
         
+        var footerButtonOrLabel = null;
+        if (FooterButtonText)
+        {
+            footerButtonOrLabel = <button onClick={this.nextButtonOnClick}>{FooterButtonText}</button>;
+        }
+        else if (FooterLabelText)
+        {
+            footerButtonOrLabel = <div >{FooterLabelText}</div>; 
+        }
+
             return (
                 <LanguageContext.Consumer>
                     {(context) =>
@@ -120,16 +197,92 @@ export default class GamePage extends React.Component {
                     <>
                         <HeadNavigation>
                             <button className="ButtonBack"  onClick={this.cancelButtonOnClick}></button>
-                            <p className="HeadNavigationTitle">{context.GetText('signup', 'labelWindow')}</p>
+                            <p className="HeadNavigationTitle">{context.GetText('game.page', 'GameHeader')}</p>
                         </HeadNavigation>
     
-                        <div className="SignUp">
-                            <p className="GeneralSubtitle">{context.GetText('signup', 'sublabelWindow')}</p>
- 
+                        <div className="GamePage">
+                            <div className="GamerArea">
+                                <div className="Gamer Gamer1">
+                                    <img src='/img/avatar/1/boy.1.png' alt="No Avatar"></img>
+                                    <div className="Name">{this.currentGame.User1Name}</div>
+                                </div>
+
+                                <div className="GameStatus">
+                                    <div className="GameStatusIcon"></div>
+                                    <div className="GameStatusText"></div>
+                                </div>
+
+                                <div className="GameResult">
+                                    <div className="My">60</div>
+                                    <div className="Divider">:</div>
+                                    <div className="Competitor">11</div>
+                                </div>
+
+                                <div className="Gamer Gamer2">
+                                    <img src='/img/avatar/1/boy.1.png' alt="No Avatar"></img>
+                                    <div className="Name">{this.currentGame.User2Name}</div>
+                                </div>
+                            </div>
+                            <div className="GameArea">
+
+                                <div className='OneRound'>
+                                    <div className='OneDigit'></div>
+                                    <div className='OneDigit'></div>
+                                    <div className='OneDigit'></div>
+                                    <div className='RoundName'>{context.GetText('game.page', 'RoundName1')}</div>
+                                    <div className='OneDigit'></div>
+                                    <div className='OneDigit'></div>
+                                    <div className='OneDigit'></div>
+                                </div>
+                                
+
+                                <div className='OneRound'>
+                                    <div className='OneDigit'></div>
+                                    <div className='OneDigit'></div>
+                                    <div className='OneDigit'></div>
+                                    <div className='RoundName'>{context.GetText('game.page', 'RoundName2')}</div>
+                                    <div className='OneDigit'></div>
+                                    <div className='OneDigit'></div>
+                                    <div className='OneDigit'></div>
+                                </div>
+                                
+
+                                <div className='OneRound'>
+                                    <div className='OneDigit'></div>
+                                    <div className='OneDigit'></div>
+                                    <div className='OneDigit'></div>
+                                    <div className='RoundName'>{context.GetText('game.page', 'RoundName3')}</div>
+                                    <div className='OneDigit'></div>
+                                    <div className='OneDigit'></div>
+                                    <div className='OneDigit'></div>
+                                </div>
+                                
+
+                                <div className='OneRound'>
+                                    <div className='OneDigit'></div>
+                                    <div className='OneDigit'></div>
+                                    <div className='OneDigit'></div>
+                                    <div className='RoundName'>{context.GetText('game.page', 'RoundName4')}</div>
+                                    <div className='OneDigit'></div>
+                                    <div className='OneDigit'></div>
+                                    <div className='OneDigit'></div>
+                                </div>
+                                
+
+                                <div className='OneRound'>
+                                    <div className='OneDigit'></div>
+                                    <div className='OneDigit'></div>
+                                    <div className='OneDigit'></div>
+                                    <div className='RoundName'>{context.GetText('game.page', 'RoundName5')}</div>
+                                    <div className='OneDigit'></div>
+                                    <div className='OneDigit'></div>
+                                    <div className='OneDigit'></div>
+                                </div>
+                            </div>
                         </div>
     
                         <div className="FooterArea">
-                            <button onClick={this.nextButtonOnClick}>{context.GetText('signup', 'continueButton')}</button>
+                            {footerButtonOrLabel}
                         </div>
     
                         {MsgBoxHTML}

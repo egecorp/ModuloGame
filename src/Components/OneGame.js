@@ -80,7 +80,9 @@ export default class OneGame extends React.Component {
 				(
                 <li  onClick={this.onGameClick}>
                     <div className="Player">
-                        <div className="Avatar"></div>
+                        <div className="Avatar">
+                            <img src='/img/avatar/1/boy.1.png' alt="No Avatar"></img>
+                        </div>
                         <p>{this.User1Name}</p>
                     </div>
 
@@ -92,7 +94,9 @@ export default class OneGame extends React.Component {
                     </div>
                     
                     <div className="Player">
-                        <div className="Avatar"></div>
+                        <div className="Avatar">
+                            <img src='/img/avatar/1/boy.1.png' alt="No Avatar"></img>
+                        </div>
                         <p>{this.User2Name}</p>
                     </div>
                 </li>
