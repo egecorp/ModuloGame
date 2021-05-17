@@ -20,8 +20,8 @@ export default class GameListPage extends React.Component {
 
 	onGameClick(g)
 	{
-		console.log("onGameClick");
-		console.log(g);
+        this.props.NavigationButtonCallBack(DEVICE_STATUS.GAME_SHOW_GAME, g);
+
 	}
 
 	render() {
@@ -42,7 +42,8 @@ export default class GameListPage extends React.Component {
 				<>
 					<HeadNavigation>
                         <div></div>
-						<p className="HeadNavigationTitle">{context.GetText('gamelist', 'labelWindow')}</p>
+						<p className="HeadUserNicName">{this.props.Device.myUser.NicName}</p>
+                        <p className="HeadNavigationTitle">{context.GetText('gamelist', 'labelWindow')}</p>
 
 						<button onClick={this.createGame} className="ButtonGreen">{context.GetText('gamelist', 'buttonHeaderLabel')}</button>
 					</HeadNavigation>

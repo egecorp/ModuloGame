@@ -10,6 +10,7 @@ import GameStartPage from './Game/GameStartPage.js'
 import GameStartBotPage from './Game/GameStartBotPage.js'
 import GameStartRandomPage from './Game/GameStartRandomPage.js'
 import GameStartUserPage from './Game/GameStartUserPage.js'
+import GamePage from './Game/GamePage.js'
 
 import ConditionPage from './Common/ConditionPage.js'
 import SettingsAvatarPage from './Settings/SettingsAvatarPage.js'
@@ -84,6 +85,14 @@ export default class PageHolder extends React.Component {
         {
             CPage = (<GameStartUserPage   Device={this.props.Device} NavigationButtonCallBack={this.props.NavigationButtonCallBack}></GameStartUserPage>)
         }
+
+
+        else if (this.props.currentPage === 'Game:Game')
+        {
+            CPage = (<GamePage   Device={this.props.Device} CurrentGame={this.props.CurrentGame} NavigationButtonCallBack={this.props.NavigationButtonCallBack}></GamePage>)
+        }
+
+
         else if (this.props.currentPage === 'ConditionPage')
         {
             CPage = (<ConditionPage></ConditionPage>)

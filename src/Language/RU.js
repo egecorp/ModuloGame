@@ -1,5 +1,5 @@
 import GAME_STATUS from '../Lib/GameStatus';
-import GameStatus  from '../Lib/GameStatus'
+
 export function AddPackets(addPackFunction)
 {
 	var pack = addPackFunction('ru');
@@ -8,11 +8,20 @@ export function AddPackets(addPackFunction)
 	{
 		'modalButtonContinue' : 'Продолжить',
 		'modalButtonClose' : 'Закрыть',
+        'modalButtonYes' : 'Да',
+        'modalButtonNo' : 'Нет',
+
 
 		'popupButtonContinue' : 'Продолжить',
 		'popupButtonSend' : 'Отправить',
 		'popupButtonCancel' : 'Отменить',
-		'popupButtonBack' : 'Назад'
+		'popupButtonBack' : 'Назад',
+        'popupButtonAccept' : 'Принять',
+        'popupButtonDecline' : 'Отказать',
+        'popupButtonWait' : 'Подождать',
+        'popupButtonWithdraw' : 'Отозвать'
+        
+
 	});
 
 	pack.AddDictionary('signin', 
@@ -298,6 +307,36 @@ export function AddPackets(addPackFunction)
     dict["" + GAME_STATUS.GAME_FINISH_USER2_DRAW] =  'Ничья';
 
 	pack.AddDictionary('gamestatus.action', dict);
+
+    pack.AddDictionary('game.page', 
+	{
+		'StartGame.WaitMe' : 'Соперник предложил Вам сыграть',
+        'StartGame.Wait' : 'Приглашение сыграть отправлено',
+
+		'StartGame.AcceptMe' : 'Вы приняли приглашение',
+        'StartGame.Accept' : 'Соперник принял приглашение',
+        
+        'StartGame.DeclineMe' : 'Вы отказались играть',
+        'StartGame.Decline' : 'Соперник отказался играть',
+
+        'StartGame.CancelMe' : 'Вы отозвали приглашение',
+        'StartGame.Cancel' : 'Соперник отозвал приглагение',
+
+        'StartGame.TimeoutInvitation' : 'Время ответа на приглашение истекло',
+
+        'StartGame.RoundPlay' : 'Ваш ход',
+        'StartGame.RoundDone' : 'Ожидание соперника',
+        'StartGame.RoundDoneTimeout' : 'Время истекло',
+        
+        'StartGame.GiveUpMe' : 'Вы сдались',
+        'StartGame.GiveUp' : 'Соперник сдался',
+
+        'StartGame.Win' : 'Вы победили!',
+        'StartGame.Defease' : 'Вы проиграли.',
+        'StartGame.Draw' : 'Ничья',
+
+
+	});
 
 	pack.AddDictionary('country',
 	{

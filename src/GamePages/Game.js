@@ -12,11 +12,15 @@ export default class Game extends React.Component {
       super(props);
       this.state = {
           currentPage: 'Hello',
-          currentDeviceStatus: DEVICE_STATUS.AUTH_CONNTECTING
+          currentDeviceStatus: DEVICE_STATUS.AUTH_CONNTECTING,
+          currentGame: null
       };
       this.handleChangePage = this.handleChangePage.bind(this);
 
       this.myDevice = props.Device;
+
+    
+
       this.nextButtonCallBack = this.nextButtonCallBack.bind(this);
       this.navigationButtonCallBack = this.navigationButtonCallBack.bind(this);
     }
@@ -37,7 +41,8 @@ export default class Game extends React.Component {
                 'Game:FindUser', 
                 'Settings:Settings', 
                 'Settings:Avatar', 
-                'ConditionPage'];
+                'ConditionPage',
+                'Game:Game'];
     
     handleChangePage(event) {
         this.setState(state => ({
@@ -188,10 +193,8 @@ export default class Game extends React.Component {
     }
 
 
-    navigationButtonCallBack(nextState, stateProperties)
+    navigationButtonCallBack(nextState, game)
     {
-        //console.log("NavigationButtonCallBack");
-        //console.log(nextState);
         switch(nextState)
         {
             case DEVICE_STATUS.GAME_CREATING_CHOOSE:
@@ -263,6 +266,15 @@ export default class Game extends React.Component {
                         currentPage: 'Game:FindUser'
                     }));
                 break;
+
+            case DEVICE_STATUS.GAME_SHOW_GAME:
+                this.setState(state => (
+                    { 
+                        currentDeviceStatus: DEVICE_STATUS.GAME_CREATING_FINDUSER_FAIL, 
+                        currentPage: 'Game:Game',
+                        currentGame: game
+                    }));
+                break;
             default:
 
                 this.setState(state => (
@@ -275,12 +287,14 @@ export default class Game extends React.Component {
     }
 
 
+
     render() {
 
         return ( 
         <div className='Game'> 
             <PageHolder 
                 currentPage={this.state.currentPage} 
+                CurrentGame={this.state.currentGame}
                 Status={this.state.currentDeviceStatus}  
                 NextButtonCallBack={this.nextButtonCallBack} 
                 NavigationButtonCallBack={this.navigationButtonCallBack} 

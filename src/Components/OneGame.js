@@ -7,7 +7,7 @@ export default class OneGame extends React.Component {
     User1Name = "User1";
     User2Name = "User2";
     GameStatus = null;
-
+    
     constructor(props, context) {
         super(props);
         /*
@@ -24,22 +24,24 @@ export default class OneGame extends React.Component {
         this.User2Name = props.game.User2Name;
 
         this.GameStatus = props.game.GameStatus;
+
+        this.onGameClickCallBack = props.onGameClickCallBack;
         //this.GameStatus = this.context.GetText('gamestatus', props.game.GameStatus);
 
     }
 
-    onGameClick()
+    onGameClick(ev)
     {
-
+        if (typeof(this.onGameClickCallBack) === "function") this.onGameClickCallBack(this.props.game);
     }
 
 	render() { 
+        var context = this.context;
 
         if (this.isCup)
         {
-            var context = this.context;
 			return (
-                <li>
+                <li onClick={this.onGameClick}>
                     <div className="Player">
                         <div className="Avatar"></div>
                         <p>{this.User1Name}</p>
@@ -72,13 +74,11 @@ export default class OneGame extends React.Component {
         }
         else
         {
-            var context = this.context;
-
 			return (
                 <LanguageContext.Consumer>
 				{(context) =>
 				(
-                <li>
+                <li  onClick={this.onGameClick}>
                     <div className="Player">
                         <div className="Avatar"></div>
                         <p>{this.User1Name}</p>

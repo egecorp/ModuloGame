@@ -19,9 +19,9 @@ const URL_GetGameInfo = "GetGameInfo";
 const URL_FindUsersByNick = "FindUsersByNick";
 const URL_CreateGame = "CreateGame";
 const URL_AcceptGame = "AcceptGame";
-const URL_RefuseGame = "RefuseGame";
-const URL_CancelGame = "CancelGame";
-const URL_DoRound = "DoRound";
+const URL_DeclineGame = "DeclineGame";
+const URL_WithdrawGame = "WithdrawGame";
+const URL_PlayRound = "PlayRound";
 const URL_GiveUp = "GiveUp";
 
 var MySingletonObject = undefined;
@@ -127,19 +127,19 @@ export default class Server {
     {
         return await this.postData( SERVER_URL +  URL_AcceptGame, data);
     }
-    async RefuseGame(data)
+    async DeclineGame(data)
     {
-        return await this.postData( SERVER_URL +  URL_RefuseGame, data);
+        return await this.postData( SERVER_URL +  URL_DeclineGame, data);
     }
-    async CancelGame(data)
+    async WithdrawGame(data)
     {
-        return await this.postData( SERVER_URL +  URL_CancelGame, data);
+        return await this.postData( SERVER_URL +  URL_WithdrawGame, data);
     }
 
     
-    async DoRound(data)
+    async PlayRound(data)
     {
-        return await this.postData( SERVER_URL +  URL_DoRound, data);
+        return await this.postData( SERVER_URL +  URL_PlayRound, data);
     }
     
     async GiveUp(data)

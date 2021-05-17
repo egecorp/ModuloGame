@@ -1,4 +1,4 @@
-import { RevertStatus as RevertStatus } from '../Lib/GameStatus'
+import { RevertStatus } from '../Lib/GameStatus'
 
 export default class OneModuloGame
 {
@@ -25,7 +25,7 @@ export default class OneModuloGame
                 this.User1Character = data.User1Character;        
                 this.User2Character = data.User2Character;
 
-                if (this.User2Id == currentUserId)
+                if (this.User2Id === currentUserId)
                 {
                     this.GameStatus = RevertStatus(this.GameStatus);
                 }
