@@ -4,7 +4,7 @@ import PageHolder from './PageHolder.js'
 
 import DEVICE_STATUS from '../Lib/DeviceStatus'
 
-
+import GAME_STATUS from '../Lib/GameStatus'
 
 
 export default class Game extends React.Component {
@@ -42,12 +42,67 @@ export default class Game extends React.Component {
                 'Settings:Settings', 
                 'Settings:Avatar', 
                 'ConditionPage',
-                'Game:Game'];
+                'Game:Game1',
+                'Game:Game2',
+                'Game:Game3'];
     
     handleChangePage(event) {
-        this.setState(state => ({
-            currentPage: event.target.value
-        }));
+
+        if (event.target.value === 'Game:Game1')
+        {
+            this.currentGame = {
+                Id : 0,        
+                User1Id : this.myDevice.UserId,        
+                User2Id : 10,   
+                User1Name : "User1",        
+                User2Name : "User10",        
+                GameStatus : GAME_STATUS.GAME_WAIT_USER1,         
+                Rounds : []};
+            this.setState(state => ({
+                currentPage: 'Game:Game',
+                currentGame: this.currentGame
+            }));
+        }
+        else if (event.target.value === 'Game:Game2')
+        {
+
+            this.currentGame = {
+                Id : 0,                
+                User1Id : this.myDevice.UserId,        
+                User2Id : 9,         
+                User1Name : "User1",        
+                User2Name : "User9",        
+                GameStatus : GAME_STATUS.GAME_WAIT_USER2,         
+                Rounds : []};
+            this.setState(state => ({
+                currentPage: 'Game:Game',
+                currentGame: this.currentGame
+            }));
+        }
+        else if (event.target.value === 'Game:Game3')
+        {
+
+            this.currentGame = {
+                Id : 0,        
+                IsStart : true,              
+                User1Id : this.myDevice.UserId,        
+                User2Id : 8,     
+                User1Name : "User1",        
+                User2Name : "User8",        
+                GameStatus : GAME_STATUS.GAME_ROUND_1_NOUSER,         
+                Rounds : []};
+            this.setState(state => ({
+                currentPage: 'Game:Game',
+                currentGame: this.currentGame
+            }));
+        }
+        else 
+        {
+
+            this.setState(state => ({
+                currentPage: event.target.value
+            }));
+        }
       }
 
 
