@@ -10,7 +10,17 @@ export default class GamePage extends React.Component {
     currentGame = null;
     constructor(props, context) {
 		super(props);
-		this.state = {};
+		this.state = 
+        {
+            playing : false,
+            competitorDigit1 : null,
+            competitorDigit2 : null,
+            competitorDigit3 : null,
+            myDigit1 : null,
+            myDigit2 : null,
+            myDigit3 : null,
+            canUseJoker: false
+        };
         this.currentContext = context;
 
         this.currentGame = props.CurrentGame;
@@ -20,6 +30,9 @@ export default class GamePage extends React.Component {
 
         this.cancelButtonOnClick = this.cancelButtonOnClick.bind(this);
 
+        this.onFooterButtonClick = this.onFooterButtonClick.bind(this);
+        this.onCardDigitClick = this.onCardDigitClick.bind(this);
+        this.onDesktopDigitClick = this.onDesktopDigitClick.bind(this);
 	}
 
     cancelButtonOnClick()
@@ -31,6 +44,19 @@ export default class GamePage extends React.Component {
     {
         console.log("onGameChangeCallBack");
         console.log(r);
+    }
+
+    onFooterButtonClick(ev)
+    {
+        if (this.state.playing === true)
+        {
+            this.setState({playing:false});
+        }
+        else
+        {
+            this.setState({playing:true});
+        }
+        
     }
 
 	modalButtonAcceptOnClick()
@@ -68,6 +94,45 @@ export default class GamePage extends React.Component {
                 return;
         }
 	}
+
+    onCardDigitClick(ev)
+    {
+        var newDigit = ev.target.dataset.digit + "";
+        if ((newDigit === 'J') && !this.state.canUseJoker) 
+        {
+            console.log("Cannot use Joker");
+            return;
+        }
+        var d1 = this.state.myDigit1 ? (this.state.myDigit1 + "") : null;
+        var d2 = this.state.myDigit2 ? (this.state.myDigit2 + "") : null;
+        var d3 = this.state.myDigit3 ? (this.state.myDigit3 + "") : null;
+        
+        if (!d1)
+        {
+            this.setState( { myDigit1:newDigit} );
+        }
+        else if (!d2 && (d1 !== newDigit))
+        {
+            this.setState( { myDigit2:newDigit} );
+        }
+        else if (!d3 && (d1 !== newDigit) && (d2 !== newDigit))
+        {
+            this.setState( { myDigit3:newDigit} );
+        }
+        else
+        {
+            console.log("Strange situation");
+            console.log(ev, newDigit, d1, d2, d3);    
+        }
+    }
+
+    onDesktopDigitClick(ev)
+    {
+        let digitNumber = ev.target.dataset.digitnumber + "";
+        if (digitNumber === "1") this.setState({myDigit1 : null});
+        if (digitNumber === "2") this.setState({myDigit2 : null});
+        if (digitNumber === "3") this.setState({myDigit3 : null});
+    }
 
 	render() {
 	
@@ -183,11 +248,178 @@ export default class GamePage extends React.Component {
         var footerButtonOrLabel = null;
         if (FooterButtonText)
         {
-            footerButtonOrLabel = <button onClick={this.nextButtonOnClick}>{FooterButtonText}</button>;
+            footerButtonOrLabel = <button onClick={this.onFooterButtonClick}>{FooterButtonText}</button>;
         }
         else if (FooterLabelText)
         {
             footerButtonOrLabel = <div >{FooterLabelText}</div>; 
+        }
+
+        var gameArea;
+
+        if (this.state.playing === true)
+        {
+            var d1 = this.state.myDigit1 ? (this.state.myDigit1 + "") : null;
+            var d2 = this.state.myDigit2 ? (this.state.myDigit2 + "") : null;
+            var d3 = this.state.myDigit3 ? (this.state.myDigit3 + "") : null;
+
+            function checkDigit(d)
+            {
+                return (d1 !== (d + "")) && (d2 !== (d + "")) && (d3 !== (d + ""));
+            }
+            
+            gameArea = (
+                <div  className="PlayingRoundArea"> 
+                    <div className="Desktop">
+                        <div></div>
+                        <div className="DigitCardContainer Competitor">
+                            {
+                            this.state.competitorDigit1 ?  
+                                (
+                                    <div className="DigitIcon" data-digit={this.state.competitorDigit1} data-color="blue"></div>    
+                                ) : null
+                            }
+                        </div>
+                        <div className="DigitCardContainer Competitor">
+                            {
+                            this.state.competitorDigit2 ?  
+                                (
+                                    <div className="DigitIcon" data-digit={this.state.competitorDigit2} data-color="blue"></div>    
+                                ) : null
+                            }
+                        </div>
+                        <div className="DigitCardContainer Competitor">
+                            {
+                            this.state.competitorDigit3 ?  
+                                (
+                                    <div className="DigitIcon" data-digit={this.state.competitorDigit3} data-color="blue"></div>    
+                                ) : null
+                            }
+                        </div>
+                        <div></div>
+
+                        <div></div>
+                        <div className="DigitCardContainer MyRound">
+                            {
+                            this.state.myDigit1 ?  
+                                (
+                                    <div className="DigitIcon" data-digitnumber="1" data-digit={this.state.myDigit1} data-color="red" onClick={this.onDesktopDigitClick}></div>    
+                                ) : null
+                            }
+                        </div>
+                        <div className="DigitCardContainer MyRound">
+                            {
+                            this.state.myDigit2 ?  
+                                (
+                                    <div className="DigitIcon" data-digitnumber="2" data-digit={this.state.myDigit2} data-color="red" onClick={this.onDesktopDigitClick}></div>    
+                                ) : null
+                            }
+                        </div>
+                        <div className="DigitCardContainer MyRound">
+                            {
+                            this.state.myDigit3 ?  
+                                (
+                                    <div className="DigitIcon" data-digitnumber="3" data-digit={this.state.myDigit3} data-color="red" onClick={this.onDesktopDigitClick}></div>    
+                                ) : null
+                            }
+                        </div>
+                        <div></div>
+                    </div>
+                    <div className="Cards">
+                        <div className="DigitCardContainer">
+                            <div className="DigitIcon" data-digit="2" data-color="red" data-active={checkDigit(2) ? 1 : 0} onClick={checkDigit(2) ? this.onCardDigitClick : null}></div>    
+                        </div>
+                        <div className="DigitCardContainer">
+                            <div className="DigitIcon" data-digit="4" data-color="red" data-active={checkDigit(4) ? 1 : 0} onClick={checkDigit(4) ? this.onCardDigitClick : null}></div>    
+                        </div>
+                        <div className="DigitCardContainer">
+                            <div className="DigitIcon" data-digit="6" data-color="red" data-active={checkDigit(6) ? 1 : 0}  onClick={checkDigit(6) ? this.onCardDigitClick : null}></div>    
+                        </div>
+                        <div className="DigitCardContainer">
+                            <div className="DigitIcon" data-digit="8" data-color="red" data-active={checkDigit(8) ? 1 : 0}  onClick={checkDigit(8) ? this.onCardDigitClick : null}></div>    
+                        </div>
+                        <div className="DigitCardContainer">
+                            <div className="DigitIcon" data-digit="J" data-color="red" data-active={checkDigit('J') ? 1 : 0}  onClick={checkDigit('J') ? this.onCardDigitClick : null}></div>    
+                        </div>
+
+                        <div className="DigitCardContainer">
+                            <div className="DigitIcon" data-digit="3" data-color="red" data-active={checkDigit(3) ? 1 : 0}  onClick={checkDigit(3) ? this.onCardDigitClick : null}></div>    
+                        </div>
+                        <div className="DigitCardContainer">
+                            <div className="DigitIcon" data-digit="5" data-color="red" data-active={checkDigit(5) ? 1 : 0}  onClick={checkDigit(5) ? this.onCardDigitClick : null}></div>    
+                        </div>
+                        <div className="DigitCardContainer">
+                            <div className="DigitIcon" data-digit="7" data-color="red" data-active={checkDigit(7) ? 1 : 0}  onClick={checkDigit(7) ? this.onCardDigitClick : null}></div>    
+                        </div>
+                        <div className="DigitCardContainer">
+                            <div className="DigitIcon" data-digit="9" data-color="red" data-active={checkDigit(9) ? 1 : 0}  onClick={checkDigit(9) ? this.onCardDigitClick : null}></div>    
+                        </div>
+
+
+                    </div>
+                </div>
+            )
+        }
+        else
+        {
+            gameArea = (
+                <div className="GameArea">
+
+                    <div className='OneRound'>
+                        <div className='OneDigit'></div>
+                        <div className='OneDigit'></div>
+                        <div className='OneDigit'></div>
+                        <div className='RoundName'>{this.currentContext.GetText('game.page', 'RoundName1')}</div>
+                        <div className='OneDigit'></div>
+                        <div className='OneDigit'></div>
+                        <div className='OneDigit'></div>
+                    </div>
+                    
+
+                    <div className='OneRound'>
+                        <div className='OneDigit'></div>
+                        <div className='OneDigit'></div>
+                        <div className='OneDigit'></div>
+                        <div className='RoundName'>{this.currentContext.GetText('game.page', 'RoundName2')}</div>
+                        <div className='OneDigit'></div>
+                        <div className='OneDigit'></div>
+                        <div className='OneDigit'></div>
+                    </div>
+                    
+
+                    <div className='OneRound'>
+                        <div className='OneDigit'></div>
+                        <div className='OneDigit'></div>
+                        <div className='OneDigit'></div>
+                        <div className='RoundName'>{this.currentContext.GetText('game.page', 'RoundName3')}</div>
+                        <div className='OneDigit'></div>
+                        <div className='OneDigit'></div>
+                        <div className='OneDigit'></div>
+                    </div>
+                    
+
+                    <div className='OneRound'>
+                        <div className='OneDigit'></div>
+                        <div className='OneDigit'></div>
+                        <div className='OneDigit'></div>
+                        <div className='RoundName'>{this.currentContext.GetText('game.page', 'RoundName4')}</div>
+                        <div className='OneDigit'></div>
+                        <div className='OneDigit'></div>
+                        <div className='OneDigit'></div>
+                    </div>
+                    
+
+                    <div className='OneRound'>
+                        <div className='OneDigit'></div>
+                        <div className='OneDigit'></div>
+                        <div className='OneDigit'></div>
+                        <div className='RoundName'>{this.currentContext.GetText('game.page', 'RoundName5')}</div>
+                        <div className='OneDigit'></div>
+                        <div className='OneDigit'></div>
+                        <div className='OneDigit'></div>
+                    </div>
+                </div>
+            )
         }
 
             return (
@@ -223,62 +455,8 @@ export default class GamePage extends React.Component {
                                     <div className="Name">{this.currentGame.User2Name}</div>
                                 </div>
                             </div>
-                            <div className="GameArea">
-
-                                <div className='OneRound'>
-                                    <div className='OneDigit'></div>
-                                    <div className='OneDigit'></div>
-                                    <div className='OneDigit'></div>
-                                    <div className='RoundName'>{context.GetText('game.page', 'RoundName1')}</div>
-                                    <div className='OneDigit'></div>
-                                    <div className='OneDigit'></div>
-                                    <div className='OneDigit'></div>
-                                </div>
-                                
-
-                                <div className='OneRound'>
-                                    <div className='OneDigit'></div>
-                                    <div className='OneDigit'></div>
-                                    <div className='OneDigit'></div>
-                                    <div className='RoundName'>{context.GetText('game.page', 'RoundName2')}</div>
-                                    <div className='OneDigit'></div>
-                                    <div className='OneDigit'></div>
-                                    <div className='OneDigit'></div>
-                                </div>
-                                
-
-                                <div className='OneRound'>
-                                    <div className='OneDigit'></div>
-                                    <div className='OneDigit'></div>
-                                    <div className='OneDigit'></div>
-                                    <div className='RoundName'>{context.GetText('game.page', 'RoundName3')}</div>
-                                    <div className='OneDigit'></div>
-                                    <div className='OneDigit'></div>
-                                    <div className='OneDigit'></div>
-                                </div>
-                                
-
-                                <div className='OneRound'>
-                                    <div className='OneDigit'></div>
-                                    <div className='OneDigit'></div>
-                                    <div className='OneDigit'></div>
-                                    <div className='RoundName'>{context.GetText('game.page', 'RoundName4')}</div>
-                                    <div className='OneDigit'></div>
-                                    <div className='OneDigit'></div>
-                                    <div className='OneDigit'></div>
-                                </div>
-                                
-
-                                <div className='OneRound'>
-                                    <div className='OneDigit'></div>
-                                    <div className='OneDigit'></div>
-                                    <div className='OneDigit'></div>
-                                    <div className='RoundName'>{context.GetText('game.page', 'RoundName5')}</div>
-                                    <div className='OneDigit'></div>
-                                    <div className='OneDigit'></div>
-                                    <div className='OneDigit'></div>
-                                </div>
-                            </div>
+                            {gameArea}
+                            
                         </div>
     
                         <div className="FooterArea">

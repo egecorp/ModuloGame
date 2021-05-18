@@ -1317,3 +1317,147 @@ code {
     margin-top:3px;
     color:white;
 }
+
+.PlayingRoundArea
+{
+    border:1px solid burlywood;
+    width: 290px;
+    top:180px;
+    height: 270px;
+    position: absolute;
+}
+.PlayingRoundArea .Desktop
+{
+    border:1px solid royalblue;
+    border-radius: 40px;
+    width: 200px;
+    top:10px;
+    left:30px;
+    height: 120px;
+    position: absolute;
+    display: grid;
+    grid-template-columns: 1fr 45px 45px 45px 1fr ;
+    grid-template-rows: 1fr 1fr;
+}
+.PlayingRoundArea .Cards
+{
+    border:1px solid black;
+    width: 230px;
+    left:20px;
+    top:150px;
+    height: 100px;
+    position: absolute;
+    display: grid;
+    grid-template-columns: 45px 45px 45px 45px 45px ;
+    grid-template-rows: 45px 45px;
+}
+
+.DigitCardContainer
+{
+    background-color: gray;
+    border-radius: 3px;
+    width: 30px;
+    height: 40px;
+    margin-left:10px;
+    margin-top:5px;
+    padding:0;
+}
+
+.DigitCardContainer .Competitor
+{
+    background-color: black !important;
+}
+
+.DigitCardContainer .MyRound
+{
+    background-color: yellow !important;
+}
+
+.DigitIcon
+{
+    background-size: contain;
+    background-position-x: center;
+    background-position-y: center;
+    background-repeat: no-repeat;
+    margin:0;
+    width: 30px;
+    height: 40px;
+}
+
+.DigitIcon[data-active="0"]
+{
+    background-image: none !important;
+}
+
+.DigitIcon[data-digit="2"][data-color="red"]
+{
+    background-image: url(../img/digits/Red2.png);
+}
+.DigitIcon[data-digit="3"][data-color="red"]
+{
+    background-image: url(../img/digits/Red3.png);
+}
+.DigitIcon[data-digit="4"][data-color="red"]
+{
+    background-image: url(../img/digits/Red4.png);
+}
+.DigitIcon[data-digit="5"][data-color="red"]
+{
+    background-image: url(../img/digits/Red5.png);
+}
+.DigitIcon[data-digit="6"][data-color="red"]
+{
+    background-image: url(../img/digits/Red6.png);
+}
+.DigitIcon[data-digit="7"][data-color="red"]
+{
+    background-image: url(../img/digits/Red7.png);
+}
+.DigitIcon[data-digit="8"][data-color="red"]
+{
+    background-image: url(../img/digits/Red8.png);
+}
+.DigitIcon[data-digit="9"][data-color="red"]
+{
+    background-image: url(../img/digits/Red9.png);
+}
+.DigitIcon[data-digit="J"][data-color="red"]
+{
+    background-image: url(../img/digits/RedJ.png);
+}
+.DigitIcon[data-digit="2"][data-color="blue"]
+{
+    background-image: url(../img/digits/Blue2.png);
+}
+.DigitIcon[data-digit="3"][data-color="blue"]
+{
+    background-image: url(../img/digits/Blue3.png);
+}
+.DigitIcon[data-digit="4"][data-color="blue"]
+{
+    background-image: url(../img/digits/Blue4.png);
+}
+.DigitIcon[data-digit="5"][data-color="blue"]
+{
+    background-image: url(../img/digits/Blue5.png);
+}
+.DigitIcon[data-digit="6"][data-color="blue"]
+{
+    background-image: url(../img/digits/Blue6.png);
+}
+.DigitIcon[data-digit="7"][data-color="blue"]
+{
+    background-image: url(../img/digits/Blue7.png);
+}
+.DigitIcon[data-digit="8"][data-color="blue"]
+{
+    background-image: url(../img/digits/Blue8.png);
+}
+.DigitIcon[data-digit="9"][data-color="blue"]
+{
+    background-image: url(../img/digits/Blue9.png);
+}
+.DigitIcon[data-digit="J"][data-color="blue"]
+{
+    background-image: url(../img/digits/BlueJ.png);
+}
