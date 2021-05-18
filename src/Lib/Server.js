@@ -1,4 +1,4 @@
-const SERVER_URL = 'https://localhost:44335/API/';
+const SERVER_URL = 'https://api.modulogame.org/API/';
 
 
 const URL_RegisterDevice = 'RegisterDevice';
