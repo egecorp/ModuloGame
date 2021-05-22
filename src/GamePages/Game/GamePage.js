@@ -8,6 +8,7 @@ import DEVICE_STATUS from '../../Lib/DeviceStatus';
 
 export default class GamePage extends React.Component {
     currentGame = null;
+    isFirstGamer  = false;
     constructor(props, context) {
 		super(props);
 		this.state = 
@@ -24,6 +25,8 @@ export default class GamePage extends React.Component {
         this.currentContext = context;
 
         this.currentGame = props.CurrentGame;
+
+        this.isFirstGamer = this.currentGame.User1Id == props.Device.myUser.Id;
 
         this.modalButtonAcceptOnClick = this.modalButtonAcceptOnClick.bind(this);
         this.modalButtonDeclineOnClick = this.modalButtonDeclineOnClick.bind(this);
@@ -46,11 +49,113 @@ export default class GamePage extends React.Component {
         console.log(r);
     }
 
+
     onFooterButtonClick(ev)
     {
         if (this.state.playing === true)
         {
-            this.setState({playing:false});
+
+            function getDigit(d)
+            {
+                if (d + '' === '2') return 2;
+                if (d + '' === '3') return 3;
+                if (d + '' === '4') return 4;
+                if (d + '' === '5') return 5;
+                if (d + '' === '6') return 6;
+                if (d + '' === '7') return 7;
+                if (d + '' === '8') return 8;
+                if (d + '' === '9') return 9;
+                if (d + '' === 'J') return 11;
+
+            }
+            if (this.state.myDigit1 && this.state.myDigit2 && this.state.myDigit3)
+            {
+                var postData = {
+                     Id : this.currentGame.Id,
+                     Digit1 : getDigit(this.state.myDigit1),
+                     Digit2 : getDigit(this.state.myDigit2),
+                     Digit3 : getDigit(this.state.myDigit3),
+                     DeviceWorkToken: this.props.Device.DeviceWorkToken
+                    };
+
+                switch (this.currentGame.GameStatus)
+                {
+                    case GAME_STATUS.GAME_ROUND_1_NOUSER:
+                        postData.RoundNumber = 1;
+                        break;                        
+                    case GAME_STATUS.GAME_ROUND_2_NOUSER:
+                        postData.RoundNumber = 2;
+                        break;
+                    case GAME_STATUS.GAME_ROUND_3_NOUSER:
+                        postData.RoundNumber = 3;
+                        break;
+                    case GAME_STATUS.GAME_ROUND_4_NOUSER:
+                        postData.RoundNumber = 4;
+                        break;
+                    case GAME_STATUS.GAME_ROUND_5_NOUSER:
+                        postData.RoundNumber = 5;
+                        break;
+                    default:break;
+                }
+                if (this.isFirstGamer)
+                {
+                    switch (this.currentGame.GameStatus)
+                    {
+                        case GAME_STATUS.GAME_ROUND_1_USER2_DONE:
+                            postData.RoundNumber = 1;
+                            break;                        
+                        case GAME_STATUS.GAME_ROUND_2_USER2_DONE:
+                            postData.RoundNumber = 2;
+                            break;
+                        case GAME_STATUS.GAME_ROUND_3_USER2_DONE:
+                            postData.RoundNumber = 3;
+                            break;
+                        case GAME_STATUS.GAME_ROUND_4_USER2_DONE:
+                            postData.RoundNumber = 4;
+                            break;
+                        case GAME_STATUS.GAME_ROUND_5_USER2_DONE:
+                            postData.RoundNumber = 5;
+                            break;
+                        default:break;
+                    }   
+                }
+                else
+                {
+                    switch (this.currentGame.GameStatus)
+                    {
+                        case GAME_STATUS.GAME_ROUND_1_USER1_DONE:
+                            postData.RoundNumber = 1;
+                            break;                        
+                        case GAME_STATUS.GAME_ROUND_2_USER1_DONE:
+                            postData.RoundNumber = 2;
+                            break;
+                        case GAME_STATUS.GAME_ROUND_3_USER1_DONE:
+                            postData.RoundNumber = 3;
+                            break;
+                        case GAME_STATUS.GAME_ROUND_4_USER1_DONE:
+                            postData.RoundNumber = 4;
+                            break;
+                        case GAME_STATUS.GAME_ROUND_5_USER1_DONE:
+                            postData.RoundNumber = 5;
+                            break;
+                        default:break;
+                    } 
+
+                }
+                   
+                if (postData.RoundNumber)
+                {
+                    this.props.Device.PlayRound(this.onGameChangeCallBack, this, postData);
+                }
+                else
+                {
+                    this.setState({playing:false});
+                }
+            }
+            else
+            {
+                this.setState({playing:false});
+            }
         }
         else
         {
@@ -62,7 +167,7 @@ export default class GamePage extends React.Component {
 	modalButtonAcceptOnClick()
 	{
         var postData = { Id : this.currentGame.Id, DeviceWorkToken : this.props.Device.DeviceWorkToken };
-		console.log("modalButtonAcceptOnClick");
+
         switch (this.currentGame.GameStatus)
         {
             case GAME_STATUS.GAME_WAIT_USER1:
@@ -80,7 +185,7 @@ export default class GamePage extends React.Component {
     modalButtonDeclineOnClick()
 	{
         var postData = { Id : this.currentGame.Id, DeviceWorkToken : this.props.Device.DeviceWorkToken };
-		console.log("modalButtonDeclineOnClick");
+		
         switch (this.currentGame.GameStatus)
         {
             case GAME_STATUS.GAME_WAIT_USER1:
