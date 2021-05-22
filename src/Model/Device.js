@@ -346,10 +346,32 @@ export default class Device
         postObject.NicName = searchString;
     
         Server.Get().FindUsersByNick(postObject).then(GoodResult, ErrorResult);
-        
     }
 
 
+    GetGameInfo(gameId, callBack, context)
+    {
+        if (!this.UserId) return;
+        
+        function GoodResult(response)
+        {
+            callBack.call(context, response);
+        }
+        
+        function ErrorResult(e)
+        {
+            console.log('GetGameInfo Error');
+            console.error(e);
+            callBack.call(context, "FAIL");
+        }
+
+        var postObject = {
+            Id : gameId,
+            DeviceWorkToken : this.DeviceWorkToken
+        };
+        
+        Server.Get().GetGameInfo(postObject).then(GoodResult, ErrorResult);
+    }
 
     CreateGame(callBack, context, postObject)
     {

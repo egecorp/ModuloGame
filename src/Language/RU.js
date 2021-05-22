@@ -335,6 +335,10 @@ export function AddPackets(addPackFunction)
         'StartGame.Defease' : 'Вы проиграли.',
         'StartGame.Draw' : 'Ничья',
 
+
+        'StartGame.WaitPlease' : 'Пожалуйста подождите',
+        'StartGame.Loading' : 'Идёт загрузка данных...',
+
         'GameHeader'  : 'Modulo',
 
         'FooterButtonPlayRound'  : 'Сделать ход',

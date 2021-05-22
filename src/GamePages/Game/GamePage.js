@@ -1,14 +1,17 @@
 import React from 'react';
 import {LanguageContext} from '../../Language/LangPack'
 import HeadNavigation from '../../Components/HeadNavigation';
+import MsgBox from "../../Components/MsgBox"
 import MsgBox2Buttons from "../../Components/MsgBox2Buttons"
 import GAME_STATUS from '../../Lib/GameStatus';
 import DEVICE_STATUS from '../../Lib/DeviceStatus';
+import OneModuloGame from '../../Model/Game';
 
 
 export default class GamePage extends React.Component {
     currentGame = null;
     isFirstGamer  = false;
+    rounds = [];
     constructor(props, context) {
 		super(props);
 		this.state = 
@@ -20,13 +23,18 @@ export default class GamePage extends React.Component {
             myDigit1 : null,
             myDigit2 : null,
             myDigit3 : null,
-            canUseJoker: false
+            canUseJoker: false,
+            game : null
         };
         this.currentContext = context;
 
         this.currentGame = props.CurrentGame;
 
-        this.isFirstGamer = this.currentGame.User1Id == props.Device.myUser.Id;
+  
+        
+
+
+        this.isFirstGamer = this.currentGame.User1Id === props.Device.myUser.Id;
 
         this.modalButtonAcceptOnClick = this.modalButtonAcceptOnClick.bind(this);
         this.modalButtonDeclineOnClick = this.modalButtonDeclineOnClick.bind(this);
@@ -36,7 +44,60 @@ export default class GamePage extends React.Component {
         this.onFooterButtonClick = this.onFooterButtonClick.bind(this);
         this.onCardDigitClick = this.onCardDigitClick.bind(this);
         this.onDesktopDigitClick = this.onDesktopDigitClick.bind(this);
+
+        this.updateGameInfo = this.updateGameInfo.bind(this);
+        this.onLoadGameInfo = this.onLoadGameInfo.bind(this);
+        
+
 	}
+
+    updateIntervalObject = null;
+    componentDidMount()
+    {
+        var thisObject = this;
+        setTimeout(() => thisObject.updateGameInfo(), 1000);
+
+        if (!this.updateIntervalObject)
+        {
+            this.updateIntervalObject = setInterval(() => thisObject.updateGameInfo(), 3000);
+        }
+    }
+
+    componentWillUnmount()
+    {
+        if (this.updateIntervalObject) clearInterval(this.updateIntervalObject);
+    }
+
+
+    updateGameInfo()
+    {
+        this.props.Device.GetGameInfo(this.props.CurrentGame.Id, this.onLoadGameInfo, this);
+    }
+
+    onLoadGameInfo(gameInfo)
+    {
+        if(gameInfo && gameInfo.Id)
+        {
+            if (!(this.state.game && this.state.game.GameStatus === gameInfo.GameStatus))
+            {
+
+                var newGame = new OneModuloGame(gameInfo);
+                this.currentGame = newGame;
+                this.setState({game : newGame });
+            }
+        }
+        else
+        {
+            console.log("onLoadGame got wrong answer:");
+            console.log(gameInfo);
+        }
+    }
+
+    loadRound(round)
+    {
+        if (!this.currentGame.Rounds) return;
+
+    }
 
     cancelButtonOnClick()
     {
@@ -81,67 +142,28 @@ export default class GamePage extends React.Component {
                 switch (this.currentGame.GameStatus)
                 {
                     case GAME_STATUS.GAME_ROUND_1_NOUSER:
+                    case GAME_STATUS.GAME_ROUND_1_USER2_DONE:
                         postData.RoundNumber = 1;
                         break;                        
                     case GAME_STATUS.GAME_ROUND_2_NOUSER:
+                    case GAME_STATUS.GAME_ROUND_2_USER2_DONE:
                         postData.RoundNumber = 2;
                         break;
                     case GAME_STATUS.GAME_ROUND_3_NOUSER:
+                    case GAME_STATUS.GAME_ROUND_3_USER2_DONE:
                         postData.RoundNumber = 3;
                         break;
                     case GAME_STATUS.GAME_ROUND_4_NOUSER:
+                    case GAME_STATUS.GAME_ROUND_4_USER2_DONE:
                         postData.RoundNumber = 4;
                         break;
                     case GAME_STATUS.GAME_ROUND_5_NOUSER:
+                    case GAME_STATUS.GAME_ROUND_5_USER2_DONE:
                         postData.RoundNumber = 5;
                         break;
                     default:break;
                 }
-                if (this.isFirstGamer)
-                {
-                    switch (this.currentGame.GameStatus)
-                    {
-                        case GAME_STATUS.GAME_ROUND_1_USER2_DONE:
-                            postData.RoundNumber = 1;
-                            break;                        
-                        case GAME_STATUS.GAME_ROUND_2_USER2_DONE:
-                            postData.RoundNumber = 2;
-                            break;
-                        case GAME_STATUS.GAME_ROUND_3_USER2_DONE:
-                            postData.RoundNumber = 3;
-                            break;
-                        case GAME_STATUS.GAME_ROUND_4_USER2_DONE:
-                            postData.RoundNumber = 4;
-                            break;
-                        case GAME_STATUS.GAME_ROUND_5_USER2_DONE:
-                            postData.RoundNumber = 5;
-                            break;
-                        default:break;
-                    }   
-                }
-                else
-                {
-                    switch (this.currentGame.GameStatus)
-                    {
-                        case GAME_STATUS.GAME_ROUND_1_USER1_DONE:
-                            postData.RoundNumber = 1;
-                            break;                        
-                        case GAME_STATUS.GAME_ROUND_2_USER1_DONE:
-                            postData.RoundNumber = 2;
-                            break;
-                        case GAME_STATUS.GAME_ROUND_3_USER1_DONE:
-                            postData.RoundNumber = 3;
-                            break;
-                        case GAME_STATUS.GAME_ROUND_4_USER1_DONE:
-                            postData.RoundNumber = 4;
-                            break;
-                        case GAME_STATUS.GAME_ROUND_5_USER1_DONE:
-                            postData.RoundNumber = 5;
-                            break;
-                        default:break;
-                    } 
 
-                }
                    
                 if (postData.RoundNumber)
                 {
@@ -333,7 +355,19 @@ export default class GamePage extends React.Component {
                 break;
         }
 
-        if (MsgBoxText)
+
+        if (!this.state.game)
+        {
+            MsgBoxHTML = (
+                <MsgBox NoButton = {true}>
+                    <div className="Content">
+                        <p className="Title">{this.currentContext.GetText('game.page', 'StartGame.WaitPlease')}</p>
+                        <p>{this.currentContext.GetText('game.page', 'StartGame.Loading')}</p>
+                    </div>
+                </MsgBox>
+                )
+        }
+        else if (MsgBoxText)
         {
             MsgBoxHTML = (
             <MsgBox2Buttons 
@@ -350,6 +384,72 @@ export default class GamePage extends React.Component {
             )
         }
         
+
+        if (this.state.game && this.state.game.Rounds)
+        {
+
+            if (this.state.game.Rounds[this.state.game.User1Id + ":1"])
+            {
+                this.rounds["1.1.1"] = this.state.game.Rounds[this.state.game.User1Id + ":1"].Digit1;
+                this.rounds["1.1.2"] = this.state.game.Rounds[this.state.game.User1Id + ":1"].Digit2;
+                this.rounds["1.1.3"] = this.state.game.Rounds[this.state.game.User1Id + ":1"].Digit3;
+            }            
+            if (this.state.game.Rounds[this.state.game.User2Id + ":1"])
+            {
+                this.rounds["1.2.1"] = this.state.game.Rounds[this.state.game.User2Id + ":1"].Digit1;
+                this.rounds["1.2.2"] = this.state.game.Rounds[this.state.game.User2Id + ":1"].Digit2;
+                this.rounds["1.2.3"] = this.state.game.Rounds[this.state.game.User2Id + ":1"].Digit3;
+            }
+            if (this.state.game.Rounds[this.state.game.User1Id + ":2"])
+            {
+                this.rounds["2.1.1"] = this.state.game.Rounds[this.state.game.User1Id + ":2"].Digit1;
+                this.rounds["2.1.2"] = this.state.game.Rounds[this.state.game.User1Id + ":2"].Digit2;
+                this.rounds["2.1.3"] = this.state.game.Rounds[this.state.game.User1Id + ":2"].Digit3;
+            }            
+            if (this.state.game.Rounds[this.state.game.User2Id + ":2"])
+            {
+                this.rounds["2.2.1"] = this.state.game.Rounds[this.state.game.User2Id + ":2"].Digit1;
+                this.rounds["2.2.2"] = this.state.game.Rounds[this.state.game.User2Id + ":2"].Digit2;
+                this.rounds["2.2.3"] = this.state.game.Rounds[this.state.game.User2Id + ":2"].Digit3;
+            }
+            if (this.state.game.Rounds[this.state.game.User1Id + ":3"])
+            {
+                this.rounds["3.1.1"] = this.state.game.Rounds[this.state.game.User1Id + ":3"].Digit1;
+                this.rounds["3.1.2"] = this.state.game.Rounds[this.state.game.User1Id + ":3"].Digit2;
+                this.rounds["3.1.3"] = this.state.game.Rounds[this.state.game.User1Id + ":3"].Digit3;
+            }            
+            if (this.state.game.Rounds[this.state.game.User2Id + ":3"])
+            {
+                this.rounds["3.2.1"] = this.state.game.Rounds[this.state.game.User2Id + ":3"].Digit1;
+                this.rounds["3.2.2"] = this.state.game.Rounds[this.state.game.User2Id + ":3"].Digit2;
+                this.rounds["3.2.3"] = this.state.game.Rounds[this.state.game.User2Id + ":3"].Digit3;
+            }
+            if (this.state.game.Rounds[this.state.game.User1Id + ":4"])
+            {
+                this.rounds["4.1.1"] = this.state.game.Rounds[this.state.game.User1Id + ":4"].Digit1;
+                this.rounds["4.1.2"] = this.state.game.Rounds[this.state.game.User1Id + ":4"].Digit2;
+                this.rounds["4.1.3"] = this.state.game.Rounds[this.state.game.User1Id + ":4"].Digit3;
+            }            
+            if (this.state.game.Rounds[this.state.game.User2Id + ":4"])
+            {
+                this.rounds["4.2.1"] = this.state.game.Rounds[this.state.game.User2Id + ":4"].Digit1;
+                this.rounds["4.2.2"] = this.state.game.Rounds[this.state.game.User2Id + ":4"].Digit2;
+                this.rounds["4.2.3"] = this.state.game.Rounds[this.state.game.User2Id + ":4"].Digit3;
+            }
+            if (this.state.game.Rounds[this.state.game.User1Id + ":5"])
+            {
+                this.rounds["5.1.1"] = this.state.game.Rounds[this.state.game.User1Id + ":5"].Digit1;
+                this.rounds["5.1.2"] = this.state.game.Rounds[this.state.game.User1Id + ":5"].Digit2;
+                this.rounds["5.1.3"] = this.state.game.Rounds[this.state.game.User1Id + ":5"].Digit3;
+            }            
+            if (this.state.game.Rounds[this.state.game.User2Id + ":5"])
+            {
+                this.rounds["5.2.1"] = this.state.game.Rounds[this.state.game.User2Id + ":5"].Digit1;
+                this.rounds["5.2.2"] = this.state.game.Rounds[this.state.game.User2Id + ":5"].Digit2;
+                this.rounds["5.2.3"] = this.state.game.Rounds[this.state.game.User2Id + ":5"].Digit3;
+            }
+        }
+
         var footerButtonOrLabel = null;
         if (FooterButtonText)
         {
@@ -471,57 +571,57 @@ export default class GamePage extends React.Component {
                 <div className="GameArea">
 
                     <div className='OneRound'>
-                        <div className='OneDigit'></div>
-                        <div className='OneDigit'></div>
-                        <div className='OneDigit'></div>
+                        <div className='OneDigit'>{this.rounds["1.1.1"] && (<div className="DigitIcon" data-digit={this.rounds["1.1.1"]} data-color="red"></div>)}</div>
+                        <div className='OneDigit'>{this.rounds["1.1.2"] && (<div className="DigitIcon" data-digit={this.rounds["1.1.2"]} data-color="red"></div>)}</div>
+                        <div className='OneDigit'>{this.rounds["1.1.3"] && (<div className="DigitIcon" data-digit={this.rounds["1.1.3"]} data-color="red"></div>)}</div>
                         <div className='RoundName'>{this.currentContext.GetText('game.page', 'RoundName1')}</div>
-                        <div className='OneDigit'></div>
-                        <div className='OneDigit'></div>
-                        <div className='OneDigit'></div>
+                        <div className='OneDigit'>{this.rounds["1.2.1"] && (<div className="DigitIcon" data-digit={this.rounds["1.2.1"]} data-color="blue"></div>)}</div>
+                        <div className='OneDigit'>{this.rounds["1.2.2"] && (<div className="DigitIcon" data-digit={this.rounds["1.2.2"]} data-color="blue"></div>)}</div>
+                        <div className='OneDigit'>{this.rounds["1.2.3"] && (<div className="DigitIcon" data-digit={this.rounds["1.2.3"]} data-color="blue"></div>)}</div>
                     </div>
                     
 
                     <div className='OneRound'>
-                        <div className='OneDigit'></div>
-                        <div className='OneDigit'></div>
-                        <div className='OneDigit'></div>
+                        <div className='OneDigit'>{this.rounds["2.1.1"] && (<div className="DigitIcon" data-digit={this.rounds["2.1.1"]} data-color="red"></div>)}</div>
+                        <div className='OneDigit'>{this.rounds["2.1.2"] && (<div className="DigitIcon" data-digit={this.rounds["2.1.2"]} data-color="red"></div>)}</div>
+                        <div className='OneDigit'>{this.rounds["2.1.3"] && (<div className="DigitIcon" data-digit={this.rounds["2.1.3"]} data-color="red"></div>)}</div>
                         <div className='RoundName'>{this.currentContext.GetText('game.page', 'RoundName2')}</div>
-                        <div className='OneDigit'></div>
-                        <div className='OneDigit'></div>
-                        <div className='OneDigit'></div>
+                        <div className='OneDigit'>{this.rounds["2.2.1"] && (<div className="DigitIcon" data-digit={this.rounds["2.2.1"]} data-color="blue"></div>)}</div>
+                        <div className='OneDigit'>{this.rounds["2.2.2"] && (<div className="DigitIcon" data-digit={this.rounds["2.2.2"]} data-color="blue"></div>)}</div>
+                        <div className='OneDigit'>{this.rounds["2.2.3"] && (<div className="DigitIcon" data-digit={this.rounds["2.2.3"]} data-color="blue"></div>)}</div>
                     </div>
                     
 
                     <div className='OneRound'>
-                        <div className='OneDigit'></div>
-                        <div className='OneDigit'></div>
-                        <div className='OneDigit'></div>
+                        <div className='OneDigit'>{this.rounds["3.1.1"] && (<div className="DigitIcon" data-digit={this.rounds["3.1.1"]} data-color="red"></div>)}</div>
+                        <div className='OneDigit'>{this.rounds["3.1.2"] && (<div className="DigitIcon" data-digit={this.rounds["3.1.2"]} data-color="red"></div>)}</div>
+                        <div className='OneDigit'>{this.rounds["3.1.3"] && (<div className="DigitIcon" data-digit={this.rounds["3.1.3"]} data-color="red"></div>)}</div>
                         <div className='RoundName'>{this.currentContext.GetText('game.page', 'RoundName3')}</div>
-                        <div className='OneDigit'></div>
-                        <div className='OneDigit'></div>
-                        <div className='OneDigit'></div>
+                        <div className='OneDigit'>{this.rounds["3.2.1"] && (<div className="DigitIcon" data-digit={this.rounds["3.2.1"]} data-color="blue"></div>)}</div>
+                        <div className='OneDigit'>{this.rounds["3.2.2"] && (<div className="DigitIcon" data-digit={this.rounds["3.2.2"]} data-color="blue"></div>)}</div>
+                        <div className='OneDigit'>{this.rounds["3.2.3"] && (<div className="DigitIcon" data-digit={this.rounds["3.2.3"]} data-color="blue"></div>)}</div>
                     </div>
                     
 
                     <div className='OneRound'>
-                        <div className='OneDigit'></div>
-                        <div className='OneDigit'></div>
-                        <div className='OneDigit'></div>
+                        <div className='OneDigit'>{this.rounds["4.1.1"] && (<div className="DigitIcon" data-digit={this.rounds["4.1.1"]} data-color="red"></div>)}</div>
+                        <div className='OneDigit'>{this.rounds["4.1.2"] && (<div className="DigitIcon" data-digit={this.rounds["4.1.2"]} data-color="red"></div>)}</div>
+                        <div className='OneDigit'>{this.rounds["4.1.3"] && (<div className="DigitIcon" data-digit={this.rounds["4.1.3"]} data-color="red"></div>)}</div>
                         <div className='RoundName'>{this.currentContext.GetText('game.page', 'RoundName4')}</div>
-                        <div className='OneDigit'></div>
-                        <div className='OneDigit'></div>
-                        <div className='OneDigit'></div>
+                        <div className='OneDigit'>{this.rounds["4.2.1"] && (<div className="DigitIcon" data-digit={this.rounds["4.2.1"]} data-color="blue"></div>)}</div>
+                        <div className='OneDigit'>{this.rounds["4.2.2"] && (<div className="DigitIcon" data-digit={this.rounds["4.2.2"]} data-color="blue"></div>)}</div>
+                        <div className='OneDigit'>{this.rounds["4.2.3"] && (<div className="DigitIcon" data-digit={this.rounds["4.2.3"]} data-color="blue"></div>)}</div>
                     </div>
                     
 
                     <div className='OneRound'>
-                        <div className='OneDigit'></div>
-                        <div className='OneDigit'></div>
-                        <div className='OneDigit'></div>
+                        <div className='OneDigit'>{this.rounds["5.1.1"] && (<div className="DigitIcon" data-digit={this.rounds["5.1.1"]} data-color="red"></div>)}</div>
+                        <div className='OneDigit'>{this.rounds["5.1.2"] && (<div className="DigitIcon" data-digit={this.rounds["5.1.2"]} data-color="red"></div>)}</div>
+                        <div className='OneDigit'>{this.rounds["5.1.3"] && (<div className="DigitIcon" data-digit={this.rounds["5.1.3"]} data-color="red"></div>)}</div>
                         <div className='RoundName'>{this.currentContext.GetText('game.page', 'RoundName5')}</div>
-                        <div className='OneDigit'></div>
-                        <div className='OneDigit'></div>
-                        <div className='OneDigit'></div>
+                        <div className='OneDigit'>{this.rounds["5.2.1"] && (<div className="DigitIcon" data-digit={this.rounds["5.2.1"]} data-color="blue"></div>)}</div>
+                        <div className='OneDigit'>{this.rounds["5.2.2"] && (<div className="DigitIcon" data-digit={this.rounds["5.2.2"]} data-color="blue"></div>)}</div>
+                        <div className='OneDigit'>{this.rounds["5.2.3"] && (<div className="DigitIcon" data-digit={this.rounds["5.2.3"]} data-color="blue"></div>)}</div>
                     </div>
                 </div>
             )

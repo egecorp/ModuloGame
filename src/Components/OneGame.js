@@ -10,13 +10,7 @@ export default class OneGame extends React.Component {
     
     constructor(props, context) {
         super(props);
-        /*
-        this.state = {
-            isStart: false,
-            isFinish: false
-        };*/
 
-        //this.context = context;
         this.isCup = props.IsCup;
         this.onGameClick = this.onGameClick.bind(this);
 
@@ -27,7 +21,6 @@ export default class OneGame extends React.Component {
 
         this.onGameClickCallBack = props.onGameClickCallBack;
         //this.GameStatus = this.context.GetText('gamestatus', props.game.GameStatus);
-
     }
 
     onGameClick(ev)
@@ -68,8 +61,8 @@ export default class OneGame extends React.Component {
                     <div className="Player">
                         <div className="Avatar"></div>
                         <p>{this.User2Name}</p>
-                    </div>                </li>
-				
+                    </div>                
+                </li>				
 			);
         }
         else
@@ -104,7 +97,5 @@ export default class OneGame extends React.Component {
                 </LanguageContext.Consumer>
 			);
         }
-
-
 	}
 }

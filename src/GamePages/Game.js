@@ -19,8 +19,6 @@ export default class Game extends React.Component {
 
       this.myDevice = props.Device;
 
-    
-
       this.nextButtonCallBack = this.nextButtonCallBack.bind(this);
       this.navigationButtonCallBack = this.navigationButtonCallBack.bind(this);
     }
