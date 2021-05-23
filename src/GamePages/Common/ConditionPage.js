@@ -24,7 +24,7 @@ export default class ConditionPage extends React.Component {
 						<HeadNavigation>
 							<button className="ButtonBack"></button>
 
-							<p className="HeadNavigationTitle">{context.GetText('condition', 'labelWindow')}</p>
+							<p className="Title">{context.GetText('condition', 'labelWindow')}</p>
 
 							<SignInLanguagePanel></SignInLanguagePanel>
 						</HeadNavigation>

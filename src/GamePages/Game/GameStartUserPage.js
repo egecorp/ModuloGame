@@ -89,7 +89,7 @@ export default class GameStartUserPage extends React.Component {
 					<HeadNavigation>
 						<button className="ButtonBack" onClick={this.cancelButtonOnClick}></button>
 
-						<p className="HeadNavigationTitle">{context.GetText('finduser', 'labelWindow')}</p>
+						<p className="Title">{context.GetText('finduser', 'labelWindow')}</p>
 					</HeadNavigation>
 					
 					<div className="FindUser">

@@ -610,7 +610,7 @@ export default class GamePage extends React.Component {
 					<>
 						<HeadNavigation>
 							<button className="ButtonBack" onClick={this.cancelButtonOnClick}></button>
-							<p className="HeadNavigationTitle">{context.GetText('game.page', 'GameHeader')}</p>
+							<p className="Title">{context.GetText('game.page', 'GameHeader')}</p>
 						</HeadNavigation>
 
 						<div className="Gameground">

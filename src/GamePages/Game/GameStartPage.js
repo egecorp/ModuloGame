@@ -40,7 +40,7 @@ export default class GameStartPage extends React.Component {
 				<>
 					<HeadNavigation>
                         <button className="ButtonBack" onClick={this.selectBack}></button>
-						<p className="HeadNavigationTitle">{context.GetText('gamestart', 'labelWindow')}</p>
+						<p className="Title">{context.GetText('gamestart', 'labelWindow')}</p>
 					</HeadNavigation>
 					
 					<div className="GameStart">

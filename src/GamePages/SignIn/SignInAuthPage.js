@@ -75,7 +75,7 @@ render() {
 						<HeadNavigation>
 							<button className="ButtonBack"></button>
 
-							<p className="HeadNavigationTitle">{context.GetText('signinauth', 'labelWindow')}</p>
+							<p className="Title">{context.GetText('signinauth', 'labelWindow')}</p>
 
 							<SignInLanguagePanel lang="ru"></SignInLanguagePanel>
 						</HeadNavigation>

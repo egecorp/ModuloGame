@@ -54,7 +54,7 @@ export default class SignInAuthPage extends React.Component {
 							<HeadNavigation>
 								<button className="ButtonBack" onClick={this.backButtonOnClick}></button>
 
-							<p className="HeadNavigationTitle">{context.GetText('signinanonim', 'labelWindow')}</p>
+							<p className="Title">{context.GetText('signinanonim', 'labelWindow')}</p>
 
 							<SignInLanguagePanel lang="ru"></SignInLanguagePanel>
 						</HeadNavigation>

@@ -48,7 +48,7 @@ export default class GameStartPage extends React.Component {
 			( 
 				<>
 					<HeadNavigation>
-						<p className="HeadNavigationTitle">{context.GetText('gamestart', 'labelWindow')}</p>
+						<p className="Title">{context.GetText('gamestart', 'labelWindow')}</p>
 					</HeadNavigation>
 					
 					<div className="GameStart">
