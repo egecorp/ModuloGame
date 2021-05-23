@@ -583,6 +583,48 @@ export default class Device
         this.myServer.Get.call(this.myServer).PlayRound(postObject).then(_GoodResult, _ErrorResult);
     }	
 
+    
+    GiveUpGame(callBack, context, postObject)
+    {
+        function GoodResult(response)
+        {
+            if (!response)
+            {
+                this.CurrentError = this._SERVER_ERROR.SERVER_ERROR;
+                callBack.call(context,  DEVICE_STATUS.GAME_GAME_COMMAND_FAIL); // CHangre status
+                return;
+            }
+            else if (response.Error)
+            {
+                if (response.IsWorkflowError === true)
+                {
+                    this.CurrentError = this._GetErrorOrDefault(response.Error);
+                }
+                else
+                {
+                    this.CurrentError = this._SERVER_ERROR.SERVER_ERROR;
+                }
+                callBack.call(context,  DEVICE_STATUS.GAME_GAME_COMMAND_FAIL);
+                return;
+            }
+            this.CurrentError = null;
+            callBack.call(context,  DEVICE_STATUS.GAME_GAME_COMMAND_DONE, response);
+        }
+        
+        function ErrorResult(e)
+        {
+            console.error(e);
+            this.CurrentError = this._SERVER_ERROR.SERVER_ERROR;
+            callBack.call(context,  DEVICE_STATUS.GAME_GAME_COMMAND_FAIL);
+        }
+
+        this.CurrentError = null;
+
+        var _GoodResult = GoodResult.bind(this);
+        var _ErrorResult = ErrorResult.bind(this);
+        this.myServer.Get.call(this.myServer).GiveUp(postObject).then(_GoodResult, _ErrorResult);
+    }	
+
     uuidv4() 
     {
         return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {

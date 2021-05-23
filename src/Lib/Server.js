@@ -1,5 +1,5 @@
-const SERVER_URL = 'https://api.modulogame.org/API/';
-//const SERVER_URL = 'https://localhost:44335/API/';
+//const SERVER_URL = 'https://api.modulogame.org/API/';
+const SERVER_URL = 'https://localhost:44335/API/';
 
 
 const URL_RegisterDevice = 'RegisterDevice';
@@ -23,7 +23,7 @@ const URL_AcceptGame = "AcceptGame";
 const URL_DeclineGame = "DeclineGame";
 const URL_WithdrawGame = "WithdrawGame";
 const URL_PlayRound = "PlayRound";
-const URL_GiveUp = "GiveUp";
+const URL_GiveUp = "PlayRoundGiveUp";
 
 var MySingletonObject = undefined;
 

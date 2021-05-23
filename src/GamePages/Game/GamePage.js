@@ -47,7 +47,7 @@ export default class GamePage extends React.Component {
 
 		this.updateGameInfo = this.updateGameInfo.bind(this);
 		this.onLoadGameInfo = this.onLoadGameInfo.bind(this);
-
+        this.giveUpButtonOnClick = this.giveUpButtonOnClick.bind(this);
 
 	}
 
@@ -75,7 +75,12 @@ export default class GamePage extends React.Component {
 
 				var newGame = new OneModuloGame(gameInfo);
 				this.currentGame = newGame;
-				this.setState({ game: newGame });
+
+                
+                let canUseJoker  = ((this.props.Device.myUser.Id === newGame.User1Id) && newGame.User1CanUseJoker) ||
+                                    ((this.props.Device.myUser.Id === newGame.User2Id) && newGame.User2CanUseJoker);
+
+				this.setState({ game: newGame, canUseJoker: canUseJoker });
 			}
 		}
 		else {
@@ -92,6 +97,34 @@ export default class GamePage extends React.Component {
 	cancelButtonOnClick() {
 		this.props.NavigationButtonCallBack(DEVICE_STATUS.GAME_SHOW_LIST);
 	}
+
+    giveUpButtonOnClick(){
+        var postData = { Id: this.currentGame.Id, DeviceWorkToken: this.props.Device.DeviceWorkToken };
+        switch (this.currentGame.GameStatus) {
+            case GAME_STATUS.GAME_ROUND_1_NOUSER:
+            case GAME_STATUS.GAME_ROUND_1_USER2_DONE:
+                postData.RoundNumber = 1;
+                break;
+            case GAME_STATUS.GAME_ROUND_2_NOUSER:
+            case GAME_STATUS.GAME_ROUND_2_USER2_DONE:
+                postData.RoundNumber = 2;
+                break;
+            case GAME_STATUS.GAME_ROUND_3_NOUSER:
+            case GAME_STATUS.GAME_ROUND_3_USER2_DONE:
+                postData.RoundNumber = 3;
+                break;
+            case GAME_STATUS.GAME_ROUND_4_NOUSER:
+            case GAME_STATUS.GAME_ROUND_4_USER2_DONE:
+                postData.RoundNumber = 4;
+                break;
+            case GAME_STATUS.GAME_ROUND_5_NOUSER:
+            case GAME_STATUS.GAME_ROUND_5_USER2_DONE:
+                postData.RoundNumber = 5;
+                break;
+            default: break;
+        }
+        this.props.Device.GiveUpGame(this.onGameChangeCallBack, this, postData);
+    }
 
 	onGameChangeCallBack(r) {
 		console.log("onGameChangeCallBack");
@@ -347,7 +380,10 @@ export default class GamePage extends React.Component {
 			)
 		}
 
-
+        function GetDigitOrJoker(e)
+        {
+            return (e === 11) ? "J" : e;
+        }
 		if (this.state.game && this.state.game.Rounds) {
 
 			if (this.state.game.Rounds[this.state.game.User1Id + ":1"]) {
@@ -381,24 +417,24 @@ export default class GamePage extends React.Component {
 				this.rounds["3.2.3"] = this.state.game.Rounds[this.state.game.User2Id + ":3"].Digit3;
 			}
 			if (this.state.game.Rounds[this.state.game.User1Id + ":4"]) {
-				this.rounds["4.1.1"] = this.state.game.Rounds[this.state.game.User1Id + ":4"].Digit1;
-				this.rounds["4.1.2"] = this.state.game.Rounds[this.state.game.User1Id + ":4"].Digit2;
-				this.rounds["4.1.3"] = this.state.game.Rounds[this.state.game.User1Id + ":4"].Digit3;
+				this.rounds["4.1.1"] = GetDigitOrJoker(this.state.game.Rounds[this.state.game.User1Id + ":4"].Digit1);
+				this.rounds["4.1.2"] = GetDigitOrJoker(this.state.game.Rounds[this.state.game.User1Id + ":4"].Digit2);
+				this.rounds["4.1.3"] = GetDigitOrJoker(this.state.game.Rounds[this.state.game.User1Id + ":4"].Digit3);
 			}
 			if (this.state.game.Rounds[this.state.game.User2Id + ":4"]) {
-				this.rounds["4.2.1"] = this.state.game.Rounds[this.state.game.User2Id + ":4"].Digit1;
-				this.rounds["4.2.2"] = this.state.game.Rounds[this.state.game.User2Id + ":4"].Digit2;
-				this.rounds["4.2.3"] = this.state.game.Rounds[this.state.game.User2Id + ":4"].Digit3;
+				this.rounds["4.2.1"] = GetDigitOrJoker(this.state.game.Rounds[this.state.game.User2Id + ":4"].Digit1);
+				this.rounds["4.2.2"] = GetDigitOrJoker(this.state.game.Rounds[this.state.game.User2Id + ":4"].Digit2);
+				this.rounds["4.2.3"] = GetDigitOrJoker(this.state.game.Rounds[this.state.game.User2Id + ":4"].Digit3);
 			}
 			if (this.state.game.Rounds[this.state.game.User1Id + ":5"]) {
-				this.rounds["5.1.1"] = this.state.game.Rounds[this.state.game.User1Id + ":5"].Digit1;
-				this.rounds["5.1.2"] = this.state.game.Rounds[this.state.game.User1Id + ":5"].Digit2;
-				this.rounds["5.1.3"] = this.state.game.Rounds[this.state.game.User1Id + ":5"].Digit3;
+				this.rounds["5.1.1"] = GetDigitOrJoker(this.state.game.Rounds[this.state.game.User1Id + ":5"].Digit1);
+				this.rounds["5.1.2"] = GetDigitOrJoker(this.state.game.Rounds[this.state.game.User1Id + ":5"].Digit2);
+				this.rounds["5.1.3"] = GetDigitOrJoker(this.state.game.Rounds[this.state.game.User1Id + ":5"].Digit3);
 			}
 			if (this.state.game.Rounds[this.state.game.User2Id + ":5"]) {
-				this.rounds["5.2.1"] = this.state.game.Rounds[this.state.game.User2Id + ":5"].Digit1;
-				this.rounds["5.2.2"] = this.state.game.Rounds[this.state.game.User2Id + ":5"].Digit2;
-				this.rounds["5.2.3"] = this.state.game.Rounds[this.state.game.User2Id + ":5"].Digit3;
+				this.rounds["5.2.1"] = GetDigitOrJoker(this.state.game.Rounds[this.state.game.User2Id + ":5"].Digit1);
+				this.rounds["5.2.2"] = GetDigitOrJoker(this.state.game.Rounds[this.state.game.User2Id + ":5"].Digit2);
+				this.rounds["5.2.3"] = GetDigitOrJoker(this.state.game.Rounds[this.state.game.User2Id + ":5"].Digit3);
 			}
 		}
 
@@ -603,6 +639,11 @@ export default class GamePage extends React.Component {
 			)
 		}
 
+        let canGiveUp = this.currentGame.IsStart && !this.currentGame.IsGiveUp && !this.currentGame.IsFinish;
+        var giveUpButton = canGiveUp ?
+                             (<button onClick={this.giveUpButtonOnClick} className="ButtonGreen">{this.currentContext.GetText('game.page', 'GiveUp')}</button>)
+                             : null;
+
 		return (
 			<LanguageContext.Consumer>
 				{(context) =>
@@ -611,6 +652,7 @@ export default class GamePage extends React.Component {
 						<HeadNavigation>
 							<button className="ButtonBack" onClick={this.cancelButtonOnClick}></button>
 							<p className="Title">{context.GetText('game.page', 'GameHeader')}</p>
+                            {giveUpButton}
 						</HeadNavigation>
 
 						<div className="Gameground">
@@ -628,13 +670,20 @@ export default class GamePage extends React.Component {
 									<div className="IconVip"></div>
 
 									<div className="Jokers">
-										<div className="IconJoker Red"></div>
-										<div className="IconJoker Blue"></div>
+										<div className="IconJoker Red">
+                                          {this.currentGame.User1CanUseJoker ? (<div className="DigitIcon" data-digit="J" data-color="blue"></div>) : null}
+                                        </div>
+										{/*<!--<div className="IconJoker Blue"></div> вторых джокеров не будет  -->*/}
 									</div>
 								</div>
 
 								<div className="CurrentInfo">
-									<p className="Score">00:00</p>
+									<p className="Score">{
+                                    (((this.currentGame.User1Score || 0) > 9) ? this.currentGame.User1Score : ("0" + this.currentGame.User1Score || 0)) +
+                                    ":" +
+                                    (((this.currentGame.User2Score || 0) > 9) ? this.currentGame.User2Score : ("0" + this.currentGame.User2Score || 0))
+                                    }
+                                    </p>
 
 									<div className="Status">
 										<div className="IconStatus Waiting"></div>
@@ -643,7 +692,7 @@ export default class GamePage extends React.Component {
 								</div>
 
 								<div className="Gamer" data-vip="0">
-									<p>{this.currentGame.User1Name}</p>
+									<p>{this.currentGame.User2Name}</p>
 
 									<img src='/img/avatar/1/boy.1.png' alt="No Avatar"></img>
 
@@ -655,8 +704,9 @@ export default class GamePage extends React.Component {
 									<div className="IconVip"></div>
 
 									<div className="Jokers">
-										<div className="IconJoker Red"></div>
-										<div className="IconJoker Blue"></div>
+										<div className="IconJoker Red">
+                                            {this.currentGame.User2CanUseJoker ? (<div className="DigitIcon" data-digit="J" data-color="blue"></div>) : null}
+                                        </div>
 									</div>
 								</div>
 							</div>

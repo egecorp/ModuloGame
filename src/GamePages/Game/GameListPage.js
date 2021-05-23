@@ -55,7 +55,7 @@ export default class GameListPage extends React.Component {
 							<div className="SubMenu">
 								<p className="GeneralSubtitle">{context.GetText('gamelist', 'labelWindow')}</p>
 
-								<button className="ButtonGreen">{context.GetText('gamelist', 'buttonNewGameLabel')}</button>
+								<button onClick={this.createGame} className="ButtonGreen">{context.GetText('gamelist', 'buttonNewGameLabel')}</button>
 							</div>
 
 							<div className="Games NowPlaying">

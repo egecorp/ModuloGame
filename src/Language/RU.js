@@ -340,6 +340,8 @@ export function AddPackets(addPackFunction)
         'StartGame.WaitPlease' : 'Пожалуйста подождите',
         'StartGame.Loading' : 'Идёт загрузка данных...',
 
+        'GiveUp' : 'Сдаться',
+
         'GameHeader'  : 'Modulo',
 
         'FooterButtonPlayRound'  : 'Сделать ход',
