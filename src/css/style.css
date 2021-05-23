@@ -518,6 +518,34 @@ input.InPopup::-webkit-input-placeholder {
   background-color: rgba(0, 0, 0, 0.25);
 }
 
+.ButtonAroundGreen {
+  position: relative;
+}
+
+.ButtonAroundGreen::after, .ButtonAroundGreen::before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  content: "";
+  border-radius: 30px;
+}
+
+.ButtonAroundGreen::after {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
+  z-index: -10;
+}
+
+.ButtonAroundGreen::before {
+  width: calc(100% - 4px);
+  height: calc(100% - 4px);
+  background-color: var(--button-green);
+  z-index: -5;
+}
+
 /*** *** *** END *** *** ***/
 .Main {
   margin-top: 20px;
@@ -537,8 +565,8 @@ input.InPopup::-webkit-input-placeholder {
 .Game {
   position: relative;
   height: 100%;
-  background: -webkit-gradient(linear, left top, left bottom, from(#12652f), color-stop(50%, #038D42), to(#0f6e34));
-  background: linear-gradient(to bottom, #12652f 0%, #038D42 50%, #0f6e34 100%);
+  background: -webkit-gradient(linear, left top, left bottom, from(#12652f), color-stop(50%, #038d42), to(#0f6e34));
+  background: linear-gradient(to bottom, #12652f 0%, #038d42 50%, #0f6e34 100%);
   overflow: hidden;
 }
 
@@ -766,7 +794,7 @@ input.InPopup::-webkit-input-placeholder {
   position: absolute;
   right: -5px;
   bottom: -5px;
-  content: '';
+  content: "";
   display: block;
   width: 14px;
   height: 14px;
@@ -786,7 +814,7 @@ input.InPopup::-webkit-input-placeholder {
   top: 50%;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
-  content: '';
+  content: "";
   display: block;
   width: 20px;
   height: 20px;
@@ -942,7 +970,9 @@ input.InPopup::-webkit-input-placeholder {
   pointer-events: all;
 }
 
-.Modal p, .Modal span, .Modal label {
+.Modal p,
+.Modal span,
+.Modal label {
   color: var(--modal-font-color);
 }
 
@@ -954,11 +984,11 @@ input.InPopup::-webkit-input-placeholder {
   display: block;
 }
 
-.Modal p > span:nth-child(n+2) {
+.Modal p > span:nth-child(n + 2) {
   margin-top: 3px;
 }
 
-.Modal > *:nth-child(n+2) {
+.Modal > *:nth-child(n + 2) {
   margin-top: 12px;
 }
 
@@ -973,11 +1003,11 @@ input.InPopup::-webkit-input-placeholder {
   /* END */
 }
 
-.Modal .ModalBody > div > *:nth-child(n+2) {
+.Modal .ModalBody > div > *:nth-child(n + 2) {
   margin-top: 12px;
 }
 
-.Modal .ModalBody > div > .Content > *:nth-child(n+2) {
+.Modal .ModalBody > div > .Content > *:nth-child(n + 2) {
   margin-top: 7px;
 }
 
@@ -1161,303 +1191,395 @@ input.InPopup::-webkit-input-placeholder {
   text-align: justify;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+/******** Игровая область **********/
+.Playground .FaceToFace {
+  width: 100%;
+  display: -ms-grid;
+  display: grid;
+  grid-auto-flow: column;
+  -ms-grid-columns: max-content 1fr max-content;
+      grid-template-columns: -webkit-max-content 1fr -webkit-max-content;
+      grid-template-columns: max-content 1fr max-content;
+  -webkit-column-gap: 5px;
+          column-gap: 5px;
 }
 
+.Playground .FaceToFace .Gamer {
+  position: relative;
+  padding: 2px 10px 7px 10px;
+  width: 90px;
+  height: 120px;
+  display: -ms-grid;
+  display: grid;
+  grid-auto-rows: -webkit-max-content 1fr;
+  grid-auto-rows: max-content 1fr;
+  row-gap: 4px;
+  justify-items: center;
+  border-radius: 5px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
 
+.Playground .FaceToFace .Gamer[data-vip="1"] {
+  background-color: #ffd861;
+}
 
-/** ************************ ГОВНОКОД НИЖЕ *******************/
-/* ПЕРЕНЕСТИ КУДА НАДО*/
+.Playground .FaceToFace .Gamer[data-vip="1"] > p {
+  color: #d95454;
+}
+
+.Playground .FaceToFace .Gamer[data-vip="1"] > .IconVip {
+  position: absolute;
+  top: -5px;
+  right: -7px;
+  width: 20px;
+  height: 22px;
+  background-image: url(/src/img/icon/vip.svg);
+}
+
+.Playground .FaceToFace .Gamer > p {
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  line-height: 1.5;
+}
+
+.Playground .FaceToFace .Gamer > img {
+  width: 100%;
+  height: 100%;
+}
+
+.Playground .FaceToFace .Gamer > .Buttons {
+  position: absolute;
+  left: 50%;
+  bottom: -8px;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  width: 100px;
+  display: -ms-grid;
+  display: grid;
+  grid-auto-flow: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.Playground .FaceToFace .Gamer > .Buttons > button {
+  width: 30px;
+  height: 30px;
+  background-size: 14px;
+}
+
+.Playground .FaceToFace .Gamer > .Buttons > .IconStats {
+  background-image: url(/src/img/buttons/stats.svg);
+}
+
+.Playground .FaceToFace .Gamer > .Buttons > .IconAdd {
+  background-image: url(/src/img/buttons/plus.svg);
+}
+
+.Playground .FaceToFace .Gamer > .Jokers {
+  position: absolute;
+  top: 50%;
+  right: -6px;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  display: -ms-grid;
+  display: grid;
+  row-gap: 5px;
+}
+
+.Playground .FaceToFace .Gamer > .Jokers > .IconJoker {
+  width: 18px;
+  height: 28px;
+  border-radius: 3px;
+  background-color: red;
+}
+
+.Playground .FaceToFace .CurrentInfo {
+  display: -ms-grid;
+  display: grid;
+  row-gap: 3px;
+  place-items: center;
+}
+
+.Playground .FaceToFace .CurrentInfo p.Score {
+  font-size: 38px;
+  font-weight: 300;
+}
+
+.Playground .FaceToFace .CurrentInfo .Status {
+  padding: 10px 5px;
+  width: 84px;
+  height: 64px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 1fr max-content;
+      grid-template-rows: 1fr -webkit-max-content;
+      grid-template-rows: 1fr max-content;
+  row-gap: 4px;
+  place-items: center;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: inset 0px 0px 6px 2px rgba(0, 0, 0, 0.1);
+          box-shadow: inset 0px 0px 6px 2px rgba(0, 0, 0, 0.1);
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.Playground .FaceToFace .CurrentInfo .Status > .IconStatus {
+  width: 32px;
+  height: 32px;
+  background-size: 32px;
+}
+
+.Playground .FaceToFace .CurrentInfo .Status > .IconStatus.Winner {
+  background-image: url(/src/img/gamestatus/winner.svg);
+}
+
+.Playground .FaceToFace .CurrentInfo .Status > .IconStatus.YourTurn {
+  background-image: url(/src/img/gamestatus/your-turn.svg);
+}
+
+.Playground .FaceToFace .CurrentInfo .Status > .IconStatus.Waiting {
+  background-image: url(/src/img/gamestatus/waiting.svg);
+}
+
+.Playground .FaceToFace .CurrentInfo .Status > p {
+  color: #fed61f;
+  font-size: 11px;
+  text-align: center;
+}
+
 .Avatar img,
 .HeadAvatar img {
-    width:100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
-.HeadAvatar{
-    position: absolute;
-    width:40px;
-    height:40px;
+.HeadAvatar {
+  position: absolute;
+  width: 40px;
+  height: 40px;
 }
 
-.GameListHeader2
-{
-    height: 25px;
+.GameListHeader2 {
+  height: 25px;
 }
 
-.GamePage
-{
-    border:1px solid black;
-    width: 100%;
-    overflow: hidden;
-
+.GamePage {
+  border: 1px solid black;
+  width: 100%;
+  overflow: hidden;
 }
 
-
-.GamerArea
-{
-    border:1px solid yellowgreen;
-    width: 100%;
-    height: 110px;
-    position: relative;
+.GamerArea {
+  border: 1px solid yellowgreen;
+  width: 100%;
+  height: 110px;
+  position: relative;
 }
 
-.Gamer
-{
-    border:1px solid red;
-    width: 80px;
-    height: 100px;
-    position: absolute;
-    top:2px;
-}
-.Gamer img
-{
-    top:20px !important;
-    width:75px;
-    height:90px;
+.GameStatus {
+  border: 1px solid #c7c9a6;
+  position: absolute;
+  height: 50px;
+  width: 80px;
+  top: 50px;
+  left: 110px;
 }
 
-.Gamer .Name
-{
-    position: absolute;
-    top:1px;
-}
-.Gamer1
-{
-    left:5px;
-}
-.Gamer2
-{
-    right:5px;
+.GameStatusIcon {
+  position: absolute;
+  border: 1px solid #111111;
+  width: 26px;
+  height: 26px;
+  left: 30px;
 }
 
-
-.GameStatus
-{
-    border: 1px solid #c7c9a6;
-    position: absolute;
-    
-    height: 50px;
-    width:80px;
-    top:50px;
-    left:110px;
+.GameStatusText {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  bottom: 1px;
+  left: 30px;
+  color: yellowgreen;
 }
 
-.GameStatusIcon
-{
-    position: absolute;
-    border: 1px solid #111111;
-    width: 26px;
-    height: 26px;
-    left:30px;
-}
-.GameStatusText
-{
-    position: absolute;
-    width: 26px;
-    height: 26px;
-    bottom:1px;
-    left:30px;
-    color:yellowgreen;
+.GameArea {
+  border: 1px solid aqua;
+  width: 290px;
+  top: 180px;
+  height: 270px;
+  position: absolute;
 }
 
-.GameResult
-{
-    border: 1px solid #00DEDE;
-    position: absolute;
-    
-    height: 40px;
-    width:80px;
-    top:5px;
-    left:110px;
+.GameArea .OneRound {
+  width: 100%;
+  height: 35px;
+  border-top: 1px solid white;
+  margin-top: 5px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 35px 35px 35px 1fr 35px 35px 35px;
+      grid-template-columns: 35px 35px 35px 1fr 35px 35px 35px;
 }
 
-
-.GameResult .My,
-.GameResult .Divider,
-.GameResult .Competitor
-{
-    float:left;
-    font-size: 30px;
+.GameArea .OneRound .OneDigit {
+  margin-top: 2px;
+  border: 1px solid;
+  margin-left: 2px;
 }
 
-
-.GameArea
-{
-    border:1px solid aqua;
-    width: 290px;
-    top:180px;
-    height: 270px;
-    position: absolute;
+.GameArea .OneRound .RoundName {
+  margin-top: 3px;
+  color: white;
 }
 
-.GameArea .OneRound
-{
-    width: 100%;
-    height: 35px;
-    border-top:1px solid white;
-    margin-top:5px;
-    display: grid;
-    grid-template-columns: 35px 35px 35px  1fr 35px 35px 35px  ;
-
+.PlayingRoundArea {
+  border: 1px solid burlywood;
+  width: 290px;
+  top: 180px;
+  height: 270px;
+  position: absolute;
 }
 
-.GameArea .OneRound .OneDigit
-{
-    margin-top:2px;
-    border:1px solid;
-    margin-left:2px;
+.PlayingRoundArea .Desktop {
+  border: 1px solid royalblue;
+  border-radius: 40px;
+  width: 200px;
+  top: 10px;
+  left: 30px;
+  height: 120px;
+  position: absolute;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 45px 45px 45px 1fr;
+      grid-template-columns: 1fr 45px 45px 45px 1fr;
+  -ms-grid-rows: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
 }
 
-
-.GameArea .OneRound .RoundName
-{
-    
-    margin-top:3px;
-    color:white;
+.PlayingRoundArea .Cards {
+  border: 1px solid black;
+  width: 230px;
+  left: 20px;
+  top: 150px;
+  height: 100px;
+  position: absolute;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 45px 45px 45px 45px 45px;
+      grid-template-columns: 45px 45px 45px 45px 45px;
+  -ms-grid-rows: 45px 45px;
+      grid-template-rows: 45px 45px;
 }
 
-.PlayingRoundArea
-{
-    border:1px solid burlywood;
-    width: 290px;
-    top:180px;
-    height: 270px;
-    position: absolute;
-}
-.PlayingRoundArea .Desktop
-{
-    border:1px solid royalblue;
-    border-radius: 40px;
-    width: 200px;
-    top:10px;
-    left:30px;
-    height: 120px;
-    position: absolute;
-    display: grid;
-    grid-template-columns: 1fr 45px 45px 45px 1fr ;
-    grid-template-rows: 1fr 1fr;
-}
-.PlayingRoundArea .Cards
-{
-    border:1px solid black;
-    width: 230px;
-    left:20px;
-    top:150px;
-    height: 100px;
-    position: absolute;
-    display: grid;
-    grid-template-columns: 45px 45px 45px 45px 45px ;
-    grid-template-rows: 45px 45px;
+.DigitCardContainer {
+  background-color: gray;
+  border-radius: 3px;
+  width: 30px;
+  height: 40px;
+  margin-left: 10px;
+  margin-top: 5px;
+  padding: 0;
 }
 
-.DigitCardContainer
-{
-    background-color: gray;
-    border-radius: 3px;
-    width: 30px;
-    height: 40px;
-    margin-left:10px;
-    margin-top:5px;
-    padding:0;
+.DigitCardContainer .Competitor {
+  background-color: black !important;
 }
 
-.DigitCardContainer .Competitor
-{
-    background-color: black !important;
+.DigitCardContainer .MyRound {
+  background-color: yellow !important;
 }
 
-.DigitCardContainer .MyRound
-{
-    background-color: yellow !important;
+.DigitIcon {
+  background-size: contain;
+  background-position-x: center;
+  background-position-y: center;
+  background-repeat: no-repeat;
+  margin: 0;
+  width: 30px;
+  height: 40px;
 }
 
-.DigitIcon
-{
-    background-size: contain;
-    background-position-x: center;
-    background-position-y: center;
-    background-repeat: no-repeat;
-    margin:0;
-    width: 30px;
-    height: 40px;
+.DigitIcon[data-active="0"] {
+  background-image: none !important;
 }
 
-.DigitIcon[data-active="0"]
-{
-    background-image: none !important;
+.DigitIcon[data-digit="2"][data-color="red"] {
+  background-image: url(../img/digits/Red2.png);
 }
 
-.DigitIcon[data-digit="2"][data-color="red"]
-{
-    background-image: url(../img/digits/Red2.png);
+.DigitIcon[data-digit="3"][data-color="red"] {
+  background-image: url(../img/digits/Red3.png);
 }
-.DigitIcon[data-digit="3"][data-color="red"]
-{
-    background-image: url(../img/digits/Red3.png);
+
+.DigitIcon[data-digit="4"][data-color="red"] {
+  background-image: url(../img/digits/Red4.png);
 }
-.DigitIcon[data-digit="4"][data-color="red"]
-{
-    background-image: url(../img/digits/Red4.png);
+
+.DigitIcon[data-digit="5"][data-color="red"] {
+  background-image: url(../img/digits/Red5.png);
 }
-.DigitIcon[data-digit="5"][data-color="red"]
-{
-    background-image: url(../img/digits/Red5.png);
+
+.DigitIcon[data-digit="6"][data-color="red"] {
+  background-image: url(../img/digits/Red6.png);
 }
-.DigitIcon[data-digit="6"][data-color="red"]
-{
-    background-image: url(../img/digits/Red6.png);
+
+.DigitIcon[data-digit="7"][data-color="red"] {
+  background-image: url(../img/digits/Red7.png);
 }
-.DigitIcon[data-digit="7"][data-color="red"]
-{
-    background-image: url(../img/digits/Red7.png);
+
+.DigitIcon[data-digit="8"][data-color="red"] {
+  background-image: url(../img/digits/Red8.png);
 }
-.DigitIcon[data-digit="8"][data-color="red"]
-{
-    background-image: url(../img/digits/Red8.png);
+
+.DigitIcon[data-digit="9"][data-color="red"] {
+  background-image: url(../img/digits/Red9.png);
 }
-.DigitIcon[data-digit="9"][data-color="red"]
-{
-    background-image: url(../img/digits/Red9.png);
+
+.DigitIcon[data-digit="J"][data-color="red"] {
+  background-image: url(../img/digits/RedJ.png);
 }
-.DigitIcon[data-digit="J"][data-color="red"]
-{
-    background-image: url(../img/digits/RedJ.png);
+
+.DigitIcon[data-digit="2"][data-color="blue"] {
+  background-image: url(../img/digits/Blue2.png);
 }
-.DigitIcon[data-digit="2"][data-color="blue"]
-{
-    background-image: url(../img/digits/Blue2.png);
+
+.DigitIcon[data-digit="3"][data-color="blue"] {
+  background-image: url(../img/digits/Blue3.png);
 }
-.DigitIcon[data-digit="3"][data-color="blue"]
-{
-    background-image: url(../img/digits/Blue3.png);
+
+.DigitIcon[data-digit="4"][data-color="blue"] {
+  background-image: url(../img/digits/Blue4.png);
 }
-.DigitIcon[data-digit="4"][data-color="blue"]
-{
-    background-image: url(../img/digits/Blue4.png);
+
+.DigitIcon[data-digit="5"][data-color="blue"] {
+  background-image: url(../img/digits/Blue5.png);
 }
-.DigitIcon[data-digit="5"][data-color="blue"]
-{
-    background-image: url(../img/digits/Blue5.png);
+
+.DigitIcon[data-digit="6"][data-color="blue"] {
+  background-image: url(../img/digits/Blue6.png);
 }
-.DigitIcon[data-digit="6"][data-color="blue"]
-{
-    background-image: url(../img/digits/Blue6.png);
+
+.DigitIcon[data-digit="7"][data-color="blue"] {
+  background-image: url(../img/digits/Blue7.png);
 }
-.DigitIcon[data-digit="7"][data-color="blue"]
-{
-    background-image: url(../img/digits/Blue7.png);
+
+.DigitIcon[data-digit="8"][data-color="blue"] {
+  background-image: url(../img/digits/Blue8.png);
 }
-.DigitIcon[data-digit="8"][data-color="blue"]
-{
-    background-image: url(../img/digits/Blue8.png);
+
+.DigitIcon[data-digit="9"][data-color="blue"] {
+  background-image: url(../img/digits/Blue9.png);
 }
-.DigitIcon[data-digit="9"][data-color="blue"]
-{
-    background-image: url(../img/digits/Blue9.png);
+
+.DigitIcon[data-digit="J"][data-color="blue"] {
+  background-image: url(../img/digits/BlueJ.png);
 }
-.DigitIcon[data-digit="J"][data-color="blue"]
-{
-    background-image: url(../img/digits/BlueJ.png);
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }

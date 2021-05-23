@@ -12,8 +12,8 @@
 .Game {
 	position: relative;
 	height: 100%;
-	
-	background: linear-gradient(to bottom, #12652f 0%,  #038D42 50%  ,   #0f6e34 100%);
+
+	background: linear-gradient(to bottom, #12652f 0%, #038d42 50%, #0f6e34 100%);
 
 	overflow: hidden;
 }
@@ -36,8 +36,6 @@
 	}
 }
 
-
-
 .Welcome {
 	margin: 20px 0;
 	text-align: center;
@@ -55,8 +53,6 @@
 	}
 }
 
-
-
 .SignInLanguagePanel {
 	justify-self: end;
 
@@ -64,12 +60,14 @@
 		width: 20px;
 		height: 20px;
 
-		&[data-country="ru"]	{ background-image: url(../img/flags/ru.svg);	}
-		&[data-country="eng"] { background-image: url(../img/flags/usa.svg); }
+		&[data-country="ru"] {
+			background-image: url(../img/flags/ru.svg);
+		}
+		&[data-country="eng"] {
+			background-image: url(../img/flags/usa.svg);
+		}
 	}
 }
-
-
 
 .HeadNavigation {
 	margin-top: 10px;
@@ -82,17 +80,15 @@
 	grid-template-columns: max-content 1fr max-content;
 	align-items: center;
 
-	&[data-title="none"] { grid-template-columns: unset; }
-
-
+	&[data-title="none"] {
+		grid-template-columns: unset;
+	}
 
 	.HeadNavigationTitle {
 		font-size: 18px;
 		font-weight: 300;
 	}
 }
-
-
 
 .UserTip {
 	margin: 15px auto 0 auto;
@@ -105,7 +101,7 @@
 	border-radius: 10px;
 
 	text-align: center;
-	box-shadow: inset 0 0 2px 2px rgba(0,0,0,0.1); 
+	box-shadow: inset 0 0 2px 2px rgba(0, 0, 0, 0.1);
 	box-sizing: border-box;
 
 	overflow-y: auto;
@@ -118,8 +114,6 @@
 		letter-spacing: 0.15px;
 	}
 }
-
-
 
 .FooterArea {
 	margin: 10px 0;
@@ -144,8 +138,6 @@
 	}
 }
 
-
-
 .SignIn {
 	.Buttons {
 		display: grid;
@@ -157,8 +149,6 @@
 	}
 }
 
-
-
 .SignInAuth {
 	.UserTip {
 		max-height: unset;
@@ -168,11 +158,7 @@
 			line-height: 18px;
 		}
 	}
-
-
 }
-
-
 
 .SignInAnonim {
 	.SignInAnonimImage {
@@ -180,12 +166,14 @@
 		align-items: center;
 		justify-items: center;
 
-		img {	height: 180px; }
+		img {
+			height: 180px;
+		}
 	}
 
 	.SignInAnonimTip {
 		margin-top: 10px;
-	
+
 		font-weight: 500;
 		font-size: 14px;
 		line-height: 18px;
@@ -194,7 +182,7 @@
 
 	.SignInAnonimSignUp {
 		margin-top: 5px;
-		
+
 		font-weight: 500;
 		font-size: 14px;
 		line-height: 18px;
@@ -202,8 +190,6 @@
 		text-decoration: underline;
 	}
 }
-
-
 
 .GameList {
 	.Games {
@@ -221,7 +207,6 @@
 			}
 		}
 
-
 		.IconCup {
 			width: 10px;
 			height: 10px;
@@ -235,25 +220,27 @@
 			li {
 				position: relative;
 				padding: 5px;
-	
+
 				display: grid;
 				grid-auto-flow: column;
 				grid-template-columns: max-content 1fr max-content;
 				align-items: center;
 				justify-items: center;
-	
+
 				background-color: var(--bg-dark);
 				border-radius: 5px;
 
 				&[data-cup="1"][data-win] {
-					&::after { display: none; }
+					&::after {
+						display: none;
+					}
 
 					.Player .Logo::after {
 						position: absolute;
 						right: -5px;
 						bottom: -5px;
 
-						content: '';
+						content: "";
 
 						display: block;
 
@@ -263,15 +250,19 @@
 					}
 				}
 
-				&[data-cup="1"][data-win="right"] .Player:first-child .Logo::after { display: none; }
-				&[data-cup="1"][data-win="left"] .Player:last-child .Logo::after { display: none; }
+				&[data-cup="1"][data-win="right"] .Player:first-child .Logo::after {
+					display: none;
+				}
+				&[data-cup="1"][data-win="left"] .Player:last-child .Logo::after {
+					display: none;
+				}
 
 				&[data-win]::after {
 					position: absolute;
 					top: 50%;
 					transform: translateY(-50%);
 
-					content: '';
+					content: "";
 
 					display: block;
 
@@ -280,43 +271,45 @@
 					background-image: url(../img/icon/medal.svg);
 				}
 
-				&[data-win="left"]::after { left: 25%; }
-				&[data-win="right"]::after { right: 25%; }
-	
-
+				&[data-win="left"]::after {
+					left: 25%;
+				}
+				&[data-win="right"]::after {
+					right: 25%;
+				}
 
 				.Status {
 					font-weight: 500;
 					text-transform: uppercase;
 				}
-	
+
 				.Player {
 					width: 55px;
 					height: 100%;
-	
+
 					display: grid;
 					grid-gap: 3px 0;
 					justify-items: center;
-	
+
 					overflow: hidden;
 
 					&.Computer {
-						> p { font-weight: 500; }
+						> p {
+							font-weight: 500;
+						}
 
 						.Avatar {
 							background-size: 14px auto;
 							background-image: url(../img/icon/computer.svg);
 						}
 					}
-	
-	
 
 					.Avatar {
 						position: relative;
 
 						width: 24px;
 						height: 24px;
-	
+
 						background-color: var(--bg-dark-ava); // ! delete
 						border-radius: 3px;
 					}
@@ -327,7 +320,7 @@
 						line-height: 13px;
 						text-align: center;
 						text-transform: uppercase;
-	
+
 						@include textWrapDots;
 					}
 				}
@@ -341,42 +334,38 @@
 					grid-template-columns: 1fr max-content 1fr;
 					align-items: center;
 
-
 					.ELO {
 						display: grid;
 						grid-gap: 2px 0;
-	
-	
+
 						p {
 							font-weight: 300;
 							text-align: center;
 						}
-	
-						> p:nth-child(1) { 
+
+						> p:nth-child(1) {
 							font-size: 13px;
 							line-height: 15px;
 						}
-	
-						> p:nth-child(2) { 
+
+						> p:nth-child(2) {
 							font-size: 10px;
 							line-height: 12px;
 						}
 					}
-					
-	
+
 					.Score {
 						display: grid;
 						grid-gap: 3px 0;
 						justify-items: center;
-	
-	
+
 						.Info {
 							display: grid;
 							grid-gap: 0 5px;
 							grid-auto-flow: column;
 							grid-auto-columns: max-content;
 							align-items: center;
-	
+
 							p {
 								font-size: 10px;
 								font-weight: 300;
@@ -391,8 +380,6 @@
 	}
 }
 
-
-
 .GameStart {
 	.Buttons {
 		margin: 20px 0;
@@ -402,9 +389,7 @@
 	}
 }
 
-
-
-.ModalBG { 
+.ModalBG {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -417,27 +402,35 @@
 	width: 100%;
 	height: calc(100% - 50px);
 
-	background-color: rgba(0,0,0,0.6);
+	background-color: rgba(0, 0, 0, 0.6);
 }
 
 .Modal {
-	p, span, label { color: var(--modal-font-color); }
-	b { font-weight: 500; }
+	p,
+	span,
+	label {
+		color: var(--modal-font-color);
+	}
+	b {
+		font-weight: 500;
+	}
 
 	p {
 		> span {
 			display: block;
 
-			&:nth-child(n+2) { margin-top: 3px; }
+			&:nth-child(n + 2) {
+				margin-top: 3px;
+			}
 		}
 	}
 
-
 	> * {
-		&:nth-child(n+2) { margin-top: 12px; }
+		&:nth-child(n + 2) {
+			margin-top: 12px;
+		}
 	}
 
-	
 	position: absolute;
 	/*
 	* Поднимаем чуть выше середины, чтобы визуально лучше воспринималось
@@ -449,9 +442,8 @@
 
 	width: calc(100% - 60px);
 	max-width: 300px;
-	
-	pointer-events: all;
 
+	pointer-events: all;
 
 	.ModalBody {
 		padding: 12px;
@@ -462,10 +454,14 @@
 		box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.15);
 
 		> div {
-			> *:nth-child(n+2) { margin-top: 12px; }
+			> *:nth-child(n + 2) {
+				margin-top: 12px;
+			}
 
 			> .Content {
-				> *:nth-child(n+2) { margin-top: 7px; }
+				> *:nth-child(n + 2) {
+					margin-top: 7px;
+				}
 
 				.Title {
 					font-size: 15px;
@@ -474,7 +470,7 @@
 					line-height: 19px;
 					text-align: center;
 				}
-	
+
 				> p {
 					font-size: 13px;
 					font-weight: 300;
@@ -492,22 +488,22 @@
 					text-align: center;
 					text-decoration: none;
 
-					&:active { text-decoration: underline; }
+					&:active {
+						text-decoration: underline;
+					}
 				}
 			}
 		}
 
-
 		/* MailCode */
 		.MailCode {
-			label	{
+			label {
 				font-size: 13px;
 				font-weight: 500;
 				line-height: 17px;
 			}
 		}
 		/* END */
-
 
 		.WarningIcon {
 			height: 30px;
@@ -519,13 +515,13 @@
 	> .Button {
 		> button {
 			padding: 10px 0;
-		
+
 			width: 100%;
-		
+
 			background-color: var(--button-footer-bg);
 			border-radius: 5px;
 			box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.15);
-		
+
 			font-weight: 500;
 			font-size: 15px;
 			text-transform: uppercase;
@@ -535,9 +531,8 @@
 				box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.3);
 			}
 		}
-	} 
+	}
 }
-
 
 .FindUser {
 	.Search {
@@ -558,7 +553,9 @@
 			background-size: 16px;
 		}
 
-		button:disabled { opacity: 0.4; }
+		button:disabled {
+			opacity: 0.4;
+		}
 	}
 
 	.Players {
@@ -600,7 +597,7 @@
 			button {
 				width: 24px;
 				height: 100%;
-	
+
 				background-image: url(../img/icon/sword.svg);
 				background-size: 18px;
 			}
@@ -624,9 +621,12 @@
 		&[data-shadow="top"]::after,
 		&[data-shadow="bottom"]::before,
 		&[data-shadow="both"]::after,
-		&[data-shadow="both"]::before { display: block; }
+		&[data-shadow="both"]::before {
+			display: block;
+		}
 
-		&::after, &::before {
+		&::after,
+		&::before {
 			position: absolute;
 			left: 0;
 
@@ -640,7 +640,7 @@
 
 		&::after {
 			top: 0;
-			background: linear-gradient(#0b7738 0%, rgba(11, 119, 56, 0) 100%,);
+			background: linear-gradient(#0b7738 0%, rgba(11, 119, 56, 0) 100%);
 		}
 
 		&::before {
@@ -658,4 +658,352 @@
 			text-align: justify;
 		}
 	}
+}
+
+/******** Игровая область **********/
+.Playground {
+
+	.FaceToFace {
+		width: 100%;
+
+		display: grid;
+		grid-auto-flow: column;
+		grid-template-columns: max-content 1fr max-content;
+
+		column-gap: 5px;
+
+		.Gamer {
+			position: relative;
+
+			padding: 2px 10px 7px 10px;
+
+			width: 90px;
+			height: 120px;
+
+			display: grid;
+			grid-auto-rows: max-content 1fr;
+			row-gap: 4px;
+			justify-items: center;
+
+			border-radius: 5px;
+			box-sizing: border-box;
+
+
+			&[data-vip="1"] {	background-color: #ffd861; }
+			&[data-vip="1"] > p { color: #d95454; }
+
+			&[data-vip="1"] > .IconVip {
+				position: absolute;
+				top: -5px;
+				right: -7px;
+
+				width: 20px;
+				height: 22px;
+				background-image: url(/src/img/icon/vip.svg);
+			}
+
+			> p {				
+				font-size: 13px;
+				font-weight: 600;
+				text-align: center;
+				text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+				line-height: 1.5;
+			}
+
+			> img {
+				width: 100%;
+				height: 100%;
+			}
+
+			> .Buttons {
+				position: absolute;
+				left: 50%;
+				bottom: -8px;
+				transform: translateX(-50%);
+
+				width: 100px;
+
+				display: grid;
+				grid-auto-flow: column;
+				justify-content: space-between;
+
+				> button {
+					width: 30px;
+					height: 30px;
+
+					background-size: 14px;
+				}
+
+				> .IconStats { background-image: url(/src/img/buttons/stats.svg); }
+				> .IconAdd 	 { background-image: url(/src/img/buttons/plus.svg); }
+			}
+
+			> .Jokers {
+				position: absolute;
+				top: 50%;
+				right: -6px;
+				transform: translateY(-50%);
+
+				display: grid;
+				row-gap: 5px;
+
+
+				> .IconJoker {
+					width: 18px;
+					height: 28px; 
+					border-radius: 3px;
+
+					background-color: red; // !Удалить после введения карт
+				}
+			}
+			
+		}
+
+		.CurrentInfo {
+			display: grid;
+			row-gap: 3px;
+			place-items: center;
+
+			p.Score {
+				font-size: 38px;
+				font-weight: 300;
+			}
+
+			.Status {
+				padding: 10px 5px;
+
+				width: 84px;
+				height: 64px;
+
+				display: grid;
+				grid-template-rows: 1fr max-content;
+				row-gap: 4px;
+				place-items: center;
+
+				border-radius: 10px;
+				background-color: rgba(0, 0, 0, 0.1);
+				box-shadow: inset 0px 0px 6px 2px rgba(0, 0, 0, 0.1);
+				box-sizing: border-box;
+
+				> .IconStatus {
+					width: 32px;
+					height: 32px;
+					background-size: 32px;
+					
+					&.Winner { background-image: url(/src/img/gamestatus/winner.svg); }
+					&.YourTurn { background-image: url(/src/img/gamestatus/your-turn.svg); }
+					&.Waiting { background-image: url(/src/img/gamestatus/waiting.svg); }
+				}
+
+				> p {
+					color: #fed61f;
+					font-size: 11px;
+					text-align: center;
+				}
+			}
+		}
+	}
+}
+
+
+
+.Avatar img,
+.HeadAvatar img {
+	width: 100%;
+	height: 100%;
+}
+
+.HeadAvatar {
+	position: absolute;
+	width: 40px;
+	height: 40px;
+}
+
+.GameListHeader2 {
+	height: 25px;
+}
+
+.GamePage {
+	border: 1px solid black;
+	width: 100%;
+	overflow: hidden;
+}
+
+.GamerArea {
+	border: 1px solid yellowgreen;
+	width: 100%;
+	height: 110px;
+	position: relative;
+}
+
+.GameStatus {
+	border: 1px solid #c7c9a6;
+	position: absolute;
+
+	height: 50px;
+	width: 80px;
+	top: 50px;
+	left: 110px;
+}
+
+.GameStatusIcon {
+	position: absolute;
+	border: 1px solid #111111;
+	width: 26px;
+	height: 26px;
+	left: 30px;
+}
+.GameStatusText {
+	position: absolute;
+	width: 26px;
+	height: 26px;
+	bottom: 1px;
+	left: 30px;
+	color: yellowgreen;
+}
+
+.GameArea {
+	border: 1px solid aqua;
+	width: 290px;
+	top: 180px;
+	height: 270px;
+	position: absolute;
+}
+
+.GameArea .OneRound {
+	width: 100%;
+	height: 35px;
+	border-top: 1px solid white;
+	margin-top: 5px;
+	display: grid;
+	grid-template-columns: 35px 35px 35px 1fr 35px 35px 35px;
+}
+
+.GameArea .OneRound .OneDigit {
+	margin-top: 2px;
+	border: 1px solid;
+	margin-left: 2px;
+}
+
+.GameArea .OneRound .RoundName {
+	margin-top: 3px;
+	color: white;
+}
+
+.PlayingRoundArea {
+	border: 1px solid burlywood;
+	width: 290px;
+	top: 180px;
+	height: 270px;
+	position: absolute;
+}
+.PlayingRoundArea .Desktop {
+	border: 1px solid royalblue;
+	border-radius: 40px;
+	width: 200px;
+	top: 10px;
+	left: 30px;
+	height: 120px;
+	position: absolute;
+	display: grid;
+	grid-template-columns: 1fr 45px 45px 45px 1fr;
+	grid-template-rows: 1fr 1fr;
+}
+.PlayingRoundArea .Cards {
+	border: 1px solid black;
+	width: 230px;
+	left: 20px;
+	top: 150px;
+	height: 100px;
+	position: absolute;
+	display: grid;
+	grid-template-columns: 45px 45px 45px 45px 45px;
+	grid-template-rows: 45px 45px;
+}
+
+.DigitCardContainer {
+	background-color: gray;
+	border-radius: 3px;
+	width: 30px;
+	height: 40px;
+	margin-left: 10px;
+	margin-top: 5px;
+	padding: 0;
+}
+
+.DigitCardContainer .Competitor {
+	background-color: black !important;
+}
+
+.DigitCardContainer .MyRound {
+	background-color: yellow !important;
+}
+
+.DigitIcon {
+	background-size: contain;
+	background-position-x: center;
+	background-position-y: center;
+	background-repeat: no-repeat;
+	margin: 0;
+	width: 30px;
+	height: 40px;
+}
+
+.DigitIcon[data-active="0"] {
+	background-image: none !important;
+}
+
+.DigitIcon[data-digit="2"][data-color="red"] {
+	background-image: url(../img/digits/Red2.png);
+}
+.DigitIcon[data-digit="3"][data-color="red"] {
+	background-image: url(../img/digits/Red3.png);
+}
+.DigitIcon[data-digit="4"][data-color="red"] {
+	background-image: url(../img/digits/Red4.png);
+}
+.DigitIcon[data-digit="5"][data-color="red"] {
+	background-image: url(../img/digits/Red5.png);
+}
+.DigitIcon[data-digit="6"][data-color="red"] {
+	background-image: url(../img/digits/Red6.png);
+}
+.DigitIcon[data-digit="7"][data-color="red"] {
+	background-image: url(../img/digits/Red7.png);
+}
+.DigitIcon[data-digit="8"][data-color="red"] {
+	background-image: url(../img/digits/Red8.png);
+}
+.DigitIcon[data-digit="9"][data-color="red"] {
+	background-image: url(../img/digits/Red9.png);
+}
+.DigitIcon[data-digit="J"][data-color="red"] {
+	background-image: url(../img/digits/RedJ.png);
+}
+.DigitIcon[data-digit="2"][data-color="blue"] {
+	background-image: url(../img/digits/Blue2.png);
+}
+.DigitIcon[data-digit="3"][data-color="blue"] {
+	background-image: url(../img/digits/Blue3.png);
+}
+.DigitIcon[data-digit="4"][data-color="blue"] {
+	background-image: url(../img/digits/Blue4.png);
+}
+.DigitIcon[data-digit="5"][data-color="blue"] {
+	background-image: url(../img/digits/Blue5.png);
+}
+.DigitIcon[data-digit="6"][data-color="blue"] {
+	background-image: url(../img/digits/Blue6.png);
+}
+.DigitIcon[data-digit="7"][data-color="blue"] {
+	background-image: url(../img/digits/Blue7.png);
+}
+.DigitIcon[data-digit="8"][data-color="blue"] {
+	background-image: url(../img/digits/Blue8.png);
+}
+.DigitIcon[data-digit="9"][data-color="blue"] {
+	background-image: url(../img/digits/Blue9.png);
+}
+.DigitIcon[data-digit="J"][data-color="blue"] {
+	background-image: url(../img/digits/BlueJ.png);
 }
