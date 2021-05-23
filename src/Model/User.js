@@ -12,6 +12,9 @@ export default class User
     // Ник
     NicName = undefined;
 
+    // Номер в нике
+    NicNumber = undefined;
+
     // Дата рождения
     Birthday = undefined;
 
@@ -62,6 +65,17 @@ export default class User
             this.IsVerified = serverJsonData.IsVerified;
             this.IsBlocked = serverJsonData.IsBlocked;
             this.BlockedUntil = serverJsonData.BlockedUntil;
+
+            if (this.NicName && this.NicName.includes("&!&"))
+            {
+                var nameParts = this.NicName.split("&!&");
+                if (nameParts.length > 1)
+                {
+                    this.NicName = nameParts[0];
+                    this.NicNumber =  Number.isFinite(+nameParts[1]) ? (+nameParts[1]) : 0;                    
+                }
+            }
+            
 
             if (serverJsonData.DynamicUserInfo)
             {
