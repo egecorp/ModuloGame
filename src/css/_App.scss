@@ -81,12 +81,21 @@
 	align-items: center;
 
 	&[data-title="none"] {
-		grid-template-columns: unset;
+		grid-template-columns: 1fr max-content;
 	}
 
 	.Title {
 		font-size: 18px;
 		font-weight: 300;
+	}
+
+	.Profile {
+		display: grid;
+		grid-auto-flow: column;
+		grid-template-columns: max-content 1fr;
+
+		column-gap: 7px;
+		align-items: center;
 	}
 }
 
@@ -192,6 +201,14 @@
 }
 
 .GameList {
+	.SubMenu {
+		display: grid;
+		grid-auto-flow: column;
+		grid-template-columns: 1fr max-content;
+		column-gap: 12px;
+		align-items: center;
+	}
+
 	.Games {
 		&.NowPlaying {
 			.Status {
@@ -224,8 +241,7 @@
 				display: grid;
 				grid-auto-flow: column;
 				grid-template-columns: max-content 1fr max-content;
-				align-items: center;
-				justify-items: center;
+				place-items: center;
 
 				background-color: var(--bg-dark);
 				border-radius: 5px;
@@ -278,9 +294,31 @@
 					right: 25%;
 				}
 
-				.Status {
-					font-weight: 500;
-					text-transform: uppercase;
+
+				.Score {
+					display: grid;
+					grid-gap: 3px 0;
+					justify-items: center;
+
+					> p.Status {
+						font-weight: 500;
+						text-transform: uppercase;
+					}
+
+					.Info {
+						display: grid;
+						grid-gap: 0 5px;
+						grid-auto-flow: column;
+						grid-auto-columns: max-content;
+						align-items: center;
+
+						p {
+							font-size: 10px;
+							font-weight: 300;
+							line-height: 13px;
+							text-transform: uppercase;
+						}
+					}
 				}
 
 				.Player {
@@ -302,16 +340,6 @@
 							background-size: 14px auto;
 							background-image: url(../img/icon/computer.svg);
 						}
-					}
-
-					.Avatar {
-						position: relative;
-
-						width: 24px;
-						height: 24px;
-
-						background-color: var(--bg-dark-ava); // ! delete
-						border-radius: 3px;
 					}
 
 					p {
@@ -351,27 +379,6 @@
 						> p:nth-child(2) {
 							font-size: 10px;
 							line-height: 12px;
-						}
-					}
-
-					.Score {
-						display: grid;
-						grid-gap: 3px 0;
-						justify-items: center;
-
-						.Info {
-							display: grid;
-							grid-gap: 0 5px;
-							grid-auto-flow: column;
-							grid-auto-columns: max-content;
-							align-items: center;
-
-							p {
-								font-size: 10px;
-								font-weight: 300;
-								line-height: 13px;
-								text-transform: uppercase;
-							}
 						}
 					}
 				}

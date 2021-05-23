@@ -325,6 +325,24 @@ input.InPopup	{
 }
 /* End */
 
+/* Avatar */
+.Avatar {
+	position: relative;
+
+	width: 24px;
+	height: 24px;
+
+	background-color: var(--bg-dark-ava); // ! delete
+	border-radius: 3px;
+
+	img {
+		width: 100%;
+		height: 100%;
+	}
+}
+/* End */
+
+
 
 
 

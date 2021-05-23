@@ -141,6 +141,7 @@ export function AddPackets(addPackFunction)
 		'sublabelNowPlaying' : 'Активные игры:',
 		'sublabelFinished' : 'Завершённые игры:',
 		'buttonHeaderLabel' : 'Меню',
+		'buttonNewGameLabel' : 'Новая игра',
 		'labelCup' : 'Турнир'
 	});
 
