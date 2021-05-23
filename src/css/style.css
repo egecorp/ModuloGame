@@ -65,11 +65,13 @@ table {
 }
 
 :root {
+  --company-color: #35CA71;
+  --company-color-hover: #2EB062;
   --font-color: #fff;
   --link-color: #168643;
   --modal-font-color: #000;
-  --button-green: #35CA71;
-  --button-green-hover: #2EB062;
+  --button-green: var(--company-color);
+  --button-green-hover: var(--company-color-hover);
   --button-green-rgb: 53, 202, 113;
   --button-darkgreen: #06371E;
   --button-darkgreen-rgb: 6, 55, 30;
@@ -1192,7 +1194,7 @@ input.InPopup::-webkit-input-placeholder {
 }
 
 /******** Игровая область **********/
-.Playground {
+.Gameground {
   margin-top: 12px;
   display: -ms-grid;
   display: grid;
@@ -1201,7 +1203,7 @@ input.InPopup::-webkit-input-placeholder {
   row-gap: 20px;
 }
 
-.Playground .FaceToFace {
+.Gameground .FaceToFace {
   width: 100%;
   display: -ms-grid;
   display: grid;
@@ -1213,7 +1215,7 @@ input.InPopup::-webkit-input-placeholder {
           column-gap: 5px;
 }
 
-.Playground .FaceToFace .Gamer {
+.Gameground .FaceToFace .Gamer {
   position: relative;
   padding: 2px 5px 7px 5px;
   width: 90px;
@@ -1229,15 +1231,15 @@ input.InPopup::-webkit-input-placeholder {
           box-sizing: border-box;
 }
 
-.Playground .FaceToFace .Gamer[data-vip="1"] {
+.Gameground .FaceToFace .Gamer[data-vip="1"] {
   background-color: #ffd861;
 }
 
-.Playground .FaceToFace .Gamer[data-vip="1"] > p {
+.Gameground .FaceToFace .Gamer[data-vip="1"] > p {
   color: #d95454;
 }
 
-.Playground .FaceToFace .Gamer[data-vip="1"] > .IconVip {
+.Gameground .FaceToFace .Gamer[data-vip="1"] > .IconVip {
   position: absolute;
   top: -5px;
   right: -7px;
@@ -1246,7 +1248,7 @@ input.InPopup::-webkit-input-placeholder {
   background-image: url(/src/img/icon/vip.svg);
 }
 
-.Playground .FaceToFace .Gamer > p {
+.Gameground .FaceToFace .Gamer > p {
   width: 100%;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -1259,12 +1261,12 @@ input.InPopup::-webkit-input-placeholder {
   line-height: 1.5;
 }
 
-.Playground .FaceToFace .Gamer > img {
+.Gameground .FaceToFace .Gamer > img {
   width: 100%;
   height: 100%;
 }
 
-.Playground .FaceToFace .Gamer > .Buttons {
+.Gameground .FaceToFace .Gamer > .Buttons {
   position: absolute;
   left: 50%;
   bottom: -8px;
@@ -1279,21 +1281,21 @@ input.InPopup::-webkit-input-placeholder {
           justify-content: space-between;
 }
 
-.Playground .FaceToFace .Gamer > .Buttons > button {
+.Gameground .FaceToFace .Gamer > .Buttons > button {
   width: 30px;
   height: 30px;
   background-size: 14px;
 }
 
-.Playground .FaceToFace .Gamer > .Buttons > .IconStats {
+.Gameground .FaceToFace .Gamer > .Buttons > .IconStats {
   background-image: url(/src/img/buttons/stats.svg);
 }
 
-.Playground .FaceToFace .Gamer > .Buttons > .IconAdd {
+.Gameground .FaceToFace .Gamer > .Buttons > .IconAdd {
   background-image: url(/src/img/buttons/plus.svg);
 }
 
-.Playground .FaceToFace .Gamer > .Jokers {
+.Gameground .FaceToFace .Gamer > .Jokers {
   position: absolute;
   top: 50%;
   right: -6px;
@@ -1304,26 +1306,26 @@ input.InPopup::-webkit-input-placeholder {
   row-gap: 5px;
 }
 
-.Playground .FaceToFace .Gamer > .Jokers > .IconJoker {
+.Gameground .FaceToFace .Gamer > .Jokers > .IconJoker {
   width: 18px;
   height: 28px;
   border-radius: 3px;
   background-color: red;
 }
 
-.Playground .FaceToFace .CurrentInfo {
+.Gameground .FaceToFace .CurrentInfo {
   display: -ms-grid;
   display: grid;
   row-gap: 3px;
   place-items: center;
 }
 
-.Playground .FaceToFace .CurrentInfo p.Score {
+.Gameground .FaceToFace .CurrentInfo p.Score {
   font-size: 38px;
   font-weight: 300;
 }
 
-.Playground .FaceToFace .CurrentInfo .Status {
+.Gameground .FaceToFace .CurrentInfo .Status {
   padding: 10px 5px;
   width: 84px;
   height: 64px;
@@ -1342,25 +1344,25 @@ input.InPopup::-webkit-input-placeholder {
           box-sizing: border-box;
 }
 
-.Playground .FaceToFace .CurrentInfo .Status > .IconStatus {
+.Gameground .FaceToFace .CurrentInfo .Status > .IconStatus {
   width: 32px;
   height: 32px;
   background-size: 32px;
 }
 
-.Playground .FaceToFace .CurrentInfo .Status > .IconStatus.Winner {
+.Gameground .FaceToFace .CurrentInfo .Status > .IconStatus.Winner {
   background-image: url(/src/img/gamestatus/winner.svg);
 }
 
-.Playground .FaceToFace .CurrentInfo .Status > .IconStatus.YourTurn {
+.Gameground .FaceToFace .CurrentInfo .Status > .IconStatus.YourTurn {
   background-image: url(/src/img/gamestatus/your-turn.svg);
 }
 
-.Playground .FaceToFace .CurrentInfo .Status > .IconStatus.Waiting {
+.Gameground .FaceToFace .CurrentInfo .Status > .IconStatus.Waiting {
   background-image: url(/src/img/gamestatus/waiting.svg);
 }
 
-.Playground .FaceToFace .CurrentInfo .Status > p {
+.Gameground .FaceToFace .CurrentInfo .Status > p {
   width: 100%;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -1371,13 +1373,13 @@ input.InPopup::-webkit-input-placeholder {
   text-align: center;
 }
 
-.Playground .RoundsContainer {
+.Gameground .RoundsContainer {
   display: -ms-grid;
   display: grid;
   row-gap: 10px;
 }
 
-.Playground .RoundsContainer > .Round {
+.Gameground .RoundsContainer > .Round {
   padding-top: 3px;
   display: -ms-grid;
   display: grid;
@@ -1391,7 +1393,7 @@ input.InPopup::-webkit-input-placeholder {
   border-top: 1px solid #fff;
 }
 
-.Playground .RoundsContainer > .Round > p {
+.Gameground .RoundsContainer > .Round > p {
   width: 100%;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -1402,7 +1404,7 @@ input.InPopup::-webkit-input-placeholder {
   text-align: center;
 }
 
-.Playground .RoundsContainer > .Round > .DigitContainer {
+.Gameground .RoundsContainer > .Round > .DigitContainer {
   display: -ms-grid;
   display: grid;
   grid-auto-flow: column;
@@ -1412,7 +1414,7 @@ input.InPopup::-webkit-input-placeholder {
           column-gap: 6px;
 }
 
-.Playground .RoundsContainer > .Round > .DigitContainer > p {
+.Gameground .RoundsContainer > .Round > .DigitContainer > p {
   width: 26px;
   height: 26px;
   border-radius: 5px;
@@ -1422,16 +1424,88 @@ input.InPopup::-webkit-input-placeholder {
   line-height: 110%;
 }
 
-.Playground .RoundsContainer > .Round > .DigitContainer > p[data-color="red"] {
+.Gameground .RoundsContainer > .Round > .DigitContainer > p[data-color="red"] {
   background-color: #fd0148;
 }
 
-.Playground .RoundsContainer > .Round > .DigitContainer > p[data-color="green"] {
+.Gameground .RoundsContainer > .Round > .DigitContainer > p[data-color="green"] {
   background-color: var(--button-green);
 }
 
-.Playground .RoundsContainer > .Round > .DigitContainer > p[data-color="yellow"] {
+.Gameground .RoundsContainer > .Round > .DigitContainer > p[data-color="yellow"] {
   background-color: #ddb937;
+}
+
+.Gameground .Playground {
+  --width: 230px;
+  display: -ms-grid;
+  display: grid;
+  grid-auto-rows: -webkit-max-content;
+  grid-auto-rows: max-content;
+  row-gap: 12px;
+  justify-items: center;
+}
+
+.Gameground .Playground .Card {
+  width: 30px;
+  height: 46px;
+  border-radius: 5px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  overflow: hidden;
+}
+
+.Gameground .Playground .Card.Shirt {
+  border: 3px solid #eee;
+  background-color: #D95454;
+}
+
+.Gameground .Playground .Card.IconPlace {
+  background-image: url(/src/img/icon/place-card.svg);
+  opacity: 0.5;
+}
+
+.Gameground .Playground .Table {
+  position: relative;
+  padding: 5px 50px;
+  width: var(--width);
+  display: -ms-grid;
+  display: grid;
+  row-gap: 12px;
+  place-items: center;
+  background-color: var(--company-color);
+  border: 6px solid #9C6027;
+  border-radius: 100px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.Gameground .Playground .Table .CardsContainer {
+  display: -ms-grid;
+  display: grid;
+  grid-auto-flow: column;
+  -webkit-column-gap: 12px;
+          column-gap: 12px;
+}
+
+.Gameground .Playground .YourCardsContainer {
+  width: var(--width);
+  display: -ms-grid;
+  display: grid;
+  row-gap: 12px;
+}
+
+.Gameground .Playground .YourCardsContainer > .Row {
+  display: -ms-grid;
+  display: grid;
+  grid-auto-flow: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.Gameground .Playground .YourCardsContainer > .Row > .Card {
+  background-color: red;
 }
 
 .Avatar img,
@@ -1456,118 +1530,6 @@ input.InPopup::-webkit-input-placeholder {
   overflow: hidden;
 }
 
-.GamerArea {
-  border: 1px solid yellowgreen;
-  width: 100%;
-  height: 110px;
-  position: relative;
-}
-
-.GameStatus {
-  border: 1px solid #c7c9a6;
-  position: absolute;
-  height: 50px;
-  width: 80px;
-  top: 50px;
-  left: 110px;
-}
-
-.GameStatusIcon {
-  position: absolute;
-  border: 1px solid #111111;
-  width: 26px;
-  height: 26px;
-  left: 30px;
-}
-
-.GameStatusText {
-  position: absolute;
-  width: 26px;
-  height: 26px;
-  bottom: 1px;
-  left: 30px;
-  color: yellowgreen;
-}
-
-.GameArea {
-  border: 1px solid aqua;
-  width: 290px;
-  top: 180px;
-  height: 270px;
-  position: absolute;
-}
-
-.GameArea .OneRound {
-  width: 100%;
-  height: 35px;
-  border-top: 1px solid white;
-  margin-top: 5px;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 35px 35px 35px 1fr 35px 35px 35px;
-      grid-template-columns: 35px 35px 35px 1fr 35px 35px 35px;
-}
-
-.GameArea .OneRound .OneDigit {
-  margin-top: 2px;
-  border: 1px solid;
-  margin-left: 2px;
-}
-
-.GameArea .OneRound .RoundName {
-  margin-top: 3px;
-  color: white;
-}
-
-.PlayingRoundArea {
-  border: 1px solid burlywood;
-  width: 290px;
-  top: 180px;
-  height: 270px;
-  position: absolute;
-}
-
-.PlayingRoundArea .Desktop {
-  border: 1px solid royalblue;
-  border-radius: 40px;
-  width: 200px;
-  top: 10px;
-  left: 30px;
-  height: 120px;
-  position: absolute;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 1fr 45px 45px 45px 1fr;
-      grid-template-columns: 1fr 45px 45px 45px 1fr;
-  -ms-grid-rows: 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
-}
-
-.PlayingRoundArea .Cards {
-  border: 1px solid black;
-  width: 230px;
-  left: 20px;
-  top: 150px;
-  height: 100px;
-  position: absolute;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 45px 45px 45px 45px 45px;
-      grid-template-columns: 45px 45px 45px 45px 45px;
-  -ms-grid-rows: 45px 45px;
-      grid-template-rows: 45px 45px;
-}
-
-.DigitCardContainer {
-  background-color: gray;
-  border-radius: 3px;
-  width: 30px;
-  height: 40px;
-  margin-left: 10px;
-  margin-top: 5px;
-  padding: 0;
-}
-
 .DigitCardContainer .Competitor {
   background-color: black !important;
 }
@@ -1577,13 +1539,12 @@ input.InPopup::-webkit-input-placeholder {
 }
 
 .DigitIcon {
-  background-size: contain;
-  background-position-x: center;
-  background-position-y: center;
-  background-repeat: no-repeat;
   margin: 0;
-  width: 30px;
-  height: 40px;
+  width: 100%;
+  height: 100%;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .DigitIcon[data-active="0"] {

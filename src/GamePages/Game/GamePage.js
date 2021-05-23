@@ -422,26 +422,26 @@ export default class GamePage extends React.Component {
 			}
 
 			gameArea = (
-				<div className="PlayingRoundArea">
-					<div className="Desktop">
-						<div></div>
-						<div className="DigitCardContainer Competitor">
-							{
-								this.state.competitorDigit1 ?
-									(
-										<div className="DigitIcon" data-digit={this.state.competitorDigit1} data-color="blue"></div>
-									) : null
-							}
-						</div>
-						<div className="DigitCardContainer Competitor">
-							{
-								this.state.competitorDigit2 ?
-									(
-										<div className="DigitIcon" data-digit={this.state.competitorDigit2} data-color="blue"></div>
-									) : null
-							}
-						</div>
-						<div className="DigitCardContainer Competitor">
+				<div className="Playground">
+					<div className="Table">
+						<div className="CardsContainer">
+							<div className="Card Shirt">
+								{
+									this.state.competitorDigit1 ?
+										(
+											<div className="DigitIcon" data-digit={this.state.competitorDigit1} data-color="blue"></div>
+										) : null
+								}
+							</div>
+							<div className="Card Shirt">
+								{
+									this.state.competitorDigit2 ?
+										(
+											<div className="DigitIcon" data-digit={this.state.competitorDigit2} data-color="blue"></div>
+										) : null
+								}
+							</div>
+							<div className="Card Shirt">
 							{
 								this.state.competitorDigit3 ?
 									(
@@ -449,26 +449,26 @@ export default class GamePage extends React.Component {
 									) : null
 							}
 						</div>
-						<div></div>
+						</div>
 
-						<div></div>
-						<div className="DigitCardContainer MyRound">
-							{
-								this.state.myDigit1 ?
-									(
-										<div className="DigitIcon" data-digitnumber="1" data-digit={this.state.myDigit1} data-color="red" onClick={this.onDesktopDigitClick}></div>
-									) : null
-							}
-						</div>
-						<div className="DigitCardContainer MyRound">
-							{
-								this.state.myDigit2 ?
-									(
-										<div className="DigitIcon" data-digitnumber="2" data-digit={this.state.myDigit2} data-color="red" onClick={this.onDesktopDigitClick}></div>
-									) : null
-							}
-						</div>
-						<div className="DigitCardContainer MyRound">
+						<div className="CardsContainer">
+							<div className="Card IconPlace">
+								{
+									this.state.myDigit1 ?
+										(
+											<div className="DigitIcon" data-digitnumber="1" data-digit={this.state.myDigit1} data-color="red" onClick={this.onDesktopDigitClick}></div>
+										) : null
+								}
+							</div>
+							<div className="Card IconPlace">
+								{
+									this.state.myDigit2 ?
+										(
+											<div className="DigitIcon" data-digitnumber="2" data-digit={this.state.myDigit2} data-color="red" onClick={this.onDesktopDigitClick}></div>
+										) : null
+								}
+							</div>
+							<div className="Card IconPlace">
 							{
 								this.state.myDigit3 ?
 									(
@@ -476,39 +476,43 @@ export default class GamePage extends React.Component {
 									) : null
 							}
 						</div>
-						<div></div>
+						</div>
 					</div>
-					<div className="Cards">
-						<div className="DigitCardContainer">
-							<div className="DigitIcon" data-digit="2" data-color="red" data-active={checkDigit(2) ? 1 : 0} onClick={checkDigit(2) ? this.onCardDigitClick : null}></div>
-						</div>
-						<div className="DigitCardContainer">
-							<div className="DigitIcon" data-digit="4" data-color="red" data-active={checkDigit(4) ? 1 : 0} onClick={checkDigit(4) ? this.onCardDigitClick : null}></div>
-						</div>
-						<div className="DigitCardContainer">
-							<div className="DigitIcon" data-digit="6" data-color="red" data-active={checkDigit(6) ? 1 : 0} onClick={checkDigit(6) ? this.onCardDigitClick : null}></div>
-						</div>
-						<div className="DigitCardContainer">
-							<div className="DigitIcon" data-digit="8" data-color="red" data-active={checkDigit(8) ? 1 : 0} onClick={checkDigit(8) ? this.onCardDigitClick : null}></div>
-						</div>
-						<div className="DigitCardContainer">
+					
+					<div className="YourCardsContainer">
+						<div className="Row">
+							<p className="Card">
+								<div className="DigitIcon" data-digit="2" data-color="red" data-active={checkDigit(2) ? 1 : 0} onClick={checkDigit(2) ? this.onCardDigitClick : null}></div>
+							</p>
+							<p className="Card">
+								<div className="DigitIcon" data-digit="4" data-color="red" data-active={checkDigit(4) ? 1 : 0} onClick={checkDigit(4) ? this.onCardDigitClick : null}></div>
+							</p>
+							<p className="Card">
+								<div className="DigitIcon" data-digit="6" data-color="red" data-active={checkDigit(6) ? 1 : 0} onClick={checkDigit(6) ? this.onCardDigitClick : null}></div>
+							</p>
+							<p className="Card">
+								<div className="DigitIcon" data-digit="8" data-color="red" data-active={checkDigit(8) ? 1 : 0} onClick={checkDigit(8) ? this.onCardDigitClick : null}></div>
+							</p>
+							<p className="Card">
 							<div className="DigitIcon" data-digit="J" data-color="red" data-active={checkDigit('J') ? 1 : 0} onClick={checkDigit('J') ? this.onCardDigitClick : null}></div>
+						</p>
 						</div>
 
-						<div className="DigitCardContainer">
-							<div className="DigitIcon" data-digit="3" data-color="red" data-active={checkDigit(3) ? 1 : 0} onClick={checkDigit(3) ? this.onCardDigitClick : null}></div>
+						<div className="Row">
+							<p className="Card">
+								<div className="DigitIcon" data-digit="3" data-color="red" data-active={checkDigit(3) ? 1 : 0} onClick={checkDigit(3) ? this.onCardDigitClick : null}></div>
+							</p>
+							<p className="Card">
+								<div className="DigitIcon" data-digit="5" data-color="red" data-active={checkDigit(5) ? 1 : 0} onClick={checkDigit(5) ? this.onCardDigitClick : null}></div>
+							</p>
+							<p className="Card">
+								<div className="DigitIcon" data-digit="7" data-color="red" data-active={checkDigit(7) ? 1 : 0} onClick={checkDigit(7) ? this.onCardDigitClick : null}></div>
+							</p>
+							<p className="Card">
+								<div className="DigitIcon" data-digit="9" data-color="red" data-active={checkDigit(9) ? 1 : 0} onClick={checkDigit(4) ? this.onCardDigitClick : null}></div>
+							</p>
+							<p className="Card"></p>
 						</div>
-						<div className="DigitCardContainer">
-							<div className="DigitIcon" data-digit="5" data-color="red" data-active={checkDigit(5) ? 1 : 0} onClick={checkDigit(5) ? this.onCardDigitClick : null}></div>
-						</div>
-						<div className="DigitCardContainer">
-							<div className="DigitIcon" data-digit="7" data-color="red" data-active={checkDigit(7) ? 1 : 0} onClick={checkDigit(7) ? this.onCardDigitClick : null}></div>
-						</div>
-						<div className="DigitCardContainer">
-							<div className="DigitIcon" data-digit="9" data-color="red" data-active={checkDigit(9) ? 1 : 0} onClick={checkDigit(9) ? this.onCardDigitClick : null}></div>
-						</div>
-
-
 					</div>
 				</div>
 			)
@@ -609,7 +613,7 @@ export default class GamePage extends React.Component {
 							<p className="HeadNavigationTitle">{context.GetText('game.page', 'GameHeader')}</p>
 						</HeadNavigation>
 
-						<div className="Playground">
+						<div className="Gameground">
 							<div className="FaceToFace">
 								<div className="Gamer" data-vip="1">
 									<p>{this.currentGame.User1Name}</p>
@@ -665,7 +669,6 @@ export default class GamePage extends React.Component {
 						</div>
 
 						{MsgBoxHTML}
-
 					</>
 				)}
 			</LanguageContext.Consumer>

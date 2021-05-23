@@ -1,11 +1,14 @@
 :root {
+	--company-color: #35CA71;
+	--company-color-hover: #2EB062;
+
 	--font-color: #fff;
 	--link-color: #168643;
 
 	--modal-font-color: #000;
 
-	--button-green: #35CA71;
-	--button-green-hover: #2EB062;
+	--button-green: var(--company-color);
+	--button-green-hover: var(--company-color-hover);
 	--button-green-rgb: 53, 202, 113;
 	--button-darkgreen: #06371E;
 	--button-darkgreen-rgb: 6, 55, 30;
