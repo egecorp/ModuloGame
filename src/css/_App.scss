@@ -662,6 +662,11 @@
 
 /******** Игровая область **********/
 .Playground {
+	margin-top: 12px;
+
+	display: grid;
+	grid-auto-rows: max-content;
+	row-gap: 20px;
 
 	.FaceToFace {
 		width: 100%;
@@ -675,7 +680,7 @@
 		.Gamer {
 			position: relative;
 
-			padding: 2px 10px 7px 10px;
+			padding: 2px 5px 7px 5px;
 
 			width: 90px;
 			height: 120px;
@@ -702,7 +707,9 @@
 				background-image: url(/src/img/icon/vip.svg);
 			}
 
-			> p {				
+			> p {		
+				@include textWrapDots;
+
 				font-size: 13px;
 				font-weight: 600;
 				text-align: center;
@@ -796,9 +803,60 @@
 				}
 
 				> p {
+					@include textWrapDots;
+
 					color: #fed61f;
 					font-size: 11px;
 					text-align: center;
+				}
+			}
+		}
+	}
+
+	.RoundsContainer {
+		display: grid;
+		row-gap: 10px;
+		
+		> .Round {
+			padding-top: 3px;
+
+			display: grid;
+			grid-auto-flow: column;
+			grid-template-columns: max-content 1fr max-content;
+
+			column-gap: 10px;
+			place-items: center;
+
+			border-top: 1px solid #fff;
+
+			> p {
+				@include textWrapDots;
+
+				font-size: 14px;
+				font-weight: 600;
+				text-align: center;
+			}
+
+			> .DigitContainer {
+				display: grid;
+				grid-auto-flow: column;
+				grid-auto-columns: max-content;
+
+				column-gap: 6px;
+
+				> p {
+					width: 26px;
+					height: 26px;
+					border-radius: 5px;
+
+					font-size: 24px;
+					font-weight: 600;
+					text-align: center;
+					line-height: 110%; // Размещаем число чуть ниже
+
+					&[data-color="red"] { background-color: #fd0148; }
+					&[data-color="green"] { background-color: var(--button-green); }
+					&[data-color="yellow"] { background-color: #ddb937; }
 				}
 			}
 		}
