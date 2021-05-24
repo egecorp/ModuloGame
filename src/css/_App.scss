@@ -77,9 +77,9 @@
 	min-height: 30px;
 
 	display: grid;
-	grid-gap: 0 12px;
 	grid-auto-flow: column;
 	grid-template-columns: max-content 1fr max-content;
+	column-gap: 12px;
 	align-items: center;
 
 	&[data-title="none"] {
@@ -153,7 +153,7 @@
 .SignIn {
 	.Buttons {
 		display: grid;
-		grid-gap: 7px 0;
+		row-gap: 7px;
 	}
 
 	.UserTip {
@@ -230,7 +230,7 @@
 
 		ul {
 			display: grid;
-			grid-gap: 5px 0;
+			row-gap: 5px;
 
 			li {
 				position: relative;
@@ -295,7 +295,7 @@
 
 				.Score {
 					display: grid;
-					grid-gap: 3px 0;
+					row-gap: 3px;
 					justify-items: center;
 
 					> p.Status {
@@ -305,9 +305,9 @@
 
 					.Info {
 						display: grid;
-						grid-gap: 0 5px;
 						grid-auto-flow: column;
 						grid-auto-columns: max-content;
+						column-gap: 5px;
 						align-items: center;
 
 						p {
@@ -323,7 +323,7 @@
 					height: 100%;
 
 					display: grid;
-					grid-gap: 3px 0;
+					row-gap: 3px;
 					justify-items: center;
 
 					overflow: hidden;
@@ -353,14 +353,14 @@
 					width: 100%;
 
 					display: grid;
-					grid-gap: 0 10px;
 					grid-auto-flow: column;
 					grid-template-columns: 1fr max-content 1fr;
+					column-gap: 10px;
 					align-items: center;
 
 					.ELO {
 						display: grid;
-						grid-gap: 2px 0;
+						row-gap: 2px;
 
 						p {
 							font-weight: 300;
@@ -386,7 +386,7 @@
 		margin: 20px 0;
 
 		display: grid;
-		grid-gap: 7px 0;
+		row-gap: 7px;
 	}
 }
 
@@ -559,7 +559,7 @@
 
 	.Players {
 		display: grid;
-		grid-gap: 5px 0;
+		row-gap: 5px;
 
 		> li {
 			padding: 5px;
@@ -568,9 +568,9 @@
 			height: 34px;
 
 			display: grid;
-			grid-gap: 0 10px;
 			grid-auto-flow: column;
 			grid-template-columns: max-content 1fr max-content;
+			column-gap: 10px;
 			align-items: center;
 
 			background-color: var(--bg-dark);
@@ -764,6 +764,7 @@
 			p.Score {
 				font-size: 38px;
 				font-weight: 300;
+				line-height: 1;
 			}
 
 			.Status {
@@ -862,8 +863,8 @@
 		justify-items: center;
 		
 		.Card {
-			width: 30px;
-			height: 46px;
+			width: 28px;
+			height: 44px;
 
 			border-radius: 5px;
 			box-sizing: border-box;
@@ -910,14 +911,17 @@
 		}
 
 		.YourCardsContainer {
+			--column-gap: 20px;
+
 			width: var(--width);
 
 			display: grid;
 			grid-auto-flow: column;
-			grid-template-columns: 1fr max-content;
+			grid-auto-columns: max-content;
 
+			column-gap: var(--column-gap);
 			place-items: center;
-			column-gap: 10px;
+			place-content: center;
 
 			> .RowsContainer {
 				width: 100%;
@@ -928,7 +932,8 @@
 				> .Row {
 					display: grid;
 					grid-auto-flow: column;
-					column-gap: 10px;
+					grid-auto-columns: max-content;
+					column-gap: var(--column-gap);
 	
 					> .Card { background-color: red; } // !Удалить
 				}

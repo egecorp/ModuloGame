@@ -5,7 +5,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, hr, bu
   border: 0;
   color: inherit;
   font: inherit;
-  font-family: 'Open Sans',sans-serif;
+  font-family: 'Roboto Slab',sans-serif;
   font-size: 100%;
   font-weight: 400;
   line-height: 1.5;
@@ -296,10 +296,11 @@ html, body {
   padding: 8px;
   display: -ms-grid;
   display: grid;
-  grid-gap: 0 7px;
   -ms-grid-columns: max-content 1fr;
       grid-template-columns: -webkit-max-content 1fr;
       grid-template-columns: max-content 1fr;
+  -webkit-column-gap: 7px;
+          column-gap: 7px;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -517,10 +518,11 @@ input.InPopup::-webkit-input-placeholder {
   height: 30px;
   display: -ms-grid;
   display: grid;
-  grid-gap: 0 7px;
   grid-auto-flow: column;
   grid-auto-columns: -webkit-max-content;
   grid-auto-columns: max-content;
+  -webkit-column-gap: 7px;
+          column-gap: 7px;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -675,11 +677,12 @@ input.InPopup::-webkit-input-placeholder {
   min-height: 30px;
   display: -ms-grid;
   display: grid;
-  grid-gap: 0 12px;
   grid-auto-flow: column;
   -ms-grid-columns: max-content 1fr max-content;
       grid-template-columns: -webkit-max-content 1fr -webkit-max-content;
       grid-template-columns: max-content 1fr max-content;
+  -webkit-column-gap: 12px;
+          column-gap: 12px;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -760,7 +763,7 @@ input.InPopup::-webkit-input-placeholder {
 .SignIn .Buttons {
   display: -ms-grid;
   display: grid;
-  grid-gap: 7px 0;
+  row-gap: 7px;
 }
 
 .SignIn .UserTip {
@@ -834,7 +837,7 @@ input.InPopup::-webkit-input-placeholder {
 .GameList .Games ul {
   display: -ms-grid;
   display: grid;
-  grid-gap: 5px 0;
+  row-gap: 5px;
 }
 
 .GameList .Games ul li {
@@ -897,7 +900,7 @@ input.InPopup::-webkit-input-placeholder {
 .GameList .Games ul li .Score {
   display: -ms-grid;
   display: grid;
-  grid-gap: 3px 0;
+  row-gap: 3px;
   justify-items: center;
 }
 
@@ -909,10 +912,11 @@ input.InPopup::-webkit-input-placeholder {
 .GameList .Games ul li .Score .Info {
   display: -ms-grid;
   display: grid;
-  grid-gap: 0 5px;
   grid-auto-flow: column;
   grid-auto-columns: -webkit-max-content;
   grid-auto-columns: max-content;
+  -webkit-column-gap: 5px;
+          column-gap: 5px;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -929,7 +933,7 @@ input.InPopup::-webkit-input-placeholder {
   height: 100%;
   display: -ms-grid;
   display: grid;
-  grid-gap: 3px 0;
+  row-gap: 3px;
   justify-items: center;
   overflow: hidden;
 }
@@ -959,11 +963,12 @@ input.InPopup::-webkit-input-placeholder {
   width: 100%;
   display: -ms-grid;
   display: grid;
-  grid-gap: 0 10px;
   grid-auto-flow: column;
   -ms-grid-columns: 1fr max-content 1fr;
       grid-template-columns: 1fr -webkit-max-content 1fr;
       grid-template-columns: 1fr max-content 1fr;
+  -webkit-column-gap: 10px;
+          column-gap: 10px;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -972,7 +977,7 @@ input.InPopup::-webkit-input-placeholder {
 .GameList .Games ul li .Cup .ELO {
   display: -ms-grid;
   display: grid;
-  grid-gap: 2px 0;
+  row-gap: 2px;
 }
 
 .GameList .Games ul li .Cup .ELO p {
@@ -992,7 +997,7 @@ input.InPopup::-webkit-input-placeholder {
   margin: 20px 0;
   display: -ms-grid;
   display: grid;
-  grid-gap: 7px 0;
+  row-gap: 7px;
 }
 
 .ModalBG {
@@ -1143,7 +1148,7 @@ input.InPopup::-webkit-input-placeholder {
 .FindUser .Players {
   display: -ms-grid;
   display: grid;
-  grid-gap: 5px 0;
+  row-gap: 5px;
 }
 
 .FindUser .Players > li {
@@ -1152,11 +1157,12 @@ input.InPopup::-webkit-input-placeholder {
   height: 34px;
   display: -ms-grid;
   display: grid;
-  grid-gap: 0 10px;
   grid-auto-flow: column;
   -ms-grid-columns: max-content 1fr max-content;
       grid-template-columns: -webkit-max-content 1fr -webkit-max-content;
       grid-template-columns: max-content 1fr max-content;
+  -webkit-column-gap: 10px;
+          column-gap: 10px;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -1365,6 +1371,7 @@ input.InPopup::-webkit-input-placeholder {
 .Gameground .FaceToFace .CurrentInfo p.Score {
   font-size: 38px;
   font-weight: 300;
+  line-height: 1;
 }
 
 .Gameground .FaceToFace .CurrentInfo .Status {
@@ -1489,8 +1496,8 @@ input.InPopup::-webkit-input-placeholder {
 }
 
 .Gameground .Playground .Card {
-  width: 30px;
-  height: 46px;
+  width: 28px;
+  height: 44px;
   border-radius: 5px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -1537,16 +1544,17 @@ input.InPopup::-webkit-input-placeholder {
 }
 
 .Gameground .Playground .YourCardsContainer {
+  --column-gap: 20px;
   width: var(--width);
   display: -ms-grid;
   display: grid;
   grid-auto-flow: column;
-  -ms-grid-columns: 1fr max-content;
-      grid-template-columns: 1fr -webkit-max-content;
-      grid-template-columns: 1fr max-content;
+  grid-auto-columns: -webkit-max-content;
+  grid-auto-columns: max-content;
+  -webkit-column-gap: var(--column-gap);
+          column-gap: var(--column-gap);
   place-items: center;
-  -webkit-column-gap: 10px;
-          column-gap: 10px;
+  place-content: center;
 }
 
 .Gameground .Playground .YourCardsContainer > .RowsContainer {
@@ -1560,8 +1568,10 @@ input.InPopup::-webkit-input-placeholder {
   display: -ms-grid;
   display: grid;
   grid-auto-flow: column;
-  -webkit-column-gap: 10px;
-          column-gap: 10px;
+  grid-auto-columns: -webkit-max-content;
+  grid-auto-columns: max-content;
+  -webkit-column-gap: var(--column-gap);
+          column-gap: var(--column-gap);
 }
 
 .Gameground .Playground .YourCardsContainer > .RowsContainer > .Row > .Card {
