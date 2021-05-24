@@ -688,7 +688,12 @@ input.InPopup::-webkit-input-placeholder {
           align-items: center;
 }
 
-.HeadNavigation[data-title="none"] {
+.HeadNavigation[data-column="1"] {
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+}
+
+.HeadNavigation[data-column="2"] {
   -ms-grid-columns: 1fr max-content;
       grid-template-columns: 1fr -webkit-max-content;
       grid-template-columns: 1fr max-content;
@@ -1105,7 +1110,7 @@ input.InPopup::-webkit-input-placeholder {
   background-image: url(/src/img/icon/warning.svg);
 }
 
-.Modal > .Button > button {
+.Modal > .Buttons > button {
   --font-color: #000;
   padding: 10px 0;
   width: 100%;
@@ -1118,10 +1123,19 @@ input.InPopup::-webkit-input-placeholder {
   text-transform: uppercase;
 }
 
-.Modal > .Button > button:active {
+.Modal > .Buttons > button:active {
   background-color: var(--button-footer-bg-hover);
   -webkit-box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.3);
           box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.3);
+}
+
+.Modal > .Buttons > button:nth-last-child(n+2) {
+  border-bottom: 1px solid #eee;
+  border-radius: 5px 5px 0 0;
+}
+
+.Modal > .Buttons > button:nth-child(n+2) {
+  border-radius: 0 0 5px 5px;
 }
 
 .FindUser .Search {

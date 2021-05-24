@@ -39,25 +39,13 @@ export default class GameListPage extends React.Component {
 				{(context) =>
 				(
 					<>
-						<HeadNavigation title="none">
-							<div className="Profile">
-								<div className="Avatar">
-									<img src="/img/avatar/1/boy.1.png" alt="No Avatar"></img>
-								</div>
-
-								<p className="Title">{this.props.Device.myUser.NicName}</p>
-							</div>
+						<HeadNavigation column="2">
+							<p className="Title">{context.GetText('gamelist', 'labelWindow')}</p>
 
 							<button onClick={this.createGame} className="ButtonGreen">{context.GetText('gamelist', 'buttonHeaderLabel')}</button>
 						</HeadNavigation>
 
 						<div className="GameList">
-							<div className="SubMenu">
-								<p className="GeneralSubtitle">{context.GetText('gamelist', 'labelWindow')}</p>
-
-								<button onClick={this.createGame} className="ButtonGreen">{context.GetText('gamelist', 'buttonNewGameLabel')}</button>
-							</div>
-
 							<div className="Games NowPlaying">
 								<p className="GeneralSubtitle">{context.GetText('gamelist', 'sublabelNowPlaying')}</p>
 
@@ -72,6 +60,14 @@ export default class GameListPage extends React.Component {
 								<ul>
 									{recentGames}
 								</ul>
+							</div>
+
+							<div className="Profile">
+								<div className="Avatar">
+									<img src="/img/avatar/1/boy.1.png" alt="No Avatar"></img>
+								</div>
+
+								<p className="Title">{this.props.Device.myUser.NicName}</p>
 							</div>
 						</div>
 					</>

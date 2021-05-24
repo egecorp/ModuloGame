@@ -62,11 +62,8 @@ export default class MsgBox2Buttons extends React.Component {
 										<div>{this.props.children ?? ""}</div>
 									</div>
 
-									<div className="Button">
+									<div className="Buttons">
 										<button onClick={this.buttonOnClick1}>{this.props.ModalButton1 ?? context.GetText('common', 'modalButtonClose')}</button>
-									</div>
-
-                                    <div className="Button">
 										<button onClick={this.buttonOnClick2}>{this.props.ModalButton2 ?? context.GetText('common', 'modalButtonNo')}</button>
 									</div>
 								</div>

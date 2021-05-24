@@ -74,7 +74,7 @@ export default class SignInPage extends React.Component {
 				{(context) =>
 				( 
 					<>
-						<HeadNavigation title="none">
+						<HeadNavigation column="1">
 							<SignInLanguagePanel lang='ru'></SignInLanguagePanel>
 						</HeadNavigation>
 						

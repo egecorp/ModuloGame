@@ -140,8 +140,7 @@ export function AddPackets(addPackFunction)
 		'labelWindow' : 'Список игр',
 		'sublabelNowPlaying' : 'Активные игры:',
 		'sublabelFinished' : 'Завершённые игры:',
-		'buttonHeaderLabel' : 'Меню',
-		'buttonNewGameLabel' : 'Новая игра',
+		'buttonHeaderLabel' : 'Новая игра',
 		'labelCup' : 'Турнир'
 	});
 

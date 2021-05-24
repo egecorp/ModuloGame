@@ -82,9 +82,8 @@
 	column-gap: 12px;
 	align-items: center;
 
-	&[data-title="none"] {
-		grid-template-columns: 1fr max-content;
-	}
+	&[data-column="1"] { grid-template-columns: 1fr; }
+	&[data-column="2"] { grid-template-columns: 1fr max-content; }
 
 	.Title {
 		font-size: 18px;
@@ -509,7 +508,7 @@
 		}
 	}
 
-	> .Button {
+	> .Buttons {
 		> button {
 			--font-color: #000;
 			
@@ -528,6 +527,15 @@
 			&:active {
 				background-color: var(--button-footer-bg-hover);
 				box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.3);
+			}
+
+			&:nth-last-child(n+2) {
+				border-bottom: 1px solid #eee;
+				border-radius: 5px 5px 0 0;
+			}
+
+			&:nth-child(n+2) {
+				border-radius: 0 0 5px 5px;
 			}
 		}
 	}
