@@ -261,6 +261,19 @@ export default class GamePage extends React.Component {
 		if (digitNumber === "3") this.setState({ myDigit3: null });
 	}
 
+    getDigitHtml(roundNumber, digitColor)
+    {
+        if (this.rounds[roundNumber])
+        {
+            return (<div className="DigitIcon" data-digit={this.rounds[roundNumber]} data-color={digitColor}></div>);
+        }
+        else
+        {
+            return null;
+        }
+        
+    }
+
 	render() {
 
 		var MsgBoxHTML = null;
@@ -383,6 +396,7 @@ export default class GamePage extends React.Component {
 		function GetDigitOrJoker(e) {
 			return (e === 11) ? "J" : e;
 		}
+
 		if (this.state.game && this.state.game.Rounds) {
 
 			if (this.state.game.Rounds[this.state.game.User1Id + ":1"]) {
@@ -455,6 +469,8 @@ export default class GamePage extends React.Component {
 			function checkDigit(d) {
 				return (d1 !== (d + "")) && (d2 !== (d + "")) && (d3 !== (d + ""));
 			}
+
+
 
 			gameArea = (
 				<div className="Playground">
@@ -569,81 +585,81 @@ export default class GamePage extends React.Component {
 				<div className="RoundsContainer">
 					<div className="Round">
 						<div className="DigitContainer">
-							<p data-color="red">{this.rounds["1.1.1"] && (<div className="DigitIcon" data-digit={this.rounds["1.1.1"]} data-color="red"></div>)}</p>
-							<p data-color="green">{this.rounds["1.1.2"] && (<div className="DigitIcon" data-digit={this.rounds["1.1.2"]} data-color="red"></div>)}</p>
-							<p data-color="yellow">{this.rounds["1.1.3"] && (<div className="DigitIcon" data-digit={this.rounds["1.1.3"]} data-color="red"></div>)}</p>
+							<p data-color="red">{this.getDigitHtml("1.1.1","red")}</p>
+							<p data-color="green">{this.getDigitHtml("1.1.2","red")}</p>
+							<p data-color="yellow">{this.getDigitHtml("1.1.3","red")}</p>
 						</div>
 
 						<p>{this.currentContext.GetText('game.page', 'RoundName1')}</p>
 
 						<div className="DigitContainer">
-							<p data-color="red">{this.rounds["1.2.1"] && (<div className="DigitIcon" data-digit={this.rounds["1.2.1"]} data-color="blue"></div>)}</p>
-							<p data-color="green">{this.rounds["1.2.2"] && (<div className="DigitIcon" data-digit={this.rounds["1.2.2"]} data-color="blue"></div>)}</p>
-							<p data-color="yellow">{this.rounds["1.2.3"] && (<div className="DigitIcon" data-digit={this.rounds["1.2.3"]} data-color="blue"></div>)}</p>
+							<p data-color="red">{this.getDigitHtml("1.2.1","blue")}</p>
+							<p data-color="green">{this.getDigitHtml("1.2.2","blue")}</p>
+							<p data-color="yellow">{this.getDigitHtml("1.2.3","blue")}</p>
 						</div>
 					</div>
 
 					<div className="Round">
 						<div className="DigitContainer">
-							<p data-color="red">{this.rounds["2.1.1"] && (<div className="DigitIcon" data-digit={this.rounds["2.1.1"]} data-color="red"></div>)}</p>
-							<p data-color="green">{this.rounds["2.1.2"] && (<div className="DigitIcon" data-digit={this.rounds["2.1.2"]} data-color="red"></div>)}</p>
-							<p data-color="yellow">{this.rounds["2.1.3"] && (<div className="DigitIcon" data-digit={this.rounds["2.1.3"]} data-color="red"></div>)}</p>
+							<p data-color="red">{this.getDigitHtml("2.1.1","red")}</p>
+							<p data-color="green">{this.getDigitHtml("2.1.2","red")}</p>
+							<p data-color="yellow">{this.getDigitHtml("2.1.3","red")}</p>
 						</div>
 
 						<p>{this.currentContext.GetText('game.page', 'RoundName2')}</p>
 
 						<div className="DigitContainer">
-							<p data-color="red">{this.rounds["2.2.1"] && (<div className="DigitIcon" data-digit={this.rounds["2.2.1"]} data-color="blue"></div>)}</p>
-							<p data-color="green">{this.rounds["2.2.2"] && (<div className="DigitIcon" data-digit={this.rounds["2.2.2"]} data-color="blue"></div>)}</p>
-							<p data-color="yellow">{this.rounds["2.2.3"] && (<div className="DigitIcon" data-digit={this.rounds["2.2.3"]} data-color="blue"></div>)}</p>
+							<p data-color="red">{this.getDigitHtml("2.2.1","blue")}</p>
+							<p data-color="green">{this.getDigitHtml("2.2.2","blue")}</p>
+							<p data-color="yellow">{this.getDigitHtml("2.2.3","blue")}</p>
 						</div>
 					</div>
 
 					<div className="Round">
 						<div className="DigitContainer">
-							<p data-color="red">{this.rounds["3.1.1"] && (<div className="DigitIcon" data-digit={this.rounds["3.1.1"]} data-color="red"></div>)}</p>
-							<p data-color="green">{this.rounds["3.1.2"] && (<div className="DigitIcon" data-digit={this.rounds["3.1.2"]} data-color="red"></div>)}</p>
-							<p data-color="yellow">{this.rounds["3.1.3"] && (<div className="DigitIcon" data-digit={this.rounds["3.1.3"]} data-color="red"></div>)}</p>
+							<p data-color="red">{this.getDigitHtml("3.1.1","red")}</p>
+							<p data-color="green">{this.getDigitHtml("3.1.2","red")}</p>
+							<p data-color="yellow">{this.getDigitHtml("3.1.3","red")}</p>
 						</div>
 
 						<p>{this.currentContext.GetText('game.page', 'RoundName3')}</p>
 
 						<div className="DigitContainer">
-							<p data-color="red">{this.rounds["3.2.1"] && (<div className="DigitIcon" data-digit={this.rounds["3.2.1"]} data-color="blue"></div>)}</p>
-							<p data-color="green">{this.rounds["3.2.2"] && (<div className="DigitIcon" data-digit={this.rounds["3.2.2"]} data-color="blue"></div>)}</p>
-							<p data-color="yellow">{this.rounds["3.2.3"] && (<div className="DigitIcon" data-digit={this.rounds["3.2.3"]} data-color="blue"></div>)}</p>
+							<p data-color="red">{this.getDigitHtml("3.2.1","blue")}</p>
+							<p data-color="green">{this.getDigitHtml("3.2.2","blue")}</p>
+							<p data-color="yellow">{this.getDigitHtml("3.2.3","blue")}</p>
 						</div>
 					</div>
 
 					<div className="Round">
 						<div className="DigitContainer">
-							<p data-color="red">{this.rounds["4.1.1"] && (<div className="DigitIcon" data-digit={this.rounds["4.1.1"]} data-color="red"></div>)}</p>
-							<p data-color="green">{this.rounds["4.1.2"] && (<div className="DigitIcon" data-digit={this.rounds["4.1.2"]} data-color="red"></div>)}</p>
-							<p data-color="yellow">{this.rounds["4.1.3"] && (<div className="DigitIcon" data-digit={this.rounds["4.1.3"]} data-color="red"></div>)}</p>
+							<p data-color="red">{this.getDigitHtml("4.1.1","red")}</p>
+							<p data-color="green">{this.getDigitHtml("4.1.2","red")}</p>
+							<p data-color="yellow">{this.getDigitHtml("4.1.3","red")}</p>
 						</div>
 
 						<p>{this.currentContext.GetText('game.page', 'RoundName4')}</p>
 
 						<div className="DigitContainer">
-							<p data-color="red">{this.rounds["4.2.1"] && (<div className="DigitIcon" data-digit={this.rounds["4.2.1"]} data-color="blue"></div>)}</p>
-							<p data-color="green">{this.rounds["4.2.2"] && (<div className="DigitIcon" data-digit={this.rounds["4.2.2"]} data-color="blue"></div>)}</p>
-							<p data-color="yellow">{this.rounds["4.2.3"] && (<div className="DigitIcon" data-digit={this.rounds["4.2.3"]} data-color="blue"></div>)}</p>
+							<p data-color="red">{this.getDigitHtml("4.2.1","blue")}</p>
+							<p data-color="green">{this.getDigitHtml("4.2.2","blue")}</p>
+							<p data-color="yellow">{this.getDigitHtml("4.2.3","blue")}</p>
 						</div>
 					</div>
 
 					<div className="Round">
 						<div className="DigitContainer">
-							<p data-color="red">{this.rounds["5.1.1"] && (<div className="DigitIcon" data-digit={this.rounds["5.1.1"]} data-color="red"></div>)}</p>
-							<p data-color="green">{this.rounds["5.1.2"] && (<div className="DigitIcon" data-digit={this.rounds["5.1.2"]} data-color="red"></div>)}</p>
-							<p data-color="yellow">{this.rounds["5.1.3"] && (<div className="DigitIcon" data-digit={this.rounds["5.1.3"]} data-color="red"></div>)}</p>
+							<p data-color="red">{this.getDigitHtml("5.1.1","red")}</p>
+							<p data-color="green">{this.getDigitHtml("5.1.2","red")}</p>
+							<p data-color="yellow">{this.getDigitHtml("5.1.3","red")}</p>
 						</div>
 
 						<p>{this.currentContext.GetText('game.page', 'RoundName5')}</p>
 
 						<div className="DigitContainer">
-							<p data-color="red">{this.rounds["5.2.1"] && (<div className="DigitIcon" data-digit={this.rounds["5.2.1"]} data-color="blue"></div>)}</p>
-							<p data-color="green">{this.rounds["5.2.2"] && (<div className="DigitIcon" data-digit={this.rounds["5.2.2"]} data-color="blue"></div>)}</p>
-							<p data-color="yellow">{this.rounds["5.2.3"] && (<div className="DigitIcon" data-digit={this.rounds["5.2.3"]} data-color="blue"></div>)}</p>
+							<p data-color="red">{this.getDigitHtml("5.2.1","blue")}</p>
+							<p data-color="green">{this.getDigitHtml("5.2.2","blue")}</p>
+							<p data-color="yellow">{this.getDigitHtml("5.2.3","blue")}</p>
 						</div>
 					</div>
 				</div>
