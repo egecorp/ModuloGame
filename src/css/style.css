@@ -94,15 +94,17 @@ table {
   font-style: normal;
 }
 
-:root {
-  --company-color: #35CA71;
-  --company-color-hover: #2EB062;
+:root,
+*::after,
+*::before {
+  --brand-color: #35CA71;
+  --brand-color-hover: #2EB062;
   --font-color: #fff;
   --link-color: #168643;
   --font-size: 14px;
   --modal-font-color: #000;
-  --button-green: var(--company-color);
-  --button-green-hover: var(--company-color-hover);
+  --button-green: var(--brand-color);
+  --button-green-hover: var(--brand-color-hover);
   --button-green-rgb: 53, 202, 113;
   --button-darkgreen: #06371E;
   --button-darkgreen-rgb: 6, 55, 30;
@@ -565,30 +567,21 @@ input.InPopup::-webkit-input-placeholder {
 
 .ButtonAroundGreen {
   position: relative;
-}
-
-.ButtonAroundGreen::after, .ButtonAroundGreen::before {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  content: "";
+  width: 27px;
+  height: 27px;
+  background-size: 14px;
+  background-color: var(--button-green);
+  -webkit-box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
   border-radius: 30px;
 }
 
-.ButtonAroundGreen::after {
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.1);
-  z-index: -10;
+.ButtonAroundGreen.IconStats {
+  background-image: url(/src/img/buttons/stats.svg);
 }
 
-.ButtonAroundGreen::before {
-  width: calc(100% - 4px);
-  height: calc(100% - 4px);
-  background-color: var(--button-green);
-  z-index: -5;
+.ButtonAroundGreen.IconAdd {
+  background-image: url(/src/img/buttons/plus.svg);
 }
 
 /*** *** *** END *** *** ***/
@@ -704,7 +697,8 @@ input.InPopup::-webkit-input-placeholder {
   font-weight: 300;
 }
 
-.HeadNavigation .Profile {
+.Profile {
+  margin-bottom: 10px;
   display: -ms-grid;
   display: grid;
   grid-auto-flow: column;
@@ -716,6 +710,11 @@ input.InPopup::-webkit-input-placeholder {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.Profile .Avatar {
+  width: 75px;
+  height: 75px;
 }
 
 .UserTip {
@@ -1349,20 +1348,6 @@ input.InPopup::-webkit-input-placeholder {
           justify-content: space-between;
 }
 
-.Gameground .FaceToFace .Gamer > .Buttons > button {
-  width: 30px;
-  height: 30px;
-  background-size: 14px;
-}
-
-.Gameground .FaceToFace .Gamer > .Buttons > .IconStats {
-  background-image: url(/src/img/buttons/stats.svg);
-}
-
-.Gameground .FaceToFace .Gamer > .Buttons > .IconAdd {
-  background-image: url(/src/img/buttons/plus.svg);
-}
-
 .Gameground .FaceToFace .Gamer > .IconJoker {
   position: absolute;
   top: 50%;
@@ -1540,7 +1525,7 @@ input.InPopup::-webkit-input-placeholder {
   display: grid;
   row-gap: 12px;
   place-items: center;
-  background-color: var(--company-color);
+  background-color: var(--brand-color);
   border: 6px solid #9C6027;
   border-radius: 100px;
   -webkit-box-sizing: border-box;
