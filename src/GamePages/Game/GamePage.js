@@ -468,6 +468,7 @@ export default class GamePage extends React.Component {
 										) : null
 								}
 							</div>
+							
 							<div className="Card Shirt">
 								{
 									this.state.competitorDigit2 ?
@@ -476,6 +477,7 @@ export default class GamePage extends React.Component {
 										) : null
 								}
 							</div>
+
 							<div className="Card Shirt">
 								{
 									this.state.competitorDigit3 ?
@@ -495,6 +497,7 @@ export default class GamePage extends React.Component {
 										) : null
 								}
 							</div>
+
 							<div className="Card IconPlace">
 								{
 									this.state.myDigit2 ?
@@ -503,6 +506,7 @@ export default class GamePage extends React.Component {
 										) : null
 								}
 							</div>
+
 							<div className="Card IconPlace">
 								{
 									this.state.myDigit3 ?
@@ -517,39 +521,45 @@ export default class GamePage extends React.Component {
 					<div className="YourCardsContainer">
 						<div className="RowsContainer">
 							<div className="Row">
-								<p className="Card">
+								<div className="Card">
 									<div className="DigitIcon" data-digit="2" data-color="red" data-active={checkDigit(2) ? 1 : 0} onClick={checkDigit(2) ? this.onCardDigitClick : null}></div>
-								</p>
-								<p className="Card">
+								</div>
+
+								<div className="Card">
 									<div className="DigitIcon" data-digit="4" data-color="red" data-active={checkDigit(4) ? 1 : 0} onClick={checkDigit(4) ? this.onCardDigitClick : null}></div>
-								</p>
-								<p className="Card">
+								</div>
+
+								<div className="Card">
 									<div className="DigitIcon" data-digit="6" data-color="red" data-active={checkDigit(6) ? 1 : 0} onClick={checkDigit(6) ? this.onCardDigitClick : null}></div>
-								</p>
-								<p className="Card">
+								</div>
+
+								<div className="Card">
 									<div className="DigitIcon" data-digit="8" data-color="red" data-active={checkDigit(8) ? 1 : 0} onClick={checkDigit(8) ? this.onCardDigitClick : null}></div>
-								</p>
+								</div>
 							</div>
 
 							<div className="Row">
-							<p className="Card">
-								<div className="DigitIcon" data-digit="3" data-color="red" data-active={checkDigit(3) ? 1 : 0} onClick={checkDigit(3) ? this.onCardDigitClick : null}></div>
-							</p>
-							<p className="Card">
-								<div className="DigitIcon" data-digit="5" data-color="red" data-active={checkDigit(5) ? 1 : 0} onClick={checkDigit(5) ? this.onCardDigitClick : null}></div>
-							</p>
-							<p className="Card">
-								<div className="DigitIcon" data-digit="7" data-color="red" data-active={checkDigit(7) ? 1 : 0} onClick={checkDigit(7) ? this.onCardDigitClick : null}></div>
-							</p>
-							<p className="Card">
-								<div className="DigitIcon" data-digit="9" data-color="red" data-active={checkDigit(9) ? 1 : 0} onClick={checkDigit(4) ? this.onCardDigitClick : null}></div>
-							</p>
-						</div>
+								<div className="Card">
+									<div className="DigitIcon" data-digit="3" data-color="red" data-active={checkDigit(3) ? 1 : 0} onClick={checkDigit(3) ? this.onCardDigitClick : null}></div>
+								</div>
+
+								<div className="Card">
+									<div className="DigitIcon" data-digit="5" data-color="red" data-active={checkDigit(5) ? 1 : 0} onClick={checkDigit(5) ? this.onCardDigitClick : null}></div>
+								</div>
+
+								<div className="Card">
+									<div className="DigitIcon" data-digit="7" data-color="red" data-active={checkDigit(7) ? 1 : 0} onClick={checkDigit(7) ? this.onCardDigitClick : null}></div>
+								</div>
+
+								<div className="Card">
+									<div className="DigitIcon" data-digit="9" data-color="red" data-active={checkDigit(9) ? 1 : 0} onClick={checkDigit(4) ? this.onCardDigitClick : null}></div>
+								</div>
+							</div>
 						</div>
 
-						<p className="Card">
+						<div className="Card">
 							<div className="DigitIcon" data-digit="J" data-color="red" data-active={checkDigit('J') ? 1 : 0} onClick={checkDigit('J') ? this.onCardDigitClick : null}></div>
-						</p>
+						</div>
 					</div>
 				</div>
 			)
