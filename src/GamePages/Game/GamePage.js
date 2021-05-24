@@ -675,7 +675,6 @@ export default class GamePage extends React.Component {
 
 									<div className="Buttons">
 										<button className="ButtonAroundGreen IconStats"></button>
-										<button className="ButtonAroundGreen IconAdd"></button>
 									</div>
 
 									<div className="IconVip"></div>
@@ -705,8 +704,8 @@ export default class GamePage extends React.Component {
 									<img src='/img/avatar/1/boy.1.png' alt="No Avatar"></img>
 
 									<div className="Buttons">
-										<button className="ButtonAroundGreen IconStats"></button>
 										<button className="ButtonAroundGreen IconAdd"></button>
+										<button className="ButtonAroundGreen IconStats"></button>
 									</div>
 
 									<div className="IconVip"></div>

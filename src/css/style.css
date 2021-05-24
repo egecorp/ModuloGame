@@ -108,7 +108,7 @@ table {
   --button-green-rgb: 53, 202, 113;
   --button-darkgreen: #06371E;
   --button-darkgreen-rgb: 6, 55, 30;
-  --button-font-color: #000;
+  --button-font-color: #06371E;
   --button-footer-bg: #EEEEEE;
   --button-footer-bg-hover: #D4D4D4;
   --bg-dark: rgba(6, 55, 30, 0.25);
@@ -669,6 +669,10 @@ input.InPopup::-webkit-input-placeholder {
   grid-column: 2;
 }
 
+.ButtonAroundGreen:active {
+  background-color: var(--button-green-hover);
+}
+
 /*** *** *** END *** *** ***/
 .Main {
   margin-top: 20px;
@@ -1211,7 +1215,7 @@ input.InPopup::-webkit-input-placeholder {
   --font-color: #000;
   padding: 10px 0;
   width: 100%;
-  background-color: var(--button-footer-bg);
+  background-color: #fff;
   border-radius: 5px;
   -webkit-box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.15);
           box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.15);

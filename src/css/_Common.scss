@@ -17,7 +17,7 @@
 	--button-darkgreen: #06371E;
 	--button-darkgreen-rgb: 6, 55, 30;
 
-	--button-font-color: #000;
+	--button-font-color: #06371E;
 
 	--button-footer-bg: #EEEEEE;
 	--button-footer-bg-hover: #D4D4D4;
@@ -502,5 +502,7 @@ input.InPopup	{
 
 	&.IconAdd 	{ background-image: url(/src/img/buttons/plus.svg); grid-column: 1;  }
 	&.IconStats { background-image: url(/src/img/buttons/stats.svg); grid-column: 2; }
+
+	&:active { background-color: var(--button-green-hover); }
 }
 /*** *** *** END *** *** ***/
