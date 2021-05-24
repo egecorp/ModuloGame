@@ -371,6 +371,7 @@ html, body {
   margin-bottom: 10px;
   font-weight: 300;
   font-size: 13px;
+  line-height: 1.4;
   text-align: center;
 }
 
@@ -391,6 +392,7 @@ html, body {
   display: block;
   font-weight: 500;
   font-size: 13px;
+  line-height: 1.1;
 }
 
 /*** Типы элементов формы ***/
@@ -1149,7 +1151,7 @@ input.InPopup::-webkit-input-placeholder {
 }
 
 .Modal p > span:nth-child(n + 2) {
-  margin-top: 3px;
+  margin-top: 5px;
 }
 
 .Modal > *:nth-child(n + 2) {
