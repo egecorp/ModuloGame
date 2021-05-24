@@ -92,7 +92,8 @@
 }
 
 .ProfileContainer {
-	padding: 20px 5px;
+	margin: 10px 0;
+	padding: 5px;
 
 	display: grid;
 	grid-auto-flow: column;
@@ -100,6 +101,9 @@
 
 	column-gap: 7px;
 	align-items: end;
+
+	background-color: rgba(0,0,0,0.2);
+	border-radius: 5px;
 
 	> .Gamer {
 		--gamer-width: 90px;
@@ -216,6 +220,9 @@
 }
 
 .GameList {
+	height: 100%;
+	overflow: auto;
+
 	.SubMenu {
 		display: grid;
 		grid-auto-flow: column;

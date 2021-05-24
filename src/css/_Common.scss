@@ -500,7 +500,7 @@ input.InPopup	{
 	box-shadow: 0 0 0 3px rgba(0,0,0,0.1);
 	border-radius: 30px;
 
-	&.IconAdd 	{ background-image: url(/src/img/buttons/plus.svg); }
-	&.IconStats { background-image: url(/src/img/buttons/stats.svg); }
+	&.IconAdd 	{ background-image: url(/src/img/buttons/plus.svg); grid-column: 1;  }
+	&.IconStats { background-image: url(/src/img/buttons/stats.svg); grid-column: 2; }
 }
 /*** *** *** END *** *** ***/
