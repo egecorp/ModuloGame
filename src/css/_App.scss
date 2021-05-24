@@ -24,6 +24,8 @@
 }
 
 .AdHolder {
+	--font-color: #000;
+
 	position: relative;
 	height: 50px;
 	border: 1px solid #000;
@@ -43,13 +45,13 @@
 	.WelcomeTitle {
 		font-size: 22px;
 		font-weight: 300;
-		line-height: 28px;
+		line-height: 1.25;
 	}
 
 	.WelcomeModulo {
 		font-size: 28px;
 		font-weight: 600;
-		line-height: 34px;
+		line-height: 1.25;
 	}
 }
 
@@ -118,7 +120,6 @@
 	> p {
 		font-size: 15px;
 		font-weight: 500;
-		line-height: 20px;
 		text-align: center;
 		letter-spacing: 0.15px;
 	}
@@ -128,6 +129,8 @@
 	margin: 10px 0;
 
 	> button {
+		--font-color: #000;
+
 		padding: 10px 0;
 
 		width: 100%;
@@ -164,7 +167,6 @@
 
 		p {
 			font-size: 13px;
-			line-height: 18px;
 		}
 	}
 }
@@ -185,7 +187,6 @@
 
 		font-weight: 500;
 		font-size: 14px;
-		line-height: 18px;
 		text-align: center;
 	}
 
@@ -194,7 +195,6 @@
 
 		font-weight: 500;
 		font-size: 14px;
-		line-height: 18px;
 		text-align: center;
 		text-decoration: underline;
 	}
@@ -213,14 +213,12 @@
 		&.NowPlaying {
 			.Status {
 				font-size: 13px;
-				line-height: 17px;
 			}
 		}
 
 		&.Finished {
 			.Status {
 				font-size: 18px;
-				line-height: 20px;
 			}
 		}
 
@@ -315,7 +313,6 @@
 						p {
 							font-size: 10px;
 							font-weight: 300;
-							line-height: 13px;
 							text-transform: uppercase;
 						}
 					}
@@ -345,7 +342,6 @@
 					p {
 						font-size: 10px;
 						font-weight: 300;
-						line-height: 13px;
 						text-align: center;
 						text-transform: uppercase;
 
@@ -373,12 +369,10 @@
 
 						> p:nth-child(1) {
 							font-size: 13px;
-							line-height: 15px;
 						}
 
 						> p:nth-child(2) {
 							font-size: 10px;
-							line-height: 12px;
 						}
 					}
 				}
@@ -473,15 +467,14 @@
 				.Title {
 					font-size: 15px;
 					font-weight: 500;
-
-					line-height: 19px;
+					line-height: 1;
 					text-align: center;
 				}
 
 				> p {
 					font-size: 13px;
 					font-weight: 300;
-					line-height: 17px;
+					line-height: 1.4;
 				}
 
 				> a {
@@ -490,8 +483,6 @@
 					color: var(--link-color);
 					font-size: 13px;
 					font-weight: 500;
-
-					line-height: 17px;
 					text-align: center;
 					text-decoration: none;
 
@@ -507,7 +498,6 @@
 			label {
 				font-size: 13px;
 				font-weight: 500;
-				line-height: 17px;
 			}
 		}
 		/* END */
@@ -521,6 +511,8 @@
 
 	> .Button {
 		> button {
+			--font-color: #000;
+			
 			padding: 10px 0;
 
 			width: 100%;
@@ -597,7 +589,6 @@
 				@include textWrapDots;
 				font-size: 14px;
 				font-weight: 300;
-				line-height: 19px;
 				text-transform: uppercase;
 			}
 
@@ -661,7 +652,6 @@
 
 			font-size: 13px;
 			font-weight: 300;
-			line-height: 17px;
 			text-align: justify;
 		}
 	}
@@ -752,25 +742,18 @@
 				> .IconAdd 	 { background-image: url(/src/img/buttons/plus.svg); }
 			}
 
-			> .Jokers {
+			> .IconJoker {
 				position: absolute;
 				top: 50%;
 				right: -6px;
 				transform: translateY(-50%);
 
-				display: grid;
-				row-gap: 5px;
+				width: 18px;
+				height: 28px; 
+				border-radius: 3px;
 
-
-				> .IconJoker {
-					width: 18px;
-					height: 28px; 
-					border-radius: 3px;
-
-					background-color: red; // !Удалить после введения карт
-				}
+				background-color: red; // !Удалить после введения карт
 			}
-			
 		}
 
 		.CurrentInfo {
@@ -881,8 +864,11 @@
 		.Card {
 			width: 30px;
 			height: 46px;
+
 			border-radius: 5px;
 			box-sizing: border-box;
+			box-shadow: 0 1px 2px 0.5px rgba(0,0,0,0.15);
+
 			overflow: hidden;
 
 			&.Shirt {
@@ -892,6 +878,7 @@
 
 			&.IconPlace {
 				background-image: url(/src/img/icon/place-card.svg);
+				box-shadow: unset;
 				opacity: 0.5;
 			}
 		}
@@ -911,7 +898,9 @@
 			background-color: var(--company-color);
 			border: 6px solid #9C6027;
 			border-radius: 100px;
+
 			box-sizing: border-box;
+			box-shadow: 0 1px 2px 0.5px rgba(0,0,0,0.25);
 
 			.CardsContainer {
 				display: grid;
@@ -924,15 +913,25 @@
 			width: var(--width);
 
 			display: grid;
-			row-gap: 12px;
-		
+			grid-auto-flow: column;
+			grid-template-columns: 1fr max-content;
 
-			> .Row {
+			place-items: center;
+			column-gap: 10px;
+
+			> .RowsContainer {
+				width: 100%;
+
 				display: grid;
-				grid-auto-flow: column;
-				justify-content: space-between;
+				row-gap: 12px;
 
-				> .Card { background-color: red; } // !Удалить
+				> .Row {
+					display: grid;
+					grid-auto-flow: column;
+					column-gap: 10px;
+	
+					> .Card { background-color: red; } // !Удалить
+				}
 			}
 		}
 	}

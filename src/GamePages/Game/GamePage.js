@@ -47,7 +47,7 @@ export default class GamePage extends React.Component {
 
 		this.updateGameInfo = this.updateGameInfo.bind(this);
 		this.onLoadGameInfo = this.onLoadGameInfo.bind(this);
-        this.giveUpButtonOnClick = this.giveUpButtonOnClick.bind(this);
+		this.giveUpButtonOnClick = this.giveUpButtonOnClick.bind(this);
 
 	}
 
@@ -76,9 +76,9 @@ export default class GamePage extends React.Component {
 				var newGame = new OneModuloGame(gameInfo);
 				this.currentGame = newGame;
 
-                
-                let canUseJoker  = ((this.props.Device.myUser.Id === newGame.User1Id) && newGame.User1CanUseJoker) ||
-                                    ((this.props.Device.myUser.Id === newGame.User2Id) && newGame.User2CanUseJoker);
+
+				let canUseJoker = ((this.props.Device.myUser.Id === newGame.User1Id) && newGame.User1CanUseJoker) ||
+					((this.props.Device.myUser.Id === newGame.User2Id) && newGame.User2CanUseJoker);
 
 				this.setState({ game: newGame, canUseJoker: canUseJoker });
 			}
@@ -98,33 +98,33 @@ export default class GamePage extends React.Component {
 		this.props.NavigationButtonCallBack(DEVICE_STATUS.GAME_SHOW_LIST);
 	}
 
-    giveUpButtonOnClick(){
-        var postData = { Id: this.currentGame.Id, DeviceWorkToken: this.props.Device.DeviceWorkToken };
-        switch (this.currentGame.GameStatus) {
-            case GAME_STATUS.GAME_ROUND_1_NOUSER:
-            case GAME_STATUS.GAME_ROUND_1_USER2_DONE:
-                postData.RoundNumber = 1;
-                break;
-            case GAME_STATUS.GAME_ROUND_2_NOUSER:
-            case GAME_STATUS.GAME_ROUND_2_USER2_DONE:
-                postData.RoundNumber = 2;
-                break;
-            case GAME_STATUS.GAME_ROUND_3_NOUSER:
-            case GAME_STATUS.GAME_ROUND_3_USER2_DONE:
-                postData.RoundNumber = 3;
-                break;
-            case GAME_STATUS.GAME_ROUND_4_NOUSER:
-            case GAME_STATUS.GAME_ROUND_4_USER2_DONE:
-                postData.RoundNumber = 4;
-                break;
-            case GAME_STATUS.GAME_ROUND_5_NOUSER:
-            case GAME_STATUS.GAME_ROUND_5_USER2_DONE:
-                postData.RoundNumber = 5;
-                break;
-            default: break;
-        }
-        this.props.Device.GiveUpGame(this.onGameChangeCallBack, this, postData);
-    }
+	giveUpButtonOnClick() {
+		var postData = { Id: this.currentGame.Id, DeviceWorkToken: this.props.Device.DeviceWorkToken };
+		switch (this.currentGame.GameStatus) {
+			case GAME_STATUS.GAME_ROUND_1_NOUSER:
+			case GAME_STATUS.GAME_ROUND_1_USER2_DONE:
+				postData.RoundNumber = 1;
+				break;
+			case GAME_STATUS.GAME_ROUND_2_NOUSER:
+			case GAME_STATUS.GAME_ROUND_2_USER2_DONE:
+				postData.RoundNumber = 2;
+				break;
+			case GAME_STATUS.GAME_ROUND_3_NOUSER:
+			case GAME_STATUS.GAME_ROUND_3_USER2_DONE:
+				postData.RoundNumber = 3;
+				break;
+			case GAME_STATUS.GAME_ROUND_4_NOUSER:
+			case GAME_STATUS.GAME_ROUND_4_USER2_DONE:
+				postData.RoundNumber = 4;
+				break;
+			case GAME_STATUS.GAME_ROUND_5_NOUSER:
+			case GAME_STATUS.GAME_ROUND_5_USER2_DONE:
+				postData.RoundNumber = 5;
+				break;
+			default: break;
+		}
+		this.props.Device.GiveUpGame(this.onGameChangeCallBack, this, postData);
+	}
 
 	onGameChangeCallBack(r) {
 		console.log("onGameChangeCallBack");
@@ -380,10 +380,9 @@ export default class GamePage extends React.Component {
 			)
 		}
 
-        function GetDigitOrJoker(e)
-        {
-            return (e === 11) ? "J" : e;
-        }
+		function GetDigitOrJoker(e) {
+			return (e === 11) ? "J" : e;
+		}
 		if (this.state.game && this.state.game.Rounds) {
 
 			if (this.state.game.Rounds[this.state.game.User1Id + ":1"]) {
@@ -478,13 +477,13 @@ export default class GamePage extends React.Component {
 								}
 							</div>
 							<div className="Card Shirt">
-							{
-								this.state.competitorDigit3 ?
-									(
-										<div className="DigitIcon" data-digit={this.state.competitorDigit3} data-color="blue"></div>
-									) : null
-							}
-						</div>
+								{
+									this.state.competitorDigit3 ?
+										(
+											<div className="DigitIcon" data-digit={this.state.competitorDigit3} data-color="blue"></div>
+										) : null
+								}
+							</div>
 						</div>
 
 						<div className="CardsContainer">
@@ -505,36 +504,34 @@ export default class GamePage extends React.Component {
 								}
 							</div>
 							<div className="Card IconPlace">
-							{
-								this.state.myDigit3 ?
-									(
-										<div className="DigitIcon" data-digitnumber="3" data-digit={this.state.myDigit3} data-color="red" onClick={this.onDesktopDigitClick}></div>
-									) : null
-							}
-						</div>
+								{
+									this.state.myDigit3 ?
+										(
+											<div className="DigitIcon" data-digitnumber="3" data-digit={this.state.myDigit3} data-color="red" onClick={this.onDesktopDigitClick}></div>
+										) : null
+								}
+							</div>
 						</div>
 					</div>
-					
-					<div className="YourCardsContainer">
-						<div className="Row">
-							<p className="Card">
-								<div className="DigitIcon" data-digit="2" data-color="red" data-active={checkDigit(2) ? 1 : 0} onClick={checkDigit(2) ? this.onCardDigitClick : null}></div>
-							</p>
-							<p className="Card">
-								<div className="DigitIcon" data-digit="4" data-color="red" data-active={checkDigit(4) ? 1 : 0} onClick={checkDigit(4) ? this.onCardDigitClick : null}></div>
-							</p>
-							<p className="Card">
-								<div className="DigitIcon" data-digit="6" data-color="red" data-active={checkDigit(6) ? 1 : 0} onClick={checkDigit(6) ? this.onCardDigitClick : null}></div>
-							</p>
-							<p className="Card">
-								<div className="DigitIcon" data-digit="8" data-color="red" data-active={checkDigit(8) ? 1 : 0} onClick={checkDigit(8) ? this.onCardDigitClick : null}></div>
-							</p>
-							<p className="Card">
-							<div className="DigitIcon" data-digit="J" data-color="red" data-active={checkDigit('J') ? 1 : 0} onClick={checkDigit('J') ? this.onCardDigitClick : null}></div>
-						</p>
-						</div>
 
-						<div className="Row">
+					<div className="YourCardsContainer">
+						<div className="RowsContainer">
+							<div className="Row">
+								<p className="Card">
+									<div className="DigitIcon" data-digit="2" data-color="red" data-active={checkDigit(2) ? 1 : 0} onClick={checkDigit(2) ? this.onCardDigitClick : null}></div>
+								</p>
+								<p className="Card">
+									<div className="DigitIcon" data-digit="4" data-color="red" data-active={checkDigit(4) ? 1 : 0} onClick={checkDigit(4) ? this.onCardDigitClick : null}></div>
+								</p>
+								<p className="Card">
+									<div className="DigitIcon" data-digit="6" data-color="red" data-active={checkDigit(6) ? 1 : 0} onClick={checkDigit(6) ? this.onCardDigitClick : null}></div>
+								</p>
+								<p className="Card">
+									<div className="DigitIcon" data-digit="8" data-color="red" data-active={checkDigit(8) ? 1 : 0} onClick={checkDigit(8) ? this.onCardDigitClick : null}></div>
+								</p>
+							</div>
+
+							<div className="Row">
 							<p className="Card">
 								<div className="DigitIcon" data-digit="3" data-color="red" data-active={checkDigit(3) ? 1 : 0} onClick={checkDigit(3) ? this.onCardDigitClick : null}></div>
 							</p>
@@ -547,8 +544,12 @@ export default class GamePage extends React.Component {
 							<p className="Card">
 								<div className="DigitIcon" data-digit="9" data-color="red" data-active={checkDigit(9) ? 1 : 0} onClick={checkDigit(4) ? this.onCardDigitClick : null}></div>
 							</p>
-							<p className="Card"></p>
 						</div>
+						</div>
+
+						<p className="Card">
+							<div className="DigitIcon" data-digit="J" data-color="red" data-active={checkDigit('J') ? 1 : 0} onClick={checkDigit('J') ? this.onCardDigitClick : null}></div>
+						</p>
 					</div>
 				</div>
 			)
@@ -639,10 +640,10 @@ export default class GamePage extends React.Component {
 			)
 		}
 
-        let canGiveUp = this.currentGame.IsStart && !this.currentGame.IsGiveUp && !this.currentGame.IsFinish;
-        var giveUpButton = canGiveUp ?
-                             (<button onClick={this.giveUpButtonOnClick} className="ButtonGreen">{this.currentContext.GetText('game.page', 'GiveUp')}</button>)
-                             : null;
+		let canGiveUp = this.currentGame.IsStart && !this.currentGame.IsGiveUp && !this.currentGame.IsFinish;
+		var giveUpButton = canGiveUp ?
+			(<button onClick={this.giveUpButtonOnClick} className="ButtonGreen">{this.currentContext.GetText('game.page', 'GiveUp')}</button>)
+			: null;
 
 		return (
 			<LanguageContext.Consumer>
@@ -652,7 +653,7 @@ export default class GamePage extends React.Component {
 						<HeadNavigation>
 							<button className="ButtonBack" onClick={this.cancelButtonOnClick}></button>
 							<p className="Title">{context.GetText('game.page', 'GameHeader')}</p>
-                            {giveUpButton}
+							{giveUpButton}
 						</HeadNavigation>
 
 						<div className="Gameground">
@@ -669,21 +670,18 @@ export default class GamePage extends React.Component {
 
 									<div className="IconVip"></div>
 
-									<div className="Jokers">
-										<div className="IconJoker Red">
-                                          {this.currentGame.User1CanUseJoker ? (<div className="DigitIcon" data-digit="J" data-color="blue"></div>) : null}
-                                        </div>
-										{/*<!--<div className="IconJoker Blue"></div> вторых джокеров не будет  -->*/}
+									<div className="IconJoker Red">
+										{this.currentGame.User1CanUseJoker ? (<div className="DigitIcon" data-digit="J" data-color="blue"></div>) : null}
 									</div>
 								</div>
 
 								<div className="CurrentInfo">
 									<p className="Score">{
-                                    (((this.currentGame.User1Score || 0) > 9) ? this.currentGame.User1Score : ("0" + this.currentGame.User1Score || 0)) +
-                                    ":" +
-                                    (((this.currentGame.User2Score || 0) > 9) ? this.currentGame.User2Score : ("0" + this.currentGame.User2Score || 0))
-                                    }
-                                    </p>
+										(((this.currentGame.User1Score || 0) > 9) ? this.currentGame.User1Score : ("0" + this.currentGame.User1Score || 0)) +
+										":" +
+										(((this.currentGame.User2Score || 0) > 9) ? this.currentGame.User2Score : ("0" + this.currentGame.User2Score || 0))
+									}
+									</p>
 
 									<div className="Status">
 										<div className="IconStatus Waiting"></div>
@@ -703,10 +701,8 @@ export default class GamePage extends React.Component {
 
 									<div className="IconVip"></div>
 
-									<div className="Jokers">
-										<div className="IconJoker Red">
-                                            {this.currentGame.User2CanUseJoker ? (<div className="DigitIcon" data-digit="J" data-color="blue"></div>) : null}
-                                        </div>
+									<div className="IconJoker Red">
+										{this.currentGame.User2CanUseJoker ? (<div className="DigitIcon" data-digit="J" data-color="blue"></div>) : null}
 									</div>
 								</div>
 							</div>

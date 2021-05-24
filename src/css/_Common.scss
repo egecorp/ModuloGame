@@ -5,6 +5,8 @@
 	--font-color: #fff;
 	--link-color: #168643;
 
+	--font-size: 14px;
+
 	--modal-font-color: #000;
 
 	--button-green: var(--company-color);
@@ -234,7 +236,6 @@ html, body {
 
 	font-size: 15px;
 	font-weight: 500;
-	line-height: 20px;
 
 	span { text-decoration: underline; }
 }
@@ -246,7 +247,6 @@ html, body {
 	
 	font-weight: 300;
 	font-size: 13px;
-	line-height: 17px;
 	text-align: center;
 
 	> span { font-weight: 500; }
@@ -266,7 +266,6 @@ html, body {
 
 		font-weight: 500;
 		font-size: 13px;
-		line-height: 17px;
 	}
 }
 
@@ -319,7 +318,6 @@ input.InPopup	{
 
 	font-size: 13px;
 	font-weight: 300;
-	line-height: 17px;
 
 	@include placeholder { opacity: 0.6; }
 }
@@ -407,7 +405,6 @@ input.InPopup	{
 	color: var(--font-color);
 	font-size: 14px;
 	font-weight: 600;
-	line-height: 18px;
 	text-transform: uppercase;
 
 	&:active { background-color: rgba(0, 0, 0, 0.25);; }
