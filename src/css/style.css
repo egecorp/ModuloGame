@@ -493,6 +493,87 @@ input.InPopup::-webkit-input-placeholder {
 }
 
 /* End */
+/* Gamer */
+.Gamer {
+  --gamer-width: 90px;
+  position: relative;
+  padding: 2px 5px 7px 5px;
+  width: var(--gamer-width);
+  height: calc(var(--gamer-width) + 30px);
+  display: -ms-grid;
+  display: grid;
+  grid-auto-rows: -webkit-max-content 1fr;
+  grid-auto-rows: max-content 1fr;
+  row-gap: 4px;
+  justify-items: center;
+  border-radius: 5px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.Gamer[data-vip="1"] {
+  background-color: #ffd861;
+}
+
+.Gamer[data-vip="1"] > p {
+  color: #d95454;
+}
+
+.Gamer[data-vip="1"] > .IconVip {
+  position: absolute;
+  top: -5px;
+  right: -7px;
+  width: 20px;
+  height: 22px;
+  background-image: url(/src/img/icon/vip.svg);
+}
+
+.Gamer > p {
+  width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow-wrap: anywhere;
+  overflow: hidden;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  line-height: 1.5;
+}
+
+.Gamer > img {
+  width: 100%;
+  height: 100%;
+}
+
+.Gamer > .Buttons {
+  position: absolute;
+  left: 50%;
+  bottom: -8px;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  width: calc(var(--gamer-width) + 10px);
+  display: -ms-grid;
+  display: grid;
+  grid-auto-flow: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.Gamer > .IconJoker {
+  position: absolute;
+  top: 50%;
+  right: -6px;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  width: 18px;
+  height: 28px;
+  border-radius: 3px;
+  background-color: red;
+}
+
+/* End */
 /*** *** *** Buttons *** *** ***/
 .ButtonBack {
   width: 30px;
@@ -556,7 +637,6 @@ input.InPopup::-webkit-input-placeholder {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   color: var(--font-color);
-  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -566,22 +646,23 @@ input.InPopup::-webkit-input-placeholder {
 }
 
 .ButtonAroundGreen {
+  --button-size: 27px;
   position: relative;
-  width: 27px;
-  height: 27px;
-  background-size: 14px;
+  width: var(--button-size);
+  height: var(--button-size);
+  background-size: 50%;
   background-color: var(--button-green);
   -webkit-box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
           box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
   border-radius: 30px;
 }
 
-.ButtonAroundGreen.IconStats {
-  background-image: url(/src/img/buttons/stats.svg);
-}
-
 .ButtonAroundGreen.IconAdd {
   background-image: url(/src/img/buttons/plus.svg);
+}
+
+.ButtonAroundGreen.IconStats {
+  background-image: url(/src/img/buttons/stats.svg);
 }
 
 /*** *** *** END *** *** ***/
@@ -697,24 +778,29 @@ input.InPopup::-webkit-input-placeholder {
   font-weight: 300;
 }
 
-.Profile {
-  margin-bottom: 10px;
+.ProfileContainer {
+  padding: 20px 5px;
   display: -ms-grid;
   display: grid;
   grid-auto-flow: column;
-  -ms-grid-columns: max-content 1fr;
-      grid-template-columns: -webkit-max-content 1fr;
-      grid-template-columns: max-content 1fr;
+  -ms-grid-columns: 1fr max-content 1fr;
+      grid-template-columns: 1fr -webkit-max-content 1fr;
+      grid-template-columns: 1fr max-content 1fr;
   -webkit-column-gap: 7px;
           column-gap: 7px;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: end;
 }
 
-.Profile .Avatar {
-  width: 75px;
-  height: 75px;
+.ProfileContainer > .Gamer {
+  --gamer-width: 90px;
+  background-color: var(--bg-dark-ava);
+}
+
+.ProfileContainer > .ButtonAroundGreen.IconMenu {
+  --button-size: 48px;
+  background-image: url(/src/img/buttons/menu.svg);
 }
 
 .UserTip {
@@ -1280,84 +1366,6 @@ input.InPopup::-webkit-input-placeholder {
       grid-template-columns: max-content 1fr max-content;
   -webkit-column-gap: 5px;
           column-gap: 5px;
-}
-
-.Gameground .FaceToFace .Gamer {
-  position: relative;
-  padding: 2px 5px 7px 5px;
-  width: 90px;
-  height: 120px;
-  display: -ms-grid;
-  display: grid;
-  grid-auto-rows: -webkit-max-content 1fr;
-  grid-auto-rows: max-content 1fr;
-  row-gap: 4px;
-  justify-items: center;
-  border-radius: 5px;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-}
-
-.Gameground .FaceToFace .Gamer[data-vip="1"] {
-  background-color: #ffd861;
-}
-
-.Gameground .FaceToFace .Gamer[data-vip="1"] > p {
-  color: #d95454;
-}
-
-.Gameground .FaceToFace .Gamer[data-vip="1"] > .IconVip {
-  position: absolute;
-  top: -5px;
-  right: -7px;
-  width: 20px;
-  height: 22px;
-  background-image: url(/src/img/icon/vip.svg);
-}
-
-.Gameground .FaceToFace .Gamer > p {
-  width: 100%;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow-wrap: anywhere;
-  overflow: hidden;
-  font-size: 13px;
-  font-weight: 600;
-  text-align: center;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-  line-height: 1.5;
-}
-
-.Gameground .FaceToFace .Gamer > img {
-  width: 100%;
-  height: 100%;
-}
-
-.Gameground .FaceToFace .Gamer > .Buttons {
-  position: absolute;
-  left: 50%;
-  bottom: -8px;
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
-  width: 100px;
-  display: -ms-grid;
-  display: grid;
-  grid-auto-flow: column;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-}
-
-.Gameground .FaceToFace .Gamer > .IconJoker {
-  position: absolute;
-  top: 50%;
-  right: -6px;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
-  width: 18px;
-  height: 28px;
-  border-radius: 3px;
-  background-color: red;
 }
 
 .Gameground .FaceToFace .CurrentInfo {

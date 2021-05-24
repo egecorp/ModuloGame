@@ -342,6 +342,82 @@ input.InPopup	{
 }
 /* End */
 
+/* Gamer */
+.Gamer {
+	--gamer-width: 90px;
+
+	position: relative;
+
+	padding: 2px 5px 7px 5px;
+
+	width: var(--gamer-width);
+	height: calc(var(--gamer-width) + 30px);
+
+	display: grid;
+	grid-auto-rows: max-content 1fr;
+	row-gap: 4px;
+	justify-items: center;
+
+	border-radius: 5px;
+	box-sizing: border-box;
+
+
+	&[data-vip="1"] {	background-color: #ffd861; }
+	&[data-vip="1"] > p { color: #d95454; }
+
+	&[data-vip="1"] > .IconVip {
+		position: absolute;
+		top: -5px;
+		right: -7px;
+
+		width: 20px;
+		height: 22px;
+		background-image: url(/src/img/icon/vip.svg);
+	}
+
+	> p {		
+		@include textWrapDots;
+
+		font-size: 13px;
+		font-weight: 600;
+		text-align: center;
+		text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+		line-height: 1.5;
+	}
+
+	> img {
+		width: 100%;
+		height: 100%;
+	}
+
+	> .Buttons {
+		position: absolute;
+		left: 50%;
+		bottom: -8px;
+		transform: translateX(-50%);
+
+		width: calc(var(--gamer-width) + 10px);
+
+		display: grid;
+		grid-auto-flow: column;
+		justify-content: space-between;
+	}
+
+	> .IconJoker {
+		position: absolute;
+		top: 50%;
+		right: -6px;
+		transform: translateY(-50%);
+
+		width: 18px;
+		height: 28px; 
+		border-radius: 3px;
+
+		background-color: red; // !Удалить после введения карт
+	}
+}
+/* End */
+
 
 
 
@@ -405,7 +481,6 @@ input.InPopup	{
 	box-sizing: border-box;
 
 	color: var(--font-color);
-	font-size: 14px;
 	font-weight: 600;
 	text-transform: uppercase;
 
@@ -413,17 +488,19 @@ input.InPopup	{
 }
 
 .ButtonAroundGreen {
+	--button-size: 27px;
+
 	position: relative;
 
-	width: 27px;
-	height: 27px;
+	width: var(--button-size);
+	height: var(--button-size);
 
-	background-size: 14px;
+	background-size: 50%;
 	background-color: var(--button-green);
 	box-shadow: 0 0 0 3px rgba(0,0,0,0.1);
 	border-radius: 30px;
 
-	&.IconStats { background-image: url(/src/img/buttons/stats.svg); }
 	&.IconAdd 	{ background-image: url(/src/img/buttons/plus.svg); }
+	&.IconStats { background-image: url(/src/img/buttons/stats.svg); }
 }
 /*** *** *** END *** *** ***/
