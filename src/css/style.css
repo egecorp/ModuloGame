@@ -134,10 +134,6 @@ button {
   background-color: unset;
 }
 
-p, span, h1, h2, h3, h4, h5, h6, label {
-  color: var(--font-color);
-}
-
 input, select {
   position: relative;
   -webkit-appearance: none;
@@ -703,6 +699,7 @@ input.InPopup::-webkit-input-placeholder {
 
 /*** *** *** END *** *** ***/
 .Main {
+  position: relative;
   margin-top: 20px;
   /* Статус бар */
   padding: 0 10px;
@@ -820,26 +817,116 @@ input.InPopup::-webkit-input-placeholder {
 }
 
 .ProfileContainer {
-  margin: 10px 0;
-  padding: 5px;
+  position: absolute;
+  right: 10px;
+  bottom: 7px;
+  width: calc(100% - 10px);
   display: -ms-grid;
   display: grid;
   grid-auto-flow: column;
-  -ms-grid-columns: 1fr max-content 1fr;
-      grid-template-columns: 1fr -webkit-max-content 1fr;
-      grid-template-columns: 1fr max-content 1fr;
+  -ms-grid-columns: max-content 1fr;
+      grid-template-columns: -webkit-max-content 1fr;
+      grid-template-columns: max-content 1fr;
   -webkit-column-gap: 7px;
           column-gap: 7px;
   -webkit-box-align: end;
       -ms-flex-align: end;
           align-items: end;
-  background-color: rgba(0, 0, 0, 0.2);
-  border-radius: 5px;
 }
 
-.ProfileContainer > .Gamer {
-  --gamer-width: 90px;
-  background-color: var(--bg-dark-ava);
+.ProfileContainer > .Character {
+  max-width: 80px;
+}
+
+.ProfileContainer > .Character > img {
+  width: 100%;
+  height: 100%;
+}
+
+.ProfileContainer .Userbar {
+  --userbar-padding-top: 5px;
+  --userbar-padding-left: 7px;
+  --userbar-br: 5px;
+  position: relative;
+  padding: var(--userbar-padding-top) var(--userbar-padding-left);
+  width: 100%;
+  height: 34px;
+  display: -ms-grid;
+  display: grid;
+  grid-auto-flow: column;
+  -ms-grid-columns: 1fr max-content;
+      grid-template-columns: 1fr -webkit-max-content;
+      grid-template-columns: 1fr max-content;
+  place-items: center;
+  background-color: #C92A20;
+  border-radius: var(--userbar-br);
+}
+
+.ProfileContainer .Userbar > li {
+  position: relative;
+  padding: 0 10px;
+}
+
+.ProfileContainer .Userbar > li::after {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  content: '';
+  width: 1px;
+  height: 70%;
+  background-color: #000;
+  opacity: 0.25;
+}
+
+.ProfileContainer .Userbar > li:last-child::after {
+  opacity: 0;
+}
+
+.ProfileContainer .Userbar > .ChangeSmile {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.ProfileContainer .Userbar > .ChangeSmile > .IconSmile {
+  position: absolute;
+  top: calc(var(--userbar-padding-top) * -1);
+  left: calc(var(--userbar-padding-left) * -1);
+  width: calc(100% + var(--userbar-padding-left));
+  height: calc(100% + var(--userbar-padding-top) * 2);
+  background-image: url(/src/img/icon/smile.svg);
+  background-size: 24px;
+  border-radius: var(--userbar-br) 0 0 var(--userbar-br);
+}
+
+.ProfileContainer .Userbar > .ChangeSmile > .IconSmile:active {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.ProfileContainer .Userbar > .Nickname > p {
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.ProfileContainer .Userbar > .Stats {
+  display: -ms-grid;
+  display: grid;
+  grid-auto-flow: column;
+  -webkit-column-gap: 5px;
+          column-gap: 5px;
+  place-items: center;
+}
+
+.ProfileContainer .Userbar > .Stats > .IconStar {
+  width: 12px;
+  height: 12px;
+  background-image: url(/src/img/icon/star.svg);
+}
+
+.ProfileContainer .Userbar > .Stats > p {
+  font-weight: 300;
 }
 
 .UserTip {

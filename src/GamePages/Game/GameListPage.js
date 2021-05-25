@@ -64,20 +64,26 @@ export default class GameListPage extends React.Component {
 								</ul>
 							</div>
 						</div>
-
+					
 						<div className="ProfileContainer">
-							<div className="Gamer">
-								<p>{this.props.Device.myUser.NicName}</p>
-								<img src="/img/avatar/1/boy.1.png" alt="No Avatar"></img>
-
-								<div className="Buttons">
-									<button className="ButtonAroundGreen IconStats"></button>
-								</div>
+							<div className="Character">
+								<img src="/img/avatar/1/boy.1.png" alt="No Avatar" />
 							</div>
 
-							<button className="ButtonAroundGreen IconMenu"></button>
+							<ul className="Userbar">
+								<li className="ChangeSmile">
+									<button className="IconSmile"></button>
+								</li>
 
-							<div className="Logo"></div>
+								<li className="Nickname">
+									<p>Clown02</p>
+								</li>
+
+								<li className="Stats">
+									<div className="IconStar"></div>
+									<p>1252</p>
+								</li>
+							</ul>
 						</div>
 					</>
 				)}
