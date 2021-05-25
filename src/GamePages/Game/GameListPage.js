@@ -42,7 +42,7 @@ export default class GameListPage extends React.Component {
 						<HeadNavigation column="2">
 							<p className="Title">{context.GetText('gamelist', 'labelWindow')}</p>
 
-							<button className="ButtonGreen"></button>
+							<button className="ButtonGreen IconMenu"></button>
 						</HeadNavigation>
 
 						<div className="GameList">
