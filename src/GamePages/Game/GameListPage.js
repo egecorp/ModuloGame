@@ -46,6 +46,8 @@ export default class GameListPage extends React.Component {
 						</HeadNavigation>
 
 						<div className="GameList">
+							<button className="ButtonBig">Новая игра</button>
+
 							<div className="Games NowPlaying">
 								<p className="GeneralSubtitle">{context.GetText('gamelist', 'sublabelNowPlaying')}</p>
 

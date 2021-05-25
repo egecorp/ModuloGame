@@ -220,6 +220,8 @@
 }
 
 .GameList {
+	margin-top: 12px;
+
 	height: 100%;
 	overflow: auto;
 
@@ -893,35 +895,12 @@
 
 
 
-.Avatar img,
-.HeadAvatar img {
-	width: 100%;
-	height: 100%;
-}
 
-.HeadAvatar {
-	position: absolute;
-	width: 40px;
-	height: 40px;
-}
 
-.GameListHeader2 {
-	height: 25px;
-}
 
-.GamePage {
-	border: 1px solid black;
-	width: 100%;
-	overflow: hidden;
-}
 
-.DigitCardContainer .Competitor {
-	background-color: black !important;
-}
 
-.DigitCardContainer .MyRound {
-	background-color: yellow !important;
-}
+
 
 .DigitIcon {
 	margin: 0;
