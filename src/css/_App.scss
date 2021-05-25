@@ -116,6 +116,8 @@
 	column-gap: 7px;
 	align-items: end;
 
+	pointer-events: none;
+
 	> .Character {
 		max-width: 80px;
 
@@ -144,6 +146,8 @@
 
 		background-color: #C92A20;
 		border-radius: var(--userbar-br);
+
+		pointer-events: all;
 
 		> li {
 			position: relative;
@@ -314,10 +318,17 @@
 }
 
 .GameList {
-	margin-top: 12px;
+	--gamelist-margin-top: 12px;
 
-	height: 100%;
-	overflow: auto;
+	margin-top: var(--gamelist-margin-top);
+
+	height: max-content;
+
+	display: grid;
+	grid-template-rows: max-content max-content 1fr;
+	align-content: start;
+
+	overflow: hidden;
 
 	.SubMenu {
 		display: grid;
@@ -329,14 +340,26 @@
 
 	.Games {
 		&.NowPlaying {
-			.Status {
-				font-size: 13px;
+			> ul {
+				max-height: 170px;
+				overflow-y: auto;
 			}
 		}
 
 		&.Finished {
+			--finished-margin-top: 12px;
+			
 			position: relative;
+			
+			margin-top: var(--finished-margin-top);
+			margin-bottom: calc(34px + 7px * 2);
 			padding-left: 17px;
+
+			height: max-content;
+
+			display: grid;
+			row-gap: 12px;
+			align-content: start;
 
 			&::after {
 				position: absolute;
@@ -351,12 +374,13 @@
 				background-color: var(--brand-color);
 			}
 
-			.GeneralSubtitle {
-				font-size: 13px;
+			> ul {
+				max-height: 170px;
+				overflow-y: auto;
 			}
 
-			.Status {
-				font-size: 18px;
+			.Title {
+				font-size: 13px;
 			}
 		}
 
@@ -437,6 +461,7 @@
 					justify-items: center;
 
 					> p.Status {
+						font-size: 13px;
 						font-weight: 500;
 						text-transform: uppercase;
 					}

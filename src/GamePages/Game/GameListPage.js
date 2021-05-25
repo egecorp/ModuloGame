@@ -57,7 +57,7 @@ export default class GameListPage extends React.Component {
 							</div>
 
 							<div className="Games Finished">
-								<p className="GeneralSubtitle">{context.GetText('gamelist', 'sublabelFinished')}</p>
+								<p className="Title">{context.GetText('gamelist', 'sublabelFinished')}</p>
 
 								<ul>
 									{recentGames}

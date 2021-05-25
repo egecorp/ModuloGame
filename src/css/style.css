@@ -837,6 +837,7 @@ input.InPopup::-webkit-input-placeholder {
   -webkit-box-align: end;
       -ms-flex-align: end;
           align-items: end;
+  pointer-events: none;
 }
 
 .ProfileContainer > .Character {
@@ -865,6 +866,7 @@ input.InPopup::-webkit-input-placeholder {
   place-items: center;
   background-color: #C92A20;
   border-radius: var(--userbar-br);
+  pointer-events: all;
 }
 
 .ProfileContainer .Userbar > li {
@@ -1028,9 +1030,19 @@ input.InPopup::-webkit-input-placeholder {
 }
 
 .GameList {
-  margin-top: 12px;
-  height: 100%;
-  overflow: auto;
+  --gamelist-margin-top: 12px;
+  margin-top: var(--gamelist-margin-top);
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: max-content max-content 1fr;
+      grid-template-rows: -webkit-max-content -webkit-max-content 1fr;
+      grid-template-rows: max-content max-content 1fr;
+  -ms-flex-line-pack: start;
+      align-content: start;
+  overflow: hidden;
 }
 
 .GameList .SubMenu {
@@ -1047,13 +1059,25 @@ input.InPopup::-webkit-input-placeholder {
           align-items: center;
 }
 
-.GameList .Games.NowPlaying .Status {
-  font-size: 13px;
+.GameList .Games.NowPlaying > ul {
+  max-height: 170px;
+  overflow-y: auto;
 }
 
 .GameList .Games.Finished {
+  --finished-margin-top: 12px;
   position: relative;
+  margin-top: var(--finished-margin-top);
+  margin-bottom: calc(34px + 7px * 2);
   padding-left: 17px;
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
+  display: -ms-grid;
+  display: grid;
+  row-gap: 12px;
+  -ms-flex-line-pack: start;
+      align-content: start;
 }
 
 .GameList .Games.Finished::after {
@@ -1066,12 +1090,13 @@ input.InPopup::-webkit-input-placeholder {
   background-color: var(--brand-color);
 }
 
-.GameList .Games.Finished .GeneralSubtitle {
-  font-size: 13px;
+.GameList .Games.Finished > ul {
+  max-height: 170px;
+  overflow-y: auto;
 }
 
-.GameList .Games.Finished .Status {
-  font-size: 18px;
+.GameList .Games.Finished .Title {
+  font-size: 13px;
 }
 
 .GameList .Games .IconCup {
@@ -1151,6 +1176,7 @@ input.InPopup::-webkit-input-placeholder {
 }
 
 .GameList .Games ul li .Score > p.Status {
+  font-size: 13px;
   font-weight: 500;
   text-transform: uppercase;
 }
