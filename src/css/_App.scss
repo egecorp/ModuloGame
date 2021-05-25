@@ -89,6 +89,11 @@
 		font-size: 18px;
 		font-weight: 300;
 	}
+
+	.ButtonGreen.IconMenu {
+		width: 30px;
+		height: 30px;
+	}
 }
 
 .ProfileContainer {
@@ -109,12 +114,6 @@
 		--gamer-width: 90px;
 
 		background-color: var(--bg-dark-ava);
-	}
-
-	> .ButtonAroundGreen.IconMenu {
-		--button-size: 48px;
-
-		background-image: url(/src/img/buttons/menu.svg);
 	}
 
 	> .Logo {}
