@@ -9,18 +9,21 @@ import GAME_STATUS from '../Lib/GameStatus'
 
 export default class Game extends React.Component {
     constructor(props) {
-      super(props);
-      this.state = {
-          currentPage: 'Hello',
-          currentDeviceStatus: DEVICE_STATUS.AUTH_CONNTECTING,
-          currentGame: null
-      };
-      this.handleChangePage = this.handleChangePage.bind(this);
+        super(props);
+        this.state = {
+            currentPage: 'Hello',
+            currentDeviceStatus: DEVICE_STATUS.AUTH_CONNTECTING,
+            currentGame: null
+        };
+        this.handleChangePage = this.handleChangePage.bind(this);
 
-      this.myDevice = props.Device;
+        this.myDevice = props.Device;
 
-      this.nextButtonCallBack = this.nextButtonCallBack.bind(this);
-      this.navigationButtonCallBack = this.navigationButtonCallBack.bind(this);
+        this.nextButtonCallBack = this.nextButtonCallBack.bind(this);
+        this.navigationButtonCallBack = this.navigationButtonCallBack.bind(this);
+
+        this.CheckGameList = this.CheckGameList.bind(this);
+        this.DEVICE_STATUS = DEVICE_STATUS; // CRITICAL SECTION Why I need to do it?
     }
   
     Pages = [   'Hello', 
@@ -130,7 +133,7 @@ export default class Game extends React.Component {
         {
             let thisObject = this;
             this.setState(state => ({ currentDeviceStatus: DEVICE_STATUS.AUTH_GOOD }));
-            setTimeout( () => thisObject.myDevice.GetUserInfo(thisObject.checkUserInfo, thisObject), 1000);
+            setTimeout( () => thisObject.myDevice.GetUserInfo(thisObject.checkUserInfo, thisObject), 2000);
         }
     }
 
@@ -158,14 +161,21 @@ export default class Game extends React.Component {
                 currentDeviceStatus: DEVICE_STATUS.USERINFO_GOOD ,
                 currentPage: 'Game:GameList'            
             }));
-            setInterval( () => thisObject.myDevice.GetGameList.call(thisObject.myDevice, thisObject.CheckGameList, thisObject), 10000);
+            setInterval( () => thisObject.myDevice.GetGameList.call(thisObject.myDevice, thisObject.CheckGameList, thisObject), 3000);
 
         }
     }
 
     CheckGameList(result)
     {
-
+        console.log(result);
+        if (
+            (this.state.currentDeviceStatus === this.DEVICE_STATUS.USERINFO_GOOD) &&
+            (this.state.currentPage === 'Game:GameList')
+            )
+        {
+            this.setState({currentUser : this.myDevice.myUser});            
+        }
     }
 
     checkCreateUser(result)
@@ -333,7 +343,8 @@ export default class Game extends React.Component {
                 this.setState(state => (
                     { 
                         currentDeviceStatus: DEVICE_STATUS.GAME_SHOW_LIST, 
-                        currentPage: 'Game:GameList'
+                        currentPage: 'Game:GameList',
+                        currentUser : this.myDevice.myUser
                     }));
                 break;
         }
