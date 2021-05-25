@@ -42,11 +42,11 @@ export default class GameListPage extends React.Component {
 						<HeadNavigation column="2">
 							<p className="Title">{context.GetText('gamelist', 'labelWindow')}</p>
 
-							<button onClick={this.createGame} className="ButtonGreen"></button>
+							<button className="ButtonGreen"></button>
 						</HeadNavigation>
 
 						<div className="GameList">
-							<button className="ButtonBig">{context.GetText('gamelist', 'buttonHeaderLabel')}</button>
+							<button className="ButtonBig" onClick={this.createGame}>{context.GetText('gamelist', 'buttonHeaderLabel')}</button>
 
 							<div className="Games NowPlaying">
 								<p className="GeneralSubtitle">{context.GetText('gamelist', 'sublabelNowPlaying')}</p>
