@@ -137,8 +137,8 @@ export function AddPackets(addPackFunction)
 
 	pack.AddDictionary('gamelist', 
 	{
-		'labelWindow' : 'Список игр',
-		'sublabelNowPlaying' : 'Активные игры:',
+		'labelWindow' : 'Modulo',
+		'sublabelWindow' : 'Список игр:',
 		'sublabelFinished' : 'Завершённые игры:',
 		'buttonHeaderLabel' : 'Новая игра',
 		'labelCup' : 'Турнир'
