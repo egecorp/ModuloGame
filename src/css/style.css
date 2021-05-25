@@ -1205,7 +1205,7 @@ input.InPopup::-webkit-input-placeholder {
   height: 100%;
   display: -ms-grid;
   display: grid;
-  row-gap: 3px;
+  row-gap: 5px;
   justify-items: center;
   overflow: hidden;
 }
@@ -1224,6 +1224,7 @@ input.InPopup::-webkit-input-placeholder {
   font-weight: 300;
   text-align: center;
   text-transform: uppercase;
+  line-height: 1;
   width: 100%;
   text-overflow: ellipsis;
   white-space: nowrap;
