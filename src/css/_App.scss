@@ -330,6 +330,26 @@
 		}
 
 		&.Finished {
+			position: relative;
+			padding-left: 17px;
+
+			&::after {
+				position: absolute;
+				top: 0;
+				left: 5px;
+
+				content: "";
+
+				width: 2px;
+				height: 100%;
+
+				background-color: var(--brand-color);
+			}
+
+			.GeneralSubtitle {
+				font-size: 13px;
+			}
+
 			.Status {
 				font-size: 18px;
 			}
