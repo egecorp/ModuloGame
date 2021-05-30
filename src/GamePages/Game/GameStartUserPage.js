@@ -3,6 +3,7 @@ import {LanguageContext} from '../../Language/LangPack';
 import HeadNavigation from '../../Components/HeadNavigation';
 import OneUser from '../../Components/OneUser';
 import DEVICE_STATUS from '../../Lib/DeviceStatus';
+import OneModuloGame from '../../Model/Game';
 
 const MIN_LENGTH_TO_SEARCH = 2;
 
@@ -15,7 +16,7 @@ export default class GameStartUserPage extends React.Component {
       };
       this.searchOnInput = this.searchOnInput.bind(this);
       this.onUserClick = this.onUserClick.bind(this);
-
+      this.onCreateGame = this.onCreateGame.bind(this);
       this.cancelButtonOnClick = this.cancelButtonOnClick.bind(this);
     }
     
@@ -36,8 +37,15 @@ export default class GameStartUserPage extends React.Component {
         }
     }
 
+    componentDidMount() 
+    {
+        this.props.Device.GetUserList('', this.onUserListUpdate, this);
+    }
+
     onUserListUpdate(data)
     {
+        var searchList = [];
+        var recentList = [];
         if(data.UserList && Array.isArray(data.UserList))
         {
             let userList = [];
@@ -45,12 +53,22 @@ export default class GameStartUserPage extends React.Component {
             {
                 if (data.UserList[i].NicName && data.UserList[i].Id) userList.push({Id:data.UserList[i].Id, Name : data.UserList[i].NicName});
             }
-            this.setState({searchList:userList});
+            searchList = userList;
         }
-        else
+        if(data.RecentUserList && Array.isArray(data.RecentUserList))
         {
-            this.setState({searchList:[]});
+            let userList = [];
+            for(var i in data.RecentUserList)
+            {
+                if (data.RecentUserList[i].NicName && data.RecentUserList[i].Id) userList.push({Id:data.RecentUserList[i].Id, Name : data.RecentUserList[i].NicName});
+            }
+            recentList = userList;
         }
+
+
+        this.setState({searchList:searchList, recentList: recentList });
+
+        
         
     }
     
@@ -65,9 +83,16 @@ export default class GameStartUserPage extends React.Component {
 
     onCreateGame(newStatus, result)
     {
-        console.log("onCreateGame");
-        console.log(newStatus);
-        console.log(result);
+        if  (result && result.Id)
+        {
+            var game = new OneModuloGame(result);
+            this.props.NavigationButtonCallBack(DEVICE_STATUS.GAME_SHOW_GAME, game);
+        }
+        else
+        {
+            console.log("onCreateGame error");
+            console.log(result);    
+        }
     }
 
     render() {

@@ -1,5 +1,5 @@
-const SERVER_URL = 'https://api.modulogame.org/API/';
- //const SERVER_URL = 'https://localhost:44335/API/';
+//const SERVER_URL = 'https://api.modulogame.org/API/';
+ const SERVER_URL = 'https://localhost:44335/API/';
 
 
 const URL_RegisterDevice = 'RegisterDevice';
@@ -17,7 +17,8 @@ const URL_SetUserInfo = 'SetUserInfo';
 
 const URL_GetGameList = "GetGameList";
 const URL_GetGameInfo = "GetGameInfo";
-const URL_FindUsersByNick = "FindUsersByNick";
+const URL_FindUsersByNic = "FindUsersByNic";
+const URL_FindBotsByNic = "FindBotsByNic";
 const URL_CreateGame = "CreateGame";
 const URL_AcceptGame = "AcceptGame";
 const URL_DeclineGame = "DeclineGame";
@@ -115,10 +116,15 @@ export default class Server {
     {
         return await this.postData( SERVER_URL +  URL_GetGameInfo, data);
     }
-    async FindUsersByNick(data)
+    async FindUsersByNic(data)
     {
-        return await this.postData( SERVER_URL +  URL_FindUsersByNick, data);
+        return await this.postData( SERVER_URL +  URL_FindUsersByNic, data);
     }
+    async FindBotsByNic(data)
+    {
+        return await this.postData( SERVER_URL +  URL_FindBotsByNic, data);
+    }
+
     async CreateGame(data)
     {
         return await this.postData( SERVER_URL +  URL_CreateGame, data);

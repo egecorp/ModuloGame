@@ -330,6 +330,48 @@ export default class Game extends React.Component {
                     }));
                 break;
 
+
+            case DEVICE_STATUS.GAME_CREATING_FINDBOT:
+                this.setState(state => (
+                    { 
+                        currentDeviceStatus: DEVICE_STATUS.GAME_CREATING_RANDOM_FAIL, 
+                        currentPage: 'Game:FindBot'
+                    }));                
+                    break;
+
+            case DEVICE_STATUS.GAME_CREATING_FINDBOT_RESULT:
+                this.setState(state => (
+                    { 
+                        currentDeviceStatus: DEVICE_STATUS.GAME_CREATING_FINDBOT_RESULT, 
+                        currentPage: 'Game:FindBot'
+                    }));                
+                    break;
+
+            case DEVICE_STATUS.GAME_CREATING_FINDBOT_NORESULT:
+                this.setState(state => (
+                    { 
+                        currentDeviceStatus: DEVICE_STATUS.GAME_CREATING_FINDBOT_NORESULT, 
+                        currentPage: 'GameGame:FindBot'
+                    }));               
+                    break;
+            case DEVICE_STATUS.GAME_CREATING_FINDBOT_DONE:
+                this.setState(state => (
+                    { 
+                        currentDeviceStatus: DEVICE_STATUS.GAME_CREATING_FINDBOT_DONE, 
+                        currentPage: 'Game:FindBot'
+                    }));
+                break;
+
+            case DEVICE_STATUS.GAME_CREATING_FINDBOT_FAIL:
+                this.setState(state => (
+                    { 
+                        currentDeviceStatus: DEVICE_STATUS.GAME_CREATING_FINDBOT_FAIL, 
+                        currentPage: 'Game:FindBot'
+                    }));
+                break;
+
+
+
             case DEVICE_STATUS.GAME_SHOW_GAME:
                 this.setState(state => (
                     { 

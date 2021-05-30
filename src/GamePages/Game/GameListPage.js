@@ -76,12 +76,12 @@ export default class GameListPage extends React.Component {
 								</li>
 
 								<li className="Nickname">
-									<p>Clown02</p>
+									<p>{this.props.Device.myUser.NicName}</p>
 								</li>
 
 								<li className="Stats">
 									<div className="IconStar"></div>
-									<p>1252</p>
+									<p>{this.props.Device.myUser.CommonRating}</p>
 								</li>
 							</ul>
 						</div>

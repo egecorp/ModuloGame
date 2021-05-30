@@ -39,6 +39,8 @@ export default class User
     // Динамическая информация о текущем пользователе
     DynamicUserInfo = null;
 
+    // Общий рейтинг пользователя
+    CommonRating = 0;
 
     // Рабочий токен для отправки запросов на сервер
     DeviceWorkToken = undefined;
@@ -80,6 +82,7 @@ export default class User
             if (serverJsonData.DynamicUserInfo)
             {
                 this.DynamicUserInfo = serverJsonData.DynamicUserInfo;
+                this.CommonRating = serverJsonData.DynamicUserInfo.CommonRating;
                 this.ActiveGames = [];
                 if (Array.isArray(serverJsonData.DynamicUserInfo.ActiveGameList))
                 {

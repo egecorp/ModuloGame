@@ -345,9 +345,31 @@ export default class Device
         var postObject = this.GetPostObject();
         postObject.NicName = searchString;
     
-        Server.Get().FindUsersByNick(postObject).then(GoodResult, ErrorResult);
+        Server.Get().FindUsersByNic(postObject).then(GoodResult, ErrorResult);
     }
 
+
+    GetBotList(searchString, callBack, context)
+    {
+        if (!this.UserId) return;
+        
+        function GoodResult(response)
+        {
+            callBack.call(context, response);
+        }
+        
+        function ErrorResult(e)
+        {
+            console.log('GetBotList Error');
+            console.error(e);
+            callBack.call(context, "FAIL");
+        }
+
+        var postObject = this.GetPostObject();
+        postObject.NicName = searchString;
+    
+        Server.Get().FindBotsByNic(postObject).then(GoodResult, ErrorResult);
+    }
 
     GetGameInfo(gameId, callBack, context)
     {
