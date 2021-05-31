@@ -705,11 +705,12 @@ input.InPopup::-webkit-input-placeholder {
 }
 
 .Main {
+  --main-margin-top: 0px;
   position: relative;
-  margin-top: 20px;
+  margin-top: var(--main-margin-top);
   /* Статус бар */
   padding: 0 10px;
-  height: calc(100% - 20px - 50px);
+  height: calc(100% - var(--main-margin-top) - 50px);
   /* Статус бар */
   display: -ms-grid;
   display: grid;

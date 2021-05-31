@@ -1,10 +1,13 @@
 .Main {
+	// --main-margin-top: 20px;
+	--main-margin-top: 0px;
+
 	position: relative;
 
-	margin-top: 20px; /* Статус бар */
+	margin-top: var(--main-margin-top); /* Статус бар */
 	padding: 0 10px;
 
-	height: calc(100% - 20px - 50px); /* Статус бар */
+	height: calc(100% - var(--main-margin-top) - 50px); /* Статус бар */
 
 	display: grid;
 	grid-template-rows: max-content 1fr max-content;
