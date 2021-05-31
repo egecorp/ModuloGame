@@ -113,6 +113,7 @@ table {
   --button-footer-bg-hover: #D4D4D4;
   --bg-dark: rgba(6, 55, 30, 0.25);
   --bg-dark-ava: rgba(0, 0, 0, 0.2);
+  --bg-dark-list: #05672C;
 }
 
 *,
@@ -1117,12 +1118,6 @@ input.InPopup::-webkit-input-placeholder {
   font-size: 13px;
 }
 
-.GameList .List .IconCup {
-  width: 10px;
-  height: 10px;
-  background-image: url(../img/icon/cup.svg);
-}
-
 .GameList .List ul {
   display: -ms-grid;
   display: grid;
@@ -1130,7 +1125,15 @@ input.InPopup::-webkit-input-placeholder {
 }
 
 .GameList .List ul li {
-  position: relative;
+  display: -ms-grid;
+  display: grid;
+  background-color: var(--bg-dark-list);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.GameList .List ul li > .ListInfo {
   padding: 5px;
   display: -ms-grid;
   display: grid;
@@ -1139,87 +1142,10 @@ input.InPopup::-webkit-input-placeholder {
       grid-template-columns: -webkit-max-content 1fr -webkit-max-content;
       grid-template-columns: max-content 1fr max-content;
   place-items: center;
-  background-color: var(--bg-dark);
-  border-radius: 5px;
 }
 
-.GameList .List ul li[data-cup="1"][data-win]::after {
-  display: none;
-}
-
-.GameList .List ul li[data-cup="1"][data-win] .Player .Logo::after {
-  position: absolute;
-  right: -5px;
-  bottom: -5px;
-  content: "";
-  display: block;
-  width: 14px;
-  height: 14px;
-  background-image: url(../img/icon/medal.svg);
-}
-
-.GameList .List ul li[data-cup="1"][data-win="right"] .Player:first-child .Logo::after {
-  display: none;
-}
-
-.GameList .List ul li[data-cup="1"][data-win="left"] .Player:last-child .Logo::after {
-  display: none;
-}
-
-.GameList .List ul li[data-win]::after {
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
-  content: "";
-  display: block;
-  width: 20px;
-  height: 20px;
-  background-image: url(../img/icon/medal.svg);
-}
-
-.GameList .List ul li[data-win="left"]::after {
-  left: 25%;
-}
-
-.GameList .List ul li[data-win="right"]::after {
-  right: 25%;
-}
-
-.GameList .List ul li .Score {
-  display: -ms-grid;
-  display: grid;
-  row-gap: 3px;
-  justify-items: center;
-}
-
-.GameList .List ul li .Score > p.Status {
-  font-size: 13px;
-  font-weight: 500;
-  text-transform: uppercase;
-}
-
-.GameList .List ul li .Score .Info {
-  display: -ms-grid;
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: -webkit-max-content;
-  grid-auto-columns: max-content;
-  -webkit-column-gap: 5px;
-          column-gap: 5px;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.GameList .List ul li .Score .Info p {
-  font-size: 10px;
-  font-weight: 300;
-  text-transform: uppercase;
-}
-
-.GameList .List ul li .Player {
-  width: 55px;
+.GameList .List ul li > .ListInfo > .PlayerContainer {
+  width: 90px;
   height: 100%;
   display: -ms-grid;
   display: grid;
@@ -1228,16 +1154,12 @@ input.InPopup::-webkit-input-placeholder {
   overflow: hidden;
 }
 
-.GameList .List ul li .Player.Computer > p {
-  font-weight: 500;
+.GameList .List ul li > .ListInfo > .PlayerContainer img {
+  width: 28px;
+  height: 28px;
 }
 
-.GameList .List ul li .Player.Computer .Avatar {
-  background-size: 14px auto;
-  background-image: url(../img/icon/computer.svg);
-}
-
-.GameList .List ul li .Player p {
+.GameList .List ul li > .ListInfo > .PlayerContainer p {
   font-size: 10px;
   font-weight: 300;
   text-align: center;
@@ -1250,38 +1172,92 @@ input.InPopup::-webkit-input-placeholder {
   overflow: hidden;
 }
 
-.GameList .List ul li .Cup {
-  width: 100%;
+.GameList .List ul li > .ListInfo > .PlayerContainer.Computer > p {
+  font-weight: 500;
+}
+
+.GameList .List ul li > .ListInfo > .PlayerContainer.Computer .Avatar {
+  background-size: 14px auto;
+  background-image: url(../img/icon/computer.svg);
+}
+
+.GameList .List ul li > .ListInfo > .RoundNameContainer {
+  padding-top: 3px;
+  /* Небольшой отступ, чтобы визуально выглядело по середине */
+  display: -ms-grid;
+  display: grid;
+  row-gap: 7px;
+  justify-items: center;
+}
+
+.GameList .List ul li > .ListInfo > .RoundNameContainer p {
+  text-align: center;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.GameList .List ul li > .ListInfo > .RoundNameContainer > p.Title {
+  font-size: 16px;
+}
+
+.GameList .List ul li > .ListInfo > .RoundNameContainer .Cup {
   display: -ms-grid;
   display: grid;
   grid-auto-flow: column;
-  -ms-grid-columns: 1fr max-content 1fr;
-      grid-template-columns: 1fr -webkit-max-content 1fr;
-      grid-template-columns: 1fr max-content 1fr;
-  -webkit-column-gap: 10px;
-          column-gap: 10px;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  grid-auto-columns: -webkit-max-content;
+  grid-auto-columns: max-content;
+  -webkit-column-gap: 3px;
+          column-gap: 3px;
+  place-items: center;
 }
 
-.GameList .List ul li .Cup .ELO {
-  display: -ms-grid;
-  display: grid;
-  row-gap: 2px;
-}
-
-.GameList .List ul li .Cup .ELO p {
-  font-weight: 300;
-  text-align: center;
-}
-
-.GameList .List ul li .Cup .ELO > p:nth-child(1) {
-  font-size: 13px;
-}
-
-.GameList .List ul li .Cup .ELO > p:nth-child(2) {
+.GameList .List ul li > .ListInfo > .RoundNameContainer .Cup > p {
   font-size: 10px;
+  font-weight: 300;
+}
+
+.GameList .List ul li > .ListInfo > .RoundNameContainer .Cup > .IconCup {
+  width: 10px;
+  height: 10px;
+  background-image: url(../img/icon/cup.svg);
+}
+
+.GameList .List ul li > .ListBar {
+  position: relative;
+  padding: 5px 0 3px 0;
+  background-color: rgba(0, 0, 0, 0.25);
+}
+
+.GameList .List ul li > .ListBar p {
+  font-size: 10px;
+  font-weight: 300;
+  line-height: 1;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.GameList .List ul li > .ListBar > .ELO {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.GameList .List ul li > .ListBar > .ELO > p {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-40%);
+          transform: translateY(-40%);
+  width: 90px;
+}
+
+.GameList .List ul li > .ListBar > .ELO > p:nth-child(1) {
+  left: 0;
+}
+
+.GameList .List ul li > .ListBar > .ELO > p:nth-child(2) {
+  right: 0;
 }
 
 .GameStart .Buttons {

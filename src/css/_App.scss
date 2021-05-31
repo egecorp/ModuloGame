@@ -386,163 +386,252 @@
 			}
 		}
 
-		.IconCup {
-			width: 10px;
-			height: 10px;
-			background-image: url(../img/icon/cup.svg);
-		}
-
 		ul {
 			display: grid;
 			row-gap: 5px;
 
 			li {
-				position: relative;
-				padding: 5px;
-
 				display: grid;
-				grid-auto-flow: column;
-				grid-template-columns: max-content 1fr max-content;
-				place-items: center;
 
-				background-color: var(--bg-dark);
+				background-color: var(--bg-dark-list);
+				border: 1px solid rgba(0,0,0,0.1);
 				border-radius: 5px;
 
-				&[data-cup="1"][data-win] {
-					&::after {
-						display: none;
-					}
-
-					.Player .Logo::after {
-						position: absolute;
-						right: -5px;
-						bottom: -5px;
-
-						content: "";
-
-						display: block;
-
-						width: 14px;
-						height: 14px;
-						background-image: url(../img/icon/medal.svg);
-					}
-				}
-
-				&[data-cup="1"][data-win="right"] .Player:first-child .Logo::after {
-					display: none;
-				}
-				&[data-cup="1"][data-win="left"] .Player:last-child .Logo::after {
-					display: none;
-				}
-
-				&[data-win]::after {
-					position: absolute;
-					top: 50%;
-					transform: translateY(-50%);
-
-					content: "";
-
-					display: block;
-
-					width: 20px;
-					height: 20px;
-					background-image: url(../img/icon/medal.svg);
-				}
-
-				&[data-win="left"]::after {
-					left: 25%;
-				}
-				&[data-win="right"]::after {
-					right: 25%;
-				}
+				overflow: hidden;
 
 
-				.Score {
+				> .ListInfo {
+					padding: 5px;
+
 					display: grid;
-					row-gap: 3px;
-					justify-items: center;
+					grid-auto-flow: column;
+					grid-template-columns: max-content 1fr max-content;
+					place-items: center;
 
-					> p.Status {
-						font-size: 13px;
-						font-weight: 500;
-						text-transform: uppercase;
-					}
-
-					.Info {
+					> .PlayerContainer {
+						width: 90px;
+						height: 100%;
+	
 						display: grid;
-						grid-auto-flow: column;
-						grid-auto-columns: max-content;
-						column-gap: 5px;
-						align-items: center;
+						row-gap: 5px;
+						justify-items: center;
+	
+						overflow: hidden;
 
+
+						img {
+							width: 28px;
+							height: 28px; 
+						}
+	
 						p {
 							font-size: 10px;
 							font-weight: 300;
+							text-align: center;
 							text-transform: uppercase;
+							line-height: 1;
+	
+							@include textWrapDots;
+						}
+
+						&.Computer {
+							> p {
+								font-weight: 500;
+							}
+	
+							.Avatar {
+								background-size: 14px auto;
+								background-image: url(../img/icon/computer.svg);
+							}
+						}
+					}
+
+					> .RoundNameContainer {
+						padding-top: 3px; /* Небольшой отступ, чтобы визуально выглядело по середине */
+
+						display: grid;
+						row-gap: 7px;
+						justify-items: center;
+
+						p {
+							text-align: center;
+							text-transform: uppercase;
+							line-height: 1;
+						}
+
+						> p.Title {
+							font-size: 16px;
+						}
+
+						.Cup {
+							display: grid;
+							grid-auto-flow: column;
+							grid-auto-columns: max-content;
+
+							column-gap: 3px;
+							place-items: center;
+
+
+							> p {
+								font-size: 10px;
+								font-weight: 300;
+							}
+
+							> .IconCup {
+								width: 10px;
+								height: 10px;
+								background-image: url(../img/icon/cup.svg);
+							}
 						}
 					}
 				}
 
-				.Player {
-					width: 55px;
-					height: 100%;
+				> .ListBar {
+					position: relative;
 
-					display: grid;
-					row-gap: 5px;
-					justify-items: center;
+					padding: 5px 0 3px 0;
 
-					overflow: hidden;
-
-					&.Computer {
-						> p {
-							font-weight: 500;
-						}
-
-						.Avatar {
-							background-size: 14px auto;
-							background-image: url(../img/icon/computer.svg);
-						}
-					}
+					background-color: rgba(0,0,0,0.25);
 
 					p {
 						font-size: 10px;
 						font-weight: 300;
+						line-height: 1;
 						text-align: center;
 						text-transform: uppercase;
-						line-height: 1;
-
-						@include textWrapDots;
 					}
-				}
 
-				.Cup {
-					width: 100%;
+					> .ELO {
+						position: absolute;
+						top: 0;
+						left: 0;
+						
+						width: 100%;
+						height: 100%;
 
-					display: grid;
-					grid-auto-flow: column;
-					grid-template-columns: 1fr max-content 1fr;
-					column-gap: 10px;
-					align-items: center;
+						> p {
+							position: absolute;
+							top: 50%;
+							transform: translateY(-40%);
 
-					.ELO {
-						display: grid;
-						row-gap: 2px;
+							width: 90px;
 
-						p {
-							font-weight: 300;
-							text-align: center;
-						}
+							&:nth-child(1) {
+								left: 0;
+							}
 
-						> p:nth-child(1) {
-							font-size: 13px;
-						}
-
-						> p:nth-child(2) {
-							font-size: 10px;
+							&:nth-child(2) {
+								right: 0;
+							}
 						}
 					}
 				}
 			}
+			// 	&[data-cup="1"][data-win] {
+			// 		&::after {
+			// 			display: none;
+			// 		}
+
+			// 		.Player .Logo::after {
+			// 			position: absolute;
+			// 			right: -5px;
+			// 			bottom: -5px;
+
+			// 			content: "";
+
+			// 			display: block;
+
+			// 			width: 14px;
+			// 			height: 14px;
+			// 			background-image: url(../img/icon/medal.svg);
+			// 		}
+			// 	}
+
+			// 	&[data-cup="1"][data-win="right"] .Player:first-child .Logo::after {
+			// 		display: none;
+			// 	}
+			// 	&[data-cup="1"][data-win="left"] .Player:last-child .Logo::after {
+			// 		display: none;
+			// 	}
+
+			// 	&[data-win]::after {
+			// 		position: absolute;
+			// 		top: 50%;
+			// 		transform: translateY(-50%);
+
+			// 		content: "";
+
+			// 		display: block;
+
+			// 		width: 20px;
+			// 		height: 20px;
+			// 		background-image: url(../img/icon/medal.svg);
+			// 	}
+
+			// 	&[data-win="left"]::after {
+			// 		left: 25%;
+			// 	}
+			// 	&[data-win="right"]::after {
+			// 		right: 25%;
+			// 	}
+
+
+			// 	.Score {
+			// 		display: grid;
+			// 		row-gap: 3px;
+			// 		justify-items: center;
+
+			// 		> p.Status {
+			// 			font-size: 13px;
+			// 			font-weight: 500;
+			// 			text-transform: uppercase;
+			// 		}
+
+			// 		.Info {
+			// 			display: grid;
+			// 			grid-auto-flow: column;
+			// 			grid-auto-columns: max-content;
+			// 			column-gap: 5px;
+			// 			align-items: center;
+
+			// 			p {
+			// 				font-size: 10px;
+			// 				font-weight: 300;
+			// 				text-transform: uppercase;
+			// 			}
+			// 		}
+			// 	}
+
+				
+
+			// 	.Cup {
+			// 		width: 100%;
+
+			// 		display: grid;
+			// 		grid-auto-flow: column;
+			// 		grid-template-columns: 1fr max-content 1fr;
+			// 		column-gap: 10px;
+			// 		align-items: center;
+
+			// 		.ELO {
+			// 			display: grid;
+			// 			row-gap: 2px;
+
+			// 			p {
+			// 				font-weight: 300;
+			// 				text-align: center;
+			// 			}
+
+			// 			> p:nth-child(1) {
+			// 				font-size: 13px;
+			// 			}
+
+			// 			> p:nth-child(2) {
+			// 				font-size: 10px;
+			// 			}
+			// 		}
+			// 	}
+			// }
 		}
 	}
 }

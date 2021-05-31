@@ -69,25 +69,34 @@ export default class OneGame extends React.Component {
 					{(context) =>
 					(
 						<li onClick={this.onGameClick}>
-							<div className="Player">
-								<div className="Avatar">
-									<img src='/img/avatar/1/boy.1.png' alt="No Avatar"></img>
+							<div className="ListInfo">
+								<div className="PlayerContainer">
+									<img src='/img/avatar/1/boy.1.png' alt="No Avatar" />
+									<p>{this.User1Name}</p>
 								</div>
-								<p>{this.User1Name}</p>
+
+								<div className="RoundNameContainer">
+									<p className="Title">{context.GetText('gamestatus.round', this.GameStatus)}</p>
+
+									<div className="Cup">
+										<p>Турнир</p>
+										<div className="IconCup"></div>
+									</div>
+								</div>
+
+								<div className="PlayerContainer">
+									<img src='/img/avatar/1/boy.1.png' alt="No Avatar" />
+									<p>{this.User2Name}</p>
+								</div>
 							</div>
 
-							<div className="Score">
-								<p className="Status">{context.GetText('gamestatus.round', this.GameStatus)}</p>
-								<div className="Info">
-									<p>{context.GetText('gamestatus.action', this.GameStatus)}</p>
+							<div className="ListBar">
+								<div className="ELO">
+									<p>ELO: 1778 (-2)</p>
+									<p>ELO: 1992 (+2)</p>
 								</div>
-							</div>
-
-							<div className="Player">
-								<div className="Avatar">
-									<img src='/img/avatar/1/boy.1.png' alt="No Avatar"></img>
-								</div>
-								<p>{this.User2Name}</p>
+								
+								<p>{context.GetText('gamestatus.action', this.GameStatus)}</p>
 							</div>
 						</li>
 					)}
