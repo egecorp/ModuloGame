@@ -963,6 +963,8 @@
 				> p {
 					width: 26px;
 					height: 26px;
+
+					background-color: var(--brand-color);
 					border-radius: 5px;
 
 					font-size: 24px;
@@ -973,6 +975,14 @@
 					&[data-color="red"] { background-color: #fd0148; }
 					&[data-color="green"] { background-color: var(--button-green); }
 					&[data-color="yellow"] { background-color: #ddb937; }
+				}
+			}
+
+			&[data-active="0"] {
+				opacity: 0.3;
+
+				> .DigitContainer > p {
+					opacity: 0.5;
 				}
 			}
 		}

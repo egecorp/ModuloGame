@@ -641,19 +641,19 @@ export default class GamePage extends React.Component {
 						</div>
 					</div>
 
-					<div className="Round">
+					<div className="Round" data-active="0">
 						<div className="DigitContainer">
-							<p data-color="red">{this.getDigitHtml("5.1.1","red")}</p>
-							<p data-color="green">{this.getDigitHtml("5.1.2","red")}</p>
-							<p data-color="yellow">{this.getDigitHtml("5.1.3","red")}</p>
+							<p>{this.getDigitHtml("5.1.1","red")}</p>
+							<p>{this.getDigitHtml("5.1.2","red")}</p>
+							<p>{this.getDigitHtml("5.1.3","red")}</p>
 						</div>
 
 						<p>{this.currentContext.GetText('game.page', 'RoundName5')}</p>
 
 						<div className="DigitContainer">
-							<p data-color="red">{this.getDigitHtml("5.2.1","blue")}</p>
-							<p data-color="green">{this.getDigitHtml("5.2.2","blue")}</p>
-							<p data-color="yellow">{this.getDigitHtml("5.2.3","blue")}</p>
+							<p>{this.getDigitHtml("5.2.1","blue")}</p>
+							<p>{this.getDigitHtml("5.2.2","blue")}</p>
+							<p>{this.getDigitHtml("5.2.3","blue")}</p>
 						</div>
 					</div>
 				</div>
