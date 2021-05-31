@@ -293,12 +293,6 @@ export default class GamePage extends React.Component {
 				MsgBoxFirstButton = this.currentContext.GetText('common', 'popupButtonAccept');
 				MsgBoxSecondButton = this.currentContext.GetText('common', 'popupButtonDecline');
 				break;
-			case GAME_STATUS.GAME_WAIT_USER2:
-				MsgBoxTitle = "Заголовок?"
-				MsgBoxText = this.currentContext.GetText('game.page', 'StartGame.Wait');
-				MsgBoxFirstButton = this.currentContext.GetText('common', 'popupButtonWait');
-				MsgBoxSecondButton = this.currentContext.GetText('common', 'popupButtonWithdraw');
-				break;
 			default:
 				MsgBoxTitle = null;
 		}
