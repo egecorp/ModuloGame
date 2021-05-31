@@ -81,6 +81,17 @@ input, select {
 	-webkit-line-clamp: $strokes;
 }
 
+/* ScrollHide */
+.ScrollHide {
+	-ms-overflow-style: none;  /* IE and Edge */
+	scrollbar-width: none;  /* Firefox */
+}
+
+.ScrollHide::-webkit-scrollbar {
+	display: none;
+}
+/* End */
+
 
 
 html, body {
