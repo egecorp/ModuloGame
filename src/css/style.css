@@ -1180,11 +1180,11 @@ input.InPopup::-webkit-input-placeholder {
 .GameList .List ul li > .ListInfo > .PlayerContainer[data-win="1"] .Avatar::after {
   position: absolute;
   right: -5px;
-  bottom: -5px;
+  bottom: -3px;
   content: "";
   display: block;
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   background-image: url(../img/icon/medal.svg);
 }
 
