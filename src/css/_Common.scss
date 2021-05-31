@@ -32,7 +32,6 @@
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: contain;
-	/* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif; */
 	font-family: 'Roboto Slab', sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
@@ -527,3 +526,11 @@ input.InPopup	{
 	&:active { background: 97% center / 16px no-repeat url(/src/img/buttons/right-arrow_dark-green.svg), linear-gradient(90deg, #279654 0%, #2EB062 100%); }
 }
 /*** *** *** END *** *** ***/
+
+
+@media (max-width: 520px) {
+	#playground {
+		width: 100%;
+		height: 100%;
+	}
+}
