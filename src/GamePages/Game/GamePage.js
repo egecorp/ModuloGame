@@ -568,7 +568,7 @@ export default class GamePage extends React.Component {
 								</div>
 
 								<div className="Card">
-									<div className="DigitIcon" data-digit="9" data-color="red" data-active={checkDigit(9) ? 1 : 0} onClick={checkDigit(4) ? this.onCardDigitClick : null}></div>
+									<div className="DigitIcon" data-digit="9" data-color="red" data-active={checkDigit(9) ? 1 : 0} onClick={checkDigit(9) ? this.onCardDigitClick : null}></div>
 								</div>
 							</div>
 						</div>
