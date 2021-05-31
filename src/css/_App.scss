@@ -677,33 +677,56 @@
 	}
 
 	> .Buttons {
+		display: grid;
+		grid-auto-flow: column;
+
+		background-color: #fff;
+		border-radius: 5px;
+		box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.15);
+
+		overflow: hidden;
+
 		> button {
 			--font-color: #000;
+
+			position: relative;
 			
 			padding: 10px 0;
 
 			width: 100%;
-
-			background-color: #fff;
-			border-radius: 5px;
-			box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.15);
-
+			
 			font-weight: 500;
 			font-size: 15px;
 			text-transform: uppercase;
 
 			&:active {
 				background-color: var(--button-footer-bg-hover);
-				box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.3);
 			}
 
-			&:nth-last-child(n+2) {
-				border-bottom: 1px solid #eee;
-				border-radius: 5px 5px 0 0;
+			&::after {
+				position: absolute;
+				top: 50%;
+				left: 0;
+				transform: translateY(-50%);
+
+				content: "";
+				width: 1px;
+				height: 50%;
+				background-color: #ccc;
+
+				opacity: 0;
 			}
 
-			&:nth-child(n+2) {
-				border-radius: 0 0 5px 5px;
+			&:nth-child(n+2)::after {
+				opacity: 1;
+			}
+		}
+
+		&:active {
+			button {
+				&::after {
+					opacity: 0;
+				}
 			}
 		}
 	}

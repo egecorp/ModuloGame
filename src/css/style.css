@@ -1385,14 +1385,22 @@ input.InPopup::-webkit-input-placeholder {
   background-image: url(/src/img/icon/warning.svg);
 }
 
-.Modal > .Buttons > button {
-  --font-color: #000;
-  padding: 10px 0;
-  width: 100%;
+.Modal > .Buttons {
+  display: -ms-grid;
+  display: grid;
+  grid-auto-flow: column;
   background-color: #fff;
   border-radius: 5px;
   -webkit-box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.15);
           box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+.Modal > .Buttons > button {
+  --font-color: #000;
+  position: relative;
+  padding: 10px 0;
+  width: 100%;
   font-weight: 500;
   font-size: 15px;
   text-transform: uppercase;
@@ -1400,17 +1408,27 @@ input.InPopup::-webkit-input-placeholder {
 
 .Modal > .Buttons > button:active {
   background-color: var(--button-footer-bg-hover);
-  -webkit-box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.3);
-          box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.3);
 }
 
-.Modal > .Buttons > button:nth-last-child(n+2) {
-  border-bottom: 1px solid #eee;
-  border-radius: 5px 5px 0 0;
+.Modal > .Buttons > button::after {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  content: "";
+  width: 1px;
+  height: 50%;
+  background-color: #ccc;
+  opacity: 0;
 }
 
-.Modal > .Buttons > button:nth-child(n+2) {
-  border-radius: 0 0 5px 5px;
+.Modal > .Buttons > button:nth-child(n+2)::after {
+  opacity: 1;
+}
+
+.Modal > .Buttons:active button::after {
+  opacity: 0;
 }
 
 .FindUser .Search {
