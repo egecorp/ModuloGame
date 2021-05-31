@@ -658,6 +658,44 @@ export default class GamePage extends React.Component {
 					</div>
 				</div>
 			)
+
+
+
+
+
+
+
+
+/*** *** Блок с обновлённых окном "Ожидание ответа от соперника..." *** ***/
+
+/* Расположить первым ВНУТРИ HeadNavigation */
+/*
+<button className="ButtonBack"></button>
+*/
+
+/* Расположить ВМЕСТО RoundsContainer */
+/*
+<div class="UserTip">
+	<p>Ваше приглашение было отправлено игроку ezhov4444. Ожидайте ответа...</p>
+</div>
+*/
+
+/* Расположить ПОД Gameground */
+/*
+<div className="FooterArea">
+	<button>Отменить приглашение</button>
+</div>
+*/
+
+/*** *** End *** *** ***/
+
+
+
+
+
+
+
+
 		}
 
 		let canGiveUp = this.currentGame.IsStart && !this.currentGame.IsGiveUp && !this.currentGame.IsFinish;

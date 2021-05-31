@@ -1798,6 +1798,11 @@ input.InPopup::-webkit-input-placeholder {
   background-color: red;
 }
 
+.Gameground > .UserTip {
+  margin-top: 20px;
+  max-height: 150px;
+}
+
 .DigitIcon {
   margin: 0;
   width: 100%;
