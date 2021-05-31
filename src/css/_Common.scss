@@ -38,6 +38,8 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
+[data-show="0"] { display: none; }
+
 button {
 	padding: 0;
 	outline: none;
@@ -340,11 +342,8 @@ input.InPopup	{
 .Avatar {
 	position: relative;
 
-	width: 24px;
-	height: 24px;
-
-	background-color: var(--bg-dark-ava); // ! delete
-	border-radius: 3px;
+	width: 28px;
+	height: 28px;
 
 	img {
 		width: 100%;

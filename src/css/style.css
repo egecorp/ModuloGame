@@ -127,6 +127,10 @@ table {
   -moz-osx-font-smoothing: grayscale;
 }
 
+[data-show="0"] {
+  display: none;
+}
+
 button {
   padding: 0;
   outline: none;
@@ -492,10 +496,8 @@ input.InPopup::-webkit-input-placeholder {
 /* Avatar */
 .Avatar {
   position: relative;
-  width: 24px;
-  height: 24px;
-  background-color: var(--bg-dark-ava);
-  border-radius: 3px;
+  width: 28px;
+  height: 28px;
 }
 
 .Avatar img {
@@ -1154,11 +1156,6 @@ input.InPopup::-webkit-input-placeholder {
   overflow: hidden;
 }
 
-.GameList .List ul li > .ListInfo > .PlayerContainer img {
-  width: 28px;
-  height: 28px;
-}
-
 .GameList .List ul li > .ListInfo > .PlayerContainer p {
   font-size: 10px;
   font-weight: 300;
@@ -1172,18 +1169,26 @@ input.InPopup::-webkit-input-placeholder {
   overflow: hidden;
 }
 
-.GameList .List ul li > .ListInfo > .PlayerContainer.Computer > p {
-  font-weight: 500;
+.GameList .List ul li > .ListInfo > .PlayerContainer > .Avatar[data-bot="1"] {
+  background-image: url(../img/icon/bot.svg);
 }
 
-.GameList .List ul li > .ListInfo > .PlayerContainer.Computer .Avatar {
-  background-size: 14px auto;
-  background-image: url(../img/icon/computer.svg);
+.GameList .List ul li > .ListInfo > .PlayerContainer > .Avatar[data-bot="1"] > img {
+  display: none;
+}
+
+.GameList .List ul li > .ListInfo > .PlayerContainer[data-win="1"] .Avatar::after {
+  position: absolute;
+  right: -5px;
+  bottom: -5px;
+  content: "";
+  display: block;
+  width: 16px;
+  height: 16px;
+  background-image: url(../img/icon/medal.svg);
 }
 
 .GameList .List ul li > .ListInfo > .RoundNameContainer {
-  padding-top: 3px;
-  /* Небольшой отступ, чтобы визуально выглядело по середине */
   display: -ms-grid;
   display: grid;
   row-gap: 7px;
@@ -1201,6 +1206,8 @@ input.InPopup::-webkit-input-placeholder {
 }
 
 .GameList .List ul li > .ListInfo > .RoundNameContainer .Cup {
+  margin-bottom: -3px;
+  /* Смещение вниз для визуального расположения по центру*/
   display: -ms-grid;
   display: grid;
   grid-auto-flow: column;
@@ -1258,6 +1265,17 @@ input.InPopup::-webkit-input-placeholder {
 
 .GameList .List ul li > .ListBar > .ELO > p:nth-child(2) {
   right: 0;
+}
+
+.GameList .List ul li[data-win="left"] > *:first-child img::after {
+  position: absolute;
+  right: -5px;
+  bottom: -5px;
+  content: "";
+  display: block;
+  width: 14px;
+  height: 14px;
+  background-image: url(../img/icon/medal.svg);
 }
 
 .GameStart .Buttons {

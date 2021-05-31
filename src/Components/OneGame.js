@@ -70,8 +70,11 @@ export default class OneGame extends React.Component {
 					(
 						<li onClick={this.onGameClick}>
 							<div className="ListInfo">
-								<div className="PlayerContainer">
-									<img src='/img/avatar/1/boy.1.png' alt="No Avatar" />
+								<div className="PlayerContainer" data-win="1">
+									<div className="Avatar">
+										<img src='/img/avatar/1/boy.1.png' alt="No Avatar" />
+									</div>
+									
 									<p>{this.User1Name}</p>
 								</div>
 
@@ -85,7 +88,10 @@ export default class OneGame extends React.Component {
 								</div>
 
 								<div className="PlayerContainer">
-									<img src='/img/avatar/1/boy.1.png' alt="No Avatar" />
+									<div className="Avatar" data-bot="1">
+										<img src='/img/avatar/1/boy.1.png' alt="No Avatar" />
+									</div>
+
 									<p>{this.User2Name}</p>
 								</div>
 							</div>
