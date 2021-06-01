@@ -49,7 +49,7 @@ export default class GameStartUserPage extends React.Component {
         if(data.UserList && Array.isArray(data.UserList))
         {
             let userList = [];
-            for(var i in data.UserList)
+            for(let i in data.UserList)
             {
                 if (data.UserList[i].NicName && data.UserList[i].Id) userList.push({Id:data.UserList[i].Id, Name : data.UserList[i].NicName});
             }
@@ -58,7 +58,7 @@ export default class GameStartUserPage extends React.Component {
         if(data.RecentUserList && Array.isArray(data.RecentUserList))
         {
             let userList = [];
-            for(var i in data.RecentUserList)
+            for(let i in data.RecentUserList)
             {
                 if (data.RecentUserList[i].NicName && data.RecentUserList[i].Id) userList.push({Id:data.RecentUserList[i].Id, Name : data.RecentUserList[i].NicName});
             }

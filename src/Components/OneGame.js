@@ -98,8 +98,8 @@ export default class OneGame extends React.Component {
 
 							<div className="ListBar">
 								<div className="ELO">
-									<p>ELO: 1778 (-2)</p>
-									<p>ELO: 1992 (+2)</p>
+									<p>{/*ELO: 1778 (-2)*/}</p>
+									<p>{/*ELO: 1992 (+2)*/}</p>
 								</div>
 								
 								<p>{context.GetText('gamestatus.action', this.GameStatus)}</p>

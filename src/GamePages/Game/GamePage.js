@@ -5,7 +5,11 @@ import MsgBox from "../../Components/MsgBox"
 import MsgBox2Buttons from "../../Components/MsgBox2Buttons"
 import GAME_STATUS from '../../Lib/GameStatus';
 import DEVICE_STATUS from '../../Lib/DeviceStatus';
+import GAMEPAGE_STATUS from '../../Lib/GamePageStatus';
 import OneModuloGame from '../../Model/Game';
+
+import GamePageDesktop from './GamePageDesktop';
+import GamePageRound from './GamePageRound';
 
 
 export default class GamePage extends React.Component {
@@ -13,10 +17,17 @@ export default class GamePage extends React.Component {
 	isFirstGamer = false;
 	rounds = [];
 	constructor(props, context) {
-		super(props);
+        super(props);
+
+        this.currentContext = context;
+		this.currentGame = props.CurrentGame;
+
+		
 		this.state =
 		{
-			playing: false,
+			gamePageStatus: GAMEPAGE_STATUS.MAIN,
+            currentRoundNumber:this.getCurrentRoundNumerForGame(),
+            currentShownRoundNumber : null,
 			competitorDigit1: null,
 			competitorDigit2: null,
 			competitorDigit3: null,
@@ -26,13 +37,6 @@ export default class GamePage extends React.Component {
 			canUseJoker: false,
 			game: null
 		};
-		this.currentContext = context;
-
-		this.currentGame = props.CurrentGame;
-
-
-
-
 
 		this.isFirstGamer = this.currentGame.User1Id === props.Device.myUser.Id;
 
@@ -42,14 +46,61 @@ export default class GamePage extends React.Component {
 		this.cancelButtonOnClick = this.cancelButtonOnClick.bind(this);
 
 		this.onFooterButtonClick = this.onFooterButtonClick.bind(this);
-		this.onCardDigitClick = this.onCardDigitClick.bind(this);
+		this.setDigits = this.setDigits.bind(this);
 		this.onDesktopDigitClick = this.onDesktopDigitClick.bind(this);
 
 		this.updateGameInfo = this.updateGameInfo.bind(this);
 		this.onLoadGameInfo = this.onLoadGameInfo.bind(this);
 		this.giveUpButtonOnClick = this.giveUpButtonOnClick.bind(this);
-
+        this.onRoundClick = this.onRoundClick.bind(this);
 	}
+
+
+    getCurrentRoundNumerForGame()
+    {
+        switch (this.currentGame.GameStatus) {
+            case GAME_STATUS.GAME_ROUND_1_NOUSER:
+            case GAME_STATUS.GAME_ROUND_1_USER1_DONE:
+            case GAME_STATUS.GAME_ROUND_1_USER2_DONE:
+            case GAME_STATUS.GAME_ROUND_1_USER1_GIVEUP:
+            case GAME_STATUS.GAME_ROUND_1_USER2_GIVEUP:
+            case GAME_STATUS.GAME_ROUND_1_TIMEOUT:
+                return 1;
+            case GAME_STATUS.GAME_ROUND_2_NOUSER:
+            case GAME_STATUS.GAME_ROUND_2_USER1_DONE:
+            case GAME_STATUS.GAME_ROUND_2_USER2_DONE:
+            case GAME_STATUS.GAME_ROUND_2_USER1_GIVEUP:
+            case GAME_STATUS.GAME_ROUND_2_USER2_GIVEUP:
+            case GAME_STATUS.GAME_ROUND_2_TIMEOUT:
+                return 2;
+            case GAME_STATUS.GAME_ROUND_3_NOUSER:
+            case GAME_STATUS.GAME_ROUND_3_USER1_DONE:
+            case GAME_STATUS.GAME_ROUND_3_USER2_DONE:
+            case GAME_STATUS.GAME_ROUND_3_USER1_GIVEUP:
+            case GAME_STATUS.GAME_ROUND_3_USER2_GIVEUP:
+            case GAME_STATUS.GAME_ROUND_3_TIMEOUT:
+                return 3;
+            case GAME_STATUS.GAME_ROUND_4_NOUSER:
+            case GAME_STATUS.GAME_ROUND_4_USER1_DONE:
+            case GAME_STATUS.GAME_ROUND_4_USER2_DONE:
+            case GAME_STATUS.GAME_ROUND_4_USER1_GIVEUP:
+            case GAME_STATUS.GAME_ROUND_4_USER2_GIVEUP:
+            case GAME_STATUS.GAME_ROUND_4_TIMEOUT:
+                return 4;
+            case GAME_STATUS.GAME_ROUND_5_NOUSER:
+            case GAME_STATUS.GAME_ROUND_5_USER1_DONE:
+            case GAME_STATUS.GAME_ROUND_5_USER2_DONE:
+            case GAME_STATUS.GAME_ROUND_5_USER1_GIVEUP:
+            case GAME_STATUS.GAME_ROUND_5_USER2_GIVEUP:
+            case GAME_STATUS.GAME_ROUND_5_TIMEOUT:
+            case GAME_STATUS.GAME_FINISH_USER1_WIN:
+            case GAME_STATUS.GAME_FINISH_USER2_WIN:
+            case GAME_STATUS.GAME_FINISH_USER2_DRAW:
+                return 5;
+            default: return 0;
+        }
+
+    }
 
 	updateIntervalObject = null;
 	componentDidMount() {
@@ -70,7 +121,8 @@ export default class GamePage extends React.Component {
 	}
 
 	onLoadGameInfo(gameInfo) {
-		if (gameInfo && gameInfo.Id) {
+		if (gameInfo && gameInfo.Id) 
+        {
 			if (!(this.state.game && this.state.game.GameStatus === gameInfo.GameStatus)) {
 
 				var newGame = new OneModuloGame(gameInfo);
@@ -80,8 +132,12 @@ export default class GamePage extends React.Component {
 				let canUseJoker = ((this.props.Device.myUser.Id === newGame.User1Id) && newGame.User1CanUseJoker) ||
 					((this.props.Device.myUser.Id === newGame.User2Id) && newGame.User2CanUseJoker);
 
-				this.setState({ game: newGame, canUseJoker: canUseJoker });
-			}
+                this.setState({ 
+                    game: newGame, 
+                    canUseJoker: canUseJoker, 
+                    currentRoundNumber:this.getCurrentRoundNumerForGame()
+                });
+            }
 		}
 		else {
 			console.log("onLoadGame got wrong answer:");
@@ -99,7 +155,7 @@ export default class GamePage extends React.Component {
 	}
 
 	giveUpButtonOnClick() {
-		var postData = { Id: this.currentGame.Id, DeviceWorkToken: this.props.Device.DeviceWorkToken };
+		let postData = { Id: this.currentGame.Id, DeviceWorkToken: this.props.Device.DeviceWorkToken };
 		switch (this.currentGame.GameStatus) {
 			case GAME_STATUS.GAME_ROUND_1_NOUSER:
 			case GAME_STATUS.GAME_ROUND_1_USER2_DONE:
@@ -132,8 +188,24 @@ export default class GamePage extends React.Component {
 	}
 
 	onFooterButtonClick(ev) {
-		if (this.state.playing === true) {
+        if(this.currentGame.GameStatus === GAME_STATUS.GAME_WAIT_USER2)
+        {
+            let postData = { Id: this.currentGame.Id, DeviceWorkToken: this.props.Device.DeviceWorkToken };
 
+            this.props.Device.WithdrawGame(this.onGameChangeCallBack, this, postData);
+        }
+        else if (
+            (this.state.gamePageStatus === GAMEPAGE_STATUS.PLAY)  ||
+            (this.state.gamePageStatus === GAMEPAGE_STATUS.WAIT)  ||
+            (this.state.gamePageStatus === GAMEPAGE_STATUS.ROUND)         
+           )
+        {
+            this.setState({ gamePageStatus: GAMEPAGE_STATUS.MAIN });
+        }
+		else if (
+            (this.state.gamePageStatus === GAMEPAGE_STATUS.ALLDIGIT) 
+           )
+        {
 			function getDigit(d) {
 				if (d + '' === '2') return 2;
 				if (d + '' === '3') return 3;
@@ -146,8 +218,9 @@ export default class GamePage extends React.Component {
 				if (d + '' === 'J') return 11;
 
 			}
-			if (this.state.myDigit1 && this.state.myDigit2 && this.state.myDigit3) {
-				var postData = {
+			if (this.state.myDigit1 && this.state.myDigit2 && this.state.myDigit3) 
+            {
+				let postData = {
 					Id: this.currentGame.Id,
 					Digit1: getDigit(this.state.myDigit1),
 					Digit2: getDigit(this.state.myDigit2),
@@ -184,28 +257,25 @@ export default class GamePage extends React.Component {
 					this.props.Device.PlayRound(this.onGameChangeCallBack, this, postData);
 				}
 				else {
-					this.setState({ playing: false });
+					this.setState({ gamePageStatus: GAMEPAGE_STATUS.MAIL });
 				}
 			}
 			else {
-				this.setState({ playing: false });
+				this.setState({ gamePageStatus: GAMEPAGE_STATUS.MAIN });
 			}
 		}
 		else {
-			this.setState({ playing: true });
+			this.setState({ gamePageStatus: GAMEPAGE_STATUS.PLAY });
 		}
 
 	}
 
 	modalButtonAcceptOnClick() {
-		var postData = { Id: this.currentGame.Id, DeviceWorkToken: this.props.Device.DeviceWorkToken };
+		let postData = { Id: this.currentGame.Id, DeviceWorkToken: this.props.Device.DeviceWorkToken };
 
 		switch (this.currentGame.GameStatus) {
 			case GAME_STATUS.GAME_WAIT_USER1:
 				this.props.Device.AcceptGame(this.onGameChangeCallBack, this, postData);
-				break;
-			case GAME_STATUS.GAME_WAIT_USER2:
-				this.props.NavigationButtonCallBack(DEVICE_STATUS.GAME_SHOW_LIST);
 				break;
 			default:
 				this.props.NavigationButtonCallBack(DEVICE_STATUS.GAME_SHOW_LIST);
@@ -214,14 +284,11 @@ export default class GamePage extends React.Component {
 	}
 
 	modalButtonDeclineOnClick() {
-		var postData = { Id: this.currentGame.Id, DeviceWorkToken: this.props.Device.DeviceWorkToken };
+		let postData = { Id: this.currentGame.Id, DeviceWorkToken: this.props.Device.DeviceWorkToken };
 
 		switch (this.currentGame.GameStatus) {
 			case GAME_STATUS.GAME_WAIT_USER1:
 				this.props.Device.DeclineGame(this.onGameChangeCallBack, this, postData);
-				break;
-			case GAME_STATUS.GAME_WAIT_USER2:
-				this.props.Device.WithdrawGame(this.onGameChangeCallBack, this, postData);
 				break;
 			default:
 				this.props.NavigationButtonCallBack(DEVICE_STATUS.GAME_SHOW_LIST);
@@ -229,29 +296,30 @@ export default class GamePage extends React.Component {
 		}
 	}
 
-	onCardDigitClick(ev) {
-		var newDigit = ev.target.dataset.digit + "";
-		if ((newDigit === 'J') && !this.state.canUseJoker) {
-			console.log("Cannot use Joker");
-			return;
-		}
-		var d1 = this.state.myDigit1 ? (this.state.myDigit1 + "") : null;
-		var d2 = this.state.myDigit2 ? (this.state.myDigit2 + "") : null;
-		var d3 = this.state.myDigit3 ? (this.state.myDigit3 + "") : null;
+	setDigits(d1, d2, d3) {
 
-		if (!d1) {
-			this.setState({ myDigit1: newDigit });
-		}
-		else if (!d2 && (d1 !== newDigit)) {
-			this.setState({ myDigit2: newDigit });
-		}
-		else if (!d3 && (d1 !== newDigit) && (d2 !== newDigit)) {
-			this.setState({ myDigit3: newDigit });
-		}
-		else {
-			console.log("Strange situation");
-			console.log(ev, newDigit, d1, d2, d3);
-		}
+        console.log('setDigits', d1,d2,d3);
+
+        if ((this.state.gamePageStatus !== GAMEPAGE_STATUS.ALLDIGIT) && (this.state.gamePageStatus !== GAMEPAGE_STATUS.PLAY))
+        {
+            console.log("You cannot use digit 305");
+            return;
+        }
+
+        this.setState({ myDigit1: d1, myDigit2: d2, myDigit3: d3 });
+
+        if ( (!d1 || !d2 || !d3) && (this.state.gamePageStatus === GAMEPAGE_STATUS.ALLDIGIT))
+        {
+            this.setState({ gamePageStatus: GAMEPAGE_STATUS.PLAY });
+        }
+
+        if ( (d1 && d2 && d3) && (this.state.gamePageStatus === GAMEPAGE_STATUS.PLAY))
+        {
+            this.setState({ gamePageStatus: GAMEPAGE_STATUS.ALLDIGIT });
+        }
+
+
+
 	}
 
 	onDesktopDigitClick(ev) {
@@ -261,17 +329,177 @@ export default class GamePage extends React.Component {
 		if (digitNumber === "3") this.setState({ myDigit3: null });
 	}
 
-    getDigitHtml(roundNumber, digitColor)
+
+	onRoundClick(roundNumber) {
+        this.setState(
+            {
+                gamePageStatus :  GAMEPAGE_STATUS.ROUND,
+                currentShownRoundNumber : roundNumber
+            });
+	}
+
+
+
+
+    refreshRounds()
     {
-        if (this.rounds[roundNumber])
-        {
-            return (<div className="DigitIcon" data-digit={this.rounds[roundNumber]} data-color={digitColor}></div>);
+    
+        function GetDigitOrJoker(e) {
+            return (e === 11) ? "J" : e;
         }
-        else
-        {
-            return null;
+
+        if (this.state.game && this.state.game.Rounds) {
+
+            if (this.state.game.Rounds[this.state.game.User1Id + ":1"]) {
+                this.rounds["1.1.1"] = this.state.game.Rounds[this.state.game.User1Id + ":1"].Digit1;
+                this.rounds["1.1.2"] = this.state.game.Rounds[this.state.game.User1Id + ":1"].Digit2;
+                this.rounds["1.1.3"] = this.state.game.Rounds[this.state.game.User1Id + ":1"].Digit3;
+            }
+            if (this.state.game.Rounds[this.state.game.User2Id + ":1"]) {
+                this.rounds["1.2.1"] = this.state.game.Rounds[this.state.game.User2Id + ":1"].Digit1;
+                this.rounds["1.2.2"] = this.state.game.Rounds[this.state.game.User2Id + ":1"].Digit2;
+                this.rounds["1.2.3"] = this.state.game.Rounds[this.state.game.User2Id + ":1"].Digit3;
+            }
+            if (this.state.game.Rounds[this.state.game.User1Id + ":2"]) {
+                this.rounds["2.1.1"] = this.state.game.Rounds[this.state.game.User1Id + ":2"].Digit1;
+                this.rounds["2.1.2"] = this.state.game.Rounds[this.state.game.User1Id + ":2"].Digit2;
+                this.rounds["2.1.3"] = this.state.game.Rounds[this.state.game.User1Id + ":2"].Digit3;
+            }
+            if (this.state.game.Rounds[this.state.game.User2Id + ":2"]) {
+                this.rounds["2.2.1"] = this.state.game.Rounds[this.state.game.User2Id + ":2"].Digit1;
+                this.rounds["2.2.2"] = this.state.game.Rounds[this.state.game.User2Id + ":2"].Digit2;
+                this.rounds["2.2.3"] = this.state.game.Rounds[this.state.game.User2Id + ":2"].Digit3;
+            }
+            if (this.state.game.Rounds[this.state.game.User1Id + ":3"]) {
+                this.rounds["3.1.1"] = this.state.game.Rounds[this.state.game.User1Id + ":3"].Digit1;
+                this.rounds["3.1.2"] = this.state.game.Rounds[this.state.game.User1Id + ":3"].Digit2;
+                this.rounds["3.1.3"] = this.state.game.Rounds[this.state.game.User1Id + ":3"].Digit3;
+            }
+            if (this.state.game.Rounds[this.state.game.User2Id + ":3"]) {
+                this.rounds["3.2.1"] = this.state.game.Rounds[this.state.game.User2Id + ":3"].Digit1;
+                this.rounds["3.2.2"] = this.state.game.Rounds[this.state.game.User2Id + ":3"].Digit2;
+                this.rounds["3.2.3"] = this.state.game.Rounds[this.state.game.User2Id + ":3"].Digit3;
+            }
+            if (this.state.game.Rounds[this.state.game.User1Id + ":4"]) {
+                this.rounds["4.1.1"] = GetDigitOrJoker(this.state.game.Rounds[this.state.game.User1Id + ":4"].Digit1);
+                this.rounds["4.1.2"] = GetDigitOrJoker(this.state.game.Rounds[this.state.game.User1Id + ":4"].Digit2);
+                this.rounds["4.1.3"] = GetDigitOrJoker(this.state.game.Rounds[this.state.game.User1Id + ":4"].Digit3);
+            }
+            if (this.state.game.Rounds[this.state.game.User2Id + ":4"]) {
+                this.rounds["4.2.1"] = GetDigitOrJoker(this.state.game.Rounds[this.state.game.User2Id + ":4"].Digit1);
+                this.rounds["4.2.2"] = GetDigitOrJoker(this.state.game.Rounds[this.state.game.User2Id + ":4"].Digit2);
+                this.rounds["4.2.3"] = GetDigitOrJoker(this.state.game.Rounds[this.state.game.User2Id + ":4"].Digit3);
+            }
+            if (this.state.game.Rounds[this.state.game.User1Id + ":5"]) {
+                this.rounds["5.1.1"] = GetDigitOrJoker(this.state.game.Rounds[this.state.game.User1Id + ":5"].Digit1);
+                this.rounds["5.1.2"] = GetDigitOrJoker(this.state.game.Rounds[this.state.game.User1Id + ":5"].Digit2);
+                this.rounds["5.1.3"] = GetDigitOrJoker(this.state.game.Rounds[this.state.game.User1Id + ":5"].Digit3);
+            }
+            if (this.state.game.Rounds[this.state.game.User2Id + ":5"]) {
+                this.rounds["5.2.1"] = GetDigitOrJoker(this.state.game.Rounds[this.state.game.User2Id + ":5"].Digit1);
+                this.rounds["5.2.2"] = GetDigitOrJoker(this.state.game.Rounds[this.state.game.User2Id + ":5"].Digit2);
+                this.rounds["5.2.3"] = GetDigitOrJoker(this.state.game.Rounds[this.state.game.User2Id + ":5"].Digit3);
+            }
         }
-        
+    }
+
+    getFooterButtonText()
+    {
+        switch (this.currentGame.GameStatus) {
+			case GAME_STATUS.GAME_ROUND_1_NOUSER:
+			case GAME_STATUS.GAME_ROUND_1_USER2_DONE:
+			case GAME_STATUS.GAME_ROUND_2_NOUSER:
+			case GAME_STATUS.GAME_ROUND_2_USER2_DONE:
+			case GAME_STATUS.GAME_ROUND_3_NOUSER:
+			case GAME_STATUS.GAME_ROUND_3_USER2_DONE:
+			case GAME_STATUS.GAME_ROUND_4_NOUSER:
+			case GAME_STATUS.GAME_ROUND_4_USER2_DONE:
+			case GAME_STATUS.GAME_ROUND_5_NOUSER:
+			case GAME_STATUS.GAME_ROUND_5_USER2_DONE:
+
+                if ((this.state.gamePageStatus === GAMEPAGE_STATUS.PLAY) ||
+                    (this.state.gamePageStatus === GAMEPAGE_STATUS.ROUND))
+                {
+                    return this.currentContext.GetText('game.page', 'FooterButtonBack');
+                }
+                else
+                {
+                    return this.currentContext.GetText('game.page', 'FooterButtonPlayRound');
+                }
+
+            case GAME_STATUS.GAME_WAIT_USER2:
+                return this.currentContext.GetText('game.page', 'FooterButtonWithdraw');
+			
+            
+            default:
+
+                
+
+
+				return null;
+		}
+    }
+
+    
+    getFooterLabelText()
+    {
+        switch (this.currentGame.GameStatus) {
+			case GAME_STATUS.GAME_ROUND_1_NOUSER:
+			case GAME_STATUS.GAME_ROUND_1_USER2_DONE:
+			case GAME_STATUS.GAME_ROUND_2_NOUSER:
+			case GAME_STATUS.GAME_ROUND_2_USER2_DONE:
+			case GAME_STATUS.GAME_ROUND_3_NOUSER:
+			case GAME_STATUS.GAME_ROUND_3_USER2_DONE:
+			case GAME_STATUS.GAME_ROUND_4_NOUSER:
+			case GAME_STATUS.GAME_ROUND_4_USER2_DONE:
+			case GAME_STATUS.GAME_ROUND_5_NOUSER:
+			case GAME_STATUS.GAME_ROUND_5_USER2_DONE:
+            case GAME_STATUS.GAME_WAIT_USER2:
+                return null;
+
+			case GAME_STATUS.GAME_ROUND_1_USER1_DONE:
+			case GAME_STATUS.GAME_ROUND_2_USER1_DONE:
+			case GAME_STATUS.GAME_ROUND_3_USER1_DONE:
+			case GAME_STATUS.GAME_ROUND_4_USER1_DONE:
+			case GAME_STATUS.GAME_ROUND_5_USER1_DONE:
+				return this.currentContext.GetText('game.page', 'FooterButtonPlayRound');
+				
+
+			case GAME_STATUS.GAME_ROUND_1_USER1_GIVEUP:
+			case GAME_STATUS.GAME_ROUND_2_USER1_GIVEUP:
+			case GAME_STATUS.GAME_ROUND_3_USER1_GIVEUP:
+			case GAME_STATUS.GAME_ROUND_4_USER1_GIVEUP:
+			case GAME_STATUS.GAME_ROUND_5_USER1_GIVEUP:
+				return  this.currentContext.GetText('game.page', 'StartGame.GiveUpMe');
+				
+
+			case GAME_STATUS.GAME_ROUND_1_USER2_GIVEUP:
+			case GAME_STATUS.GAME_ROUND_2_USER2_GIVEUP:
+			case GAME_STATUS.GAME_ROUND_3_USER2_GIVEUP:
+			case GAME_STATUS.GAME_ROUND_4_USER2_GIVEUP:
+			case GAME_STATUS.GAME_ROUND_5_USER2_GIVEUP:
+				return this.currentContext.GetText('game.page', 'StartGame.GiveUp');
+
+			case GAME_STATUS.GAME_ROUND_1_TIMEOUT:
+			case GAME_STATUS.GAME_ROUND_2_TIMEOUT:
+			case GAME_STATUS.GAME_ROUND_3_TIMEOUT:
+			case GAME_STATUS.GAME_ROUND_4_TIMEOUT:
+			case GAME_STATUS.GAME_ROUND_5_TIMEOUT:
+				return this.currentContext.GetText('game.page', 'StartGame.RoundDoneTimeout');
+
+			case GAME_STATUS.GAME_FINISH_USER1_WIN:
+				return this.currentContext.GetText('game.page', 'StartGame.Win');
+
+			case GAME_STATUS.GAME_FINISH_USER2_WIN:
+				return this.currentContext.GetText('game.page', 'StartGame.Defease');
+
+			case GAME_STATUS.GAME_FINISH_USER2_DRAW:
+				return this.currentContext.GetText('game.page', 'StartGame.Draw');
+
+			default:
+				return this.currentContext.GetText('game.page', 'StartGame.NoGame');
+
+		}
     }
 
 	render() {
@@ -283,8 +511,8 @@ export default class GamePage extends React.Component {
 		var MsgBoxFirstButton = null;
 		var MsgBoxSecondButton = null;
 
-		var FooterButtonText = null;
-		var FooterLabelText = null;
+		var FooterButtonText = this.getFooterButtonText();
+		var FooterLabelText =  this.getFooterLabelText();
 
 		switch (this.currentGame.GameStatus) {
 			case GAME_STATUS.GAME_WAIT_USER1:
@@ -297,68 +525,6 @@ export default class GamePage extends React.Component {
 				MsgBoxTitle = null;
 		}
 
-		switch (this.currentGame.GameStatus) {
-			case GAME_STATUS.GAME_ROUND_1_NOUSER:
-			case GAME_STATUS.GAME_ROUND_1_USER2_DONE:
-			case GAME_STATUS.GAME_ROUND_2_NOUSER:
-			case GAME_STATUS.GAME_ROUND_2_USER2_DONE:
-			case GAME_STATUS.GAME_ROUND_3_NOUSER:
-			case GAME_STATUS.GAME_ROUND_3_USER2_DONE:
-			case GAME_STATUS.GAME_ROUND_4_NOUSER:
-			case GAME_STATUS.GAME_ROUND_4_USER2_DONE:
-			case GAME_STATUS.GAME_ROUND_5_NOUSER:
-			case GAME_STATUS.GAME_ROUND_5_USER2_DONE:
-				FooterButtonText = this.currentContext.GetText('game.page', 'FooterButtonPlayRound');
-				break;
-
-			case GAME_STATUS.GAME_ROUND_1_USER1_DONE:
-			case GAME_STATUS.GAME_ROUND_2_USER1_DONE:
-			case GAME_STATUS.GAME_ROUND_3_USER1_DONE:
-			case GAME_STATUS.GAME_ROUND_4_USER1_DONE:
-			case GAME_STATUS.GAME_ROUND_5_USER1_DONE:
-				FooterLabelText = this.currentContext.GetText('game.page', 'FooterButtonPlayRound');
-				break;
-
-			case GAME_STATUS.GAME_ROUND_1_USER1_GIVEUP:
-			case GAME_STATUS.GAME_ROUND_2_USER1_GIVEUP:
-			case GAME_STATUS.GAME_ROUND_3_USER1_GIVEUP:
-			case GAME_STATUS.GAME_ROUND_4_USER1_GIVEUP:
-			case GAME_STATUS.GAME_ROUND_5_USER1_GIVEUP:
-				FooterLabelText = this.currentContext.GetText('game.page', 'StartGame.GiveUpMe');
-				break;
-
-			case GAME_STATUS.GAME_ROUND_1_USER2_GIVEUP:
-			case GAME_STATUS.GAME_ROUND_2_USER2_GIVEUP:
-			case GAME_STATUS.GAME_ROUND_3_USER2_GIVEUP:
-			case GAME_STATUS.GAME_ROUND_4_USER2_GIVEUP:
-			case GAME_STATUS.GAME_ROUND_5_USER2_GIVEUP:
-				FooterLabelText = this.currentContext.GetText('game.page', 'StartGame.GiveUp');
-				break;
-
-			case GAME_STATUS.GAME_ROUND_1_TIMEOUT:
-			case GAME_STATUS.GAME_ROUND_2_TIMEOUT:
-			case GAME_STATUS.GAME_ROUND_3_TIMEOUT:
-			case GAME_STATUS.GAME_ROUND_4_TIMEOUT:
-			case GAME_STATUS.GAME_ROUND_5_TIMEOUT:
-				FooterLabelText = this.currentContext.GetText('game.page', 'StartGame.RoundDoneTimeout');
-				break;
-
-			case GAME_STATUS.GAME_FINISH_USER1_WIN:
-				FooterLabelText = this.currentContext.GetText('game.page', 'StartGame.Win');
-				break;
-
-			case GAME_STATUS.GAME_FINISH_USER2_WIN:
-				FooterLabelText = this.currentContext.GetText('game.page', 'StartGame.Defease');
-				break;
-
-			case GAME_STATUS.GAME_FINISH_USER2_DRAW:
-				FooterLabelText = this.currentContext.GetText('game.page', 'StartGame.Draw');
-				break;
-
-			default:
-				FooterLabelText = this.currentContext.GetText('game.page', 'StartGame.NoGame');
-				break;
-		}
 
 
 		if (!this.state.game) {
@@ -387,63 +553,7 @@ export default class GamePage extends React.Component {
 			)
 		}
 
-		function GetDigitOrJoker(e) {
-			return (e === 11) ? "J" : e;
-		}
-
-		if (this.state.game && this.state.game.Rounds) {
-
-			if (this.state.game.Rounds[this.state.game.User1Id + ":1"]) {
-				this.rounds["1.1.1"] = this.state.game.Rounds[this.state.game.User1Id + ":1"].Digit1;
-				this.rounds["1.1.2"] = this.state.game.Rounds[this.state.game.User1Id + ":1"].Digit2;
-				this.rounds["1.1.3"] = this.state.game.Rounds[this.state.game.User1Id + ":1"].Digit3;
-			}
-			if (this.state.game.Rounds[this.state.game.User2Id + ":1"]) {
-				this.rounds["1.2.1"] = this.state.game.Rounds[this.state.game.User2Id + ":1"].Digit1;
-				this.rounds["1.2.2"] = this.state.game.Rounds[this.state.game.User2Id + ":1"].Digit2;
-				this.rounds["1.2.3"] = this.state.game.Rounds[this.state.game.User2Id + ":1"].Digit3;
-			}
-			if (this.state.game.Rounds[this.state.game.User1Id + ":2"]) {
-				this.rounds["2.1.1"] = this.state.game.Rounds[this.state.game.User1Id + ":2"].Digit1;
-				this.rounds["2.1.2"] = this.state.game.Rounds[this.state.game.User1Id + ":2"].Digit2;
-				this.rounds["2.1.3"] = this.state.game.Rounds[this.state.game.User1Id + ":2"].Digit3;
-			}
-			if (this.state.game.Rounds[this.state.game.User2Id + ":2"]) {
-				this.rounds["2.2.1"] = this.state.game.Rounds[this.state.game.User2Id + ":2"].Digit1;
-				this.rounds["2.2.2"] = this.state.game.Rounds[this.state.game.User2Id + ":2"].Digit2;
-				this.rounds["2.2.3"] = this.state.game.Rounds[this.state.game.User2Id + ":2"].Digit3;
-			}
-			if (this.state.game.Rounds[this.state.game.User1Id + ":3"]) {
-				this.rounds["3.1.1"] = this.state.game.Rounds[this.state.game.User1Id + ":3"].Digit1;
-				this.rounds["3.1.2"] = this.state.game.Rounds[this.state.game.User1Id + ":3"].Digit2;
-				this.rounds["3.1.3"] = this.state.game.Rounds[this.state.game.User1Id + ":3"].Digit3;
-			}
-			if (this.state.game.Rounds[this.state.game.User2Id + ":3"]) {
-				this.rounds["3.2.1"] = this.state.game.Rounds[this.state.game.User2Id + ":3"].Digit1;
-				this.rounds["3.2.2"] = this.state.game.Rounds[this.state.game.User2Id + ":3"].Digit2;
-				this.rounds["3.2.3"] = this.state.game.Rounds[this.state.game.User2Id + ":3"].Digit3;
-			}
-			if (this.state.game.Rounds[this.state.game.User1Id + ":4"]) {
-				this.rounds["4.1.1"] = GetDigitOrJoker(this.state.game.Rounds[this.state.game.User1Id + ":4"].Digit1);
-				this.rounds["4.1.2"] = GetDigitOrJoker(this.state.game.Rounds[this.state.game.User1Id + ":4"].Digit2);
-				this.rounds["4.1.3"] = GetDigitOrJoker(this.state.game.Rounds[this.state.game.User1Id + ":4"].Digit3);
-			}
-			if (this.state.game.Rounds[this.state.game.User2Id + ":4"]) {
-				this.rounds["4.2.1"] = GetDigitOrJoker(this.state.game.Rounds[this.state.game.User2Id + ":4"].Digit1);
-				this.rounds["4.2.2"] = GetDigitOrJoker(this.state.game.Rounds[this.state.game.User2Id + ":4"].Digit2);
-				this.rounds["4.2.3"] = GetDigitOrJoker(this.state.game.Rounds[this.state.game.User2Id + ":4"].Digit3);
-			}
-			if (this.state.game.Rounds[this.state.game.User1Id + ":5"]) {
-				this.rounds["5.1.1"] = GetDigitOrJoker(this.state.game.Rounds[this.state.game.User1Id + ":5"].Digit1);
-				this.rounds["5.1.2"] = GetDigitOrJoker(this.state.game.Rounds[this.state.game.User1Id + ":5"].Digit2);
-				this.rounds["5.1.3"] = GetDigitOrJoker(this.state.game.Rounds[this.state.game.User1Id + ":5"].Digit3);
-			}
-			if (this.state.game.Rounds[this.state.game.User2Id + ":5"]) {
-				this.rounds["5.2.1"] = GetDigitOrJoker(this.state.game.Rounds[this.state.game.User2Id + ":5"].Digit1);
-				this.rounds["5.2.2"] = GetDigitOrJoker(this.state.game.Rounds[this.state.game.User2Id + ":5"].Digit2);
-				this.rounds["5.2.3"] = GetDigitOrJoker(this.state.game.Rounds[this.state.game.User2Id + ":5"].Digit3);
-			}
-		}
+        this.refreshRounds();
 
 		var footerButtonOrLabel = null;
 		if (FooterButtonText) {
@@ -455,215 +565,80 @@ export default class GamePage extends React.Component {
 
 		var gameArea;
 
-		if (this.state.playing === true) {
-			var d1 = this.state.myDigit1 ? (this.state.myDigit1 + "") : null;
-			var d2 = this.state.myDigit2 ? (this.state.myDigit2 + "") : null;
-			var d3 = this.state.myDigit3 ? (this.state.myDigit3 + "") : null;
-
-			function checkDigit(d) {
-				return (d1 !== (d + "")) && (d2 !== (d + "")) && (d3 !== (d + ""));
-			}
-
-
-
+		if ((this.state.gamePageStatus === GAMEPAGE_STATUS.PLAY) ||
+            (this.state.gamePageStatus === GAMEPAGE_STATUS.ALLDIGIT))
+        {
+			let d1 = this.state.myDigit1 ? (this.state.myDigit1 + "") : null;
+			let d2 = this.state.myDigit2 ? (this.state.myDigit2 + "") : null;
+			let d3 = this.state.myDigit3 ? (this.state.myDigit3 + "") : null;
 			gameArea = (
-				<div className="Playground">
-					<div className="Table">
-						<div className="CardsContainer">
-							<div className="Card Shirt">
-								{
-									this.state.competitorDigit1 ?
-										(
-											<div className="DigitIcon" data-digit={this.state.competitorDigit1} data-color="blue"></div>
-										) : null
-								}
-							</div>
-							
-							<div className="Card Shirt">
-								{
-									this.state.competitorDigit2 ?
-										(
-											<div className="DigitIcon" data-digit={this.state.competitorDigit2} data-color="blue"></div>
-										) : null
-								}
-							</div>
+                <GamePageDesktop 
+                    Device={this.props.Device} 
+                    GamePageStatus={this.state.gamePageStatus}  
+                    CurrentGame={this.props.CurrentGame} 
+                    Rounds={this.rounds}
+                    competitorDigit1 = {null}
+                    competitorDigit2 = {null}
+                    competitorDigit3 = {null}
+                    
+                    myDigit1 = {d1}
+                    myDigit2 = {d2}
+                    myDigit3 = {d3}
 
-							<div className="Card Shirt">
-								{
-									this.state.competitorDigit3 ?
-										(
-											<div className="DigitIcon" data-digit={this.state.competitorDigit3} data-color="blue"></div>
-										) : null
-								}
-							</div>
-						</div>
+                    >				
+				</GamePageDesktop>
+			);
+        }
+        else if (this.state.gamePageStatus === GAMEPAGE_STATUS.ROUND)
+        {
+            let myDigit1 = this.rounds[(this.currentShownRoundNumber) + ".1.1"];
+            let myDigit2 = this.rounds[(this.currentShownRoundNumber) + ".1.2"];
+            let myDigit3 = this.rounds[(this.currentShownRoundNumber) + ".1.3"];
 
-						<div className="CardsContainer">
-							<div className="Card IconPlace">
-								{
-									this.state.myDigit1 ?
-										(
-											<div className="DigitIcon" data-digitnumber="1" data-digit={this.state.myDigit1} data-color="red" onClick={this.onDesktopDigitClick}></div>
-										) : null
-								}
-							</div>
+            let competitorDigit1 = this.rounds[(this.currentShownRoundNumber) + ".2.1"];
+            let competitorDigit2 = this.rounds[(this.currentShownRoundNumber) + ".2.2"];
+            let competitorDigit3 = this.rounds[(this.currentShownRoundNumber) + ".2.3"];
 
-							<div className="Card IconPlace">
-								{
-									this.state.myDigit2 ?
-										(
-											<div className="DigitIcon" data-digitnumber="2" data-digit={this.state.myDigit2} data-color="red" onClick={this.onDesktopDigitClick}></div>
-										) : null
-								}
-							</div>
+            gameArea = (
+                <GamePageDesktop 
+                    Device={this.props.Device} 
+                    GamePageStatus={this.state.gamePageStatus}  
+                    CurrentGame={this.props.CurrentGame} 
+                    Rounds={this.rounds}
+                    competitorDigit1 = {competitorDigit1 ? (competitorDigit1 + "") : null}
+                    competitorDigit2 = {competitorDigit2 ? (competitorDigit2 + "") : null}
+                    competitorDigit3 = {competitorDigit3 ? (competitorDigit3 + "") : null}
+                    
+                    myDigit1 = {myDigit1 ? (myDigit1 + "") : null}
+                    myDigit2 = {myDigit2 ? (myDigit2 + "") : null}
+                    myDigit3 = {myDigit3 ? (myDigit3 + "") : null}
 
-							<div className="Card IconPlace">
-								{
-									this.state.myDigit3 ?
-										(
-											<div className="DigitIcon" data-digitnumber="3" data-digit={this.state.myDigit3} data-color="red" onClick={this.onDesktopDigitClick}></div>
-										) : null
-								}
-							</div>
-						</div>
-					</div>
-
-					<div className="YourCardsContainer">
-						<div className="RowsContainer">
-							<div className="Row">
-								<div className="Card">
-									<div className="DigitIcon" data-digit="2" data-color="red" data-active={checkDigit(2) ? 1 : 0} onClick={checkDigit(2) ? this.onCardDigitClick : null}></div>
-								</div>
-
-								<div className="Card">
-									<div className="DigitIcon" data-digit="4" data-color="red" data-active={checkDigit(4) ? 1 : 0} onClick={checkDigit(4) ? this.onCardDigitClick : null}></div>
-								</div>
-
-								<div className="Card">
-									<div className="DigitIcon" data-digit="6" data-color="red" data-active={checkDigit(6) ? 1 : 0} onClick={checkDigit(6) ? this.onCardDigitClick : null}></div>
-								</div>
-
-								<div className="Card">
-									<div className="DigitIcon" data-digit="8" data-color="red" data-active={checkDigit(8) ? 1 : 0} onClick={checkDigit(8) ? this.onCardDigitClick : null}></div>
-								</div>
-							</div>
-
-							<div className="Row">
-								<div className="Card">
-									<div className="DigitIcon" data-digit="3" data-color="red" data-active={checkDigit(3) ? 1 : 0} onClick={checkDigit(3) ? this.onCardDigitClick : null}></div>
-								</div>
-
-								<div className="Card">
-									<div className="DigitIcon" data-digit="5" data-color="red" data-active={checkDigit(5) ? 1 : 0} onClick={checkDigit(5) ? this.onCardDigitClick : null}></div>
-								</div>
-
-								<div className="Card">
-									<div className="DigitIcon" data-digit="7" data-color="red" data-active={checkDigit(7) ? 1 : 0} onClick={checkDigit(7) ? this.onCardDigitClick : null}></div>
-								</div>
-
-								<div className="Card">
-									<div className="DigitIcon" data-digit="9" data-color="red" data-active={checkDigit(9) ? 1 : 0} onClick={checkDigit(9) ? this.onCardDigitClick : null}></div>
-								</div>
-							</div>
-						</div>
-
-						<div className="Card">
-							<div className="DigitIcon" data-digit="J" data-color="red" data-active={checkDigit('J') ? 1 : 0} onClick={checkDigit('J') ? this.onCardDigitClick : null}></div>
-						</div>
-					</div>
-				</div>
-			)
-		}
-		else {
+                    >				
+                </GamePageDesktop>
+            );
+        }
+        else if (this.currentGame.GameStatus === GAME_STATUS.GAME_WAIT_USER2)
+        {
+            gameArea = (<div className="UserTip">
+	                        <p>                
+                                {this.currentContext.GetText('game.page', 'InvitationText1')}
+                                {this.currentContext.GetText('game.page', 'InvitationText2')}
+                            </p>
+                        </div>);
+        }
+		else 
+        {
 			gameArea = (
-				<div className="RoundsContainer">
-					<div className="Round">
-						<div className="DigitContainer">
-							<p data-color="red">{this.getDigitHtml("1.1.1","red")}</p>
-							<p data-color="green">{this.getDigitHtml("1.1.2","red")}</p>
-							<p data-color="yellow">{this.getDigitHtml("1.1.3","red")}</p>
-						</div>
-
-						<p>{this.currentContext.GetText('game.page', 'RoundName1')}</p>
-
-						<div className="DigitContainer">
-							<p data-color="red">{this.getDigitHtml("1.2.1","blue")}</p>
-							<p data-color="green">{this.getDigitHtml("1.2.2","blue")}</p>
-							<p data-color="yellow">{this.getDigitHtml("1.2.3","blue")}</p>
-						</div>
-					</div>
-
-					<div className="Round">
-						<div className="DigitContainer">
-							<p data-color="red">{this.getDigitHtml("2.1.1","red")}</p>
-							<p data-color="green">{this.getDigitHtml("2.1.2","red")}</p>
-							<p data-color="yellow">{this.getDigitHtml("2.1.3","red")}</p>
-						</div>
-
-						<p>{this.currentContext.GetText('game.page', 'RoundName2')}</p>
-
-						<div className="DigitContainer">
-							<p data-color="red">{this.getDigitHtml("2.2.1","blue")}</p>
-							<p data-color="green">{this.getDigitHtml("2.2.2","blue")}</p>
-							<p data-color="yellow">{this.getDigitHtml("2.2.3","blue")}</p>
-						</div>
-					</div>
-
-					<div className="Round">
-						<div className="DigitContainer">
-							<p data-color="red">{this.getDigitHtml("3.1.1","red")}</p>
-							<p data-color="green">{this.getDigitHtml("3.1.2","red")}</p>
-							<p data-color="yellow">{this.getDigitHtml("3.1.3","red")}</p>
-						</div>
-
-						<p>{this.currentContext.GetText('game.page', 'RoundName3')}</p>
-
-						<div className="DigitContainer">
-							<p data-color="red">{this.getDigitHtml("3.2.1","blue")}</p>
-							<p data-color="green">{this.getDigitHtml("3.2.2","blue")}</p>
-							<p data-color="yellow">{this.getDigitHtml("3.2.3","blue")}</p>
-						</div>
-					</div>
-
-					<div className="Round">
-						<div className="DigitContainer">
-							<p data-color="red">{this.getDigitHtml("4.1.1","red")}</p>
-							<p data-color="green">{this.getDigitHtml("4.1.2","red")}</p>
-							<p data-color="yellow">{this.getDigitHtml("4.1.3","red")}</p>
-						</div>
-
-						<p>{this.currentContext.GetText('game.page', 'RoundName4')}</p>
-
-						<div className="DigitContainer">
-							<p data-color="red">{this.getDigitHtml("4.2.1","blue")}</p>
-							<p data-color="green">{this.getDigitHtml("4.2.2","blue")}</p>
-							<p data-color="yellow">{this.getDigitHtml("4.2.3","blue")}</p>
-						</div>
-					</div>
-
-					<div className="Round" data-active="0">
-						<div className="DigitContainer">
-							<p>{this.getDigitHtml("5.1.1","red")}</p>
-							<p>{this.getDigitHtml("5.1.2","red")}</p>
-							<p>{this.getDigitHtml("5.1.3","red")}</p>
-						</div>
-
-						<p>{this.currentContext.GetText('game.page', 'RoundName5')}</p>
-
-						<div className="DigitContainer">
-							<p>{this.getDigitHtml("5.2.1","blue")}</p>
-							<p>{this.getDigitHtml("5.2.2","blue")}</p>
-							<p>{this.getDigitHtml("5.2.3","blue")}</p>
-						</div>
-					</div>
-				</div>
-			)
-
-
-
-
-
-
+                <GamePageRound 
+                    GamePageStatus={this.state.gamePageStatus}  
+                    Device={this.props.Device}  
+                    CurrentGame={this.props.CurrentGame} 
+                    Rounds={this.rounds}
+                    CurrentRoundNumber={this.state.currentRoundNumber}
+                    onRoundClickCallBack = {this.onRoundClick}
+                    SetDigits={this.setDigits}>				
+				</GamePageRound>
+			);
 
 
 /*** *** Блок с обновлённых окном "Ожидание ответа от соперника..." *** ***/
@@ -675,9 +650,7 @@ export default class GamePage extends React.Component {
 
 /* Расположить ВМЕСТО RoundsContainer */
 /*
-<div class="UserTip">
-	<p>Ваше приглашение было отправлено игроку ezhov4444. Ожидайте ответа...</p>
-</div>
+
 */
 
 /* Расположить ПОД Gameground */
@@ -716,7 +689,7 @@ export default class GamePage extends React.Component {
 
 						<div className="Gameground">
 							<div className="FaceToFace">
-								<div className="Gamer" data-vip="1">
+								<div className="Gamer" data-vip={(Math.random() > 0.5) ? 1 : 0}>
 									<p>{this.currentGame.User1Name}</p>
 
 									<img src='/img/avatar/1/boy.1.png' alt="No Avatar"></img>
@@ -746,7 +719,7 @@ export default class GamePage extends React.Component {
 									</div>
 								</div>
 
-								<div className="Gamer" data-vip="0">
+								<div className="Gamer" data-vip={(Math.random() > 0.5) ? 1 : 0}>
 									<p>{this.currentGame.User2Name}</p>
 
 									<img src='/img/avatar/1/boy.1.png' alt="No Avatar"></img>

@@ -13,6 +13,7 @@ import GameStartUserPage from './Game/GameStartUserPage.js'
 import GamePage from './Game/GamePage.js'
 
 import ConditionPage from './Common/ConditionPage.js'
+import RulesPage from './Common/RulesPage.js'
 import SettingsAvatarPage from './Settings/SettingsAvatarPage.js'
 import SettingsSettingsPage from './Settings/SettingsSettingsPage.js'
 
@@ -96,6 +97,10 @@ export default class PageHolder extends React.Component {
         else if (this.props.currentPage === 'ConditionPage')
         {
             CPage = (<ConditionPage></ConditionPage>)
+        }
+        else if (this.props.currentPage === 'RulesPage')
+        {
+            CPage = (<RulesPage></RulesPage>)
         }
         else if (this.props.currentPage === 'Settings:Settings')
         {

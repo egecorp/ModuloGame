@@ -345,7 +345,13 @@ export function AddPackets(addPackFunction)
 
         'FooterButtonPlayRound'  : 'Сделать ход',
         'FooterButtonWait'  : 'Ожидаем соперника',
-        
+        'FooterButtonWithdraw'  : 'Отменить приглашение',
+        'FooterButtonBack' : 'Назад',
+
+
+        'InvitationText1' : 'Ваше приглашение было отправлено игроку.',
+        'InvitationText2' : 'Ожидайте ответа...',
+
         'StartGame.NoGame':'Игра не состоялась',
 
         'RoundName1':'Раунд 1',

@@ -43,6 +43,7 @@ export default class Game extends React.Component {
                 'Settings:Settings', 
                 'Settings:Avatar', 
                 'ConditionPage',
+                'RulesPage',
                 'Game:Game1',
                 'Game:Game2',
                 'Game:Game3'];

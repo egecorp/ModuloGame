@@ -864,6 +864,64 @@
 	}
 }
 
+
+
+
+.RulesPage {
+	height: 100%;
+
+	display: grid;
+	grid-template-rows: max-content 1fr;
+
+	overflow: hidden;
+
+	.Content {
+		position: relative;
+		height: 100%;
+		overflow: scroll;
+
+		&[data-shadow="top"]::after,
+		&[data-shadow="bottom"]::before,
+		&[data-shadow="both"]::after,
+		&[data-shadow="both"]::before {
+			display: block;
+		}
+
+		&::after,
+		&::before {
+			position: absolute;
+			left: 0;
+
+			content: "";
+
+			display: none;
+
+			width: calc(100% - 9px);
+			height: 20px;
+		}
+
+		&::after {
+			top: 0;
+			background: linear-gradient(#0b7738 0%, rgba(11, 119, 56, 0) 100%);
+		}
+
+		&::before {
+			bottom: 0;
+			background: linear-gradient(rgba(9, 122, 58, 0) 0%, #097a3a 100%);
+		}
+
+		p {
+			height: 100%;
+			overflow: auto;
+
+			font-size: 13px;
+			font-weight: 300;
+			text-align: justify;
+		}
+	}
+}
+
+
 /******** Игровая область **********/
 .Gameground {
 	margin-top: 12px;
