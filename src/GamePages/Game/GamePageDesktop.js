@@ -17,6 +17,7 @@ export default class GamePageDesktop extends React.Component {
 			myDigit2: props.myDigit2,
 			myDigit3: props.myDigit3,
 			canUseJoker: false,
+            isPlaying : 1 // TODO брать из props
 		};
 
 		this.onCardDigitClick = this.onCardDigitClick.bind(this);
@@ -25,7 +26,7 @@ export default class GamePageDesktop extends React.Component {
 
 	onCardDigitClick(newDigit) {
 
-        if ((this.props.GamePageStatus !== GAMEPAGE_STATUS.ALLDIGIT) && (this.props.GamePageStatus !== GAMEPAGE_STATUS.PLAY))
+        if (this.props.GamePageStatus !== GAMEPAGE_STATUS.PLAY)
         {
             console.log("You cannot use digit");
             console.log(this.props.GamePageStatus)
@@ -40,36 +41,45 @@ export default class GamePageDesktop extends React.Component {
 		var d2 = this.state.myDigit2 ? (this.state.myDigit2 + "") : null;
 		var d3 = this.state.myDigit3 ? (this.state.myDigit3 + "") : null;
 
-        if ((d1 == newDigit) || (d2 == newDigit) || (d3 == newDigit))
+        if ((d1 === newDigit) || (d2 === newDigit) || (d3 === newDigit))
         {
             console.log('Must not use digit 2 times');
             return;
         }
 
 		if (!d1) {
-			this.setState({ myDigit1: newDigit });
+			this.setState({ myDigit1: d1 = newDigit });
 		}
-		else if (!d2 && (d1 !== newDigit)) {
-			this.setState({ myDigit2: newDigit });
+		else if (!d2) {
+			this.setState({ myDigit2: d2 = newDigit });
 		}
-		else if (!d3 && (d1 !== newDigit) && (d2 !== newDigit)) {
-			this.setState({ myDigit3: newDigit });
+		else if (!d3) {
+			this.setState({ myDigit3: d3 = newDigit });
 		}
 		else {
 			console.log("Strange situation");
 			console.log(newDigit, d1, d2, d3);
 		}
 
-        this.props.SetDigits(d1, d2,d3);
+        this.props.SetDigits(d1, d2, d3);
 
 
 	}
 
-	onDesktopDigitClick(ev) {
-		let digitNumber = ev.target.dataset.digitnumber + "";
-		if (digitNumber === "1") this.setState({ myDigit1: null });
-		if (digitNumber === "2") this.setState({ myDigit2: null });
-		if (digitNumber === "3") this.setState({ myDigit3: null });
+	onDesktopDigitClick(digit, position) {
+
+        if ((this.props.GamePageStatus !== GAMEPAGE_STATUS.PLAY)
+        && (this.props.GamePageStatus !== GAMEPAGE_STATUS.ALLDIGIT))
+        {
+            console.log("You cannot click desktop digits");
+            return;
+        }
+
+        var d1 = (this.state.myDigit1 && (position !== '1')) ? (this.state.myDigit1 + "") : null;
+		var d2 = (this.state.myDigit2 && (position !== '2')) ? (this.state.myDigit2 + "") : null;
+		var d3 = (this.state.myDigit3 && (position !== '3')) ? (this.state.myDigit3 + "") : null;
+        this.setState({ myDigit1: d1, myDigit2: d2, myDigit3: d3  });
+        this.props.SetDigits(d1, d2,d3);
 	}
 
     getDigitHtml(roundNumber, digitColor)
@@ -118,13 +128,13 @@ export default class GamePageDesktop extends React.Component {
 
                             <div className="CardsContainer">
                                 <div className="Card IconPlace">
-                                    <OneGameRoundDigit Digit={this.state.myDigit1} DigitColor="red" onDigitClick={this.onDesktopDigitClick}></OneGameRoundDigit>
+                                    <OneGameRoundDigit Digit={this.state.myDigit1} DigitColor="red" onDigitClick={this.onDesktopDigitClick} Position="1"></OneGameRoundDigit>
                                 </div>
                                 <div className="Card IconPlace">
-                                    <OneGameRoundDigit Digit={this.state.myDigit2} DigitColor="red" onDigitClick={this.onDesktopDigitClick}></OneGameRoundDigit>
+                                    <OneGameRoundDigit Digit={this.state.myDigit2} DigitColor="red" onDigitClick={this.onDesktopDigitClick} Position="2"></OneGameRoundDigit>
                                 </div>
                                 <div className="Card IconPlace">
-                                    <OneGameRoundDigit Digit={this.state.myDigit3} DigitColor="red" onDigitClick={this.onDesktopDigitClick}></OneGameRoundDigit>
+                                    <OneGameRoundDigit Digit={this.state.myDigit3} DigitColor="red" onDigitClick={this.onDesktopDigitClick} Position="3"></OneGameRoundDigit>
                                 </div>
                             </div>
                         </div>
@@ -139,7 +149,7 @@ export default class GamePageDesktop extends React.Component {
                                 </div>
 
                                 <div className="Row">
-                                    <OneGameDesktopCard Digit="3" onCardClick={this.onCardDigitClick} IsActive={this.checkDigit(2)}></OneGameDesktopCard>
+                                    <OneGameDesktopCard Digit="3" onCardClick={this.onCardDigitClick} IsActive={this.checkDigit(3)}></OneGameDesktopCard>
                                     <OneGameDesktopCard Digit="5" onCardClick={this.onCardDigitClick} IsActive={this.checkDigit(5)}></OneGameDesktopCard>
                                     <OneGameDesktopCard Digit="7" onCardClick={this.onCardDigitClick} IsActive={this.checkDigit(7)}></OneGameDesktopCard>
                                     <OneGameDesktopCard Digit="9" onCardClick={this.onCardDigitClick} IsActive={this.checkDigit(9)}></OneGameDesktopCard>

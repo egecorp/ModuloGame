@@ -16,7 +16,7 @@ export default class OneGameRoundDigit extends React.Component {
         if(this.props.Digit)
         {
             return (<div 
-                        onclick={this.onDigitClick} 
+                        onClick={this.onDigitClick} 
                         className="DigitIcon" 
                         data-digit={this.props.Digit} 
                         data-color={this.props.DigitColor}

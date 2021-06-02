@@ -47,7 +47,6 @@ export default class GamePage extends React.Component {
 
 		this.onFooterButtonClick = this.onFooterButtonClick.bind(this);
 		this.setDigits = this.setDigits.bind(this);
-		this.onDesktopDigitClick = this.onDesktopDigitClick.bind(this);
 
 		this.updateGameInfo = this.updateGameInfo.bind(this);
 		this.onLoadGameInfo = this.onLoadGameInfo.bind(this);
@@ -299,38 +298,27 @@ export default class GamePage extends React.Component {
 	setDigits(d1, d2, d3) {
 
         console.log('setDigits', d1,d2,d3);
-
-        if ((this.state.gamePageStatus !== GAMEPAGE_STATUS.ALLDIGIT) && (this.state.gamePageStatus !== GAMEPAGE_STATUS.PLAY))
-        {
-            console.log("You cannot use digit 305");
-            return;
-        }
-
-        this.setState({ myDigit1: d1, myDigit2: d2, myDigit3: d3 });
+ 
+        var newGamePageStatus = this.state.gamePageStatus;
 
         if ( (!d1 || !d2 || !d3) && (this.state.gamePageStatus === GAMEPAGE_STATUS.ALLDIGIT))
         {
-            this.setState({ gamePageStatus: GAMEPAGE_STATUS.PLAY });
+            newGamePageStatus = GAMEPAGE_STATUS.PLAY;
         }
 
         if ( (d1 && d2 && d3) && (this.state.gamePageStatus === GAMEPAGE_STATUS.PLAY))
         {
-            this.setState({ gamePageStatus: GAMEPAGE_STATUS.ALLDIGIT });
+            newGamePageStatus = GAMEPAGE_STATUS.ALLDIGIT;
         }
 
-
+        this.setState({ myDigit1: d1, myDigit2: d2, myDigit3: d3, gamePageStatus: newGamePageStatus });
 
 	}
 
-	onDesktopDigitClick(ev) {
-		let digitNumber = ev.target.dataset.digitnumber + "";
-		if (digitNumber === "1") this.setState({ myDigit1: null });
-		if (digitNumber === "2") this.setState({ myDigit2: null });
-		if (digitNumber === "3") this.setState({ myDigit3: null });
-	}
 
 
 	onRoundClick(roundNumber) {
+        //TODO вставить проверку, если раунд текущий, то не переходим или переходим как PLAY
         this.setState(
             {
                 gamePageStatus :  GAMEPAGE_STATUS.ROUND,
@@ -580,7 +568,7 @@ export default class GamePage extends React.Component {
                     competitorDigit1 = {null}
                     competitorDigit2 = {null}
                     competitorDigit3 = {null}
-                    
+                    SetDigits = {this.setDigits}
                     myDigit1 = {d1}
                     myDigit2 = {d2}
                     myDigit3 = {d3}

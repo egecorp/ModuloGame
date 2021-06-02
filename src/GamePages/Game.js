@@ -169,7 +169,7 @@ export default class Game extends React.Component {
 
     CheckGameList(result)
     {
-        console.log(result);
+        //console.log(result);
         if (
             (this.state.currentDeviceStatus === this.DEVICE_STATUS.USERINFO_GOOD) &&
             (this.state.currentPage === 'Game:GameList')
