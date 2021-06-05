@@ -3,7 +3,7 @@ import {LanguageContext} from '../../Language/LangPack';
 import HeadNavigation from '../../Components/HeadNavigation';
 import OneUser from '../../Components/OneUser';
 import DEVICE_STATUS from '../../Lib/DeviceStatus';
-import OneModuloGame from '../../Model/Game';
+import OneModuloGame from '../../Model/OneModuloGame';
 
 const MIN_LENGTH_TO_SEARCH = 2;
 

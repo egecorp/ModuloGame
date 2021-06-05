@@ -6,7 +6,7 @@ import MsgBox2Buttons from "../../Components/MsgBox2Buttons"
 import GAME_STATUS from '../../Lib/GameStatus';
 import DEVICE_STATUS from '../../Lib/DeviceStatus';
 import GAMEPAGE_STATUS from '../../Lib/GamePageStatus';
-import OneModuloGame from '../../Model/Game';
+import OneModuloGame from '../../Model/OneModuloGame';
 
 import GamePageDesktop from './GamePageDesktop';
 import GamePageRound from './GamePageRound';
@@ -15,7 +15,6 @@ import GamePageRound from './GamePageRound';
 export default class GamePage extends React.Component {
 	currentGame = null;
 	isFirstGamer = false;
-	rounds = [];
 	constructor(props, context) {
         super(props);
 
@@ -131,11 +130,32 @@ export default class GamePage extends React.Component {
 				let canUseJoker = ((this.props.Device.myUser.Id === newGame.User1Id) && newGame.User1CanUseJoker) ||
 					((this.props.Device.myUser.Id === newGame.User2Id) && newGame.User2CanUseJoker);
 
-                this.setState({ 
-                    game: newGame, 
-                    canUseJoker: canUseJoker, 
-                    currentRoundNumber:this.getCurrentRoundNumerForGame()
-                });
+                if((this.state.gamePageStatus === GAMEPAGE_STATUS.WAIT) ||
+                    (this.state.gamePageStatus === GAMEPAGE_STATUS.ROUND))
+                {
+
+                    //var d1, d2, d3, c1, c2, c3;
+                    var currentRoundNumber = this.getCurrentRoundNumerForGame();
+                    /*if (this.currentShownRoundNumber === currentRoundNumber)
+                    {
+                        currentShownRoundNumber : roundNumber
+                    }*/
+
+                    this.setState({ 
+                        game: newGame, 
+                        canUseJoker: canUseJoker, 
+                        currentRoundNumber:currentRoundNumber,
+                        gamePageStatus : GAMEPAGE_STATUS.ROUND
+                    });
+                }
+                else
+                {
+                    this.setState({ 
+                        game: newGame, 
+                        canUseJoker: canUseJoker, 
+                        currentRoundNumber:this.getCurrentRoundNumerForGame()
+                    });
+                }
             }
 		}
 		else {
@@ -144,10 +164,7 @@ export default class GamePage extends React.Component {
 		}
 	}
 
-	loadRound(round) {
-		if (!this.currentGame.Rounds) return;
 
-	}
 
 	cancelButtonOnClick() {
 		this.props.NavigationButtonCallBack(DEVICE_STATUS.GAME_SHOW_LIST);
@@ -182,8 +199,10 @@ export default class GamePage extends React.Component {
 	}
 
 	onGameChangeCallBack(r) {
-		console.log("onGameChangeCallBack");
-		console.log(r);
+        if(this.state.gamePageStatus === GAMEPAGE_STATUS.WAIT) 
+        {
+            this.setState({gamePageStatus : GAMEPAGE_STATUS.ROUND});
+        }
 	}
 
 	onFooterButtonClick(ev) {
@@ -205,69 +224,80 @@ export default class GamePage extends React.Component {
             (this.state.gamePageStatus === GAMEPAGE_STATUS.ALLDIGIT) 
            )
         {
-			function getDigit(d) {
-				if (d + '' === '2') return 2;
-				if (d + '' === '3') return 3;
-				if (d + '' === '4') return 4;
-				if (d + '' === '5') return 5;
-				if (d + '' === '6') return 6;
-				if (d + '' === '7') return 7;
-				if (d + '' === '8') return 8;
-				if (d + '' === '9') return 9;
-				if (d + '' === 'J') return 11;
-
-			}
-			if (this.state.myDigit1 && this.state.myDigit2 && this.state.myDigit3) 
+            if (this.state.myDigit1 && this.state.myDigit2 && this.state.myDigit3) 
             {
-				let postData = {
-					Id: this.currentGame.Id,
-					Digit1: getDigit(this.state.myDigit1),
-					Digit2: getDigit(this.state.myDigit2),
-					Digit3: getDigit(this.state.myDigit3),
-					DeviceWorkToken: this.props.Device.DeviceWorkToken
-				};
-
-				switch (this.currentGame.GameStatus) {
-					case GAME_STATUS.GAME_ROUND_1_NOUSER:
-					case GAME_STATUS.GAME_ROUND_1_USER2_DONE:
-						postData.RoundNumber = 1;
-						break;
-					case GAME_STATUS.GAME_ROUND_2_NOUSER:
-					case GAME_STATUS.GAME_ROUND_2_USER2_DONE:
-						postData.RoundNumber = 2;
-						break;
-					case GAME_STATUS.GAME_ROUND_3_NOUSER:
-					case GAME_STATUS.GAME_ROUND_3_USER2_DONE:
-						postData.RoundNumber = 3;
-						break;
-					case GAME_STATUS.GAME_ROUND_4_NOUSER:
-					case GAME_STATUS.GAME_ROUND_4_USER2_DONE:
-						postData.RoundNumber = 4;
-						break;
-					case GAME_STATUS.GAME_ROUND_5_NOUSER:
-					case GAME_STATUS.GAME_ROUND_5_USER2_DONE:
-						postData.RoundNumber = 5;
-						break;
-					default: break;
-				}
-
-
-				if (postData.RoundNumber) {
-					this.props.Device.PlayRound(this.onGameChangeCallBack, this, postData);
-				}
-				else {
-					this.setState({ gamePageStatus: GAMEPAGE_STATUS.MAIL });
-				}
-			}
-			else {
-				this.setState({ gamePageStatus: GAMEPAGE_STATUS.MAIN });
-			}
+                this.sendRound();
+            }
+            else
+            {
+                console.log('What is it?');
+                this.setState({ gamePageStatus: GAMEPAGE_STATUS.MAIN });
+            }
 		}
 		else {
 			this.setState({ gamePageStatus: GAMEPAGE_STATUS.PLAY });
 		}
 
 	}
+
+    sendRound()
+    {
+//        (this.state.gamePageStatus === GAMEPAGE_STATUS.WAIT)  ||
+        function getDigit(d) {
+            if (d + '' === '2') return 2;
+            if (d + '' === '3') return 3;
+            if (d + '' === '4') return 4;
+            if (d + '' === '5') return 5;
+            if (d + '' === '6') return 6;
+            if (d + '' === '7') return 7;
+            if (d + '' === '8') return 8;
+            if (d + '' === '9') return 9;
+            if (d + '' === 'J') return 11;
+        }
+
+        let postData = {
+            Id: this.currentGame.Id,
+            Digit1: getDigit(this.state.myDigit1),
+            Digit2: getDigit(this.state.myDigit2),
+            Digit3: getDigit(this.state.myDigit3),
+            DeviceWorkToken: this.props.Device.DeviceWorkToken
+        };
+
+        switch (this.currentGame.GameStatus) {
+            case GAME_STATUS.GAME_ROUND_1_NOUSER:
+            case GAME_STATUS.GAME_ROUND_1_USER2_DONE:
+                postData.RoundNumber = 1;
+                break;
+            case GAME_STATUS.GAME_ROUND_2_NOUSER:
+            case GAME_STATUS.GAME_ROUND_2_USER2_DONE:
+                postData.RoundNumber = 2;
+                break;
+            case GAME_STATUS.GAME_ROUND_3_NOUSER:
+            case GAME_STATUS.GAME_ROUND_3_USER2_DONE:
+                postData.RoundNumber = 3;
+                break;
+            case GAME_STATUS.GAME_ROUND_4_NOUSER:
+            case GAME_STATUS.GAME_ROUND_4_USER2_DONE:
+                postData.RoundNumber = 4;
+                break;
+            case GAME_STATUS.GAME_ROUND_5_NOUSER:
+            case GAME_STATUS.GAME_ROUND_5_USER2_DONE:
+                postData.RoundNumber = 5;
+                break;
+            default: break;
+        }
+
+        if (postData.RoundNumber) {
+            this.props.Device.PlayRound(this.onGameChangeCallBack, this, postData);
+            this.setState({
+                    gamePageStatus : GAMEPAGE_STATUS.WAIT
+                    
+                });
+        }
+        else {
+            this.setState({ gamePageStatus: GAMEPAGE_STATUS.MAIL });
+        }
+    }
 
 	modalButtonAcceptOnClick() {
 		let postData = { Id: this.currentGame.Id, DeviceWorkToken: this.props.Device.DeviceWorkToken };
@@ -296,7 +326,6 @@ export default class GamePage extends React.Component {
 	}
 
 	setDigits(d1, d2, d3) {
-
         console.log('setDigits', d1,d2,d3);
  
         var newGamePageStatus = this.state.gamePageStatus;
@@ -312,9 +341,7 @@ export default class GamePage extends React.Component {
         }
 
         this.setState({ myDigit1: d1, myDigit2: d2, myDigit3: d3, gamePageStatus: newGamePageStatus });
-
 	}
-
 
 
 	onRoundClick(roundNumber) {
@@ -326,70 +353,6 @@ export default class GamePage extends React.Component {
             });
 	}
 
-
-
-
-    refreshRounds()
-    {
-    
-        function GetDigitOrJoker(e) {
-            return (e === 11) ? "J" : e;
-        }
-
-        if (this.state.game && this.state.game.Rounds) {
-
-            if (this.state.game.Rounds[this.state.game.User1Id + ":1"]) {
-                this.rounds["1.1.1"] = this.state.game.Rounds[this.state.game.User1Id + ":1"].Digit1;
-                this.rounds["1.1.2"] = this.state.game.Rounds[this.state.game.User1Id + ":1"].Digit2;
-                this.rounds["1.1.3"] = this.state.game.Rounds[this.state.game.User1Id + ":1"].Digit3;
-            }
-            if (this.state.game.Rounds[this.state.game.User2Id + ":1"]) {
-                this.rounds["1.2.1"] = this.state.game.Rounds[this.state.game.User2Id + ":1"].Digit1;
-                this.rounds["1.2.2"] = this.state.game.Rounds[this.state.game.User2Id + ":1"].Digit2;
-                this.rounds["1.2.3"] = this.state.game.Rounds[this.state.game.User2Id + ":1"].Digit3;
-            }
-            if (this.state.game.Rounds[this.state.game.User1Id + ":2"]) {
-                this.rounds["2.1.1"] = this.state.game.Rounds[this.state.game.User1Id + ":2"].Digit1;
-                this.rounds["2.1.2"] = this.state.game.Rounds[this.state.game.User1Id + ":2"].Digit2;
-                this.rounds["2.1.3"] = this.state.game.Rounds[this.state.game.User1Id + ":2"].Digit3;
-            }
-            if (this.state.game.Rounds[this.state.game.User2Id + ":2"]) {
-                this.rounds["2.2.1"] = this.state.game.Rounds[this.state.game.User2Id + ":2"].Digit1;
-                this.rounds["2.2.2"] = this.state.game.Rounds[this.state.game.User2Id + ":2"].Digit2;
-                this.rounds["2.2.3"] = this.state.game.Rounds[this.state.game.User2Id + ":2"].Digit3;
-            }
-            if (this.state.game.Rounds[this.state.game.User1Id + ":3"]) {
-                this.rounds["3.1.1"] = this.state.game.Rounds[this.state.game.User1Id + ":3"].Digit1;
-                this.rounds["3.1.2"] = this.state.game.Rounds[this.state.game.User1Id + ":3"].Digit2;
-                this.rounds["3.1.3"] = this.state.game.Rounds[this.state.game.User1Id + ":3"].Digit3;
-            }
-            if (this.state.game.Rounds[this.state.game.User2Id + ":3"]) {
-                this.rounds["3.2.1"] = this.state.game.Rounds[this.state.game.User2Id + ":3"].Digit1;
-                this.rounds["3.2.2"] = this.state.game.Rounds[this.state.game.User2Id + ":3"].Digit2;
-                this.rounds["3.2.3"] = this.state.game.Rounds[this.state.game.User2Id + ":3"].Digit3;
-            }
-            if (this.state.game.Rounds[this.state.game.User1Id + ":4"]) {
-                this.rounds["4.1.1"] = GetDigitOrJoker(this.state.game.Rounds[this.state.game.User1Id + ":4"].Digit1);
-                this.rounds["4.1.2"] = GetDigitOrJoker(this.state.game.Rounds[this.state.game.User1Id + ":4"].Digit2);
-                this.rounds["4.1.3"] = GetDigitOrJoker(this.state.game.Rounds[this.state.game.User1Id + ":4"].Digit3);
-            }
-            if (this.state.game.Rounds[this.state.game.User2Id + ":4"]) {
-                this.rounds["4.2.1"] = GetDigitOrJoker(this.state.game.Rounds[this.state.game.User2Id + ":4"].Digit1);
-                this.rounds["4.2.2"] = GetDigitOrJoker(this.state.game.Rounds[this.state.game.User2Id + ":4"].Digit2);
-                this.rounds["4.2.3"] = GetDigitOrJoker(this.state.game.Rounds[this.state.game.User2Id + ":4"].Digit3);
-            }
-            if (this.state.game.Rounds[this.state.game.User1Id + ":5"]) {
-                this.rounds["5.1.1"] = GetDigitOrJoker(this.state.game.Rounds[this.state.game.User1Id + ":5"].Digit1);
-                this.rounds["5.1.2"] = GetDigitOrJoker(this.state.game.Rounds[this.state.game.User1Id + ":5"].Digit2);
-                this.rounds["5.1.3"] = GetDigitOrJoker(this.state.game.Rounds[this.state.game.User1Id + ":5"].Digit3);
-            }
-            if (this.state.game.Rounds[this.state.game.User2Id + ":5"]) {
-                this.rounds["5.2.1"] = GetDigitOrJoker(this.state.game.Rounds[this.state.game.User2Id + ":5"].Digit1);
-                this.rounds["5.2.2"] = GetDigitOrJoker(this.state.game.Rounds[this.state.game.User2Id + ":5"].Digit2);
-                this.rounds["5.2.3"] = GetDigitOrJoker(this.state.game.Rounds[this.state.game.User2Id + ":5"].Digit3);
-            }
-        }
-    }
 
     getFooterButtonText()
     {
@@ -427,7 +390,6 @@ export default class GamePage extends React.Component {
 				return null;
 		}
     }
-
     
     getFooterLabelText()
     {
@@ -541,8 +503,6 @@ export default class GamePage extends React.Component {
 			)
 		}
 
-        this.refreshRounds();
-
 		var footerButtonOrLabel = null;
 		if (FooterButtonText) {
 			footerButtonOrLabel = <button onClick={this.onFooterButtonClick}>{FooterButtonText}</button>;
@@ -564,7 +524,6 @@ export default class GamePage extends React.Component {
                     Device={this.props.Device} 
                     GamePageStatus={this.state.gamePageStatus}  
                     CurrentGame={this.props.CurrentGame} 
-                    Rounds={this.rounds}
                     competitorDigit1 = {null}
                     competitorDigit2 = {null}
                     competitorDigit3 = {null}
@@ -577,22 +536,23 @@ export default class GamePage extends React.Component {
 				</GamePageDesktop>
 			);
         }
-        else if (this.state.gamePageStatus === GAMEPAGE_STATUS.ROUND)
+        else if ((this.state.gamePageStatus === GAMEPAGE_STATUS.ROUND) ||
+        (this.state.gamePageStatus === GAMEPAGE_STATUS.WAIT))
         {
-            let myDigit1 = this.rounds[(this.currentShownRoundNumber) + ".1.1"];
-            let myDigit2 = this.rounds[(this.currentShownRoundNumber) + ".1.2"];
-            let myDigit3 = this.rounds[(this.currentShownRoundNumber) + ".1.3"];
+            var currentRound= this.currentGame.GetRound(this.state.currentShownRoundNumber);
+            let myDigit1 = currentRound.myDigit1;
+            let myDigit2 = currentRound.myDigit2;
+            let myDigit3 = currentRound.myDigit3;
 
-            let competitorDigit1 = this.rounds[(this.currentShownRoundNumber) + ".2.1"];
-            let competitorDigit2 = this.rounds[(this.currentShownRoundNumber) + ".2.2"];
-            let competitorDigit3 = this.rounds[(this.currentShownRoundNumber) + ".2.3"];
+            let competitorDigit1 = currentRound.competitorDigit1;
+            let competitorDigit2 = currentRound.competitorDigit2;
+            let competitorDigit3 = currentRound.competitorDigit3;
 
             gameArea = (
                 <GamePageDesktop 
                     Device={this.props.Device} 
                     GamePageStatus={this.state.gamePageStatus}  
                     CurrentGame={this.props.CurrentGame} 
-                    Rounds={this.rounds}
                     competitorDigit1 = {competitorDigit1 ? (competitorDigit1 + "") : null}
                     competitorDigit2 = {competitorDigit2 ? (competitorDigit2 + "") : null}
                     competitorDigit3 = {competitorDigit3 ? (competitorDigit3 + "") : null}
@@ -605,6 +565,11 @@ export default class GamePage extends React.Component {
                 </GamePageDesktop>
             );
         }
+
+
+        
+
+
         else if (this.currentGame.GameStatus === GAME_STATUS.GAME_WAIT_USER2)
         {
             gameArea = (<div className="UserTip">
@@ -621,7 +586,6 @@ export default class GamePage extends React.Component {
                     GamePageStatus={this.state.gamePageStatus}  
                     Device={this.props.Device}  
                     CurrentGame={this.props.CurrentGame} 
-                    Rounds={this.rounds}
                     CurrentRoundNumber={this.state.currentRoundNumber}
                     onRoundClickCallBack = {this.onRoundClick}
                     SetDigits={this.setDigits}>				

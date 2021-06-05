@@ -10,7 +10,7 @@ export default class OneGameRound extends React.Component {
 	}
 
 	onRoundClick(ev) {
-		if (typeof (this.props.onRoundClickCallBack) === "function") this.props.onRoundClickCallBack(this.props.RoundNumber);
+		if (typeof (this.props.onRoundClick) === "function") this.props.onRoundClick(this.props.RoundNumber);
 	}
 
 

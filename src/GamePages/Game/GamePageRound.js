@@ -16,7 +16,7 @@ export default class GamePageRound extends React.Component {
 
 	render() {
 
-        let rounds = this.props.Rounds;
+        let game = this.props.CurrentGame;
 
 		return (
 			<LanguageContext.Consumer>
@@ -26,63 +26,63 @@ export default class GamePageRound extends React.Component {
                     <div className="RoundsContainer">
 
                         <OneGameRound 
-                            myDigit1 = {rounds["1.1.1"]} 
-                            myDigit2 = {rounds["1.1.2"]} 
-                            myDigit3 = {rounds["1.1.3"]} 
-                            competitorDigit1 = {rounds["1.2.1"]} 
-                            competitorDigit2 = {rounds["1.2.2"]} 
-                            competitorDigit3 = {rounds["1.2.3"]} 
+                            myDigit1 = {game.D1_1_1} 
+                            myDigit2 = {game.D1_1_2} 
+                            myDigit3 = {game.D1_1_3} 
+                            competitorDigit1 = {game.D1_2_1} 
+                            competitorDigit2 = {game.D1_2_2} 
+                            competitorDigit3 = {game.D1_2_3} 
                             IsActive = {this.props.CurrentRoundNumber >= 1}
                             RoundNumber = "1"
-                            onRoundClickCallBack = {(this.props.CurrentRoundNumber >= 1) && this.onRoundClick}
+                            onRoundClick = {(this.props.CurrentRoundNumber >= 1) && this.onRoundClick}
                         ></OneGameRound>
 
                         <OneGameRound 
-                            myDigit1 = {rounds["2.1.1"]} 
-                            myDigit2 = {rounds["2.1.2"]} 
-                            myDigit3 = {rounds["2.1.3"]} 
-                            competitorDigit1 = {rounds["2.2.1"]} 
-                            competitorDigit2 = {rounds["2.2.2"]} 
-                            competitorDigit3 = {rounds["2.2.3"]} 
+                            myDigit1 = {game.D2_1_1} 
+                            myDigit2 = {game.D2_1_2} 
+                            myDigit3 = {game.D2_1_3} 
+                            competitorDigit1 = {game.D2_2_1} 
+                            competitorDigit2 = {game.D2_2_2} 
+                            competitorDigit3 = {game.D2_2_3} 
                             IsActive = {this.props.CurrentRoundNumber >= 2}
                             RoundNumber = "2"
-                            onRoundClickCallBack = {(this.props.CurrentRoundNumber >= 2) && this.onRoundClick}
+                            onRoundClick = {(this.props.CurrentRoundNumber >= 2) && this.onRoundClick}
                         ></OneGameRound>
                         
                         <OneGameRound 
-                            myDigit1 = {rounds["3.1.1"]} 
-                            myDigit2 = {rounds["3.1.2"]} 
-                            myDigit3 = {rounds["3.1.3"]} 
-                            competitorDigit1 = {rounds["3.2.1"]} 
-                            competitorDigit2 = {rounds["3.2.2"]} 
-                            competitorDigit3 = {rounds["3.2.3"]} 
+                            myDigit1 = {game.D3_1_1} 
+                            myDigit2 = {game.D3_1_2} 
+                            myDigit3 = {game.D3_1_3} 
+                            competitorDigit1 = {game.D3_2_1} 
+                            competitorDigit2 = {game.D3_2_2} 
+                            competitorDigit3 = {game.D3_2_3} 
                             IsActive = {this.props.CurrentRoundNumber >= 3}
                             RoundNumber = "3"
-                            onRoundClickCallBack = {(this.props.CurrentRoundNumber >= 3) && this.onRoundClick}
+                            onRoundClick = {(this.props.CurrentRoundNumber >= 3) && this.onRoundClick}
                         ></OneGameRound>
                         
                         <OneGameRound 
-                            myDigit1 = {rounds["4.1.1"]} 
-                            myDigit2 = {rounds["4.1.2"]} 
-                            myDigit3 = {rounds["4.1.3"]} 
-                            competitorDigit1 = {rounds["4.2.1"]} 
-                            competitorDigit2 = {rounds["4.2.2"]} 
-                            competitorDigit3 = {rounds["4.2.3"]} 
+                            myDigit1 = {game.D4_1_1} 
+                            myDigit2 = {game.D4_1_2} 
+                            myDigit3 = {game.D4_1_3} 
+                            competitorDigit1 = {game.D4_2_1} 
+                            competitorDigit2 = {game.D4_2_2} 
+                            competitorDigit3 = {game.D4_2_3} 
                             IsActive = {this.props.CurrentRoundNumber >= 4}
                             RoundNumber = "4"
-                            onRoundClickCallBack = {(this.props.CurrentRoundNumber >= 4) && this.onRoundClick}
+                            onRoundClick = {(this.props.CurrentRoundNumber >= 4) && this.onRoundClick}
                         ></OneGameRound>
                         
                         <OneGameRound 
-                            myDigit1 = {rounds["5.1.1"]} 
-                            myDigit2 = {rounds["5.1.2"]} 
-                            myDigit3 = {rounds["5.1.3"]} 
-                            competitorDigit1 = {rounds["5.2.1"]} 
-                            competitorDigit2 = {rounds["2.2.2"]} 
-                            competitorDigit3 = {rounds["5.2.3"]} 
+                            myDigit1 = {game.D5_1_1} 
+                            myDigit2 = {game.D5_1_2} 
+                            myDigit3 = {game.D5_1_3} 
+                            competitorDigit1 = {game.D5_2_1} 
+                            competitorDigit2 = {game.D5_2_2} 
+                            competitorDigit3 = {game.D5_2_3} 
                             IsActive = {this.props.CurrentRoundNumber === 5}
                             RoundNumber = "5"
-                            onRoundClickCallBack = {(this.props.CurrentRoundNumber >= 5) && this.onRoundClick}
+                            onRoundClick = {(this.props.CurrentRoundNumber >= 5) && this.onRoundClick}
                         ></OneGameRound>
                     </div>
                 

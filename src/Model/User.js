@@ -1,7 +1,4 @@
-import Server from '../Lib/Server'
-import LocalData from './LocalData.js'
-import DEVICE_STATUS from '../Lib/DeviceStatus'
-import Game from '../Model/Game';
+import OneModuloGame from '../Model/OneModuloGame';
 
 
 export default class User
@@ -90,7 +87,7 @@ export default class User
                     {
                         let g = serverJsonData.DynamicUserInfo.ActiveGameList[i];
                         if (!g.Id) continue;
-                        this.ActiveGames.push(new Game(g, this.Id));
+                        this.ActiveGames.push(new OneModuloGame(g, this.Id));
                     }
                 }
 
@@ -101,7 +98,7 @@ export default class User
                     {
                         let g = serverJsonData.DynamicUserInfo.RecentGameList[i];
                         if (!g.Id) continue;
-                        this.RecentGames.push(new Game(g, this.Id));
+                        this.RecentGames.push(new OneModuloGame(g, this.Id));
                     }
                 }
             }
@@ -123,122 +120,6 @@ export default class User
     }
 
 
- // TODO проверить на использование
-    GetInfo(callBack, context)
-    {
-        console.log("112 НЕ УДАЛЯТЬ!!!!!");
-       let deviceObject = this;
-
-        function GoodAuth(response)
-        {
-            console.log('Good auth');
-            console.log(response);
-            if (response.DeviceToken && response.ServerToken)
-            {
-                if (response.ServerToken !==  deviceObject.ServerToken)
-                {
-                    LocalData.SetValue('ServerToken',  deviceObject.ServerToken = response.ServerToken, !!response.WorkToken);
-                }
-            }
-            
-            if (response.WorkToken)
-            {
-                if ( deviceObject.DeviceWorkToken !== response.WorkToken)
-                LocalData.SetValue('DeviceWorkToken',  deviceObject.DeviceWorkToken = response.WorkToken);
-                console.log('Set WorkToken = ' + response.WorkToken);
-                callBack.call(context,  DEVICE_STATUS.AUTH_GOOD);
-            }
-            else
-            {
-                callBack.call(context,  DEVICE_STATUS.AUTH_FORBIDDEN);
-            }
-
-        }
-        
-        function ErrorAuth(e)
-        {
-            console.log('Error');
-            console.log(e);
-            callBack.call(context,  DEVICE_STATUS.AUTH_FAIL);
-        }
-
-        var postObject = this.GetPostObject(true);
-
-        if (this.NeedRegisterDevice)
-        {
-            Server.Get().RegisterDevice(postObject).then(GoodAuth, ErrorAuth);
-            callBack.call(context,  DEVICE_STATUS.AUTH_CONNTECTING);
-        }
-        else
-        {
-            Server.Get().GetWorkToken(postObject).then(GoodAuth, ErrorAuth);
-            callBack.call(context,  DEVICE_STATUS.AUTH_CONNTECTING);
-        }
-    }
-
-
- // TODO проверить на использование
-    GetUserInfo(callBack, context)
-    {
-        console.log("166 НЕ УДАЛЯТЬ!!!!!");
-        if (!this.UserId)
-        {
-            callBack.call(context,  DEVICE_STATUS.USERINFO_NOUSER);
-            return;
-        }
-        
-        function GoodResult(response)
-        {
-            console.log('Good auth');
-            console.log(response);
-            callBack.call(context,  DEVICE_STATUS.USERINFO_GOOD);
-        }
-        
-        function ErrorResult(e)
-        {
-            console.log('Error');
-            console.log(e);
-            callBack.call(context,  DEVICE_STATUS.USERINFO_FAIL);
-        }
-
-        var postObject = this.GetPostObject();
-    
-        Server.Get().RegisterDevice(postObject).then(GoodResult, ErrorResult);
-        callBack.call(context,  DEVICE_STATUS.USERINFO_GETIING);
-        
-    }
-
- // TODO проверить на использование
-    CreateAnonim(callBack, context)
-    {
-        console.log("197 НЕ УДАЛЯТЬ!!!!!");   
-        function GoodResult(response)
-        {
-            console.log('Good CreateAnonim');
-            console.log(response);
-            callBack.call(context,  DEVICE_STATUS.USERINFO_SHOW_CREATEANONIM_DONE);
-        }
-        
-        function ErrorResult(e)
-        {
-            console.log('Error');
-            console.log(e);
-            callBack.call(context,  DEVICE_STATUS.USERINFO_SHOW_CREATEANONIM_FAIL);
-        }
-
-        var postObject = this.GetUserPostObject();
-        Server.Get().CreateAnonimUser(postObject).then(GoodResult, ErrorResult);
-        
-    }
-
-
-    uuidv4() 
-    {
-        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-          var r = Math.random() * 16 | 0, v = c === 'x' ? r : ((r & 0x3) | 0x8);
-          return v.toString(16);
-        });
-    }
 
 }
 
