@@ -98,11 +98,8 @@ input, select {
 
 
 html, body {
-	margin: 0;
-	padding: 0;
 	height: 100%;
 	width: 100%;
-	color: rgb(47,47,47);
 	background-color: papayawhip;
 }
 
@@ -111,14 +108,7 @@ html, body {
 
 
 
-#game-body {
-	position: relative;
-	// padding-top: 20px;
-	height: 100%;
-
-	display: grid;
-	justify-items: center;
-}
+#game-body { height: 100%; }
 
 #playground {
 	position: relative;

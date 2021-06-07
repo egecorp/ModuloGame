@@ -204,11 +204,8 @@ input, select {
 
 /* End */
 html, body {
-  margin: 0;
-  padding: 0;
   height: 100%;
   width: 100%;
-  color: #2f2f2f;
   background-color: papayawhip;
 }
 
@@ -222,11 +219,7 @@ html, body {
 }
 
 #game-body {
-  position: relative;
   height: 100%;
-  display: -ms-grid;
-  display: grid;
-  justify-items: center;
 }
 
 #playground {
@@ -726,20 +719,24 @@ input.InPopup::-webkit-input-placeholder {
   margin-top: var(--main-margin-top);
   /* Статус бар */
   padding: 0 10px;
-  height: calc(100% - var(--main-margin-top) - 50px);
+  height: calc(100% - var(--main-margin-top));
   /* Статус бар */
   display: -ms-grid;
   display: grid;
   -ms-grid-rows: max-content 1fr max-content;
       grid-template-rows: -webkit-max-content 1fr -webkit-max-content;
       grid-template-rows: max-content 1fr max-content;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  overflow: hidden;
 }
 
 .Game {
   position: relative;
   height: 100%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 1fr max-content;
+      grid-template-rows: 1fr -webkit-max-content;
+      grid-template-rows: 1fr max-content;
   background: -webkit-gradient(linear, left top, left bottom, from(#12652f), color-stop(50%, #038d42), to(#0f6e34));
   background: linear-gradient(to bottom, #12652f 0%, #038d42 50%, #0f6e34 100%);
   overflow: hidden;
@@ -757,8 +754,6 @@ input.InPopup::-webkit-input-placeholder {
   position: relative;
   height: 50px;
   border: 1px solid #000;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
 }
 
 .AdHolder select {
@@ -1552,6 +1547,55 @@ input.InPopup::-webkit-input-placeholder {
 }
 
 .ConditionPage .Content p {
+  height: 100%;
+  overflow: auto;
+  font-size: 13px;
+  font-weight: 300;
+  text-align: justify;
+}
+
+.RulesPage {
+  height: 100%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: max-content 1fr;
+      grid-template-rows: -webkit-max-content 1fr;
+      grid-template-rows: max-content 1fr;
+  overflow: hidden;
+}
+
+.RulesPage .Content {
+  position: relative;
+  height: 100%;
+  overflow: scroll;
+}
+
+.RulesPage .Content[data-shadow="top"]::after, .RulesPage .Content[data-shadow="bottom"]::before, .RulesPage .Content[data-shadow="both"]::after, .RulesPage .Content[data-shadow="both"]::before {
+  display: block;
+}
+
+.RulesPage .Content::after, .RulesPage .Content::before {
+  position: absolute;
+  left: 0;
+  content: "";
+  display: none;
+  width: calc(100% - 9px);
+  height: 20px;
+}
+
+.RulesPage .Content::after {
+  top: 0;
+  background: -webkit-gradient(linear, left top, left bottom, from(#0b7738), to(rgba(11, 119, 56, 0)));
+  background: linear-gradient(#0b7738 0%, rgba(11, 119, 56, 0) 100%);
+}
+
+.RulesPage .Content::before {
+  bottom: 0;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(9, 122, 58, 0)), to(#097a3a));
+  background: linear-gradient(rgba(9, 122, 58, 0) 0%, #097a3a 100%);
+}
+
+.RulesPage .Content p {
   height: 100%;
   overflow: auto;
   font-size: 13px;

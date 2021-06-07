@@ -7,16 +7,20 @@
 	margin-top: var(--main-margin-top); /* Статус бар */
 	padding: 0 10px;
 
-	height: calc(100% - var(--main-margin-top) - 50px); /* Статус бар */
+	height: calc(100% - var(--main-margin-top)); /* Статус бар */
 
 	display: grid;
 	grid-template-rows: max-content 1fr max-content;
-	box-sizing: border-box;
+
+	overflow: hidden;
 }
 
 .Game {
 	position: relative;
 	height: 100%;
+
+	display: grid;
+	grid-template-rows: 1fr max-content;
 
 	background: linear-gradient(to bottom, #12652f 0%, #038d42 50%, #0f6e34 100%);
 
@@ -34,7 +38,6 @@
 	position: relative;
 	height: 50px;
 	border: 1px solid #000;
-	box-sizing: border-box;
 
 	select {
 		width: 100%;
