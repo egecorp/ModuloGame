@@ -105,7 +105,7 @@ export default class GameStartBotPage extends React.Component {
 						<p className="Title">{context.GetText('finduser', 'labelWindow')}</p>
 					</HeadNavigation>
 					
-					<div className="FindUser">
+					<div className="FindUser ScrollHide">
 						<div className="Search">
 							<input type="text" className="General" name="Search" onInput={this.searchOnInput} placeholder={context.GetText('finduser', 'inputPlaceholderSearch')} />
 							<button disabled></button>

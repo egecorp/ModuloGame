@@ -419,6 +419,31 @@ input.InPopup	{
 }
 /* End */
 
+/* Gamer */
+.DarkLiStyle {
+	position: relative;
+
+	background-color: var(--bg-dark-list);
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	border-radius: 5px;
+	
+
+	&:active::after { opacity: 0.2; }
+
+	&::after {
+		position: absolute;
+		top: 0;
+		left: 0;
+
+		content: "";
+		width: 100%;
+		height: 100%;
+		opacity: 0;
+
+		background-color: #000;
+	}
+}
+/* End */
 
 
 
@@ -526,6 +551,30 @@ input.InPopup	{
 	text-transform: uppercase;
 
 	&:active { background: 97% center / 16px no-repeat url(/src/img/buttons/right-arrow_dark-green.svg), linear-gradient(90deg, #279654 0%, #2EB062 100%); }
+}
+
+.ButtonBlackTrans {
+	padding: 5px 10px;
+
+	display: grid;
+	grid-auto-flow: column;
+	column-gap: 7px;
+	place-items: center;
+
+	background-color: rgba(0,0,0,0.25);
+	border-radius: 100px;
+
+	p {
+		--font-size: 12px;
+
+		font-weight: 500;
+		line-height: 1;
+		letter-spacing: 0.3px;
+	}
+
+	&:active {
+		background-color: rgba(0,0,0,0.5);
+	}
 }
 /*** *** *** END *** *** ***/
 

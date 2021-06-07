@@ -68,7 +68,7 @@ export default class OneGame extends React.Component {
 				<LanguageContext.Consumer>
 					{(context) =>
 					(
-						<li onClick={this.onGameClick}>
+						<li className="DarkLiStyle" onClick={this.onGameClick}>
 							<div className="ListInfo">
 								<div className="PlayerContainer" data-win="1">
 									<div className="Avatar">
