@@ -7,7 +7,7 @@ import OneGameRoundDigit from "../../Components/OneGameRoundDigit"
 
 export default class GamePageDesktop extends React.Component {
 
-	rounds = [];
+	
 	constructor(props, context) {
 		super(props);
 		this.state =
@@ -62,8 +62,6 @@ export default class GamePageDesktop extends React.Component {
 		}
 
         this.props.SetDigits(d1, d2, d3);
-
-
 	}
 
 	onDesktopDigitClick(digit, position) {
@@ -81,21 +79,6 @@ export default class GamePageDesktop extends React.Component {
         this.setState({ myDigit1: d1, myDigit2: d2, myDigit3: d3  });
         this.props.SetDigits(d1, d2,d3);
 	}
-
-    getDigitHtml(roundNumber, digitColor)
-    {
-        if (this.rounds[roundNumber])
-        {
-            return (<div className="DigitIcon" data-digit={this.rounds[roundNumber]} data-color={digitColor}></div>);
-        }
-        else
-        {
-            return null;
-        }
-        
-    }
-
-    
 
     checkDigit(d) 
     {
@@ -164,7 +147,6 @@ export default class GamePageDesktop extends React.Component {
 				)}
 			</LanguageContext.Consumer>
 		);
-
 
 	}
 }

@@ -98,11 +98,11 @@ export default class GameStartUserPage extends React.Component {
     render() {
         
         const searchItems = this.state.searchList.map((u)=>
-            <OneUser key={u.Id} userId={u.Id} Name={u.Name} onUserClickCallBack={this.onUserClick}/>
+            <OneUser key={u.Id} userId={u.Id} Name={u.Name} onUserClick={this.onUserClick}/>
         );
 
         const recentItems = this.state.recentList.map((u)=>
-            <OneUser key={u.Id} userId={u.Id} Name={u.Name} onUserClickCallBack={this.onUserClick} />
+            <OneUser key={u.Id} userId={u.Id} Name={u.Name} onUserClick={this.onUserClick} />
         );
 
 

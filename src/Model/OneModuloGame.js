@@ -113,50 +113,50 @@ export default class OneModuloGame
                 return {
                     myDigit1 : this.D1_1_1,
                     myDigit2 : this.D1_1_2,
-                    myDigit2 : this.D1_1_3,
+                    myDigit3 : this.D1_1_3,
                     competiorDigit1 : this.D1_1_1,
                     competiorDigit2 : this.D1_2_2,
-                    competiorDigit2 : this.D1_3_3
+                    competiorDigit3 : this.D1_3_3
                 };
 
             case '2':
                 return {
                     myDigit1 : this.D2_1_1,
                     myDigit2 : this.D2_1_2,
-                    myDigit2 : this.D2_1_3,
+                    myDigit3 : this.D2_1_3,
                     competiorDigit1 : this.D2_1_1,
                     competiorDigit2 : this.D2_2_2,
-                    competiorDigit2 : this.D2_3_3
+                    competiorDigit3 : this.D2_3_3
                 };
                 
             case '3':
                 return {
                     myDigit1 : this.D3_1_1,
                     myDigit2 : this.D3_1_2,
-                    myDigit2 : this.D3_1_3,
+                    myDigit3 : this.D3_1_3,
                     competiorDigit1 : this.D3_1_1,
                     competiorDigit2 : this.D3_2_2,
-                    competiorDigit2 : this.D3_3_3
+                    competiorDigit3 : this.D3_3_3
                 };
                 
             case '4':
                 return {
                     myDigit1 : this.D4_1_1,
                     myDigit2 : this.D4_1_2,
-                    myDigit2 : this.D4_1_3,
+                    myDigit3 : this.D4_1_3,
                     competiorDigit1 : this.D4_1_1,
                     competiorDigit2 : this.D4_2_2,
-                    competiorDigit2 : this.D4_3_3
+                    competiorDigit3 : this.D4_3_3
                 };
                 
             default:
                     return {
                     myDigit1 : this.D5_1_1,
                     myDigit2 : this.D5_1_2,
-                    myDigit2 : this.D5_1_3,
+                    myDigit3 : this.D5_1_3,
                     competiorDigit1 : this.D5_1_1,
                     competiorDigit2 : this.D5_2_2,
-                    competiorDigit2 : this.D5_3_3
+                    competiorDigit3 : this.D5_3_3
                 };
   
         }
