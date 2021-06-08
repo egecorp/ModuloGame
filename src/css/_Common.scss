@@ -11,7 +11,7 @@
 
 	--modal-font-color: #000;
 
-	--common-bh: box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+	--common-bh: 0px 2px 10px rgba(0, 0, 0, 0.2);
 
 	--button-green: var(--brand-color);
 	--button-green-hover: var(--brand-color-hover);
@@ -58,8 +58,6 @@ select {
 	outline: 0;
 	border: 0;
 
-	color: #fff;
-	font-size: 14px;
 	font-weight: 300;
 }
 
@@ -81,9 +79,11 @@ select {
 	}
 }
 
-@include placeholder {
+* {
+	@include placeholder {
 	color: var(--font-color);
 	opacity: 0.4;
+}
 }
 
 @mixin textWrapDots {
@@ -253,7 +253,7 @@ body {
 	}
 
 	> .CheckBoxButtonTitle {
-		font-size: 14px;
+		// font-size: 14px;
 		font-weight: 600;
 		text-align: center;
 		text-transform: uppercase;
@@ -273,10 +273,9 @@ body {
 }
 
 .GeneralSubtitle {
-	margin: 12px 0;
+	padding: 12px 0;
 
-	font-size: 15px;
-	font-weight: 500;
+	font-size: calc(var(--font-size) + 2px);
 
 	span {
 		text-decoration: underline;
@@ -287,7 +286,7 @@ body {
 	margin-bottom: 10px;
 
 	font-weight: 300;
-	font-size: 13px;
+	font-size: calc(var(--font-size) - 1px);
 	line-height: 1.4;
 	text-align: center;
 
@@ -299,17 +298,17 @@ body {
 .LabelInput {
 	margin-bottom: 8px;
 
+	display: grid;
+	row-gap: 7px;
+
 	&:last-child {
 		margin-bottom: unset;
 	}
 
 	> label {
-		margin-bottom: 5px;
-
 		display: block;
 
 		font-weight: 500;
-		font-size: 13px;
 		line-height: 1.1;
 	}
 }
@@ -361,7 +360,7 @@ input.InPopup {
 	border-radius: 3px;
 	box-sizing: border-box;
 
-	font-size: 13px;
+	font-size: calc(var(--font-size) - 1px);
 	font-weight: 300;
 
 	@include placeholder {
@@ -423,7 +422,7 @@ input.InPopup {
 	> p {
 		@include textWrapDots;
 
-		font-size: 13px;
+		font-size: calc(var(--font-size) - 1px);
 		font-weight: 600;
 		text-align: center;
 		text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
@@ -526,12 +525,12 @@ input.InPopup {
 	box-sizing: border-box;
 
 	color: var(--button-font-color);
-	font-size: 13px;
+	font-size: calc(var(--font-size) - 1px);
 	font-weight: 500;
 
 	> p {
 		color: var(--button-font-color);
-		font-size: 13px;
+		font-size: calc(var(--font-size) - 1px);
 		font-weight: 500;
 	}
 
@@ -601,7 +600,7 @@ input.InPopup {
 	box-shadow: var(--common-bh);
 
 	color: var(--button-darkgreen);
-	font-size: 16px;
+	font-size: calc(var(--font-size) + 2px);
 	font-weight: 500;
 	line-height: 1;
 	text-transform: uppercase;
@@ -619,8 +618,7 @@ input.InPopup {
 	border-radius: 100px;
 
 	p {
-		--font-size: 12px;
-
+		font-size: calc(var(--font-size) - 2px);
 		font-weight: 500;
 		line-height: 1;
 		letter-spacing: 0.3px;
@@ -631,6 +629,19 @@ input.InPopup {
 	}
 }
 /*** *** *** END *** *** ***/
+
+
+
+
+
+/*** *** *** media *** *** ***/
+@media (min-resolution: 250dpi) {
+	:root,
+	*::after,
+	*::before {
+		--font-size: 16px;
+	}
+}
 
 @media (max-width: 520px) {
 	#playground {

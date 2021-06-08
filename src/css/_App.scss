@@ -51,13 +51,13 @@
 	text-align: center;
 
 	.WelcomeTitle {
-		font-size: 22px;
+		font-size: calc(var(--font-size) + 8px);
 		font-weight: 300;
 		line-height: 1.25;
 	}
 
 	.WelcomeModulo {
-		font-size: 28px;
+		font-size: calc(var(--font-size) + 14px);
 		font-weight: 600;
 		line-height: 1.25;
 	}
@@ -98,12 +98,12 @@
 	}
 
 	.Title {
-		font-size: 18px;
+		font-size: calc(var(--font-size) + 4px);
 		font-weight: 300;
 	}
 
 	.Modulo {
-		font-size: 24px;
+		font-size: calc(var(--font-size) + 10px);
 		font-weight: 600;
 	}
 
@@ -252,7 +252,7 @@
 	overflow-y: auto;
 
 	> p {
-		font-size: 15px;
+		font-size: calc(var(--font-size) - 1px);
 		font-weight: 500;
 		text-align: center;
 		letter-spacing: 0.15px;
@@ -287,7 +287,7 @@
 		max-height: unset;
 
 		p {
-			font-size: 13px;
+			// font-size: 13px;
 		}
 	}
 }
@@ -307,7 +307,6 @@
 		margin-top: 10px;
 
 		font-weight: 500;
-		font-size: 14px;
 		text-align: center;
 	}
 
@@ -315,7 +314,6 @@
 		margin-top: 5px;
 
 		font-weight: 500;
-		font-size: 14px;
 		text-align: center;
 		text-decoration: underline;
 	}
@@ -379,13 +377,9 @@
 				content: "";
 
 				width: 2px;
-				height: 135px;
+				height: 100%;
 
 				background-color: var(--brand-color);
-			}
-
-			.Title {
-				font-size: 13px;
 			}
 		}
 
@@ -417,7 +411,7 @@
 						overflow: hidden;
 
 						p {
-							font-size: 10px;
+							font-size: calc(var(--font-size) - 4px);
 							font-weight: 300;
 							text-align: center;
 							text-transform: uppercase;
@@ -462,7 +456,7 @@
 						}
 
 						> p.Title {
-							font-size: 16px;
+							font-size: calc(var(--font-size) + 2px);
 						}
 
 						.Cup {
@@ -476,7 +470,7 @@
 							place-items: center;
 
 							> p {
-								font-size: 10px;
+								font-size: calc(var(--font-size) - 4px);
 								font-weight: 300;
 							}
 
@@ -497,7 +491,7 @@
 					background-color: rgba(0, 0, 0, 0.25);
 
 					p {
-						font-size: 10px;
+						font-size: calc(var(--font-size) - 4px);
 						font-weight: 300;
 						line-height: 1;
 						text-align: center;
@@ -636,14 +630,14 @@
 				}
 
 				.Title {
-					font-size: 15px;
+					font-size: calc(var(--font-size) + 1px);
 					font-weight: 500;
 					line-height: 1;
 					text-align: center;
 				}
 
 				> p {
-					font-size: 13px;
+					font-size: calc(var(--font-size) - 1px);
 					font-weight: 300;
 					line-height: 1.4;
 				}
@@ -652,7 +646,7 @@
 					display: block;
 
 					color: var(--link-color);
-					font-size: 13px;
+					font-size: calc(var(--font-size) - 1px);
 					font-weight: 500;
 					text-align: center;
 					text-decoration: none;
@@ -667,7 +661,7 @@
 		/* MailCode */
 		.MailCode {
 			label {
-				font-size: 13px;
+				font-size: calc(var(--font-size) - 1px);
 				font-weight: 500;
 			}
 		}
@@ -700,7 +694,7 @@
 			width: 100%;
 
 			font-weight: 500;
-			font-size: 15px;
+			font-size: calc(var(--font-size) + 1px);
 			text-transform: uppercase;
 
 			&:active {
@@ -793,7 +787,7 @@
 
 			> p {
 				@include textWrapDots;
-				font-size: 14px;
+				// font-size: 14px;
 				font-weight: 300;
 				text-transform: uppercase;
 			}
@@ -859,7 +853,7 @@
 			height: 100%;
 			overflow: auto;
 
-			font-size: 13px;
+			font-size: calc(var(--font-size) - 1px);
 			font-weight: 300;
 			text-align: justify;
 		}
@@ -913,7 +907,7 @@
 			height: 100%;
 			overflow: auto;
 
-			font-size: 13px;
+			font-size: calc(var(--font-size) - 1px);
 			font-weight: 300;
 			text-align: justify;
 		}
@@ -943,7 +937,7 @@
 			place-items: center;
 
 			p.Score {
-				font-size: 38px;
+				font-size: calc(var(--font-size) + 24px);
 				font-weight: 300;
 				line-height: 1;
 			}
@@ -984,7 +978,7 @@
 					@include textWrapDots;
 
 					color: #fed61f;
-					font-size: 11px;
+					font-size: calc(var(--font-size) - 3px);
 					text-align: center;
 				}
 			}
@@ -1010,7 +1004,7 @@
 			> p {
 				@include textWrapDots;
 
-				font-size: 14px;
+				// font-size: 14px;
 				font-weight: 600;
 				text-align: center;
 			}
@@ -1029,7 +1023,7 @@
 					background-color: var(--brand-color);
 					border-radius: 5px;
 
-					font-size: 24px;
+					font-size: calc(var(--font-size) + 10px);
 					font-weight: 600;
 					text-align: center;
 					line-height: 110%; // Размещаем число чуть ниже
