@@ -81,9 +81,9 @@ select {
 
 * {
 	@include placeholder {
-	color: var(--font-color);
-	opacity: 0.4;
-}
+		color: var(--font-color);
+		opacity: 0.4;
+	}
 }
 
 @mixin textWrapDots {
@@ -103,13 +103,17 @@ select {
 }
 
 /* ScrollHide */
-.ScrollHide {
-	-ms-overflow-style: none; /* IE and Edge */
-	scrollbar-width: none; /* Firefox */
+@mixin scrollhide {
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
 }
 
-.ScrollHide::-webkit-scrollbar {
-	display: none;
+.ScrollHide {
+	@include scrollhide;
 }
 /* End */
 
