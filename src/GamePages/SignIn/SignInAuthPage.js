@@ -80,7 +80,7 @@ render() {
 							<SignInLanguagePanel lang="ru"></SignInLanguagePanel>
 						</HeadNavigation>
 
-						<div className="SignInAuth">
+						<div className="SignInAuth ContentGap">
 							<p className="GeneralSubtitle">{context.GetText('signinauth', 'sublabelWindow')}</p>
 
 							<form>

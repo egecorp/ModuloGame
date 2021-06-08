@@ -317,10 +317,11 @@
 .SignInAuth {
 	.UserTip {
 		max-height: unset;
+	}
 
-		p {
-			// font-size: 13px;
-		}
+	form {
+		display: grid;
+		row-gap: 10px;
 	}
 }
 
