@@ -8,19 +8,19 @@ export function AddPackets(addPackFunction)
 	{
 		'modalButtonContinue' : 'Продолжить',
 		'modalButtonClose' : 'Закрыть',
-        'modalButtonYes' : 'Да',
-        'modalButtonNo' : 'Нет',
+		'modalButtonYes' : 'Да',
+		'modalButtonNo' : 'Нет',
 
 
 		'popupButtonContinue' : 'Продолжить',
 		'popupButtonSend' : 'Отправить',
 		'popupButtonCancel' : 'Отменить',
 		'popupButtonBack' : 'Назад',
-        'popupButtonAccept' : 'Принять',
-        'popupButtonDecline' : 'Отказать',
-        'popupButtonWait' : 'Подождать',
-        'popupButtonWithdraw' : 'Отозвать'
-        
+		'popupButtonAccept' : 'Принять',
+		'popupButtonDecline' : 'Отказать',
+		'popupButtonWait' : 'Подождать',
+		'popupButtonWithdraw' : 'Отозвать'
+		
 
 	});
 
