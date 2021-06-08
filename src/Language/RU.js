@@ -121,7 +121,7 @@ export function AddPackets(addPackFunction)
 		'labelWindow' : 'Новый аккаунт',
 		'labelYourNickname' : 'Ваш ник:',
 		'tipCannotChooseImg' : 'Выбор персонажа недоступен в анонимной игре.',
-		'linkGoToSignUp' : 'Создать учётную запись',
+		'linkGoToSignUp' : 'Создать учётную запись?',
 		'tipConditionBegin' : 'Нажимая кнопку «Продолжить», Вы принимаете наши',
 		'tipConditionLink' : ' Условия и Политику использования данных',
 		'tipConditionEnd' : '.'
