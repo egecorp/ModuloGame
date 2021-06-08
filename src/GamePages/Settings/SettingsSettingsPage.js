@@ -33,7 +33,7 @@ export default class SettingsSettingsPage extends React.Component {
 									{context.GetText('signinanonim', 'tipCannotChooseImg')}
 								</p>
 
-								<p className="SignUp" onClick={this.signUpLabelOnClick}>
+								<p className="CreateAcc" onClick={this.signUpLabelOnClick}>
 									{context.GetText('signinanonim', 'linkGoToSignUp')}
 								</p>
 							</div>

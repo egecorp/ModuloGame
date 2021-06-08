@@ -398,13 +398,10 @@ input[type=date].General::-webkit-calendar-picker-indicator {
 /* End */
 /* InPopup */
 input.InPopup {
-  margin-top: 5px;
-  padding: 7px 10px;
+  padding: 5px 7px;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 3px;
-  box-sizing: border-box;
-  font-size: calc(var(--font-size) - 1px);
   font-weight: 300;
 }
 input.InPopup::-moz-placeholder {
@@ -948,10 +945,15 @@ input.InPopup::-webkit-input-placeholder {
   font-weight: 500;
   text-align: center;
 }
-.SignInAnonim .SignInAnonimContent .TextBlock .SignUp {
+.SignInAnonim .SignInAnonimContent .TextBlock .CreateAcc {
   font-weight: 500;
   text-align: center;
   text-decoration: underline;
+}
+
+.SignUp form {
+  display: grid;
+  row-gap: 10px;
 }
 
 .GameList {
@@ -979,8 +981,13 @@ input.InPopup::-webkit-input-placeholder {
   align-items: center;
 }
 .GameList .List {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
   padding-bottom: 75px;
   overflow-y: auto;
+}
+.GameList .List::-webkit-scrollbar {
+  display: none;
 }
 .GameList .List > .Finished {
   --finished-margin-top: 12px;
@@ -1132,7 +1139,6 @@ input.InPopup::-webkit-input-placeholder {
 }
 
 .GameStart .Buttons {
-  margin: 20px 0;
   display: grid;
   row-gap: 7px;
 }
@@ -1192,10 +1198,19 @@ input.InPopup::-webkit-input-placeholder {
 .Modal .ModalBody > div > *:nth-child(n+2) {
   margin-top: 12px;
 }
-.Modal .ModalBody > div > .Content > *:nth-child(n+2) {
-  margin-top: 7px;
+.Modal .ModalBody > div > .Content {
+  display: grid;
+  row-gap: 10px;
 }
-.Modal .ModalBody > div > .Content .Title {
+.Modal .ModalBody > div > .Content header {
+  display: grid;
+  row-gap: 7px;
+}
+.Modal .ModalBody > div > .Content header .WarningIcon {
+  height: 30px;
+  background-image: url(/src/img/icon/warning.svg);
+}
+.Modal .ModalBody > div > .Content header .Title {
   font-size: calc(var(--font-size) + 1px);
   font-weight: 500;
   line-height: 1;
@@ -1217,13 +1232,13 @@ input.InPopup::-webkit-input-placeholder {
 .Modal .ModalBody > div > .Content > a:active {
   text-decoration: underline;
 }
+.Modal .ModalBody .MailCode {
+  display: grid;
+  row-gap: 5px;
+}
 .Modal .ModalBody .MailCode label {
   font-size: calc(var(--font-size) - 1px);
   font-weight: 500;
-}
-.Modal .ModalBody .WarningIcon {
-  height: 30px;
-  background-image: url(/src/img/icon/warning.svg);
 }
 .Modal > .Buttons {
   display: grid;
@@ -1264,18 +1279,26 @@ input.InPopup::-webkit-input-placeholder {
 }
 
 .FindUser {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
   padding-bottom: 20px;
   height: 100%;
   overflow-y: auto;
 }
-.FindUser .Search {
+.FindUser::-webkit-scrollbar {
+  display: none;
+}
+.FindUser .Results {
+  display: grid;
+  row-gap: 7px;
+}
+.FindUser .Results .Search {
   position: relative;
-  margin: 12px 0;
 }
-.FindUser .Search input.General {
-  padding: 0 10px 0 calc(3px + 30px);
+.FindUser .Results .Search input.General {
+  padding-left: calc(3px + 30px);
 }
-.FindUser .Search button {
+.FindUser .Results .Search button {
   position: absolute;
   top: 50%;
   left: 0;
@@ -1285,7 +1308,7 @@ input.InPopup::-webkit-input-placeholder {
   background-image: url(../img/icon/search.svg);
   background-size: 14px;
 }
-.FindUser .Search button:disabled {
+.FindUser .Results .Search button:disabled {
   opacity: 0.4;
 }
 .FindUser .Players {

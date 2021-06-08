@@ -25,7 +25,9 @@ export default class GameStartRandomPage extends React.Component {
 				( 
 					<MsgBox ModalButton={context.GetText('common', 'popupButtonCancel')} buttonOnClick={this.cancelButtonOnClick}>
 						<div className="Content">
-							<p className="Title">{context.GetText('findrandom', 'labelWindow')}</p>
+							<header>
+								<p className="Title">{context.GetText('findrandom', 'labelWindow')}</p>
+							</header>
 
 							<p>{context.GetText('findrandom', 'text')}</p>
 						</div>

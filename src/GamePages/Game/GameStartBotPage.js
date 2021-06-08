@@ -105,22 +105,22 @@ export default class GameStartBotPage extends React.Component {
 						<p className="Title">{context.GetText('finduser', 'labelWindow')}</p>
 					</HeadNavigation>
 					
-					<div className="FindUser ScrollHide">
-						<div className="Search">
-							<input type="text" className="General" name="Search" onInput={this.searchOnInput} placeholder={context.GetText('finduser', 'inputPlaceholderSearch')} />
-							<button disabled></button>
+					<div className="FindUser ContentGap">
+						<div className="Results">
+							<div className="Search">
+								<input type="text" className="General" name="Search" onInput={this.searchOnInput} placeholder={context.GetText('finduser', 'inputPlaceholderSearch')} />
+								<button disabled></button>
+							</div>
+							
+							<ul className="Players">
+								{searchItems}
+							</ul>
 						</div>
-
-						<p className="GeneralSubtitle">{context.GetText('finduser', 'sublabelFavoriteUsers')}</p>
-						
-						<ul className="Players">
-                            {searchItems}
-						</ul>
 
 						<p className="GeneralSubtitle">{context.GetText('finduser', 'sublabelRecentUsers')}</p>
 					
 						<ul className="Players">
-                            {recentItems}
+							{recentItems}
 						</ul>
 					</div>
 				</>

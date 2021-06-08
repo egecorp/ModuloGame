@@ -157,7 +157,6 @@ export function AddPackets(addPackFunction)
 	pack.AddDictionary('finduser', 
 	{
 		'labelWindow' : 'Выбор соперника',
-		'sublabelFavoriteUsers' : 'Избранные соперники:',
 		'sublabelRecentUsers' : 'Недавние соперники:',
 		'inputPlaceholderSearch' : 'Поиск по нику...'
 	});

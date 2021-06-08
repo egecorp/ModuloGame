@@ -30,7 +30,7 @@ export default class SettingsAvatarPage extends React.Component {
 									{context.GetText('signinanonim', 'tipCannotChooseImg')}
 								</p>
 
-								<p className="SignUp" onClick={this.signUpLabelOnClick}>
+								<p className="CreateAcc" onClick={this.signUpLabelOnClick}>
 									{context.GetText('signinanonim', 'linkGoToSignUp')}
 								</p>
 							</div>

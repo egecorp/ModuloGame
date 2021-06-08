@@ -140,12 +140,16 @@ render() {
 		MsgBoxHTML = (
 		<MsgBox ModalButton={errorNextButton}  OnButtonClick={this.modalButtonOnClick}>
 			<div className="Content">
-				<div className="WarningIcon"></div>
-				<p className="Title">{errorTitle}</p>
+				<header>
+					<div className="WarningIcon"></div>
+					<p className="Title">{errorTitle}</p>
+				</header>
+				
 				<p>{errorText}</p>
+
 				{
-                    errorLink ? (<span href="/">{errorLink}</span>) : null
-                }                
+					errorLink ? (<span href="/">{errorLink}</span>) : null
+				}                
 			</div>
 		</MsgBox>
 		)
@@ -155,7 +159,10 @@ render() {
 		MsgBoxHTML = (
 		<MsgBox ModalButton={this.currentContext.GetText('common', 'popupButtonContinue')} OnButtonClick={this.modalButtonOnClick}>
 			<div className="Content">
-				<p className="Title">{this.currentContext.GetText('signin.modal.Success', 'labelWindow')}</p>
+				<header>
+					<p className="Title">{this.currentContext.GetText('signin.modal.Success', 'labelWindow')}</p>
+				</header>
+				
 				<p>{this.currentContext.GetText('signin.modal.Success', 'text')}</p>
 			</div>
 		</MsgBox>
@@ -177,7 +184,7 @@ render() {
 						<SignInLanguagePanel lang='ru'></SignInLanguagePanel>
 					</HeadNavigation>
 
-					<div className="SignUp">
+					<div className="SignUp ContentGap">
 						<p className="GeneralSubtitle">{context.GetText('signup', 'sublabelWindow')}</p>
 
 						<form>

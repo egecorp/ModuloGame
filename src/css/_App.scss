@@ -282,7 +282,7 @@
 		height: 100%;
 
 		box-shadow: inset 0px 0px 20px 5px rgba(0, 0, 0, 0.1);
-		border: 1px solid rgba(0,0,0,0.1);
+		border: 1px solid rgba(0, 0, 0, 0.1);
 		border-radius: inherit;
 		pointer-events: none;
 	}
@@ -344,14 +344,21 @@
 				font-weight: 500;
 				text-align: center;
 			}
-		
-			.SignUp {
+
+			.CreateAcc {
 				font-weight: 500;
 				text-align: center;
 				text-decoration: underline;
 			}
 		}
-	}	
+	}
+}
+
+.SignUp {
+	form {
+		display: grid;
+		row-gap: 10px;
+	}
 }
 
 .GameList {
@@ -364,12 +371,14 @@
 	overflow-y: hidden;
 
 	.ButtonBig {
-		background: 97% center / 16px no-repeat url(/src/img/buttons/right-arrow_dark-green.svg), linear-gradient(90deg, #2eb062 0%, var(--brand-color) 100%);
-	
+		background: 97% center / 16px no-repeat url(/src/img/buttons/right-arrow_dark-green.svg),
+			linear-gradient(90deg, #2eb062 0%, var(--brand-color) 100%);
+
 		color: var(--button-darkgreen);
-	
+
 		&:active {
-			background: 97% center / 16px no-repeat url(/src/img/buttons/right-arrow_dark-green.svg), linear-gradient(90deg, #279654 0%, #2eb062 100%);
+			background: 97% center / 16px no-repeat url(/src/img/buttons/right-arrow_dark-green.svg),
+				linear-gradient(90deg, #279654 0%, #2eb062 100%);
 		}
 	}
 
@@ -382,6 +391,8 @@
 	}
 
 	.List {
+		@include scrollhide;
+
 		padding-bottom: 75px;
 		overflow-y: auto;
 
@@ -579,8 +590,6 @@
 
 .GameStart {
 	.Buttons {
-		margin: 20px 0;
-
 		display: grid;
 		row-gap: 7px;
 	}
@@ -656,15 +665,25 @@
 			}
 
 			> .Content {
-				> *:nth-child(n + 2) {
-					margin-top: 7px;
-				}
+				display: grid;
+				row-gap: 10px;
 
-				.Title {
-					font-size: calc(var(--font-size) + 1px);
-					font-weight: 500;
-					line-height: 1;
-					text-align: center;
+				header {
+					display: grid;
+					row-gap: 7px;
+
+					.WarningIcon {
+						height: 30px;
+
+						background-image: url(/src/img/icon/warning.svg);
+					}
+
+					.Title {
+						font-size: calc(var(--font-size) + 1px);
+						font-weight: 500;
+						line-height: 1;
+						text-align: center;
+					}
 				}
 
 				> p {
@@ -691,18 +710,15 @@
 
 		/* MailCode */
 		.MailCode {
+			display: grid;
+			row-gap: 5px;
+
 			label {
 				font-size: calc(var(--font-size) - 1px);
 				font-weight: 500;
 			}
 		}
 		/* END */
-
-		.WarningIcon {
-			height: 30px;
-
-			background-image: url(/src/img/icon/warning.svg);
-		}
 	}
 
 	> .Buttons {
@@ -762,34 +778,39 @@
 }
 
 .FindUser {
+	@include scrollhide;
+
 	padding-bottom: 20px;
 	height: 100%;
 	overflow-y: auto;
 
-	.Search {
-		position: relative;
+	.Results {
+		display: grid;
+		row-gap: 7px;
 
-		margin: 12px 0;
+		.Search {
+			position: relative;
 
-		input.General {
-			padding: 0 10px 0 calc(3px + 30px);
-		}
+			input.General {
+				padding-left: calc(3px + 30px);
+			}
 
-		button {
-			position: absolute;
-			top: 50%;
-			left: 0;
-			transform: translateY(-50%);
+			button {
+				position: absolute;
+				top: 50%;
+				left: 0;
+				transform: translateY(-50%);
 
-			width: 30px;
-			height: 100%;
+				width: 30px;
+				height: 100%;
 
-			background-image: url(../img/icon/search.svg);
-			background-size: 14px;
-		}
+				background-image: url(../img/icon/search.svg);
+				background-size: 14px;
+			}
 
-		button:disabled {
-			opacity: 0.4;
+			button:disabled {
+				opacity: 0.4;
+			}
 		}
 	}
 

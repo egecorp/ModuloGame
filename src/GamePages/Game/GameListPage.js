@@ -48,7 +48,7 @@ export default class GameListPage extends React.Component {
 						<div className="GameList">
 							<button className="ButtonBig" onClick={this.createGame}>{context.GetText('gamelist', 'buttonHeaderLabel')}</button>
 
-							<div className="List ScrollHide">
+							<div className="List">
 								<div className="Current">
 									<p className="GeneralSubtitle">{context.GetText('gamelist', 'sublabelWindow')}</p>
 

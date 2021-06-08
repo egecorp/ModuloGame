@@ -481,7 +481,10 @@ export default class GamePage extends React.Component {
 			MsgBoxHTML = (
 				<MsgBox NoButton={true}>
 					<div className="Content">
-						<p className="Title">{this.currentContext.GetText('game.page', 'StartGame.WaitPlease')}</p>
+						<header>
+							<p className="Title">{this.currentContext.GetText('game.page', 'StartGame.WaitPlease')}</p>
+						</header>
+						
 						<p>{this.currentContext.GetText('game.page', 'StartGame.Loading')}</p>
 					</div>
 				</MsgBox>
@@ -496,7 +499,10 @@ export default class GamePage extends React.Component {
 					OnButtonClick2={this.modalButtonDeclineOnClick}
 				>
 					<div className="Content">
-						<p className="Title">{MsgBoxTitle}</p>
+						<header>
+							<p className="Title">{MsgBoxTitle}</p>
+						</header>
+
 						<p>{MsgBoxText}</p>
 					</div>
 				</MsgBox2Buttons>
