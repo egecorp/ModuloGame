@@ -11,6 +11,7 @@
 
 	display: grid;
 	grid-template-rows: max-content 1fr max-content;
+	row-gap: 12px;
 
 	overflow: hidden;
 }
@@ -47,7 +48,7 @@
 }
 
 .Welcome {
-	margin: 20px 0;
+	padding: 12px 0;
 	text-align: center;
 
 	.WelcomeTitle {
@@ -236,7 +237,7 @@
 }
 
 .UserTip {
-	margin: 15px auto 0 auto;
+	margin: 0 auto;
 	padding: 10px 15px;
 	width: 95%;
 	max-height: 80px;
@@ -272,6 +273,11 @@
 }
 
 .SignIn {
+	display: grid;
+	row-gap: 10px;
+	align-items: start;
+	align-content: start;
+
 	.Buttons {
 		display: grid;
 		row-gap: 7px;
@@ -320,10 +326,6 @@
 }
 
 .GameList {
-	--gamelist-margin-top: 12px;
-
-	margin-top: var(--gamelist-margin-top);
-
 	height: 100%;
 
 	display: grid;

@@ -687,6 +687,7 @@ input.InPopup::-webkit-input-placeholder {
   display: grid;
   grid-template-rows: -webkit-max-content 1fr -webkit-max-content;
   grid-template-rows: max-content 1fr max-content;
+  row-gap: 12px;
   overflow: hidden;
 }
 
@@ -718,7 +719,7 @@ input.InPopup::-webkit-input-placeholder {
 }
 
 .Welcome {
-  margin: 20px 0;
+  padding: 12px 0;
   text-align: center;
 }
 .Welcome .WelcomeTitle {
@@ -873,7 +874,7 @@ input.InPopup::-webkit-input-placeholder {
 }
 
 .UserTip {
-  margin: 15px auto 0 auto;
+  margin: 0 auto;
   padding: 10px 15px;
   width: 95%;
   max-height: 80px;
@@ -902,6 +903,12 @@ input.InPopup::-webkit-input-placeholder {
   background-color: var(--button-footer-bg-hover);
 }
 
+.SignIn {
+  display: grid;
+  row-gap: 10px;
+  align-items: start;
+  align-content: start;
+}
 .SignIn .Buttons {
   display: grid;
   row-gap: 7px;
@@ -934,8 +941,6 @@ input.InPopup::-webkit-input-placeholder {
 }
 
 .GameList {
-  --gamelist-margin-top: 12px;
-  margin-top: var(--gamelist-margin-top);
   height: 100%;
   display: grid;
   grid-template-rows: -webkit-max-content 1fr;
