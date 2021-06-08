@@ -11,6 +11,8 @@
 
 	--modal-font-color: #000;
 
+	--common-bh: box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+
 	--button-green: var(--brand-color);
 	--button-green-hover: var(--brand-color-hover);
 	--button-green-rgb: 53, 202, 113;
@@ -596,7 +598,7 @@ input.InPopup {
 	width: 100%;
 
 	border-radius: 5px;
-	box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+	box-shadow: var(--common-bh);
 
 	color: var(--button-darkgreen);
 	font-size: 16px;
