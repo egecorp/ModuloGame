@@ -117,7 +117,7 @@ export default class SignInPage extends React.Component {
 						</div>
 
 						<div className="FooterArea">
-							<button onClick={this.nextButtonOnClick}>{context.GetText('common', 'modalButtonContinue')}</button>
+							<button className="ButtonBig" onClick={this.nextButtonOnClick}>{context.GetText('common', 'modalButtonContinue')}</button>
 						</div>
 					</>
 				)}

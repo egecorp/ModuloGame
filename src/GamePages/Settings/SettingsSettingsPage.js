@@ -44,7 +44,7 @@ export default class SettingsSettingsPage extends React.Component {
 								{this.currentContext.GetText('signinanonim', 'tipConditionEnd')}
 							</p>
 
-							<button>{context.GetText('signinanonim', 'continueButton')}</button>
+							<button className="ButtonBig">{context.GetText('signinanonim', 'continueButton')}</button>
                   </div>
                 </div>
                 )}

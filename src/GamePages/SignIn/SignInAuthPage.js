@@ -101,7 +101,7 @@ render() {
 						</div>
 
 						<div className="FooterArea">
-							<button>{context.GetText('signinauth', 'continueButton')}</button>
+							<button className="ButtonBig">{context.GetText('signinauth', 'continueButton')}</button>
 						</div>
 
 						{MsgBoxHTML}

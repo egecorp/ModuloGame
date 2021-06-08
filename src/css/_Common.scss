@@ -1,8 +1,8 @@
 :root,
 *::after,
 *::before {
-	--brand-color: #35CA71;
-	--brand-color-hover: #2EB062;
+	--brand-color: #35ca71;
+	--brand-color-hover: #2eb062;
 
 	--font-color: #fff;
 	--link-color: #168643;
@@ -14,17 +14,17 @@
 	--button-green: var(--brand-color);
 	--button-green-hover: var(--brand-color-hover);
 	--button-green-rgb: 53, 202, 113;
-	--button-darkgreen: #06371E;
+	--button-darkgreen: #06371e;
 	--button-darkgreen-rgb: 6, 55, 30;
 
-	--button-font-color: #06371E;
+	--button-font-color: #06371e;
 
-	--button-footer-bg: #EEEEEE;
-	--button-footer-bg-hover: #D4D4D4;
+	--button-footer-bg: #eeeeee;
+	--button-footer-bg-hover: #d4d4d4;
 
 	--bg-dark: rgba(6, 55, 30, 0.25);
 	--bg-dark-ava: rgba(0, 0, 0, 0.2);
-	--bg-dark-list: #05672C;
+	--bg-dark-list: #05672c;
 }
 
 *,
@@ -33,12 +33,14 @@
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: contain;
-	font-family: 'Roboto Slab', sans-serif;
+	font-family: "Roboto Slab", sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
 
-[data-show="0"] { display: none; }
+[data-show="0"] {
+	display: none;
+}
 
 button {
 	padding: 0;
@@ -47,7 +49,8 @@ button {
 	background-color: unset;
 }
 
-input, select {
+input,
+select {
 	position: relative;
 	appearance: none;
 	outline: 0;
@@ -59,14 +62,27 @@ input, select {
 }
 
 @mixin placeholder {
-	&::placeholder { @content; }
-	&:-moz-placeholder { @content; }
-	&::-moz-placeholder { @content; }
-	&:-ms-input-placeholder { @content; }
-	&::-webkit-input-placeholder { @content; }
+	&::placeholder {
+		@content;
+	}
+	&:-moz-placeholder {
+		@content;
+	}
+	&::-moz-placeholder {
+		@content;
+	}
+	&:-ms-input-placeholder {
+		@content;
+	}
+	&::-webkit-input-placeholder {
+		@content;
+	}
 }
 
-@include placeholder { color: var(--font-color); opacity: 0.4; }
+@include placeholder {
+	color: var(--font-color);
+	opacity: 0.4;
+}
 
 @mixin textWrapDots {
 	width: 100%;
@@ -86,8 +102,8 @@ input, select {
 
 /* ScrollHide */
 .ScrollHide {
-	-ms-overflow-style: none;  /* IE and Edge */
-	scrollbar-width: none;  /* Firefox */
+	-ms-overflow-style: none; /* IE and Edge */
+	scrollbar-width: none; /* Firefox */
 }
 
 .ScrollHide::-webkit-scrollbar {
@@ -95,20 +111,24 @@ input, select {
 }
 /* End */
 
-
-
-html, body {
+html,
+body {
 	height: 100%;
 	width: 100%;
 	background-color: papayawhip;
 }
 
-.Bold { font-weight: 600; }
-.Error { color: red !important; font-weight: 400; }
+.Bold {
+	font-weight: 600;
+}
+.Error {
+	color: red !important;
+	font-weight: 400;
+}
 
-
-
-#game-body { height: 100%; }
+#game-body {
+	height: 100%;
+}
 
 #playground {
 	position: relative;
@@ -143,23 +163,44 @@ html, body {
 	}
 }
 
-
-
 /*** *** *** Scroll *** *** ***/
-* { scrollbar-width: thin; }
+* {
+	scrollbar-width: thin;
+}
 
 ::-webkit-resizer,
-::-webkit-scrollbar-corner { display: none; }
+::-webkit-scrollbar-corner {
+	display: none;
+}
 
-::-webkit-scrollbar { width: 9px; height: 11px; }
+::-webkit-scrollbar {
+	width: 9px;
+	height: 11px;
+}
 
-::-webkit-scrollbar-thumb            { background-clip: padding-box; border-radius: 10px; }
-::-webkit-scrollbar-thumb:vertical   { border-left: 3px solid rgba(0, 0, 0, 0); border-right:  3px solid rgba(0, 0, 0, 0); }
-::-webkit-scrollbar-thumb:horizontal { border-top:  3px solid rgba(0, 0, 0, 0); border-bottom: 3px solid rgba(0, 0, 0, 0); }
+::-webkit-scrollbar-thumb {
+	background-clip: padding-box;
+	border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:vertical {
+	border-left: 3px solid rgba(0, 0, 0, 0);
+	border-right: 3px solid rgba(0, 0, 0, 0);
+}
+::-webkit-scrollbar-thumb:horizontal {
+	border-top: 3px solid rgba(0, 0, 0, 0);
+	border-bottom: 3px solid rgba(0, 0, 0, 0);
+}
 
-::-webkit-scrollbar-button	{ width: 0px; height: 5px;}
-::-webkit-scrollbar { background-color:transparent; }
-::-webkit-scrollbar-thumb { background-color: #9A9; }
+::-webkit-scrollbar-button {
+	width: 0px;
+	height: 5px;
+}
+::-webkit-scrollbar {
+	background-color: transparent;
+}
+::-webkit-scrollbar-thumb {
+	background-color: #9a9;
+}
 
 /* Scroll */
 /*::-webkit-scrollbar-button:single-button:start:vertical   { background-image: url(../icons/img/icons/arrows/arrow-scroll-up-666.svg); background-size: 7px; }
@@ -168,8 +209,6 @@ html, body {
 ::-webkit-scrollbar-button:single-button:end:horizontal   { background-image: url(../icons/img/icons/arrows/arrow-scroll-right-666.svg); background-size: 7px; }
 */
 /*** *** *** END *** *** ***/
-
-
 
 .CheckBoxButton {
 	padding: 8px;
@@ -191,7 +230,7 @@ html, body {
 	&[data-select="1"] {
 		border: 2px solid var(--button-green);
 		background-color: rgba(var(--button-darkgreen-rgb), 0.5);
-	
+
 		> .CheckBoxButtonIndicator {
 			border: 2px solid rgba(var(--button-green-rgb), 1);
 
@@ -200,9 +239,9 @@ html, body {
 				top: 50%;
 				left: 50%;
 				transform: translate(-50%, -50%);
-			
-				content: '';
-			
+
+				content: "";
+
 				width: 16px;
 				height: 16px;
 				background-color: var(--button-green);
@@ -210,8 +249,6 @@ html, body {
 			}
 		}
 	}
-
-
 
 	> .CheckBoxButtonTitle {
 		font-size: 14px;
@@ -233,36 +270,36 @@ html, body {
 	}
 }
 
-
-
 .GeneralSubtitle {
 	margin: 12px 0;
 
 	font-size: 15px;
 	font-weight: 500;
 
-	span { text-decoration: underline; }
+	span {
+		text-decoration: underline;
+	}
 }
-
-
 
 .AdditionalTip {
 	margin-bottom: 10px;
-	
+
 	font-weight: 300;
 	font-size: 13px;
 	line-height: 1.4;
 	text-align: center;
 
-	> span { font-weight: 500; }
+	> span {
+		font-weight: 500;
+	}
 }
-
-
 
 .LabelInput {
 	margin-bottom: 8px;
 
-	&:last-child { margin-bottom: unset; }
+	&:last-child {
+		margin-bottom: unset;
+	}
 
 	> label {
 		margin-bottom: 5px;
@@ -275,8 +312,6 @@ html, body {
 	}
 }
 
-
-
 /*** Типы элементов формы ***/
 /* General */
 input.General,
@@ -287,7 +322,7 @@ select.General {
 
 	background-color: rgba(var(--button-darkgreen-rgb), 0.5);
 	border-radius: 3px;
-	box-sizing: border-box;	
+	box-sizing: border-box;
 
 	&.Date {
 		background-image: url(../img/icon/calendar.svg);
@@ -303,7 +338,9 @@ select.General {
 	appearance: none;
 }
 
-input[type="text"].General.Date { background-image: url(../img/icon/calendar-op40.svg); }
+input[type="text"].General.Date {
+	background-image: url(../img/icon/calendar-op40.svg);
+}
 
 input[type="date"].General::-webkit-calendar-picker-indicator {
 	background-image: unset;
@@ -312,7 +349,7 @@ input[type="date"].General::-webkit-calendar-picker-indicator {
 /* End */
 
 /* InPopup */
-input.InPopup	{
+input.InPopup {
 	margin-top: 5px;
 	padding: 7px 10px;
 
@@ -325,7 +362,9 @@ input.InPopup	{
 	font-size: 13px;
 	font-weight: 300;
 
-	@include placeholder { opacity: 0.6; }
+	@include placeholder {
+		opacity: 0.6;
+	}
 }
 /* End */
 
@@ -362,9 +401,12 @@ input.InPopup	{
 	border-radius: 5px;
 	box-sizing: border-box;
 
-
-	&[data-vip="1"] {	background-color: #ffd861; }
-	&[data-vip="1"] > p { color: #d95454; }
+	&[data-vip="1"] {
+		background-color: #ffd861;
+	}
+	&[data-vip="1"] > p {
+		color: #d95454;
+	}
 
 	&[data-vip="1"] > .IconVip {
 		position: absolute;
@@ -376,7 +418,7 @@ input.InPopup	{
 		background-image: url(/src/img/icon/vip.svg);
 	}
 
-	> p {		
+	> p {
 		@include textWrapDots;
 
 		font-size: 13px;
@@ -411,7 +453,7 @@ input.InPopup	{
 		transform: translateY(-50%);
 
 		width: 18px;
-		height: 28px; 
+		height: 28px;
 		border-radius: 3px;
 
 		background-color: red; // !Удалить после введения карт
@@ -426,9 +468,10 @@ input.InPopup	{
 	background-color: var(--bg-dark-list);
 	border: 1px solid rgba(0, 0, 0, 0.1);
 	border-radius: 5px;
-	
 
-	&:active::after { opacity: 0.2; }
+	&:active::after {
+		opacity: 0.2;
+	}
 
 	&::after {
 		position: absolute;
@@ -444,9 +487,6 @@ input.InPopup	{
 	}
 }
 /* End */
-
-
-
 
 /*** *** *** Buttons *** *** ***/
 .ButtonBack {
@@ -493,9 +533,14 @@ input.InPopup	{
 		font-weight: 500;
 	}
 
-	&:active { background-color: var(--button-green-hover); }
+	&:active {
+		background-color: var(--button-green-hover);
+	}
 
-	&.IconMenu 	{ background-image: url(/src/img/buttons/menu_dark-green.svg); background-size: 60%; }	
+	&.IconMenu {
+		background-image: url(/src/img/buttons/menu_dark-green.svg);
+		background-size: 60%;
+	}
 }
 
 .ButtonGreenBorder {
@@ -512,7 +557,9 @@ input.InPopup	{
 	font-weight: 600;
 	text-transform: uppercase;
 
-	&:active { background-color: rgba(0, 0, 0, 0.25);; }
+	&:active {
+		background-color: rgba(0, 0, 0, 0.25);
+	}
 }
 
 .ButtonAroundGreen {
@@ -525,22 +572,29 @@ input.InPopup	{
 
 	background-size: 50%;
 	background-color: var(--button-green);
-	box-shadow: 0 0 0 3px rgba(0,0,0,0.1);
+	box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
 	border-radius: 30px;
 
-	&.IconAdd 	{ background-image: url(/src/img/buttons/plus.svg); grid-column: 1;  }
-	&.IconStats { background-image: url(/src/img/buttons/stats.svg); grid-column: 2; }
+	&.IconAdd {
+		background-image: url(/src/img/buttons/plus.svg);
+		grid-column: 1;
+	}
+	&.IconStats {
+		background-image: url(/src/img/buttons/stats.svg);
+		grid-column: 2;
+	}
 
-	&:active { background-color: var(--button-green-hover); }
+	&:active {
+		background-color: var(--button-green-hover);
+	}
 }
 
 .ButtonBig {
-	padding: 0 10px;
+	--font-color: #000;
 
+	padding: 12px 0;
 	width: 100%;
-	height: 40px;
 
-	background: 97% center / 16px no-repeat url(/src/img/buttons/right-arrow_dark-green.svg), linear-gradient(90deg, #2EB062 0%, var(--brand-color) 100%);
 	border-radius: 5px;
 	box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
 
@@ -549,8 +603,6 @@ input.InPopup	{
 	font-weight: 500;
 	line-height: 1;
 	text-transform: uppercase;
-
-	&:active { background: 97% center / 16px no-repeat url(/src/img/buttons/right-arrow_dark-green.svg), linear-gradient(90deg, #279654 0%, #2EB062 100%); }
 }
 
 .ButtonBlackTrans {
@@ -561,7 +613,7 @@ input.InPopup	{
 	column-gap: 7px;
 	place-items: center;
 
-	background-color: rgba(0,0,0,0.25);
+	background-color: rgba(0, 0, 0, 0.25);
 	border-radius: 100px;
 
 	p {
@@ -573,11 +625,10 @@ input.InPopup	{
 	}
 
 	&:active {
-		background-color: rgba(0,0,0,0.5);
+		background-color: rgba(0, 0, 0, 0.5);
 	}
 }
 /*** *** *** END *** *** ***/
-
 
 @media (max-width: 520px) {
 	#playground {

@@ -90,8 +90,12 @@
 	column-gap: 12px;
 	align-items: center;
 
-	&[data-column="1"] { grid-template-columns: 1fr; }
-	&[data-column="2"] { grid-template-columns: 1fr max-content; }
+	&[data-column="1"] {
+		grid-template-columns: 1fr;
+	}
+	&[data-column="2"] {
+		grid-template-columns: 1fr max-content;
+	}
 
 	.Title {
 		font-size: 18px;
@@ -139,7 +143,7 @@
 		--userbar-br: 5px;
 
 		position: relative;
-		
+
 		padding: var(--userbar-padding-top) var(--userbar-padding-left);
 
 		width: 100%;
@@ -150,7 +154,7 @@
 		grid-template-columns: 1fr max-content;
 		place-items: center;
 
-		background-color: #C92A20;
+		background-color: #c92a20;
 		border-radius: var(--userbar-br);
 
 		pointer-events: all;
@@ -166,7 +170,7 @@
 				right: 0;
 				transform: translateY(-50%);
 
-				content: '';
+				content: "";
 
 				width: 1px;
 				height: 70%;
@@ -175,7 +179,9 @@
 				opacity: 0.25;
 			}
 
-			&:last-child::after { opacity: 0; }
+			&:last-child::after {
+				opacity: 0;
+			}
 		}
 
 		> .ChangeSmile {
@@ -196,7 +202,9 @@
 				background-size: 24px;
 				border-radius: var(--userbar-br) 0 0 var(--userbar-br);
 
-				&:active { background-color: rgba(0,0,0,0.2) ;}
+				&:active {
+					background-color: rgba(0, 0, 0, 0.2);
+				}
 			}
 		}
 
@@ -213,13 +221,15 @@
 			column-gap: 5px;
 			place-items: center;
 
-			> .IconStar { 
+			> .IconStar {
 				width: 12px;
 				height: 12px;
 				background-image: url(/src/img/icon/star.svg);
 			}
 
-			> p {	font-weight: 300;	}
+			> p {
+				font-weight: 300;
+			}
 		}
 	}
 }
@@ -252,23 +262,10 @@
 	margin: 10px 0;
 
 	> button {
-		--font-color: #000;
-
-		padding: 10px 0;
-
-		width: 100%;
-
 		background-color: var(--button-footer-bg);
-		border-radius: 5px;
-		box-shadow: 2px 4px 4px 0 rgba(0, 0, 0, 0.15);
-
-		font-size: 16px;
-		font-weight: 500;
-		text-transform: uppercase;
 
 		&:active {
 			background-color: var(--button-footer-bg-hover);
-			box-shadow: 2px 4px 4px 0 rgba(0, 0, 0, 0.3);
 		}
 	}
 }
@@ -336,6 +333,15 @@
 
 	overflow-y: hidden;
 
+	.ButtonBig {
+		background: 97% center / 16px no-repeat url(/src/img/buttons/right-arrow_dark-green.svg), linear-gradient(90deg, #2eb062 0%, var(--brand-color) 100%);
+	
+		color: var(--button-darkgreen);
+	
+		&:active {
+			background: 97% center / 16px no-repeat url(/src/img/buttons/right-arrow_dark-green.svg), linear-gradient(90deg, #279654 0%, #2eb062 100%);
+		}
+	}
 
 	.SubMenu {
 		display: grid;
@@ -351,9 +357,9 @@
 
 		> .Finished {
 			--finished-margin-top: 12px;
-			
+
 			position: relative;
-			
+
 			margin-top: var(--finished-margin-top);
 			margin-bottom: calc(34px + 7px * 2);
 			padding-left: 17px;
@@ -391,7 +397,6 @@
 
 				overflow: hidden;
 
-
 				> .ListInfo {
 					padding: 5px;
 
@@ -403,11 +408,11 @@
 					> .PlayerContainer {
 						width: 90px;
 						height: 100%;
-	
+
 						display: grid;
 						row-gap: 5px;
 						justify-items: center;
-	
+
 						overflow: hidden;
 
 						p {
@@ -416,10 +421,9 @@
 							text-align: center;
 							text-transform: uppercase;
 							line-height: 1;
-	
+
 							@include textWrapDots;
 						}
-
 
 						> .Avatar[data-bot="1"] {
 							background-image: url(../img/icon/bot.svg);
@@ -470,7 +474,6 @@
 							column-gap: 3px;
 							place-items: center;
 
-
 							> p {
 								font-size: 10px;
 								font-weight: 300;
@@ -490,7 +493,7 @@
 
 					padding: 5px 0 3px 0;
 
-					background-color: rgba(0,0,0,0.25);
+					background-color: rgba(0, 0, 0, 0.25);
 
 					p {
 						font-size: 10px;
@@ -504,7 +507,7 @@
 						position: absolute;
 						top: 0;
 						left: 0;
-						
+
 						width: 100%;
 						height: 100%;
 
@@ -690,11 +693,11 @@
 			--font-color: #000;
 
 			position: relative;
-			
+
 			padding: 10px 0;
 
 			width: 100%;
-			
+
 			font-weight: 500;
 			font-size: 15px;
 			text-transform: uppercase;
@@ -717,7 +720,7 @@
 				opacity: 0;
 			}
 
-			&:nth-child(n+2)::after {
+			&:nth-child(n + 2)::after {
 				opacity: 1;
 			}
 		}
@@ -737,7 +740,6 @@
 	height: 100%;
 	overflow-y: auto;
 
-	
 	.Search {
 		position: relative;
 
@@ -776,7 +778,6 @@
 			column-gap: 10px;
 			align-items: center;
 
-
 			.Avatar {
 				width: 28px;
 				height: 28px;
@@ -794,14 +795,13 @@
 
 			button {
 				background-size: 18px;
-			
+
 				> .IconSword {
 					width: 14px;
 					height: 14px;
 
 					background-image: url(../img/icon/sword.svg);
 				}
-
 			}
 		}
 	}
@@ -861,9 +861,6 @@
 	}
 }
 
-
-
-
 .RulesPage {
 	height: 100%;
 
@@ -918,7 +915,6 @@
 	}
 }
 
-
 /******** Игровая область **********/
 .Gameground {
 	margin-top: 12px;
@@ -967,10 +963,16 @@
 					width: 32px;
 					height: 32px;
 					background-size: 32px;
-					
-					&.Winner { background-image: url(/src/img/gamestatus/winner.svg); }
-					&.YourTurn { background-image: url(/src/img/gamestatus/your-turn.svg); }
-					&.Waiting { background-image: url(/src/img/gamestatus/waiting.svg); }
+
+					&.Winner {
+						background-image: url(/src/img/gamestatus/winner.svg);
+					}
+					&.YourTurn {
+						background-image: url(/src/img/gamestatus/your-turn.svg);
+					}
+					&.Waiting {
+						background-image: url(/src/img/gamestatus/waiting.svg);
+					}
 				}
 
 				> p {
@@ -987,7 +989,7 @@
 	.RoundsContainer {
 		display: grid;
 		row-gap: 10px;
-		
+
 		> .Round {
 			padding-top: 3px;
 
@@ -1027,9 +1029,15 @@
 					text-align: center;
 					line-height: 110%; // Размещаем число чуть ниже
 
-					&[data-color="red"] { background-color: #fd0148; }
-					&[data-color="green"] { background-color: var(--button-green); }
-					&[data-color="yellow"] { background-color: #ddb937; }
+					&[data-color="red"] {
+						background-color: #fd0148;
+					}
+					&[data-color="green"] {
+						background-color: var(--button-green);
+					}
+					&[data-color="yellow"] {
+						background-color: #ddb937;
+					}
 				}
 			}
 
@@ -1050,20 +1058,20 @@
 		grid-auto-rows: max-content;
 		row-gap: 12px;
 		justify-items: center;
-		
+
 		.Card {
 			width: 28px;
 			height: 44px;
 
 			border-radius: 5px;
 			box-sizing: border-box;
-			box-shadow: 0 1px 2px 0.5px rgba(0,0,0,0.15);
+			box-shadow: 0 1px 2px 0.5px rgba(0, 0, 0, 0.15);
 
 			overflow: hidden;
 
 			&.Shirt {
 				border: 3px solid #eee;
-				background-color: #D95454;
+				background-color: #d95454;
 			}
 
 			&.IconPlace {
@@ -1072,7 +1080,6 @@
 				opacity: 0.5;
 			}
 		}
-
 
 		.Table {
 			position: relative;
@@ -1086,11 +1093,11 @@
 			place-items: center;
 
 			background-color: var(--brand-color);
-			border: 6px solid #9C6027;
+			border: 6px solid #9c6027;
 			border-radius: 100px;
 
 			box-sizing: border-box;
-			box-shadow: 0 1px 2px 0.5px rgba(0,0,0,0.25);
+			box-shadow: 0 1px 2px 0.5px rgba(0, 0, 0, 0.25);
 
 			.CardsContainer {
 				display: grid;
@@ -1123,8 +1130,10 @@
 					grid-auto-flow: column;
 					grid-auto-columns: max-content;
 					column-gap: var(--column-gap);
-	
-					> .Card { background-color: red; } // !Удалить
+
+					> .Card {
+						background-color: red;
+					} // !Удалить
 				}
 			}
 		}
@@ -1135,15 +1144,6 @@
 		max-height: 150px;
 	}
 }
-
-
-
-
-
-
-
-
-
 
 .DigitIcon {
 	margin: 0;

@@ -82,7 +82,7 @@ export default class SignInAuthPage extends React.Component {
 								{context.GetText('signinanonim', 'tipConditionEnd')}
 							</p>
 
-							<button onClick={this.nextButtonOnClick}>{context.GetText('common', 'modalButtonContinue')}</button>
+							<button className="ButtonBig" onClick={this.nextButtonOnClick}>{context.GetText('common', 'modalButtonContinue')}</button>
 						</div>
 					</>
 				)}

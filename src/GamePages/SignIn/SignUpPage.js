@@ -226,7 +226,7 @@ render() {
 							{context.GetText('signup', 'tipConditionEnd')}
 						</p>
 
-						<button onClick={this.nextButtonOnClick}>{context.GetText('signup', 'continueButton')}</button>
+						<button className="ButtonBig" onClick={this.nextButtonOnClick}>{context.GetText('signup', 'continueButton')}</button>
 					</div>
 
 					{MsgBoxHTML}

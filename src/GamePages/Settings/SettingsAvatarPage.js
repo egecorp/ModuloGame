@@ -39,7 +39,7 @@ render() {
 					</p>
 
 					<div  className="FooterArea">
-						<button>{context.GetText('signinanonim', 'continueButton')}</button>
+						<button className="ButtonBig">{context.GetText('signinanonim', 'continueButton')}</button>
 					</div>
 				</div>
 			)}

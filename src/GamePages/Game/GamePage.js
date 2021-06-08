@@ -608,7 +608,7 @@ export default class GamePage extends React.Component {
 /* Расположить ПОД Gameground */
 /*
 <div className="FooterArea">
-	<button>Отменить приглашение</button>
+	<button className="ButtonBig">Отменить приглашение</button>
 </div>
 */
 

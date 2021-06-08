@@ -97,8 +97,8 @@ table {
 :root,
 *::after,
 *::before {
-  --brand-color: #35CA71;
-  --brand-color-hover: #2EB062;
+  --brand-color: #35ca71;
+  --brand-color-hover: #2eb062;
   --font-color: #fff;
   --link-color: #168643;
   --font-size: 14px;
@@ -106,14 +106,14 @@ table {
   --button-green: var(--brand-color);
   --button-green-hover: var(--brand-color-hover);
   --button-green-rgb: 53, 202, 113;
-  --button-darkgreen: #06371E;
+  --button-darkgreen: #06371e;
   --button-darkgreen-rgb: 6, 55, 30;
-  --button-font-color: #06371E;
-  --button-footer-bg: #EEEEEE;
-  --button-footer-bg-hover: #D4D4D4;
+  --button-font-color: #06371e;
+  --button-footer-bg: #eeeeee;
+  --button-footer-bg-hover: #d4d4d4;
   --bg-dark: rgba(6, 55, 30, 0.25);
   --bg-dark-ava: rgba(0, 0, 0, 0.2);
-  --bg-dark-list: #05672C;
+  --bg-dark-list: #05672c;
 }
 
 *,
@@ -122,7 +122,7 @@ table {
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  font-family: 'Roboto Slab', sans-serif;
+  font-family: "Roboto Slab", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -138,7 +138,8 @@ button {
   background-color: unset;
 }
 
-input, select {
+input,
+select {
   position: relative;
   -webkit-appearance: none;
      -moz-appearance: none;
@@ -203,7 +204,8 @@ input, select {
 }
 
 /* End */
-html, body {
+html,
+body {
   height: 100%;
   width: 100%;
   background-color: papayawhip;
@@ -291,7 +293,7 @@ html, body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #9A9;
+  background-color: #9a9;
 }
 
 /* Scroll */
@@ -339,7 +341,7 @@ html, body {
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
-  content: '';
+  content: "";
   width: 16px;
   height: 16px;
   background-color: var(--button-green);
@@ -710,11 +712,9 @@ input.InPopup::-webkit-input-placeholder {
 }
 
 .ButtonBig {
-  padding: 0 10px;
+  --font-color: #000;
+  padding: 12px 0;
   width: 100%;
-  height: 40px;
-  background: 97% center/16px no-repeat url(/src/img/buttons/right-arrow_dark-green.svg), -webkit-gradient(linear, left top, right top, from(#2EB062), to(var(--brand-color)));
-  background: 97% center/16px no-repeat url(/src/img/buttons/right-arrow_dark-green.svg), linear-gradient(90deg, #2EB062 0%, var(--brand-color) 100%);
   border-radius: 5px;
   -webkit-box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
           box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
@@ -723,11 +723,6 @@ input.InPopup::-webkit-input-placeholder {
   font-weight: 500;
   line-height: 1;
   text-transform: uppercase;
-}
-
-.ButtonBig:active {
-  background: 97% center/16px no-repeat url(/src/img/buttons/right-arrow_dark-green.svg), -webkit-gradient(linear, left top, right top, from(#279654), to(#2EB062));
-  background: 97% center/16px no-repeat url(/src/img/buttons/right-arrow_dark-green.svg), linear-gradient(90deg, #279654 0%, #2EB062 100%);
 }
 
 .ButtonBlackTrans {
@@ -930,7 +925,7 @@ input.InPopup::-webkit-input-placeholder {
       grid-template-columns: 1fr -webkit-max-content;
       grid-template-columns: 1fr max-content;
   place-items: center;
-  background-color: #C92A20;
+  background-color: #c92a20;
   border-radius: var(--userbar-br);
   pointer-events: all;
 }
@@ -946,7 +941,7 @@ input.InPopup::-webkit-input-placeholder {
   right: 0;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
-  content: '';
+  content: "";
   width: 1px;
   height: 70%;
   background-color: #000;
@@ -1031,22 +1026,11 @@ input.InPopup::-webkit-input-placeholder {
 }
 
 .FooterArea > button {
-  --font-color: #000;
-  padding: 10px 0;
-  width: 100%;
   background-color: var(--button-footer-bg);
-  border-radius: 5px;
-  -webkit-box-shadow: 2px 4px 4px 0 rgba(0, 0, 0, 0.15);
-          box-shadow: 2px 4px 4px 0 rgba(0, 0, 0, 0.15);
-  font-size: 16px;
-  font-weight: 500;
-  text-transform: uppercase;
 }
 
 .FooterArea > button:active {
   background-color: var(--button-footer-bg-hover);
-  -webkit-box-shadow: 2px 4px 4px 0 rgba(0, 0, 0, 0.3);
-          box-shadow: 2px 4px 4px 0 rgba(0, 0, 0, 0.3);
 }
 
 .SignIn .Buttons {
@@ -1107,6 +1091,17 @@ input.InPopup::-webkit-input-placeholder {
   -ms-flex-line-pack: start;
       align-content: start;
   overflow-y: hidden;
+}
+
+.GameList .ButtonBig {
+  background: 97% center/16px no-repeat url(/src/img/buttons/right-arrow_dark-green.svg), -webkit-gradient(linear, left top, right top, from(#2eb062), to(var(--brand-color)));
+  background: 97% center/16px no-repeat url(/src/img/buttons/right-arrow_dark-green.svg), linear-gradient(90deg, #2eb062 0%, var(--brand-color) 100%);
+  color: var(--button-darkgreen);
+}
+
+.GameList .ButtonBig:active {
+  background: 97% center/16px no-repeat url(/src/img/buttons/right-arrow_dark-green.svg), -webkit-gradient(linear, left top, right top, from(#279654), to(#2eb062));
+  background: 97% center/16px no-repeat url(/src/img/buttons/right-arrow_dark-green.svg), linear-gradient(90deg, #279654 0%, #2eb062 100%);
 }
 
 .GameList .SubMenu {
@@ -1463,7 +1458,7 @@ input.InPopup::-webkit-input-placeholder {
   opacity: 0;
 }
 
-.Modal > .Buttons > button:nth-child(n+2)::after {
+.Modal > .Buttons > button:nth-child(n + 2)::after {
   opacity: 1;
 }
 
@@ -1825,7 +1820,7 @@ input.InPopup::-webkit-input-placeholder {
 
 .Gameground .Playground .Card.Shirt {
   border: 3px solid #eee;
-  background-color: #D95454;
+  background-color: #d95454;
 }
 
 .Gameground .Playground .Card.IconPlace {
@@ -1844,7 +1839,7 @@ input.InPopup::-webkit-input-placeholder {
   row-gap: 12px;
   place-items: center;
   background-color: var(--brand-color);
-  border: 6px solid #9C6027;
+  border: 6px solid #9c6027;
   border-radius: 100px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
