@@ -59,26 +59,30 @@ export default class SignInAuthPage extends React.Component {
 							<SignInLanguagePanel lang="ru"></SignInLanguagePanel>
 						</HeadNavigation>
 						
-						<div className="SignInAnonim">                  
+						<div className="SignInAnonim ContentGap">                  
 							<p className="GeneralSubtitle">
 								{context.GetText('signinanonim', 'labelYourNickname')} <span>anonim6045</span>
 							</p>
 							
-							<div className="SignInAnonimImage">
+							<div className="SignInAnonimContent">
 								<img src="/img/avatar/1/boy.1.png" alt="Anonim"></img>
+
+								<div className="TextBlock">
+									<p className="Tip">
+										{context.GetText('signinanonim', 'tipCannotChooseImg')}
+									</p>
+
+									<p className="SignUp" onClick={this.signUpLabelOnClick}>
+										{context.GetText('signinanonim', 'linkGoToSignUp')}
+									</p>
+								</div>
 							</div>
-
-							<p className="SignInAnonimTip">
-								{context.GetText('signinanonim', 'tipCannotChooseImg')}
-							</p>
-
-							<p className="SignInAnonimSignUp" onClick={this.signUpLabelOnClick}>{context.GetText('signinanonim', 'linkGoToSignUp')}</p>
 						</div>
 
 						<div className="FooterArea">
 							<p className="AdditionalTip">
 								{context.GetText('signinanonim', 'tipConditionBegin')}
-								<span>{context.GetText('signinanonim', 'tipConditionLink')}</span>
+								<span onClick={this.policyLabelOnClick}>{context.GetText('signinanonim', 'tipConditionLink')}</span>
 								{context.GetText('signinanonim', 'tipConditionEnd')}
 							</p>
 

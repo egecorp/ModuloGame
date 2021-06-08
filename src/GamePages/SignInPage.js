@@ -78,7 +78,7 @@ export default class SignInPage extends React.Component {
 							<SignInLanguagePanel lang='ru'></SignInLanguagePanel>
 						</HeadNavigation>
 						
-						<div className="SignIn">
+						<div className="SignIn ContentGap">
 							<p className="Welcome">
 								<span className="WelcomeTitle">{context.GetText('signin', 'welcomeIn')}</span>
 								<br />

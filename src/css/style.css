@@ -342,13 +342,12 @@ body {
 }
 
 .AdditionalTip {
-  margin-bottom: 10px;
   font-weight: 300;
   font-size: calc(var(--font-size) - 1px);
   line-height: 1.4;
   text-align: center;
 }
-.AdditionalTip > span {
+.AdditionalTip > a {
   font-weight: 500;
 }
 
@@ -716,7 +715,8 @@ input.InPopup::-webkit-input-placeholder {
 }
 
 .Welcome {
-  padding: 12px 0;
+  padding-top: 15px;
+  padding-bottom: 30px;
   text-align: center;
 }
 .Welcome .WelcomeTitle {
@@ -773,6 +773,13 @@ input.InPopup::-webkit-input-placeholder {
 .HeadNavigation .ButtonGreen.IconMenu {
   width: 30px;
   height: 30px;
+}
+
+.ContentGap {
+  display: grid;
+  row-gap: 10px;
+  align-content: start;
+  align-items: start;
 }
 
 .ProfileContainer {
@@ -904,7 +911,9 @@ input.InPopup::-webkit-input-placeholder {
 }
 
 .FooterArea {
-  margin: 10px 0;
+  padding: 10px 0;
+  display: grid;
+  row-gap: 10px;
 }
 .FooterArea > button {
   background-color: var(--button-footer-bg);
@@ -913,12 +922,6 @@ input.InPopup::-webkit-input-placeholder {
   background-color: var(--button-footer-bg-hover);
 }
 
-.SignIn {
-  display: grid;
-  row-gap: 10px;
-  align-items: start;
-  align-content: start;
-}
 .SignIn .Buttons {
   display: grid;
   row-gap: 7px;
@@ -930,21 +933,23 @@ input.InPopup::-webkit-input-placeholder {
 .SignInAuth .UserTip {
   max-height: unset;
 }
-.SignInAnonim .SignInAnonimImage {
+.SignInAnonim .SignInAnonimContent {
   display: grid;
-  align-items: center;
+  row-gap: 10px;
   justify-items: center;
 }
-.SignInAnonim .SignInAnonimImage img {
+.SignInAnonim .SignInAnonimContent img {
   height: 180px;
 }
-.SignInAnonim .SignInAnonimTip {
-  margin-top: 10px;
+.SignInAnonim .SignInAnonimContent .TextBlock {
+  display: grid;
+  row-gap: 7px;
+}
+.SignInAnonim .SignInAnonimContent .TextBlock .Tip {
   font-weight: 500;
   text-align: center;
 }
-.SignInAnonim .SignInAnonimSignUp {
-  margin-top: 5px;
+.SignInAnonim .SignInAnonimContent .TextBlock .SignUp {
   font-weight: 500;
   text-align: center;
   text-decoration: underline;
@@ -1329,6 +1334,7 @@ input.InPopup::-webkit-input-placeholder {
   display: grid;
   grid-template-rows: -webkit-max-content 1fr;
   grid-template-rows: max-content 1fr;
+  row-gap: 10px;
   overflow: hidden;
 }
 .ConditionPage .Content {
