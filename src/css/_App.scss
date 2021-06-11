@@ -1265,3 +1265,14 @@
 .DigitIcon[data-digit="J"][data-color="blue"] {
 	background-image: url(../img/digits/BlueJ.png);
 }
+
+
+.ScoreOnDesktop{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.ScoreOnDesktop div{
+    margin-left: 5px;
+    margin-right: 5px;
+}

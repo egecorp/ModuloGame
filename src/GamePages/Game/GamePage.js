@@ -25,7 +25,6 @@ export default class GamePage extends React.Component {
 		this.state =
 		{
 			gamePageStatus: GAMEPAGE_STATUS.MAIN,
-            currentRoundNumber:this.getCurrentRoundNumerForGame(),
             currentShownRoundNumber : null,
 			competitorDigit1: null,
 			competitorDigit2: null,
@@ -54,52 +53,6 @@ export default class GamePage extends React.Component {
 	}
 
 
-    getCurrentRoundNumerForGame()
-    {
-        switch (this.currentGame.GameStatus) {
-            case GAME_STATUS.GAME_ROUND_1_NOUSER:
-            case GAME_STATUS.GAME_ROUND_1_USER1_DONE:
-            case GAME_STATUS.GAME_ROUND_1_USER2_DONE:
-            case GAME_STATUS.GAME_ROUND_1_USER1_GIVEUP:
-            case GAME_STATUS.GAME_ROUND_1_USER2_GIVEUP:
-            case GAME_STATUS.GAME_ROUND_1_TIMEOUT:
-                return 1;
-            case GAME_STATUS.GAME_ROUND_2_NOUSER:
-            case GAME_STATUS.GAME_ROUND_2_USER1_DONE:
-            case GAME_STATUS.GAME_ROUND_2_USER2_DONE:
-            case GAME_STATUS.GAME_ROUND_2_USER1_GIVEUP:
-            case GAME_STATUS.GAME_ROUND_2_USER2_GIVEUP:
-            case GAME_STATUS.GAME_ROUND_2_TIMEOUT:
-                return 2;
-            case GAME_STATUS.GAME_ROUND_3_NOUSER:
-            case GAME_STATUS.GAME_ROUND_3_USER1_DONE:
-            case GAME_STATUS.GAME_ROUND_3_USER2_DONE:
-            case GAME_STATUS.GAME_ROUND_3_USER1_GIVEUP:
-            case GAME_STATUS.GAME_ROUND_3_USER2_GIVEUP:
-            case GAME_STATUS.GAME_ROUND_3_TIMEOUT:
-                return 3;
-            case GAME_STATUS.GAME_ROUND_4_NOUSER:
-            case GAME_STATUS.GAME_ROUND_4_USER1_DONE:
-            case GAME_STATUS.GAME_ROUND_4_USER2_DONE:
-            case GAME_STATUS.GAME_ROUND_4_USER1_GIVEUP:
-            case GAME_STATUS.GAME_ROUND_4_USER2_GIVEUP:
-            case GAME_STATUS.GAME_ROUND_4_TIMEOUT:
-                return 4;
-            case GAME_STATUS.GAME_ROUND_5_NOUSER:
-            case GAME_STATUS.GAME_ROUND_5_USER1_DONE:
-            case GAME_STATUS.GAME_ROUND_5_USER2_DONE:
-            case GAME_STATUS.GAME_ROUND_5_USER1_GIVEUP:
-            case GAME_STATUS.GAME_ROUND_5_USER2_GIVEUP:
-            case GAME_STATUS.GAME_ROUND_5_TIMEOUT:
-            case GAME_STATUS.GAME_FINISH_USER1_WIN:
-            case GAME_STATUS.GAME_FINISH_USER2_WIN:
-            case GAME_STATUS.GAME_FINISH_USER2_DRAW:
-                return 5;
-            default: return 0;
-        }
-
-    }
-
 	updateIntervalObject = null;
 	componentDidMount() {
 		var thisObject = this;
@@ -121,41 +74,60 @@ export default class GamePage extends React.Component {
 	onLoadGameInfo(gameInfo) {
 		if (gameInfo && gameInfo.Id) 
         {
-			if (!(this.state.game && this.state.game.GameStatus === gameInfo.GameStatus)) {
-
+			if (!(this.state.game 
+                && (this.state.game.GameStatus === gameInfo.GameStatus)
+                && (this.state.game.User1MaxRoundNumber === gameInfo.User1MaxRoundNumber)
+                && (this.state.game.User2MaxRoundNumber === gameInfo.User2MaxRoundNumber)
+                )) 
+            {
+console.log("Change game", gameInfo);
 				var newGame = new OneModuloGame(gameInfo);
 				this.currentGame = newGame;
-
 
 				let canUseJoker = ((this.props.Device.myUser.Id === newGame.User1Id) && newGame.User1CanUseJoker) ||
 					((this.props.Device.myUser.Id === newGame.User2Id) && newGame.User2CanUseJoker);
 
-                if((this.state.gamePageStatus === GAMEPAGE_STATUS.WAIT) ||
-                    (this.state.gamePageStatus === GAMEPAGE_STATUS.ROUND))
+                if(this.state.gamePageStatus === GAMEPAGE_STATUS.WAIT) 
                 {
-
-                    //var d1, d2, d3, c1, c2, c3;
-                    var currentRoundNumber = this.getCurrentRoundNumerForGame();
-                    /*if (this.currentShownRoundNumber === currentRoundNumber)
+                    if ((newGame.RoundNumber < 5) && (+newGame.RoundNumber === (+this.state.currentShownRoundNumber + 1)))
                     {
-                        currentShownRoundNumber : roundNumber
-                    }*/
-
+                        this.setState({ 
+                            game: newGame, 
+                            canUseJoker: canUseJoker, 
+                            gamePageStatus : GAMEPAGE_STATUS.LASTROUND
+                        });
+                        clearDigits();
+                    }
+                    else
+                    {
+                        this.setState({ 
+                            game: newGame, 
+                            canUseJoker: canUseJoker, 
+                            gamePageStatus : GAMEPAGE_STATUS.ROUND
+                        });
+                        clearDigits();
+                    }
+                }
+                else if (this.state.gamePageStatus === GAMEPAGE_STATUS.ROUND)
+                {
                     this.setState({ 
                         game: newGame, 
                         canUseJoker: canUseJoker, 
-                        currentRoundNumber:currentRoundNumber,
                         gamePageStatus : GAMEPAGE_STATUS.ROUND
                     });
+                    clearDigits();
                 }
                 else
                 {
                     this.setState({ 
                         game: newGame, 
                         canUseJoker: canUseJoker, 
-                        currentRoundNumber:this.getCurrentRoundNumerForGame()
                     });
                 }
+            }
+            else
+            {
+                console.log("Do not change game", gameInfo);
             }
 		}
 		else {
@@ -171,38 +143,17 @@ export default class GamePage extends React.Component {
 	}
 
 	giveUpButtonOnClick() {
-		let postData = { Id: this.currentGame.Id, DeviceWorkToken: this.props.Device.DeviceWorkToken };
-		switch (this.currentGame.GameStatus) {
-			case GAME_STATUS.GAME_ROUND_1_NOUSER:
-			case GAME_STATUS.GAME_ROUND_1_USER2_DONE:
-				postData.RoundNumber = 1;
-				break;
-			case GAME_STATUS.GAME_ROUND_2_NOUSER:
-			case GAME_STATUS.GAME_ROUND_2_USER2_DONE:
-				postData.RoundNumber = 2;
-				break;
-			case GAME_STATUS.GAME_ROUND_3_NOUSER:
-			case GAME_STATUS.GAME_ROUND_3_USER2_DONE:
-				postData.RoundNumber = 3;
-				break;
-			case GAME_STATUS.GAME_ROUND_4_NOUSER:
-			case GAME_STATUS.GAME_ROUND_4_USER2_DONE:
-				postData.RoundNumber = 4;
-				break;
-			case GAME_STATUS.GAME_ROUND_5_NOUSER:
-			case GAME_STATUS.GAME_ROUND_5_USER2_DONE:
-				postData.RoundNumber = 5;
-				break;
-			default: break;
-		}
+		let postData = {
+             Id: this.currentGame.Id, 
+             DeviceWorkToken: this.props.Device.DeviceWorkToken,
+             RoundNumber : this.currentGame.RoundNumber
+            };
 		this.props.Device.GiveUpGame(this.onGameChangeCallBack, this, postData);
 	}
 
 	onGameChangeCallBack(r) {
-        if(this.state.gamePageStatus === GAMEPAGE_STATUS.WAIT) 
-        {
-            this.setState({gamePageStatus : GAMEPAGE_STATUS.ROUND});
-        }
+        console.log("onGameChangeCallBack");
+        console.log(r);
 	}
 
 	onFooterButtonClick(ev) {
@@ -220,6 +171,13 @@ export default class GamePage extends React.Component {
         {
             this.setState({ gamePageStatus: GAMEPAGE_STATUS.MAIN });
         }
+        else if (this.state.gamePageStatus === GAMEPAGE_STATUS.LASTROUND)
+        {
+            this.setState({
+                currentShownRoundNumber : this.currentGame.RoundNumber,
+                gamePageStatus: GAMEPAGE_STATUS.PLAY 
+                });
+        }
 		else if (
             (this.state.gamePageStatus === GAMEPAGE_STATUS.ALLDIGIT) 
            )
@@ -235,14 +193,16 @@ export default class GamePage extends React.Component {
             }
 		}
 		else {
-			this.setState({ gamePageStatus: GAMEPAGE_STATUS.PLAY });
+			this.setState({
+                currentShownRoundNumber : this.currentGame.RoundNumber,
+                gamePageStatus: GAMEPAGE_STATUS.PLAY 
+                });
 		}
 
 	}
 
     sendRound()
     {
-//        (this.state.gamePageStatus === GAMEPAGE_STATUS.WAIT)  ||
         function getDigit(d) {
             if (d + '' === '2') return 2;
             if (d + '' === '3') return 3;
@@ -260,42 +220,16 @@ export default class GamePage extends React.Component {
             Digit1: getDigit(this.state.myDigit1),
             Digit2: getDigit(this.state.myDigit2),
             Digit3: getDigit(this.state.myDigit3),
-            DeviceWorkToken: this.props.Device.DeviceWorkToken
+            DeviceWorkToken: this.props.Device.DeviceWorkToken,
+            RoundNumber: this.currentGame.RoundNumber
         };
-
-        switch (this.currentGame.GameStatus) {
-            case GAME_STATUS.GAME_ROUND_1_NOUSER:
-            case GAME_STATUS.GAME_ROUND_1_USER2_DONE:
-                postData.RoundNumber = 1;
-                break;
-            case GAME_STATUS.GAME_ROUND_2_NOUSER:
-            case GAME_STATUS.GAME_ROUND_2_USER2_DONE:
-                postData.RoundNumber = 2;
-                break;
-            case GAME_STATUS.GAME_ROUND_3_NOUSER:
-            case GAME_STATUS.GAME_ROUND_3_USER2_DONE:
-                postData.RoundNumber = 3;
-                break;
-            case GAME_STATUS.GAME_ROUND_4_NOUSER:
-            case GAME_STATUS.GAME_ROUND_4_USER2_DONE:
-                postData.RoundNumber = 4;
-                break;
-            case GAME_STATUS.GAME_ROUND_5_NOUSER:
-            case GAME_STATUS.GAME_ROUND_5_USER2_DONE:
-                postData.RoundNumber = 5;
-                break;
-            default: break;
-        }
-
+       
         if (postData.RoundNumber) {
             this.props.Device.PlayRound(this.onGameChangeCallBack, this, postData);
-            this.setState({
-                    gamePageStatus : GAMEPAGE_STATUS.WAIT
-                    
-                });
+            this.setState({gamePageStatus : GAMEPAGE_STATUS.WAIT});
         }
         else {
-            this.setState({ gamePageStatus: GAMEPAGE_STATUS.MAIL });
+            this.setState({gamePageStatus : GAMEPAGE_STATUS.MAIN});
         }
     }
 
@@ -345,12 +279,22 @@ export default class GamePage extends React.Component {
 
 
 	onRoundClick(roundNumber) {
-        //TODO вставить проверку, если раунд текущий, то не переходим или переходим как PLAY
-        this.setState(
-            {
-                gamePageStatus :  GAMEPAGE_STATUS.ROUND,
-                currentShownRoundNumber : roundNumber
-            });
+        if ((roundNumber + '' === this.currentGame.RoundNumber + '') && this.currentGame.IsMyUserPlaying)
+        {
+            this.setState(
+                {
+                     gamePageStatus: GAMEPAGE_STATUS.PLAY,
+                     currentShownRoundNumber : roundNumber
+                });    
+        }
+        else
+        {
+            this.setState(
+                {
+                    gamePageStatus :  GAMEPAGE_STATUS.ROUND,
+                    currentShownRoundNumber : roundNumber
+                });
+        }
 	}
 
 
@@ -452,6 +396,16 @@ export default class GamePage extends React.Component {
 		}
     }
 
+    clearDigits()
+    {
+        this.setState(
+            {
+                myDigit1: null,
+                myDigit2: null,
+                myDigit3: null
+            });
+    }
+
 	render() {
 
 		var MsgBoxHTML = null;
@@ -529,7 +483,7 @@ export default class GamePage extends React.Component {
                 <GamePageDesktop 
                     Device={this.props.Device} 
                     GamePageStatus={this.state.gamePageStatus}  
-                    CurrentGame={this.props.CurrentGame} 
+                    CurrentGame={this.state.game || this.props.CurrentGame} 
                     competitorDigit1 = {null}
                     competitorDigit2 = {null}
                     competitorDigit3 = {null}
@@ -558,7 +512,7 @@ export default class GamePage extends React.Component {
                 <GamePageDesktop 
                     Device={this.props.Device} 
                     GamePageStatus={this.state.gamePageStatus}  
-                    CurrentGame={this.props.CurrentGame} 
+                    CurrentGame={this.state.game || this.props.CurrentGame} 
                     competitorDigit1 = {competitorDigit1 ? (competitorDigit1 + "") : null}
                     competitorDigit2 = {competitorDigit2 ? (competitorDigit2 + "") : null}
                     competitorDigit3 = {competitorDigit3 ? (competitorDigit3 + "") : null}
@@ -591,46 +545,15 @@ export default class GamePage extends React.Component {
                 <GamePageRound 
                     GamePageStatus={this.state.gamePageStatus}  
                     Device={this.props.Device}  
-                    CurrentGame={this.props.CurrentGame} 
-                    CurrentRoundNumber={this.state.currentRoundNumber}
+                    CurrentGame={this.state.game || this.props.CurrentGame} 
+                    CurrentRoundNumber={this.currentGame.RoundNumber}
                     onRoundClickCallBack = {this.onRoundClick}
                     SetDigits={this.setDigits}>				
 				</GamePageRound>
 			);
-
-
-/*** *** Блок с обновлённых окном "Ожидание ответа от соперника..." *** ***/
-
-/* Расположить первым ВНУТРИ HeadNavigation */
-/*
-<button className="ButtonBack"></button>
-*/
-
-/* Расположить ВМЕСТО RoundsContainer */
-/*
-
-*/
-
-/* Расположить ПОД Gameground */
-/*
-<div className="FooterArea">
-	<button className="ButtonBig">Отменить приглашение</button>
-</div>
-*/
-
-/*** *** End *** *** ***/
-
-
-
-
-
-
-
-
 		}
 
-		let canGiveUp = this.currentGame.IsStart && !this.currentGame.IsGiveUp && !this.currentGame.IsFinish;
-		var giveUpButton = canGiveUp ?
+		var giveUpButton = this.currentGame.IsActive ?
 			(<button onClick={this.giveUpButtonOnClick} className="ButtonGreen">{this.currentContext.GetText('game.page', 'GiveUp')}</button>)
 			: null;
 

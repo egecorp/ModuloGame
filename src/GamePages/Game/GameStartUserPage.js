@@ -62,9 +62,9 @@ export default class GameStartUserPage extends React.Component {
 
 	}
 
-	onUserClick(ev) {
+	onUserClick(userId) {
 		var postData = {};
-		postData.CompetitorUserId = +ev.target.dataset.userid;
+		postData.CompetitorUserId = +userId;
 		postData.DeviceWorkToken = this.props.Device.DeviceWorkToken;
 		postData.IsRandomCompetitor = false;
 		this.props.Device.CreateGame(this.onCreateGame, this, postData);

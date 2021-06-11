@@ -7,7 +7,8 @@ const GAMEPAGE_STATUS =
     ALLDIGIT: 11,
     WAITING : 12,
     
-    SHOWROUND : 20,
+    ROUND : 20,
+    LASTROUND : 21,
     
     START : 30,
     ORDER : 40

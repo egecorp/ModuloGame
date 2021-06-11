@@ -22,6 +22,10 @@ export default class OneModuloGame
 
     IsDeclined = false;
 
+    IsActive = false;
+
+    IsMyUserPlaying = false;
+    
     User1Name = "User1";
 
     User2Name = "User2";
@@ -114,9 +118,9 @@ export default class OneModuloGame
                     myDigit1 : this.D1_1_1,
                     myDigit2 : this.D1_1_2,
                     myDigit3 : this.D1_1_3,
-                    competiorDigit1 : this.D1_1_1,
-                    competiorDigit2 : this.D1_2_2,
-                    competiorDigit3 : this.D1_3_3
+                    competitorDigit1 : this.D1_2_1,
+                    competitorDigit2 : this.D1_2_2,
+                    competitorDigit3 : this.D1_2_3
                 };
 
             case '2':
@@ -124,9 +128,9 @@ export default class OneModuloGame
                     myDigit1 : this.D2_1_1,
                     myDigit2 : this.D2_1_2,
                     myDigit3 : this.D2_1_3,
-                    competiorDigit1 : this.D2_1_1,
-                    competiorDigit2 : this.D2_2_2,
-                    competiorDigit3 : this.D2_3_3
+                    competitorDigit1 : this.D2_2_1,
+                    competitorDigit2 : this.D2_2_2,
+                    competitorDigit3 : this.D2_2_3
                 };
                 
             case '3':
@@ -134,9 +138,9 @@ export default class OneModuloGame
                     myDigit1 : this.D3_1_1,
                     myDigit2 : this.D3_1_2,
                     myDigit3 : this.D3_1_3,
-                    competiorDigit1 : this.D3_1_1,
-                    competiorDigit2 : this.D3_2_2,
-                    competiorDigit3 : this.D3_3_3
+                    competitorDigit1 : this.D3_2_1,
+                    competitorDigit2 : this.D3_2_2,
+                    competitorDigit3 : this.D3_2_3
                 };
                 
             case '4':
@@ -144,9 +148,9 @@ export default class OneModuloGame
                     myDigit1 : this.D4_1_1,
                     myDigit2 : this.D4_1_2,
                     myDigit3 : this.D4_1_3,
-                    competiorDigit1 : this.D4_1_1,
-                    competiorDigit2 : this.D4_2_2,
-                    competiorDigit3 : this.D4_3_3
+                    competitorDigit1 : this.D4_2_1,
+                    competitorDigit2 : this.D4_2_2,
+                    competitorDigit3 : this.D4_2_3
                 };
                 
             default:
@@ -154,9 +158,9 @@ export default class OneModuloGame
                     myDigit1 : this.D5_1_1,
                     myDigit2 : this.D5_1_2,
                     myDigit3 : this.D5_1_3,
-                    competiorDigit1 : this.D5_1_1,
-                    competiorDigit2 : this.D5_2_2,
-                    competiorDigit3 : this.D5_3_3
+                    competitorDigit1 : this.D5_2_1,
+                    competitorDigit2 : this.D5_2_2,
+                    competitorDigit3 : this.D5_2_3
                 };
   
         }
@@ -175,6 +179,7 @@ export default class OneModuloGame
         this.IsCancel = data.IsCancel ;
         this.IsGiveUp = data.IsGiveUp;
         this.IsDeclined = data.IsDeclined;
+        this.IsActive = data.IsActive;
 
         this.GameStatus = data.GameStatus;
 
@@ -254,6 +259,7 @@ export default class OneModuloGame
         this.User1Score = data.User1Score;
         this.User2Score = data.User2Score;
 
+        this.IsMyUserPlaying = data.IsMyUserPlaying;
 
     }
         
