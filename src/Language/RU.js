@@ -309,6 +309,7 @@ export function AddPackets(addPackFunction)
 
     pack.AddDictionary('game.page', 
 	{
+        'StartGame.WaitMeTitle' : 'Приглашение',
 		'StartGame.WaitMe' : 'Соперник предложил Вам сыграть',
         'StartGame.Wait' : 'Приглашение сыграть отправлено',
 
@@ -343,6 +344,7 @@ export function AddPackets(addPackFunction)
         'GameHeader'  : 'Modulo',
 
         'FooterButtonPlayRound'  : 'Сделать ход',
+        'FooterButtonPlayNextRound'  : 'Следующий ход',
         'FooterButtonWait'  : 'Ожидаем соперника',
         'FooterButtonWithdraw'  : 'Отменить приглашение',
         'FooterButtonBack' : 'Назад',

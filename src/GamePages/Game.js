@@ -4,7 +4,7 @@ import PageHolder from './PageHolder.js'
 
 import DEVICE_STATUS from '../Lib/DeviceStatus'
 
-import GAME_STATUS from '../Lib/GameStatus'
+//import GAME_STATUS from '../Lib/GameStatus'
 
 
 export default class Game extends React.Component {

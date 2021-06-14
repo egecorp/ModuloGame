@@ -12,12 +12,9 @@ export default class GamePageDesktop extends React.Component {
 		super(props);
 		this.state =
 		{
-			gamePageStatus: props.GamePageStatus,
 			myDigit1: props.myDigit1,
 			myDigit2: props.myDigit2,
 			myDigit3: props.myDigit3,
-			canUseJoker: false,
-            isPlaying : 1 // TODO брать из props
 		};
 
 		this.onCardDigitClick = this.onCardDigitClick.bind(this);
@@ -26,14 +23,14 @@ export default class GamePageDesktop extends React.Component {
 
 	onCardDigitClick(newDigit) {
 
-        if (this.props.GamePageStatus !== GAMEPAGE_STATUS.PLAY)
+        if (this.props.GamePageStatus !== GAMEPAGE_STATUS.PLAY_PLAYING)
         {
             console.log("You cannot use digit");
             console.log(this.props.GamePageStatus)
             return;
         }
 
-		if ((newDigit === 'J') && !this.state.canUseJoker) {
+		if ((newDigit === 'J') && !this.props.canUseJoker) {
 			console.log("Cannot use Joker");
 			return;
 		}
@@ -66,8 +63,8 @@ export default class GamePageDesktop extends React.Component {
 
 	onDesktopDigitClick(digit, position) {
 
-        if ((this.props.GamePageStatus !== GAMEPAGE_STATUS.PLAY)
-        && (this.props.GamePageStatus !== GAMEPAGE_STATUS.ALLDIGIT))
+        if ((this.props.GamePageStatus !== GAMEPAGE_STATUS.PLAY_PLAYING)
+        && (this.props.GamePageStatus !== GAMEPAGE_STATUS.PLAY_ALLDIGIT))
         {
             console.log("You cannot click desktop digits");
             return;
@@ -93,7 +90,7 @@ export default class GamePageDesktop extends React.Component {
 
         var cardsSetArea = null;
         var competitorScoreArea = (<div></div>);
-        if ((this.props.GamePageStatus === GAMEPAGE_STATUS.PLAY) || (this.props.GamePageStatus === GAMEPAGE_STATUS.ALLDIGIT))
+        if ((this.props.GamePageStatus === GAMEPAGE_STATUS.PLAY_PLAYING) || (this.props.GamePageStatus === GAMEPAGE_STATUS.PLAY_ALLDIGIT))
         {
             cardsSetArea = (
                 <div className="YourCardsContainer">
@@ -119,7 +116,7 @@ export default class GamePageDesktop extends React.Component {
                 </div>
                 );
         }
-        else if(this.props.GamePageStatus === GAMEPAGE_STATUS.WAITING)
+        else if(this.props.GamePageStatus === GAMEPAGE_STATUS.PLAY_WAIT_COMPETITOR)
         {
             cardsSetArea = (<div>
                 Ожидание хода
@@ -135,11 +132,11 @@ export default class GamePageDesktop extends React.Component {
                 digitUser1 = +digitUser1;
                 digitUser2 = +digitUser2;
 
-                if ((digitUser1 != 11) && ((digitUser1 < 2) || (digitUser1 > 9))) return 0;
-                if ((digitUser2 != 11) && ((digitUser2 < 2) || (digitUser2 > 9))) return 0;
+                if ((digitUser1 !== 11) && ((digitUser1 < 2) || (digitUser1 > 9))) return 0;
+                if ((digitUser2 !== 11) && ((digitUser2 < 2) || (digitUser2 > 9))) return 0;
     
-                if ((digitUser1 > digitUser2) && (digitUser1 % digitUser2 != 0)) return digitUser1 % digitUser2;
-                if ((digitUser1 < digitUser2) && (digitUser2 % digitUser1 == 0)) return Math.round(digitUser2 / digitUser1);
+                if ((digitUser1 > digitUser2) && (digitUser1 % digitUser2 !== 0)) return digitUser1 % digitUser2;
+                if ((digitUser1 < digitUser2) && (digitUser2 % digitUser1 === 0)) return Math.round(digitUser2 / digitUser1);
     
                 return 0;
             }

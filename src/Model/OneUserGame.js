@@ -1,60 +1,41 @@
-export default class OneModuloGame
+export default class OneUserGame
 {
     Id = 0;
-
-    StartStamp = null;
-
-    MinutesPerRound = null;
-
+    
     User1Id = null;
-
     User2Id = null;
+    
+    MyUserName = null;
+    MyUserNicNumber = null;
+    MyUserCharacter = null;
+
+    CompetitorUserName = null;
+    CompetitorUserNicNumber = null;
+    CompetitorUserCharacter = null;
+
+    GameStatus = null;
 
     IsStart = false;
-
     IsFinish = false;
-
     IsTimeout = false;
-
     IsCancel = false;
-
     IsGiveUp = false;
-
     IsDeclined = false;
-
     IsActive = false;
 
-    IsMyUserPlaying = false;
-    
-    User1Name = "User1";
+    StartStamp = null;
+    MinutesPerRound = null;
 
-    User2Name = "User2";
+    MyUserCanUseJoker = null;
+    MyUserMaxRoundNumber = null;
+    MyUserScore = null;
 
-    User1NicNumber = "";
+    CompetitorUserCanUseJoker = null;
+    CompetitorUserMaxRoundNumber = null;
+    CompetitorUserScore = null;
 
-    User2NicNumber = "";
-
-    User1Character = null;
-
-    User2Character = null;
-
-    GameStatus = 0;
-
-    User1CanUseJoker = false;
-    
-    User2CanUseJoker = false;
-
-    User1MaxRoundNumber = 0;
-
-    User2MaxRoundNumber = 0;
-
-    User1Score = 0;
-
-    User2Score = 0;
-
-    RoundNumber = 0;
-
-    CanIUseJoker = false;
+    RoundNumber = null;
+    IsMyUserPlaying = null;
 
     MyDigit11 = null;
     MyDigit12 = null;
@@ -91,7 +72,7 @@ export default class OneModuloGame
 
     GetRound(roundNumber)
     {
-        switch (roundNumber + "")
+        switch (roundNumber + '')
         {
             case '1':
                 return {
@@ -148,80 +129,63 @@ export default class OneModuloGame
 
     constructor(data)
     {
-        this.Id = data.Id ;
-        this.StartStamp = data.StartStamp ;
-        this.MinutesPerRound = data.MinutesPerRound ;
-        this.User1Id = data.User1Id ;
-        this.User2Id = data.User2Id ;
-        this.IsStart = data.IsStart ;
-        this.IsFinish = data.IsFinish ;
-        this.IsTimeout = data.IsTimeout ;
-        this.IsCancel = data.IsCancel ;
+        this.Id = data.Id;
+        this.User1Id = data.User1Id;
+        this.User2Id = data.User2Id;
+        this.MyUserName = data.MyUserName;
+        this.CompetitorUserName = data.CompetitorUserName;
+        this.MyUserNicNumber = data.MyUserNicNumber;
+        this.CompetitorUserNicNumber = data.CompetitorUserNicNumber;
+        this.MyUserCharacter = data.MyUserCharacter;
+        this.CompetitorUserCharacter = data.CompetitorUserCharacter;
+        this.GameStatus = data.GameStatus;
+        this.IsStart = data.IsStart;
+        this.IsFinish = data.IsFinish;
+        this.IsTimeout = data.IsTimeout;
+        this.IsCancel = data.IsCancel;
         this.IsGiveUp = data.IsGiveUp;
         this.IsDeclined = data.IsDeclined;
-        this.IsActive = data.IsActive;
-
-        this.GameStatus = data.GameStatus;
-
-
-
+        this.StartStamp = data.StartStamp;
+        this.MinutesPerRound = data.MinutesPerRound;
+        this.MyUserCanUseJoker = data.MyUserCanUseJoker;
+        this.CompetitorUserCanUseJoker = data.CompetitorUserCanUseJoker;
+        this.MyUserMaxRoundNumber = data.MyUserMaxRoundNumber;
+        this.CompetitorUserMaxRoundNumber = data.CompetitorUserMaxRoundNumber;
+        this.MyUserScore = data.MyUserScore;
+        this.CompetitorUserScore = data.CompetitorUserScore;
         this.RoundNumber = data.RoundNumber;
-
+        this.IsActive = data.IsActive;
+        this.IsMyUserPlaying = data.IsMyUserPlaying;
         this.MyDigit11 = data.MyDigit11;
         this.MyDigit12 = data.MyDigit12;
         this.MyDigit13 = data.MyDigit13;
         this.CompetitorDigit11 = data.CompetitorDigit11;
         this.CompetitorDigit12 = data.CompetitorDigit12;
         this.CompetitorDigit13 = data.CompetitorDigit13;
-
         this.MyDigit21 = data.MyDigit21;
         this.MyDigit22 = data.MyDigit22;
         this.MyDigit23 = data.MyDigit23;
         this.CompetitorDigit21 = data.CompetitorDigit21;
         this.CompetitorDigit22 = data.CompetitorDigit22;
         this.CompetitorDigit23 = data.CompetitorDigit23;
-
         this.MyDigit31 = data.MyDigit31;
         this.MyDigit32 = data.MyDigit32;
         this.MyDigit33 = data.MyDigit33;
         this.CompetitorDigit31 = data.CompetitorDigit31;
         this.CompetitorDigit32 = data.CompetitorDigit32;
         this.CompetitorDigit33 = data.CompetitorDigit33;
-
         this.MyDigit41 = data.MyDigit41;
         this.MyDigit42 = data.MyDigit42;
         this.MyDigit43 = data.MyDigit43;
         this.CompetitorDigit41 = data.CompetitorDigit41;
         this.CompetitorDigit42 = data.CompetitorDigit42;
         this.CompetitorDigit43 = data.CompetitorDigit43;
-
         this.MyDigit51 = data.MyDigit51;
         this.MyDigit52 = data.MyDigit52;
         this.MyDigit53 = data.MyDigit53;
         this.CompetitorDigit51 = data.CompetitorDigit51;
         this.CompetitorDigit52 = data.CompetitorDigit52;
         this.CompetitorDigit53 = data.CompetitorDigit53;
-
-        this.User1Name = data.User1Name;
-        this.User2Name = data.User2Name;
-        
-        this.User1NicNumber = data.User1NicNumber;
-        this.User2NicNumber = data.User2NicNumber;
-
-        this.User1Character = data.User1Character;        
-        this.User2Character = data.User2Character;
-
-        this.User1CanUseJoker = data.User1CanUseJoker;        
-        this.User2CanUseJoker = data.User2CanUseJoker;
-
-        this.User1MaxRoundNumber = data.User1MaxRoundNumber;
-        this.User2MaxRoundNumber = data.User2MaxRoundNumber;
-
-        this.User1Score = data.User1Score;
-        this.User2Score = data.User2Score;
-
-        this.IsMyUserPlaying = data.IsMyUserPlaying;
-        this.CanIUseJoker = data.CanIUseJoker;
     }
         
 }
