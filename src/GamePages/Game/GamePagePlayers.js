@@ -1,6 +1,6 @@
 import React from 'react';
 import { LanguageContext } from '../../Language/LangPack'
-//import GAMEPAGE_STATUS from '../../Lib/GamePageStatus';
+import GAMEPAGE_STATUS from '../../Lib/GamePageStatus';
 import GAME_STATUS from '../../Lib/GameStatus';
 
 export default class GamePagePlayers extends React.Component {
@@ -14,63 +14,83 @@ export default class GamePagePlayers extends React.Component {
    
     getLabelText()
     {
-        switch (this.props.CurrentGame.GameStatus) {
-			case GAME_STATUS.GAME_ROUND_1_NOUSER:
-			case GAME_STATUS.GAME_ROUND_1_USER2_DONE:
-			case GAME_STATUS.GAME_ROUND_2_NOUSER:
-			case GAME_STATUS.GAME_ROUND_2_USER2_DONE:
-			case GAME_STATUS.GAME_ROUND_3_NOUSER:
-			case GAME_STATUS.GAME_ROUND_3_USER2_DONE:
-			case GAME_STATUS.GAME_ROUND_4_NOUSER:
-			case GAME_STATUS.GAME_ROUND_4_USER2_DONE:
-			case GAME_STATUS.GAME_ROUND_5_NOUSER:
-			case GAME_STATUS.GAME_ROUND_5_USER2_DONE:
-            case GAME_STATUS.GAME_WAIT_USER2:
-                return null;
+        if (this.props.GamePageStatus === GAMEPAGE_STATUS.MAIN_PLAYING)
+        {
+            return this.currentContext.GetText('game.page', 'StartGame.RoundPlay');
+        }
+        else if (   (this.props.GamePageStatus === GAMEPAGE_STATUS.MAIN_WAIT_COMPETITOR) ||
+                    (this.props.GamePageStatus === GAMEPAGE_STATUS.PLAY_WAIT_COMPETITOR))
+        {
+            return this.currentContext.GetText('game.page', 'StartGame.RoundDone');
+        }
+        else if (   this.props.CurrentShownRoundNumber && (
+                    (this.props.GamePageStatus === GAMEPAGE_STATUS.PLAY_PLAYING) || 
+                    (this.props.GamePageStatus === GAMEPAGE_STATUS.PLAY_ALLDIGIT) ||
+                    (this.props.GamePageStatus === GAMEPAGE_STATUS.PLAY_ROUND) ||
+                    (this.props.GamePageStatus === GAMEPAGE_STATUS.PLAY_LASTROUND) 
+                    )
+                    )
+        {
+            switch (this.props.CurrentShownRoundNumber + '') {
+                case '1':
+                    return this.currentContext.GetText('game.page', 'RoundName1');
 
-			case GAME_STATUS.GAME_ROUND_1_USER1_DONE:
-			case GAME_STATUS.GAME_ROUND_2_USER1_DONE:
-			case GAME_STATUS.GAME_ROUND_3_USER1_DONE:
-			case GAME_STATUS.GAME_ROUND_4_USER1_DONE:
-			case GAME_STATUS.GAME_ROUND_5_USER1_DONE:
-				return this.currentContext.GetText('game.page', 'FooterButtonPlayRound');
-				
+                case '2':
+                    return this.currentContext.GetText('game.page', 'RoundName2');
 
-			case GAME_STATUS.GAME_ROUND_1_USER1_GIVEUP:
-			case GAME_STATUS.GAME_ROUND_2_USER1_GIVEUP:
-			case GAME_STATUS.GAME_ROUND_3_USER1_GIVEUP:
-			case GAME_STATUS.GAME_ROUND_4_USER1_GIVEUP:
-			case GAME_STATUS.GAME_ROUND_5_USER1_GIVEUP:
-				return  this.currentContext.GetText('game.page', 'StartGame.GiveUpMe');
-				
+                case '3':
+                    return this.currentContext.GetText('game.page', 'RoundName3');
 
-			case GAME_STATUS.GAME_ROUND_1_USER2_GIVEUP:
-			case GAME_STATUS.GAME_ROUND_2_USER2_GIVEUP:
-			case GAME_STATUS.GAME_ROUND_3_USER2_GIVEUP:
-			case GAME_STATUS.GAME_ROUND_4_USER2_GIVEUP:
-			case GAME_STATUS.GAME_ROUND_5_USER2_GIVEUP:
-				return this.currentContext.GetText('game.page', 'StartGame.GiveUp');
+                case '4':
+                    return this.currentContext.GetText('game.page', 'RoundName4');
 
-			case GAME_STATUS.GAME_ROUND_1_TIMEOUT:
-			case GAME_STATUS.GAME_ROUND_2_TIMEOUT:
-			case GAME_STATUS.GAME_ROUND_3_TIMEOUT:
-			case GAME_STATUS.GAME_ROUND_4_TIMEOUT:
-			case GAME_STATUS.GAME_ROUND_5_TIMEOUT:
-				return this.currentContext.GetText('game.page', 'StartGame.RoundDoneTimeout');
+                case '5':
+                    return this.currentContext.GetText('game.page', 'RoundName5');
 
-			case GAME_STATUS.GAME_FINISH_USER1_WIN:
-				return this.currentContext.GetText('game.page', 'StartGame.Win');
+                default:
+                    return this.currentContext.GetText('game.page', 'StartGame.NoGame');
 
-			case GAME_STATUS.GAME_FINISH_USER2_WIN:
-				return this.currentContext.GetText('game.page', 'StartGame.Defease');
+            }
+        }
+        else
+        {
 
-			case GAME_STATUS.GAME_FINISH_USER2_DRAW:
-				return this.currentContext.GetText('game.page', 'StartGame.Draw');
+            switch (this.props.CurrentGame.GameStatus) {
+                case GAME_STATUS.GAME_ROUND_1_USER1_GIVEUP:
+                case GAME_STATUS.GAME_ROUND_2_USER1_GIVEUP:
+                case GAME_STATUS.GAME_ROUND_3_USER1_GIVEUP:
+                case GAME_STATUS.GAME_ROUND_4_USER1_GIVEUP:
+                case GAME_STATUS.GAME_ROUND_5_USER1_GIVEUP:
+                    return  this.currentContext.GetText('game.page', 'StartGame.GiveUpMe');
 
-			default:
-				return this.currentContext.GetText('game.page', 'StartGame.NoGame');
+                case GAME_STATUS.GAME_ROUND_1_USER2_GIVEUP:
+                case GAME_STATUS.GAME_ROUND_2_USER2_GIVEUP:
+                case GAME_STATUS.GAME_ROUND_3_USER2_GIVEUP:
+                case GAME_STATUS.GAME_ROUND_4_USER2_GIVEUP:
+                case GAME_STATUS.GAME_ROUND_5_USER2_GIVEUP:
+                    return this.currentContext.GetText('game.page', 'StartGame.GiveUp');
 
-		}
+                case GAME_STATUS.GAME_ROUND_1_TIMEOUT:
+                case GAME_STATUS.GAME_ROUND_2_TIMEOUT:
+                case GAME_STATUS.GAME_ROUND_3_TIMEOUT:
+                case GAME_STATUS.GAME_ROUND_4_TIMEOUT:
+                case GAME_STATUS.GAME_ROUND_5_TIMEOUT:
+                    return this.currentContext.GetText('game.page', 'StartGame.RoundDoneTimeout');
+
+                case GAME_STATUS.GAME_FINISH_USER1_WIN:
+                    return this.currentContext.GetText('game.page', 'StartGame.Win');
+
+                case GAME_STATUS.GAME_FINISH_USER2_WIN:
+                    return this.currentContext.GetText('game.page', 'StartGame.Defease');
+
+                case GAME_STATUS.GAME_FINISH_USER2_DRAW:
+                    return this.currentContext.GetText('game.page', 'StartGame.Draw');
+
+                default:
+                    return this.currentContext.GetText('game.page', 'StartGame.NoGame');
+
+            }
+        }
     }
 
 	render() {

@@ -21,7 +21,7 @@ export default class GamePageInvitation extends React.Component {
                     <div class="UserTip">
                         <p>
                             {context.GetText('game.page', 'InvitationText1')}
-                            {this.props.CurrentGame.User1Nic}
+                            {this.props.CurrentGame.CompetitorUserName}
                             {context.GetText('game.page', 'InvitationText2')}
                         </p>
                     </div>

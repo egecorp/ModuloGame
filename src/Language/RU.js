@@ -355,6 +355,9 @@ export function AddPackets(addPackFunction)
 
         'StartGame.NoGame':'Игра не состоялась',
 
+        'Score.Waiting' : 'Ожидание хода',
+        'Score.NotFinish' : 'Раунд не закончен',
+
         'RoundName1':'Раунд 1',
         'RoundName2':'Раунд 2',
         'RoundName3':'Раунд 3',

@@ -18,6 +18,14 @@ export default class GamePageRound extends React.Component {
 
         let game = this.props.CurrentGame;
 
+        let MaxRoundNumber =  Math.max(game.MyUserMaxRoundNumber, game.CompetitorUserMaxRoundNumber);
+
+        let round1IsActive = game.IsActive ? (this.props.CurrentRoundNumber >= 1) : (MaxRoundNumber >= 1);
+        let round2IsActive = game.IsActive ? (this.props.CurrentRoundNumber >= 2) : (MaxRoundNumber >= 2);
+        let round3IsActive = game.IsActive ? (this.props.CurrentRoundNumber >= 3) : (MaxRoundNumber >= 3);
+        let round4IsActive = game.IsActive ? (this.props.CurrentRoundNumber >= 4) : (MaxRoundNumber >= 4);
+        let round5IsActive = game.IsActive ? (this.props.CurrentRoundNumber >= 5) : (MaxRoundNumber >= 5);
+
 		return (
 			<LanguageContext.Consumer>
 				{(context) =>
@@ -32,9 +40,9 @@ export default class GamePageRound extends React.Component {
                             competitorDigit1 = {game.CompetitorDigit11} 
                             competitorDigit2 = {game.CompetitorDigit12} 
                             competitorDigit3 = {game.CompetitorDigit13} 
-                            IsActive = {this.props.CurrentRoundNumber >= 1}
+                            IsActive = {round1IsActive}
                             RoundNumber = "1"
-                            onRoundClick = {(this.props.CurrentRoundNumber >= 1) && this.onRoundClick}
+                            onRoundClick = {round1IsActive && this.onRoundClick}
                         ></OneGameRound>
 
                         <OneGameRound 
@@ -44,9 +52,9 @@ export default class GamePageRound extends React.Component {
                             competitorDigit1 = {game.CompetitorDigit21} 
                             competitorDigit2 = {game.CompetitorDigit22} 
                             competitorDigit3 = {game.CompetitorDigit23} 
-                            IsActive = {this.props.CurrentRoundNumber >= 2}
+                            IsActive = {round2IsActive}
                             RoundNumber = "2"
-                            onRoundClick = {(this.props.CurrentRoundNumber >= 2) && this.onRoundClick}
+                            onRoundClick = {round2IsActive && this.onRoundClick}
                         ></OneGameRound>
                         
                         <OneGameRound 
@@ -56,9 +64,9 @@ export default class GamePageRound extends React.Component {
                             competitorDigit1 = {game.CompetitorDigit31} 
                             competitorDigit2 = {game.CompetitorDigit32} 
                             competitorDigit3 = {game.CompetitorDigit33} 
-                            IsActive = {this.props.CurrentRoundNumber >= 3}
+                            IsActive = {round3IsActive}
                             RoundNumber = "3"
-                            onRoundClick = {(this.props.CurrentRoundNumber >= 3) && this.onRoundClick}
+                            onRoundClick = {round3IsActive && this.onRoundClick}
                         ></OneGameRound>
                         
                         <OneGameRound 
@@ -68,9 +76,9 @@ export default class GamePageRound extends React.Component {
                             competitorDigit1 = {game.CompetitorDigit41} 
                             competitorDigit2 = {game.CompetitorDigit42} 
                             competitorDigit3 = {game.CompetitorDigit43} 
-                            IsActive = {this.props.CurrentRoundNumber >= 4}
+                            IsActive = {round4IsActive}
                             RoundNumber = "4"
-                            onRoundClick = {(this.props.CurrentRoundNumber >= 4) && this.onRoundClick}
+                            onRoundClick = {round4IsActive && this.onRoundClick}
                         ></OneGameRound>
                         
                         <OneGameRound 
@@ -80,9 +88,9 @@ export default class GamePageRound extends React.Component {
                             competitorDigit1 = {game.CompetitorDigit51} 
                             competitorDigit2 = {game.CompetitorDigit52} 
                             competitorDigit3 = {game.CompetitorDigit53} 
-                            IsActive = {this.props.CurrentRoundNumber === 5}
+                            IsActive = {round5IsActive}
                             RoundNumber = "5"
-                            onRoundClick = {(this.props.CurrentRoundNumber >= 5) && this.onRoundClick}
+                            onRoundClick = {round5IsActive && this.onRoundClick}
                         ></OneGameRound>
                     </div>
                 

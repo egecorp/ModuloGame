@@ -15,7 +15,6 @@ import GamePageMyAcception from './GamePageMyAcception';
 
 export default class GamePage extends React.Component {
 	currentGame = null;
-	isFirstGamer = false;
 	constructor(props, context) {
         super(props);
 
@@ -33,11 +32,11 @@ export default class GamePage extends React.Component {
 			myDigit1: null,
 			myDigit2: null,
 			myDigit3: null,
+            currentRound : {},
 			canUseJoker: false,
 			game: null
 		};
 
-		this.isFirstGamer = this.currentGame.User1Id === props.Device.myUser.Id;
 
 
 
@@ -50,6 +49,8 @@ export default class GamePage extends React.Component {
 		this.onLoadGameInfo = this.onLoadGameInfo.bind(this);
 		this.giveUpButtonOnClick = this.giveUpButtonOnClick.bind(this);
         this.onRoundClick = this.onRoundClick.bind(this);
+
+        this.setGamePageStatus = this.setGamePageStatus.bind(this);
 
         this.OpenMain = this.OpenMain.bind(this);
         this.OpenRound = this.OpenRound.bind(this);
@@ -80,17 +81,16 @@ export default class GamePage extends React.Component {
         {
 			if (!(this.state.game 
                 && (this.state.game.GameStatus === gameInfo.GameStatus)
-                && (this.state.game.User1MaxRoundNumber === gameInfo.User1MaxRoundNumber)
-                && (this.state.game.User2MaxRoundNumber === gameInfo.User2MaxRoundNumber)
-                )) 
+                && (this.state.game.MyUserMaxRoundNumber === gameInfo.MyUserMaxRoundNumber)
+                && (this.state.game.CompetitorUserMaxRoundNumber === gameInfo.CompetitorUserMaxRoundNumber)
+                ))
             {
-console.log("Change game", gameInfo);
 				var newGame = new OneUserGame(gameInfo);
 				this.currentGame = newGame;
 
                 if (
                     (this.state.gamePageStatus === GAMEPAGE_STATUS.PLAY_WAIT_COMPETITOR) ||
-                     (this.state.gamePageStatus === GAMEPAGE_STATUS.PLAY_ROUND) ||
+                    (this.state.gamePageStatus === GAMEPAGE_STATUS.PLAY_ROUND) ||
                     (this.state.gamePageStatus === GAMEPAGE_STATUS.PLAY_LASTROUND)
                 )
                 {
@@ -98,7 +98,7 @@ console.log("Change game", gameInfo);
                     this.setState({ 
                         game: newGame                        
                     });
-                    this.OpenRound(this.currentGame.RoundNumber);
+                    this.OpenRound(this.state.currentShownRoundNumber);
                 }
                 else
                 {
@@ -133,7 +133,7 @@ console.log("Change game", gameInfo);
 
                         this.setState({ 
                             game: newGame, 
-                            canUseJoker: newGame.CanIUseJoker, 
+                            canUseJoker: newGame.MyUserCanUseJoker, 
                         });
                         
                     }
@@ -141,7 +141,7 @@ console.log("Change game", gameInfo);
             }
             else
             {
-                console.log("Do not change game", gameInfo);
+                //console.log("Do not change game", gameInfo);
             }
 		}
 		else {
@@ -185,6 +185,7 @@ console.log("Change game", gameInfo);
         }
         else if (this.state.gamePageStatus === GAMEPAGE_STATUS.PLAY_LASTROUND)
         {
+            this.clearDigits();
             this.OpenRound(this.currentGame.RoundNumber);
 
         }
@@ -230,11 +231,12 @@ console.log("Change game", gameInfo);
         else {
             this.OpenMain()
         }
+        this.clearDigits();
     }
 
 
 	setDigits(d1, d2, d3) {
-        var newGamePageStatus = this.state.gamePageStatus;
+  /*      var newGamePageStatus = this.state.gamePageStatus;
 
         if ( (!d1 || !d2 || !d3) && (this.state.gamePageStatus === GAMEPAGE_STATUS.PLAY_ALLDIGIT))
         {
@@ -245,8 +247,8 @@ console.log("Change game", gameInfo);
         {
             newGamePageStatus = GAMEPAGE_STATUS.PLAY_ALLDIGIT;
         }
-
-        this.setState({ myDigit1: d1, myDigit2: d2, myDigit3: d3, gamePageStatus: newGamePageStatus });
+*/
+    this.setState({ myDigit1: d1, myDigit2: d2, myDigit3: d3/*, gamePageStatus: newGamePageStatus*/ });
 	}
 
 
@@ -320,6 +322,8 @@ console.log("Change game", gameInfo);
                     myDigit2 = {this.state.myDigit2 ? (this.state.myDigit2 + "") : null}
                     myDigit3 = {this.state.myDigit3 ? (this.state.myDigit3 + "") : null}
                     canUseJoker = {this.state.canUseJoker}
+                    SetGamePageStatus = {this.setGamePageStatus}
+                    RoundNumber = {this.currentShownRoundNumber}
                     >				
 				</GamePageDesktop>
 			);
@@ -335,13 +339,15 @@ console.log("Change game", gameInfo);
                     Device={this.props.Device} 
                     GamePageStatus={this.state.gamePageStatus}  
                     CurrentGame={this.state.game || this.props.CurrentGame} 
-                    competitorDigit1 = {this.state.competitorDigit1 ? (this.state.competitorDigit1 + "") : null}
+                    /*competitorDigit1 = {this.state.competitorDigit1 ? (this.state.competitorDigit1 + "") : null}
                     competitorDigit2 = {this.state.competitorDigit2 ? (this.state.competitorDigit2 + "") : null}
                     competitorDigit3 = {this.state.competitorDigit3 ? (this.state.competitorDigit3 + "") : null}
                     myDigit1 = {this.state.myDigit1 ? (this.state.myDigit1 + "") : null}
                     myDigit2 = {this.state.myDigit2 ? (this.state.myDigit2 + "") : null}
-                    myDigit3 = {this.state.myDigit3 ? (this.state.myDigit3 + "") : null}
+                    myDigit3 = {this.state.myDigit3 ? (this.state.myDigit3 + "") : null}*/
                     canUseJoker = {this.state.canUseJoker}
+                    SetGamePageStatus = {this.setGamePageStatus}
+                    CurrentRound = {this.state.currentRound}
                     >				
                 </GamePageDesktop>
             );
@@ -389,6 +395,7 @@ console.log("Change game", gameInfo);
                                 GamePageStatus={this.state.gamePageStatus}  
                                 Device={this.props.Device}  
                                 CurrentGame={this.state.game || this.props.CurrentGame} 
+                                CurrentShownRoundNumber={this.state.currentShownRoundNumber} 
                             >
                             </GamePagePlayers>
 
@@ -443,6 +450,9 @@ console.log("Change game", gameInfo);
             else if ((roundNumber + 1) + '' === this.currentGame.RoundNumber + '')
             {
                 newGamePageStatus= GAMEPAGE_STATUS.PLAY_LASTROUND;
+                /*myDigit1 = null;
+                myDigit2 = null;
+                myDigit3 = null;*/
             }
             else
             {
@@ -465,12 +475,15 @@ console.log("Change game", gameInfo);
 		{
 			gamePageStatus: newGamePageStatus,
             currentShownRoundNumber : roundNumber,
-			competitorDigit1: competitorDigit1,
-			competitorDigit2: competitorDigit2,
-			competitorDigit3: competitorDigit3,
-			myDigit1: myDigit1,
-			myDigit2: myDigit2,
-			myDigit3: myDigit3
+            currentRound : {
+                competitorDigit1: competitorDigit1,
+                competitorDigit2: competitorDigit2,
+                competitorDigit3: competitorDigit3,
+                myDigit1: myDigit1,
+                myDigit2: myDigit2,
+                myDigit3: myDigit3
+            }
+			
 		});
     }
 
@@ -504,7 +517,8 @@ console.log("Change game", gameInfo);
 		this.setState(
 		{
 			gamePageStatus: newGamePageStatus,
-            currentShownRoundNumber : null
+            currentShownRoundNumber : null,
+            currentRound : {}
 		});
     }
 

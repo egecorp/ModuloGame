@@ -2002,6 +2002,10 @@ input.InPopup::-webkit-input-placeholder {
   background-image: url(../img/digits/RedJ.png);
 }
 
+.DigitIcon[data-digit="11"][data-color="red"] {
+  background-image: url(../img/digits/RedJ.png);
+}
+
 .DigitIcon[data-digit="2"][data-color="blue"] {
   background-image: url(../img/digits/Blue2.png);
 }
@@ -2035,6 +2039,10 @@ input.InPopup::-webkit-input-placeholder {
 }
 
 .DigitIcon[data-digit="J"][data-color="blue"] {
+  background-image: url(../img/digits/BlueJ.png);
+}
+
+.DigitIcon[data-digit="11"][data-color="blue"] {
   background-image: url(../img/digits/BlueJ.png);
 }
 

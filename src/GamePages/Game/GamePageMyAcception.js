@@ -43,13 +43,13 @@ export default class GamePageMyAcception extends React.Component {
     
 	modalButtonAcceptOnClick() 
     {
-		let postData = { Id: this.currentGame.Id, DeviceWorkToken: this.props.Device.DeviceWorkToken };
+		let postData = { Id: this.props.CurrentGame.Id, DeviceWorkToken: this.props.Device.DeviceWorkToken };
         this.props.Device.AcceptGame(this.onGameChangeCallBack, this, postData);
-    }
+    } 
 
 	modalButtonDeclineOnClick() 
     {
-		let postData = { Id: this.currentGame.Id, DeviceWorkToken: this.props.Device.DeviceWorkToken };
+		let postData = { Id: this.props.CurrentGame.Id, DeviceWorkToken: this.props.Device.DeviceWorkToken };
         this.props.Device.DeclineGame(this.onGameChangeCallBack, this, postData);
 	}
 

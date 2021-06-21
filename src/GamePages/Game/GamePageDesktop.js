@@ -12,10 +12,10 @@ export default class GamePageDesktop extends React.Component {
 		super(props);
 		this.state =
 		{
-			myDigit1: props.myDigit1,
-			myDigit2: props.myDigit2,
-			myDigit3: props.myDigit3,
+            roundNumber: props.RoundNumber
 		};
+
+        this.currentContext = context;
 
 		this.onCardDigitClick = this.onCardDigitClick.bind(this);
 		this.onDesktopDigitClick = this.onDesktopDigitClick.bind(this);
@@ -34,9 +34,9 @@ export default class GamePageDesktop extends React.Component {
 			console.log("Cannot use Joker");
 			return;
 		}
-		var d1 = this.state.myDigit1 ? (this.state.myDigit1 + "") : null;
-		var d2 = this.state.myDigit2 ? (this.state.myDigit2 + "") : null;
-		var d3 = this.state.myDigit3 ? (this.state.myDigit3 + "") : null;
+		var d1 = this.props.myDigit1 ? (this.props.myDigit1 + "") : null;
+		var d2 = this.props.myDigit2 ? (this.props.myDigit2 + "") : null;
+		var d3 = this.props.myDigit3 ? (this.props.myDigit3 + "") : null;
 
         if ((d1 === newDigit) || (d2 === newDigit) || (d3 === newDigit))
         {
@@ -44,20 +44,27 @@ export default class GamePageDesktop extends React.Component {
             return;
         }
 
-		if (!d1) {
-			this.setState({ myDigit1: d1 = newDigit });
-		}
-		else if (!d2) {
-			this.setState({ myDigit2: d2 = newDigit });
-		}
-		else if (!d3) {
-			this.setState({ myDigit3: d3 = newDigit });
-		}
-		else {
-			console.log("Strange situation");
-			console.log(newDigit, d1, d2, d3);
-		}
+        if (!d1)
+        {
+            d1 = newDigit;
+        }
+        else if (!d2)
+        {
+            d2 = newDigit;
+        }
+        else if (!d3)
+        {
+            d3 = newDigit;
+        }
 
+        if (d1 && d2 && d3)
+        {
+            this.props.SetGamePageStatus(GAMEPAGE_STATUS.PLAY_ALLDIGIT);
+        } 
+        else
+        {
+            this.props.SetGamePageStatus(GAMEPAGE_STATUS.PLAY_PLAYING);
+        }
         this.props.SetDigits(d1, d2, d3);
 	}
 
@@ -70,18 +77,26 @@ export default class GamePageDesktop extends React.Component {
             return;
         }
 
-        var d1 = (this.state.myDigit1 && (position !== '1')) ? (this.state.myDigit1 + "") : null;
-		var d2 = (this.state.myDigit2 && (position !== '2')) ? (this.state.myDigit2 + "") : null;
-		var d3 = (this.state.myDigit3 && (position !== '3')) ? (this.state.myDigit3 + "") : null;
-        this.setState({ myDigit1: d1, myDigit2: d2, myDigit3: d3  });
+        var d1 = (this.props.myDigit1 && (position !== '1')) ? (this.props.myDigit1 + "") : null;
+		var d2 = (this.props.myDigit2 && (position !== '2')) ? (this.props.myDigit2 + "") : null;
+		var d3 = (this.props.myDigit3 && (position !== '3')) ? (this.props.myDigit3 + "") : null;
+
+        if (d1 && d2 && d3)
+        {
+            this.props.SetGamePageStatus(GAMEPAGE_STATUS.PLAY_ALLDIGIT);
+        } 
+        else
+        {
+            this.props.SetGamePageStatus(GAMEPAGE_STATUS.PLAY_PLAYING);
+        }
         this.props.SetDigits(d1, d2,d3);
 	}
 
     checkDigit(d) 
     {
-        var d1 = this.state.myDigit1 ? (this.state.myDigit1 + "") : null;
-        var d2 = this.state.myDigit2 ? (this.state.myDigit2 + "") : null;
-        var d3 = this.state.myDigit3 ? (this.state.myDigit3 + "") : null;
+        var d1 = this.props.myDigit1 ? (this.props.myDigit1 + "") : null;
+        var d2 = this.props.myDigit2 ? (this.props.myDigit2 + "") : null;
+        var d3 = this.props.myDigit3 ? (this.props.myDigit3 + "") : null;
 
         return (d1 !== (d + "")) && (d2 !== (d + "")) && (d3 !== (d + ""));
     }
@@ -90,6 +105,8 @@ export default class GamePageDesktop extends React.Component {
 
         var cardsSetArea = null;
         var competitorScoreArea = (<div></div>);
+        var competitorDigits = {};
+        var myDigits = {};
         if ((this.props.GamePageStatus === GAMEPAGE_STATUS.PLAY_PLAYING) || (this.props.GamePageStatus === GAMEPAGE_STATUS.PLAY_ALLDIGIT))
         {
             cardsSetArea = (
@@ -115,12 +132,21 @@ export default class GamePageDesktop extends React.Component {
                     </div>
                 </div>
                 );
+
+            myDigits.Digit1 = this.props.myDigit1;
+            myDigits.Digit2 = this.props.myDigit2;
+            myDigits.Digit3 = this.props.myDigit3;
         }
         else if(this.props.GamePageStatus === GAMEPAGE_STATUS.PLAY_WAIT_COMPETITOR)
         {
             cardsSetArea = (<div>
-                Ожидание хода
-            </div>)
+                {this.currentContext.GetText('game.page', 'Score.Waiting')}
+            </div>);
+            var round = this.props.CurrentRound;
+
+            myDigits.Digit1 = round.myDigit1;
+            myDigits.Digit2 = round.myDigit2;
+            myDigits.Digit3 = round.myDigit3;
         }
         else
         {
@@ -141,12 +167,22 @@ export default class GamePageDesktop extends React.Component {
                 return 0;
             }
     
-            if ( (this.props.competitorDigit1 && this.props.competitorDigit2 && this.props.competitorDigit3) &&
-                (this.props.myDigit1 && this.props.myDigit2 && this.props.myDigit3))
+            var round = this.props.CurrentRound;
+            if ( round &&  (round.competitorDigit1 && round.competitorDigit2 && round.competitorDigit3) &&
+                (round.myDigit1 && round.myDigit2 && round.myDigit3))
                 {
-                    var score1 = GetScore(this.props.myDigit1, this.props.competitorDigit1);
-                    var score2 = GetScore(this.props.myDigit2, this.props.competitorDigit2);
-                    var score3 = GetScore(this.props.myDigit3, this.props.competitorDigit3);
+                    competitorDigits.Digit1 = round.competitorDigit1;
+                    competitorDigits.Digit2 = round.competitorDigit2;
+                    competitorDigits.Digit3 = round.competitorDigit3;
+
+                    
+                    myDigits.Digit1 = round.myDigit1;
+                    myDigits.Digit2 = round.myDigit2;
+                    myDigits.Digit3 = round.myDigit3;
+
+                    var score1 = GetScore(round.myDigit1, round.competitorDigit1);
+                    var score2 = GetScore(round.myDigit2, round.competitorDigit2);
+                    var score3 = GetScore(round.myDigit3, round.competitorDigit3);
 
                     cardsSetArea = (<div className="ScoreOnDesktop">
                         <div data-positive={(score1 > 0) ? "1" : "0"}>{score1}</div>
@@ -154,9 +190,9 @@ export default class GamePageDesktop extends React.Component {
                         <div data-positive={(score3 > 0) ? "1" : "0"}>{score3}</div>
                     </div>)
 
-                    var competitorScore1 = GetScore(this.props.competitorDigit1, this.props.myDigit1);
-                    var competitorScore2 = GetScore(this.props.competitorDigit2, this.props.myDigit2);
-                    var competitorScore3 = GetScore(this.props.competitorDigit3, this.props.myDigit3);
+                    var competitorScore1 = GetScore(round.competitorDigit1, round.myDigit1);
+                    var competitorScore2 = GetScore(round.competitorDigit2, round.myDigit2);
+                    var competitorScore3 = GetScore(round.competitorDigit3, round.myDigit3);
                     competitorScoreArea= (<div className="ScoreOnDesktop">
                         <div data-positive={(competitorScore1 > 0) ? "1" : "0"}>{competitorScore1}</div>
                         <div data-positive={(competitorScore2 > 0) ? "1" : "0"}>{competitorScore2}</div>
@@ -167,7 +203,7 @@ export default class GamePageDesktop extends React.Component {
                 else
                 {
                     cardsSetArea = (<div>
-                        Раунд не закончен
+                        {this.currentContext.GetText('game.page', 'Score.NotFinish')}
                     </div>)
                 }
 
@@ -184,25 +220,25 @@ export default class GamePageDesktop extends React.Component {
                         <div className="Table">
                             <div className="CardsContainer">
                                 <div className="Card Shirt">
-                                    <OneGameRoundDigit Digit={this.props.competitorDigit1} DigitColor="blue"></OneGameRoundDigit>
+                                    <OneGameRoundDigit Digit={competitorDigits.Digit1} DigitColor="blue"></OneGameRoundDigit>
                                 </div>                                
                                 <div className="Card Shirt">
-                                    <OneGameRoundDigit Digit={this.props.competitorDigit2} DigitColor="blue"></OneGameRoundDigit>
+                                    <OneGameRoundDigit Digit={competitorDigits.Digit2} DigitColor="blue"></OneGameRoundDigit>
                                 </div>
                                 <div className="Card Shirt">
-                                    <OneGameRoundDigit Digit={this.props.competitorDigit3} DigitColor="blue"></OneGameRoundDigit>
+                                    <OneGameRoundDigit Digit={competitorDigits.Digit3} DigitColor="blue"></OneGameRoundDigit>
                                 </div>
                             </div>
 
                             <div className="CardsContainer">
                                 <div className="Card IconPlace">
-                                    <OneGameRoundDigit Digit={this.state.myDigit1} DigitColor="red" onDigitClick={this.onDesktopDigitClick} Position="1"></OneGameRoundDigit>
+                                    <OneGameRoundDigit Digit={myDigits.Digit1} DigitColor="red" onDigitClick={this.onDesktopDigitClick} Position="1"></OneGameRoundDigit>
                                 </div>
                                 <div className="Card IconPlace">
-                                    <OneGameRoundDigit Digit={this.state.myDigit2} DigitColor="red" onDigitClick={this.onDesktopDigitClick} Position="2"></OneGameRoundDigit>
+                                    <OneGameRoundDigit Digit={myDigits.Digit2} DigitColor="red" onDigitClick={this.onDesktopDigitClick} Position="2"></OneGameRoundDigit>
                                 </div>
                                 <div className="Card IconPlace">
-                                    <OneGameRoundDigit Digit={this.state.myDigit3} DigitColor="red" onDigitClick={this.onDesktopDigitClick} Position="3"></OneGameRoundDigit>
+                                    <OneGameRoundDigit Digit={myDigits.Digit3} DigitColor="red" onDigitClick={this.onDesktopDigitClick} Position="3"></OneGameRoundDigit>
                                 </div>
                             </div>
                         </div>

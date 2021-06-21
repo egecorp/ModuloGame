@@ -42,32 +42,38 @@ export default class GameStartBotPage extends React.Component {
         this.props.Device.GetBotList('', this.onUserListUpdate, this);
     }
 
-    onUserListUpdate(data)
-    {
-        if(data.UserList && Array.isArray(data.UserList))
-        {
-            let userList = [];
-            for(var i in data.UserList)
-            {
-                if (data.UserList[i].NicName && data.UserList[i].Id) userList.push({Id:data.UserList[i].Id, Name : data.UserList[i].NicName});
-            }
-            this.setState({searchList:userList});
-        }
-        else
-        {
-            this.setState({searchList:[]});
-        }
-        
-    }
+	onUserListUpdate(data) {
+		var searchList = [];
+		var recentList = [];
+		if (data.UserList && Array.isArray(data.UserList)) {
+			let userList = [];
+			for (let i in data.UserList) {
+				if (data.UserList[i].NicName && data.UserList[i].Id) userList.push({ Id: data.UserList[i].Id, Name: data.UserList[i].NicName });
+			}
+			searchList = userList;
+		}
+		if (data.RecentUserList && Array.isArray(data.RecentUserList)) {
+			let userList = [];
+			for (let i in data.RecentUserList) {
+				if (data.RecentUserList[i].NicName && data.RecentUserList[i].Id) userList.push({ Id: data.RecentUserList[i].Id, Name: data.RecentUserList[i].NicName });
+			}
+			recentList = userList;
+		}
+
+
+		this.setState({ searchList: searchList, recentList: recentList });
+
+
+
+	}
     
-    onUserClick(ev)
-    {
-        var postData = {};
-        postData.CompetitorUserId = +ev.target.dataset.userid;
-        postData.DeviceWorkToken = this.props.Device.DeviceWorkToken;
-        postData.IsRandomCompetitor = false; 
-        this.props.Device.CreateGame(this.onCreateGame, this, postData);
-    }
+	onUserClick(userId) {
+		var postData = {};
+		postData.CompetitorUserId = +userId;
+		postData.DeviceWorkToken = this.props.Device.DeviceWorkToken;
+		postData.IsRandomCompetitor = false;
+		this.props.Device.CreateGame(this.onCreateGame, this, postData);
+	}
 
     onCreateGame(newStatus, result)
     {
@@ -85,46 +91,46 @@ export default class GameStartBotPage extends React.Component {
 
     render() {
         
-        const searchItems = this.state.searchList.map((u)=>
-            <OneUser key={u.Id} userId={u.Id} Name={u.Name} onUserClickCallBack={this.onUserClick}/>
-        );
+		const searchItems = this.state.searchList.map((u) =>
+			<OneUser key={u.Id} userId={u.Id} Name={u.Name} onUserClick={this.onUserClick} />
+		);
 
-        const recentItems = this.state.recentList.map((u)=>
-            <OneUser key={u.Id} userId={u.Id} Name={u.Name} onUserClickCallBack={this.onUserClick} />
-        );
+		const recentItems = this.state.recentList.map((u) =>
+			<OneUser key={u.Id} userId={u.Id} Name={u.Name} onUserClick={this.onUserClick} />
+		);
 
 
 		return (
 			<LanguageContext.Consumer>
-			{(context) =>
-			( 
-				<>
-					<HeadNavigation>
-						<button className="ButtonBack" onClick={this.cancelButtonOnClick}></button>
+				{(context) =>
+				(
+					<>
+						<HeadNavigation>
+							<button className="ButtonBack" onClick={this.cancelButtonOnClick}></button>
 
-						<p className="Title">{context.GetText('finduser', 'labelWindow')}</p>
-					</HeadNavigation>
-					
-					<div className="FindUser ContentGap">
-						<div className="Results">
-							<div className="Search">
-								<input type="text" className="General" name="Search" onInput={this.searchOnInput} placeholder={context.GetText('finduser', 'inputPlaceholderSearch')} />
-								<button disabled></button>
+							<p className="Title">{context.GetText('finduser', 'labelWindow')}</p>
+						</HeadNavigation>
+
+						<div className="FindUser ContentGap">
+							<div className="Results">
+								<div className="Search">
+									<input type="text" className="General" name="Search" onInput={this.searchOnInput} placeholder={context.GetText('finduser', 'inputPlaceholderSearch')} />
+									<button disabled></button>
+								</div>
+
+								<ul className="Players">
+									{searchItems}
+								</ul>							
 							</div>
-							
+
+							<p className="GeneralSubtitle">{context.GetText('finduser', 'sublabelRecentUsers')}</p>
+
 							<ul className="Players">
-								{searchItems}
+								{recentItems}
 							</ul>
 						</div>
-
-						<p className="GeneralSubtitle">{context.GetText('finduser', 'sublabelRecentUsers')}</p>
-					
-						<ul className="Players">
-							{recentItems}
-						</ul>
-					</div>
-				</>
-			)}
+					</>
+				)}
 			</LanguageContext.Consumer>
 		);
 	}

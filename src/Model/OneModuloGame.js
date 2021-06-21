@@ -44,17 +44,15 @@ export default class OneModuloGame
     
     User2CanUseJoker = false;
 
-    User1MaxRoundNumber = 0;
+    MyUserMaxRoundNumber = 0;
 
-    User2MaxRoundNumber = 0;
+    CompetitorUserMaxRoundNumber = 0;
 
     User1Score = 0;
 
     User2Score = 0;
 
     RoundNumber = 0;
-
-    CanIUseJoker = false;
 
     MyDigit11 = null;
     MyDigit12 = null;
@@ -214,14 +212,13 @@ export default class OneModuloGame
         this.User1CanUseJoker = data.User1CanUseJoker;        
         this.User2CanUseJoker = data.User2CanUseJoker;
 
-        this.User1MaxRoundNumber = data.User1MaxRoundNumber;
-        this.User2MaxRoundNumber = data.User2MaxRoundNumber;
+        this.MyUserMaxRoundNumber = data.MyUserMaxRoundNumber;
+        this.CompetitorUserMaxRoundNumber = data.CompetitorUserMaxRoundNumber;
 
         this.User1Score = data.User1Score;
         this.User2Score = data.User2Score;
 
         this.IsMyUserPlaying = data.IsMyUserPlaying;
-        this.CanIUseJoker = data.CanIUseJoker;
     }
         
 }
