@@ -985,7 +985,7 @@ input.InPopup::-webkit-input-placeholder {
 .GameList .List {
   -ms-overflow-style: none;
   scrollbar-width: none;
-  padding-bottom: 75px;
+  padding-bottom: 55px;
   overflow-y: auto;
 }
 .GameList .List::-webkit-scrollbar {
