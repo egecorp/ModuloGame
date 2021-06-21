@@ -903,7 +903,7 @@ input.InPopup::-webkit-input-placeholder {
 }
 
 .FooterArea {
-  padding: 10px 0;
+  padding-bottom: 10px;
   display: grid;
   row-gap: 10px;
 }
