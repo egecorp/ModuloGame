@@ -125,10 +125,10 @@ export default class GamePagePlayers extends React.Component {
                     </div>
         
                     <div className="CurrentInfo">
-                        <p className="Score">{myUserScore} : {competitorUserScore}</p>
+                        <p className="Score">{myUserScore}:{competitorUserScore}</p>
         
                         <div className="Status">
-                            <div className="IconStatus Waiting"></div>
+                            <div className="IconStatus" data-status="win"></div>
                             <p>{labelText}</p>
                         </div>
                     </div>

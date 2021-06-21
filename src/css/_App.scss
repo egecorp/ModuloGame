@@ -1003,7 +1003,7 @@
 
 				display: grid;
 				grid-template-rows: 1fr max-content;
-				row-gap: 4px;
+				row-gap: 3px;
 				place-items: center;
 
 				border-radius: 10px;
@@ -1014,15 +1014,22 @@
 				> .IconStatus {
 					width: 32px;
 					height: 32px;
-					background-size: 32px;
 
-					&.Winner {
-						background-image: url(/src/img/gamestatus/winner.svg);
+					&[data-status="win"] {
+						background-image: url(/src/img/gamestatus/win.svg);
 					}
-					&.YourTurn {
+					&[data-status="lose"] {
+						background-image: url(/src/img/gamestatus/lose.svg);
+					}
+					&[data-status="draw"] {
+						width: 40px;
+						background-size: 40px;
+						background-image: url(/src/img/gamestatus/draw.svg);
+					}
+					&[data-status="yourturn"] {
 						background-image: url(/src/img/gamestatus/your-turn.svg);
 					}
-					&.Waiting {
+					&[data-status="waiting"] {
 						background-image: url(/src/img/gamestatus/waiting.svg);
 					}
 				}

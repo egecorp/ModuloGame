@@ -5,7 +5,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, hr, bu
   border: 0;
   color: inherit;
   font: inherit;
-  font-family: 'Roboto Slab',sans-serif;
+  font-family: "Roboto Slab", sans-serif;
   font-size: 100%;
   font-weight: 400;
   line-height: 1.5;
@@ -13,8 +13,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, hr, bu
 }
 
 *, *:before, *:after {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -57,7 +56,7 @@ blockquote, q {
 }
 
 blockquote:before, blockquote:after, q:before, q:after {
-  content: '';
+  content: "";
   content: none;
 }
 
@@ -67,33 +66,29 @@ table {
 }
 
 @font-face {
-  font-family: 'Roboto Slab';
+  font-family: "Roboto Slab";
   src: url("../fonts/RobotoSlab-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
 }
-
 @font-face {
-  font-family: 'Roboto Slab';
+  font-family: "Roboto Slab";
   src: url("../fonts/RobotoSlab-Light.ttf") format("truetype");
   font-weight: 300;
   font-style: normal;
 }
-
 @font-face {
-  font-family: 'Roboto Slab';
+  font-family: "Roboto Slab";
   src: url("../fonts/RobotoSlab-Medium.ttf") format("truetype");
   font-weight: 500;
   font-style: normal;
 }
-
 @font-face {
-  font-family: 'Roboto Slab';
+  font-family: "Roboto Slab";
   src: url("../fonts/RobotoSlab-Bold.ttf") format("truetype");
   font-weight: 600;
   font-style: normal;
 }
-
 :root,
 *::after,
 *::before {
@@ -150,31 +145,6 @@ select {
   font-weight: 300;
 }
 
-*::-webkit-input-placeholder {
-  color: var(--font-color);
-  opacity: 0.4;
-}
-
-*:-ms-input-placeholder {
-  color: var(--font-color);
-  opacity: 0.4;
-}
-
-*::-ms-input-placeholder {
-  color: var(--font-color);
-  opacity: 0.4;
-}
-
-*::placeholder {
-  color: var(--font-color);
-  opacity: 0.4;
-}
-
-*:-moz-placeholder {
-  color: var(--font-color);
-  opacity: 0.4;
-}
-
 *::-moz-placeholder {
   color: var(--font-color);
   opacity: 0.4;
@@ -185,6 +155,22 @@ select {
   opacity: 0.4;
 }
 
+*::placeholder {
+  color: var(--font-color);
+  opacity: 0.4;
+}
+*:-moz-placeholder {
+  color: var(--font-color);
+  opacity: 0.4;
+}
+*::-moz-placeholder {
+  color: var(--font-color);
+  opacity: 0.4;
+}
+*:-ms-input-placeholder {
+  color: var(--font-color);
+  opacity: 0.4;
+}
 *::-webkit-input-placeholder {
   color: var(--font-color);
   opacity: 0.4;
@@ -195,7 +181,6 @@ select {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
-
 .ScrollHide::-webkit-scrollbar {
   display: none;
 }
@@ -227,7 +212,6 @@ body {
   width: 320px;
   height: 568px;
 }
-
 #playground > #root {
   height: 100%;
 }
@@ -241,7 +225,6 @@ body {
   height: 100%;
   pointer-events: none;
 }
-
 #modal-root > div {
   position: absolute;
   top: 0;
@@ -302,71 +285,58 @@ body {
 /*** *** *** END *** *** ***/
 .CheckBoxButton {
   padding: 8px;
-  display: -ms-grid;
   display: grid;
-  -ms-grid-columns: max-content 1fr;
-      grid-template-columns: -webkit-max-content 1fr;
-      grid-template-columns: max-content 1fr;
-  -webkit-column-gap: 7px;
-          column-gap: 7px;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  grid-template-columns: -webkit-max-content 1fr;
+  grid-template-columns: max-content 1fr;
+  -moz-column-gap: 7px;
+       column-gap: 7px;
+  align-items: center;
   background-color: rgba(var(--button-darkgreen-rgb), 0.25);
   border-radius: 5px;
   border: 2px solid transparent;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   -webkit-user-select: none;
   -moz-user-select: none;
    -ms-user-select: none;
        user-select: none;
 }
-
 .CheckBoxButton[data-select="1"] {
   border: 2px solid var(--button-green);
   background-color: rgba(var(--button-darkgreen-rgb), 0.5);
 }
-
 .CheckBoxButton[data-select="1"] > .CheckBoxButtonIndicator {
   border: 2px solid rgba(var(--button-green-rgb), 1);
 }
-
 .CheckBoxButton[data-select="1"] > .CheckBoxButtonIndicator::after {
   position: absolute;
   top: 50%;
   left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
   content: "";
   width: 16px;
   height: 16px;
   background-color: var(--button-green);
   border-radius: 3px;
 }
-
 .CheckBoxButton > .CheckBoxButtonTitle {
   font-weight: 600;
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 0.3px;
 }
-
 .CheckBoxButton > .CheckBoxButtonIndicator {
   position: relative;
   width: 24px;
   height: 24px;
   border: 2px solid rgba(var(--button-green-rgb), 0.5);
   border-radius: 5px;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .GeneralSubtitle {
   padding: 12px 0;
   font-size: calc(var(--font-size) + 2px);
 }
-
 .GeneralSubtitle span {
   text-decoration: underline;
 }
@@ -377,17 +347,14 @@ body {
   line-height: 1.4;
   text-align: center;
 }
-
 .AdditionalTip > a {
   font-weight: 500;
 }
 
 .LabelInput {
-  display: -ms-grid;
   display: grid;
   row-gap: 7px;
 }
-
 .LabelInput > label {
   display: block;
   font-weight: 500;
@@ -401,10 +368,8 @@ select.General {
   width: calc(100% - 10px * 2);
   background-color: rgba(var(--button-darkgreen-rgb), 0.5);
   border-radius: 3px;
-  -webkit-box-sizing: content-box;
-          box-sizing: content-box;
+  box-sizing: content-box;
 }
-
 input.General.Date,
 select.General.Date {
   background-image: url(../img/icon/calendar.svg);
@@ -421,11 +386,11 @@ select.General {
           appearance: none;
 }
 
-input[type="text"].General.Date {
+input[type=text].General.Date {
   background-image: url(../img/icon/calendar-op40.svg);
 }
 
-input[type="date"].General::-webkit-calendar-picker-indicator {
+input[type=date].General::-webkit-calendar-picker-indicator {
   background-image: unset;
   outline: none;
 }
@@ -439,35 +404,24 @@ input.InPopup {
   border-radius: 3px;
   font-weight: 300;
 }
-
-input.InPopup::-webkit-input-placeholder {
-  opacity: 0.6;
-}
-
-input.InPopup:-ms-input-placeholder {
-  opacity: 0.6;
-}
-
-input.InPopup::-ms-input-placeholder {
-  opacity: 0.6;
-}
-
-input.InPopup::placeholder {
-  opacity: 0.6;
-}
-
-input.InPopup:-moz-placeholder {
-  opacity: 0.6;
-}
-
 input.InPopup::-moz-placeholder {
   opacity: 0.6;
 }
-
 input.InPopup:-ms-input-placeholder {
   opacity: 0.6;
 }
-
+input.InPopup::placeholder {
+  opacity: 0.6;
+}
+input.InPopup:-moz-placeholder {
+  opacity: 0.6;
+}
+input.InPopup::-moz-placeholder {
+  opacity: 0.6;
+}
+input.InPopup:-ms-input-placeholder {
+  opacity: 0.6;
+}
 input.InPopup::-webkit-input-placeholder {
   opacity: 0.6;
 }
@@ -479,7 +433,6 @@ input.InPopup::-webkit-input-placeholder {
   width: 28px;
   height: 28px;
 }
-
 .Avatar img {
   width: 100%;
   height: 100%;
@@ -493,25 +446,20 @@ input.InPopup::-webkit-input-placeholder {
   padding: 2px 5px 7px 5px;
   width: var(--gamer-width);
   height: calc(var(--gamer-width) + 30px);
-  display: -ms-grid;
   display: grid;
   grid-auto-rows: -webkit-max-content 1fr;
   grid-auto-rows: max-content 1fr;
   row-gap: 4px;
   justify-items: center;
   border-radius: 5px;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
-
 .Gamer[data-vip="1"] {
   background-color: #ffd861;
 }
-
 .Gamer[data-vip="1"] > p {
   color: #d95454;
 }
-
 .Gamer[data-vip="1"] > .IconVip {
   position: absolute;
   top: -5px;
@@ -520,7 +468,6 @@ input.InPopup::-webkit-input-placeholder {
   height: 22px;
   background-image: url(/src/img/icon/vip.svg);
 }
-
 .Gamer > p {
   width: 100%;
   text-overflow: ellipsis;
@@ -533,33 +480,25 @@ input.InPopup::-webkit-input-placeholder {
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
   line-height: 1.5;
 }
-
 .Gamer > img {
   width: 100%;
   height: 100%;
 }
-
 .Gamer > .Buttons {
   position: absolute;
   left: 50%;
   bottom: -8px;
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
+  transform: translateX(-50%);
   width: calc(var(--gamer-width) + 10px);
-  display: -ms-grid;
   display: grid;
   grid-auto-flow: column;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  justify-content: space-between;
 }
-
 .Gamer > .IconJoker {
   position: absolute;
   top: 50%;
   right: -6px;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+  transform: translateY(-50%);
   width: 18px;
   height: 28px;
   border-radius: 3px;
@@ -574,11 +513,9 @@ input.InPopup::-webkit-input-placeholder {
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 5px;
 }
-
 .DarkLiStyle:active::after {
   opacity: 0.2;
 }
-
 .DarkLiStyle::after {
   position: absolute;
   top: 0;
@@ -601,10 +538,8 @@ input.InPopup::-webkit-input-placeholder {
   background-color: unset;
   border-radius: 5px;
   border: 1px solid var(--button-green);
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
-
 .ButtonBack:active {
   background-color: var(--button-green-hover);
   border: 1px solid var(--button-green-hover);
@@ -616,35 +551,28 @@ input.InPopup::-webkit-input-placeholder {
   width: -moz-max-content;
   width: max-content;
   height: 30px;
-  display: -ms-grid;
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: -webkit-max-content;
   grid-auto-columns: max-content;
-  -webkit-column-gap: 7px;
-          column-gap: 7px;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -moz-column-gap: 7px;
+       column-gap: 7px;
+  align-items: center;
   background-color: var(--button-green);
   border-radius: 5px;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   color: var(--button-font-color);
   font-size: calc(var(--font-size) - 1px);
   font-weight: 500;
 }
-
 .ButtonGreen > p {
   color: var(--button-font-color);
   font-size: calc(var(--font-size) - 1px);
   font-weight: 500;
 }
-
 .ButtonGreen:active {
   background-color: var(--button-green-hover);
 }
-
 .ButtonGreen.IconMenu {
   background-image: url(/src/img/buttons/menu_dark-green.svg);
   background-size: 60%;
@@ -656,13 +584,11 @@ input.InPopup::-webkit-input-placeholder {
   background-color: rgba(0, 0, 0, 0.1);
   border: 2px solid var(--button-green);
   border-radius: 5px;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   color: var(--font-color);
   font-weight: 600;
   text-transform: uppercase;
 }
-
 .ButtonGreenBorder:active {
   background-color: rgba(0, 0, 0, 0.25);
 }
@@ -674,23 +600,17 @@ input.InPopup::-webkit-input-placeholder {
   height: var(--button-size);
   background-size: 50%;
   background-color: var(--button-green);
-  -webkit-box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
   border-radius: 30px;
 }
-
 .ButtonAroundGreen.IconAdd {
   background-image: url(/src/img/buttons/plus.svg);
-  -ms-grid-column: 1;
   grid-column: 1;
 }
-
 .ButtonAroundGreen.IconStats {
   background-image: url(/src/img/buttons/stats.svg);
-  -ms-grid-column: 2;
   grid-column: 2;
 }
-
 .ButtonAroundGreen:active {
   background-color: var(--button-green-hover);
 }
@@ -700,8 +620,7 @@ input.InPopup::-webkit-input-placeholder {
   padding: 12px 0;
   width: 100%;
   border-radius: 5px;
-  -webkit-box-shadow: var(--common-bh);
-          box-shadow: var(--common-bh);
+  box-shadow: var(--common-bh);
   color: var(--button-darkgreen);
   font-size: calc(var(--font-size) + 2px);
   font-weight: 500;
@@ -711,23 +630,20 @@ input.InPopup::-webkit-input-placeholder {
 
 .ButtonBlackTrans {
   padding: 5px 10px;
-  display: -ms-grid;
   display: grid;
   grid-auto-flow: column;
-  -webkit-column-gap: 7px;
-          column-gap: 7px;
+  -moz-column-gap: 7px;
+       column-gap: 7px;
   place-items: center;
   background-color: rgba(0, 0, 0, 0.25);
   border-radius: 100px;
 }
-
 .ButtonBlackTrans p {
   font-size: calc(var(--font-size) - 2px);
   font-weight: 500;
   line-height: 1;
   letter-spacing: 0.3px;
 }
-
 .ButtonBlackTrans:active {
   background-color: rgba(0, 0, 0, 0.5);
 }
@@ -736,19 +652,17 @@ input.InPopup::-webkit-input-placeholder {
 /*** *** *** media *** *** ***/
 @media (-webkit-min-device-pixel-ratio: 2.6041666666666665), (min-resolution: 250dpi) {
   :root,
-  *::after,
-  *::before {
+*::after,
+*::before {
     --font-size: 16px;
   }
 }
-
 @media (max-width: 520px) {
   #playground {
     width: 100%;
     height: 100%;
   }
 }
-
 .Main {
   --main-margin-top: 0px;
   position: relative;
@@ -757,11 +671,9 @@ input.InPopup::-webkit-input-placeholder {
   padding: 0 10px;
   height: calc(100% - var(--main-margin-top));
   /* Статус бар */
-  display: -ms-grid;
   display: grid;
-  -ms-grid-rows: max-content 1fr max-content;
-      grid-template-rows: -webkit-max-content 1fr -webkit-max-content;
-      grid-template-rows: max-content 1fr max-content;
+  grid-template-rows: -webkit-max-content 1fr -webkit-max-content;
+  grid-template-rows: max-content 1fr max-content;
   row-gap: 12px;
   overflow: hidden;
 }
@@ -769,20 +681,15 @@ input.InPopup::-webkit-input-placeholder {
 .Game {
   position: relative;
   height: 100%;
-  display: -ms-grid;
   display: grid;
-  -ms-grid-rows: 1fr max-content;
-      grid-template-rows: 1fr -webkit-max-content;
-      grid-template-rows: 1fr max-content;
-  background: -webkit-gradient(linear, left top, left bottom, from(#12652f), color-stop(50%, #038d42), to(#0f6e34));
+  grid-template-rows: 1fr -webkit-max-content;
+  grid-template-rows: 1fr max-content;
   background: linear-gradient(to bottom, #12652f 0%, #038d42 50%, #0f6e34 100%);
   overflow: hidden;
 }
 
 .PageHolder {
   position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
 }
 
@@ -792,7 +699,6 @@ input.InPopup::-webkit-input-placeholder {
   height: 50px;
   border: 1px solid #000;
 }
-
 .AdHolder select {
   width: 100%;
   height: 100%;
@@ -804,13 +710,11 @@ input.InPopup::-webkit-input-placeholder {
   padding-bottom: 30px;
   text-align: center;
 }
-
 .Welcome .WelcomeTitle {
   font-size: calc(var(--font-size) + 8px);
   font-weight: 300;
   line-height: 1.25;
 }
-
 .Welcome .WelcomeModulo {
   font-size: calc(var(--font-size) + 14px);
   font-weight: 600;
@@ -818,74 +722,55 @@ input.InPopup::-webkit-input-placeholder {
 }
 
 .SignInLanguagePanel {
-  -ms-grid-column-align: end;
-      justify-self: end;
+  justify-self: end;
 }
-
 .SignInLanguagePanel .SignInLanguagePanelFlag {
   width: 20px;
   height: 20px;
 }
-
-.SignInLanguagePanel .SignInLanguagePanelFlag[data-country="ru"] {
+.SignInLanguagePanel .SignInLanguagePanelFlag[data-country=ru] {
   background-image: url(../img/flags/ru.svg);
 }
-
-.SignInLanguagePanel .SignInLanguagePanelFlag[data-country="eng"] {
+.SignInLanguagePanel .SignInLanguagePanelFlag[data-country=eng] {
   background-image: url(../img/flags/usa.svg);
 }
 
 .HeadNavigation {
   margin-top: 10px;
   min-height: 30px;
-  display: -ms-grid;
   display: grid;
   grid-auto-flow: column;
-  -ms-grid-columns: max-content 1fr max-content;
-      grid-template-columns: -webkit-max-content 1fr -webkit-max-content;
-      grid-template-columns: max-content 1fr max-content;
-  -webkit-column-gap: 12px;
-          column-gap: 12px;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  grid-template-columns: -webkit-max-content 1fr -webkit-max-content;
+  grid-template-columns: max-content 1fr max-content;
+  -moz-column-gap: 12px;
+       column-gap: 12px;
+  align-items: center;
 }
-
 .HeadNavigation[data-column="1"] {
-  -ms-grid-columns: 1fr;
-      grid-template-columns: 1fr;
+  grid-template-columns: 1fr;
 }
-
 .HeadNavigation[data-column="2"] {
-  -ms-grid-columns: 1fr max-content;
-      grid-template-columns: 1fr -webkit-max-content;
-      grid-template-columns: 1fr max-content;
+  grid-template-columns: 1fr -webkit-max-content;
+  grid-template-columns: 1fr max-content;
 }
-
 .HeadNavigation .Title {
   font-size: calc(var(--font-size) + 4px);
   font-weight: 300;
 }
-
 .HeadNavigation .Modulo {
   font-size: calc(var(--font-size) + 10px);
   font-weight: 600;
 }
-
 .HeadNavigation .ButtonGreen.IconMenu {
   width: 30px;
   height: 30px;
 }
 
 .ContentGap {
-  display: -ms-grid;
   display: grid;
   row-gap: 10px;
-  -ms-flex-line-pack: start;
-      align-content: start;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: start;
+  align-content: start;
+  align-items: start;
 }
 
 .ProfileContainer {
@@ -893,29 +778,22 @@ input.InPopup::-webkit-input-placeholder {
   right: 10px;
   bottom: 7px;
   width: calc(100% - 10px);
-  display: -ms-grid;
   display: grid;
   grid-auto-flow: column;
-  -ms-grid-columns: max-content 1fr;
-      grid-template-columns: -webkit-max-content 1fr;
-      grid-template-columns: max-content 1fr;
-  -webkit-column-gap: 7px;
-          column-gap: 7px;
-  -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: end;
+  grid-template-columns: -webkit-max-content 1fr;
+  grid-template-columns: max-content 1fr;
+  -moz-column-gap: 7px;
+       column-gap: 7px;
+  align-items: end;
   pointer-events: none;
 }
-
 .ProfileContainer > .Character {
   max-width: 80px;
 }
-
 .ProfileContainer > .Character > img {
   width: 100%;
   height: 100%;
 }
-
 .ProfileContainer .Userbar {
   --userbar-padding-top: 5px;
   --userbar-padding-left: 7px;
@@ -924,48 +802,39 @@ input.InPopup::-webkit-input-placeholder {
   padding: var(--userbar-padding-top) var(--userbar-padding-left);
   width: 100%;
   height: 34px;
-  display: -ms-grid;
   display: grid;
   grid-auto-flow: column;
-  -ms-grid-columns: 1fr max-content;
-      grid-template-columns: 1fr -webkit-max-content;
-      grid-template-columns: 1fr max-content;
+  grid-template-columns: 1fr -webkit-max-content;
+  grid-template-columns: 1fr max-content;
   place-items: center;
   background-color: #c92a20;
   border-radius: var(--userbar-br);
-  -webkit-box-shadow: var(--common-bh);
-          box-shadow: var(--common-bh);
+  box-shadow: var(--common-bh);
   pointer-events: all;
 }
-
 .ProfileContainer .Userbar > li {
   position: relative;
   padding: 0 10px;
 }
-
 .ProfileContainer .Userbar > li::after {
   position: absolute;
   top: 50%;
   right: 0;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+  transform: translateY(-50%);
   content: "";
   width: 1px;
   height: 70%;
   background-color: #000;
   opacity: 0.25;
 }
-
 .ProfileContainer .Userbar > li:last-child::after {
   opacity: 0;
 }
-
 .ProfileContainer .Userbar > .ChangeSmile {
   position: relative;
   width: 100%;
   height: 100%;
 }
-
 .ProfileContainer .Userbar > .ChangeSmile > .IconSmile {
   position: absolute;
   top: calc(var(--userbar-padding-top) * -1);
@@ -976,31 +845,25 @@ input.InPopup::-webkit-input-placeholder {
   background-size: 24px;
   border-radius: var(--userbar-br) 0 0 var(--userbar-br);
 }
-
 .ProfileContainer .Userbar > .ChangeSmile > .IconSmile:active {
   background-color: rgba(0, 0, 0, 0.2);
 }
-
 .ProfileContainer .Userbar > .Nickname > p {
   font-weight: 500;
   text-transform: uppercase;
 }
-
 .ProfileContainer .Userbar > .Stats {
-  display: -ms-grid;
   display: grid;
   grid-auto-flow: column;
-  -webkit-column-gap: 5px;
-          column-gap: 5px;
+  -moz-column-gap: 5px;
+       column-gap: 5px;
   place-items: center;
 }
-
 .ProfileContainer .Userbar > .Stats > .IconStar {
   width: 12px;
   height: 12px;
   background-image: url(/src/img/icon/star.svg);
 }
-
 .ProfileContainer .Userbar > .Stats > p {
   font-weight: 300;
 }
@@ -1015,7 +878,6 @@ input.InPopup::-webkit-input-placeholder {
   border-radius: 10px;
   overflow: hidden;
 }
-
 .UserTip > p {
   padding: 10px 15px;
   height: 100%;
@@ -1026,7 +888,6 @@ input.InPopup::-webkit-input-placeholder {
   letter-spacing: 0.15px;
   overflow-y: auto;
 }
-
 .UserTip::after {
   position: absolute;
   top: 0;
@@ -1034,8 +895,7 @@ input.InPopup::-webkit-input-placeholder {
   content: "";
   width: 100%;
   height: 100%;
-  -webkit-box-shadow: inset 0px 0px 20px 5px rgba(0, 0, 0, 0.1);
-          box-shadow: inset 0px 0px 20px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0px 0px 20px 5px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: inherit;
   pointer-events: none;
@@ -1043,25 +903,20 @@ input.InPopup::-webkit-input-placeholder {
 
 .FooterArea {
   padding: 10px 0;
-  display: -ms-grid;
   display: grid;
   row-gap: 10px;
 }
-
 .FooterArea > button {
   background-color: var(--button-footer-bg);
 }
-
 .FooterArea > button:active {
   background-color: var(--button-footer-bg-hover);
 }
 
 .SignIn .Buttons {
-  display: -ms-grid;
   display: grid;
   row-gap: 7px;
 }
-
 .SignIn .UserTip {
   max-height: 120px;
 }
@@ -1069,35 +924,27 @@ input.InPopup::-webkit-input-placeholder {
 .SignInAuth .UserTip {
   max-height: unset;
 }
-
 .SignInAuth form {
-  display: -ms-grid;
   display: grid;
   row-gap: 10px;
 }
 
 .SignInAnonim .SignInAnonimContent {
-  display: -ms-grid;
   display: grid;
   row-gap: 10px;
   justify-items: center;
 }
-
 .SignInAnonim .SignInAnonimContent img {
   height: 180px;
 }
-
 .SignInAnonim .SignInAnonimContent .TextBlock {
-  display: -ms-grid;
   display: grid;
   row-gap: 7px;
 }
-
 .SignInAnonim .SignInAnonimContent .TextBlock .Tip {
   font-weight: 500;
   text-align: center;
 }
-
 .SignInAnonim .SignInAnonimContent .TextBlock .CreateAcc {
   font-weight: 500;
   text-align: center;
@@ -1105,59 +952,43 @@ input.InPopup::-webkit-input-placeholder {
 }
 
 .SignUp form {
-  display: -ms-grid;
   display: grid;
   row-gap: 10px;
 }
 
 .GameList {
   height: 100%;
-  display: -ms-grid;
   display: grid;
-  -ms-grid-rows: max-content 1fr;
-      grid-template-rows: -webkit-max-content 1fr;
-      grid-template-rows: max-content 1fr;
-  -ms-flex-line-pack: start;
-      align-content: start;
+  grid-template-rows: -webkit-max-content 1fr;
+  grid-template-rows: max-content 1fr;
+  align-content: start;
   overflow-y: hidden;
 }
-
 .GameList .ButtonBig {
-  background: 97% center/16px no-repeat url(/src/img/buttons/right-arrow_dark-green.svg), -webkit-gradient(linear, left top, right top, from(#2eb062), to(var(--brand-color)));
   background: 97% center/16px no-repeat url(/src/img/buttons/right-arrow_dark-green.svg), linear-gradient(90deg, #2eb062 0%, var(--brand-color) 100%);
   color: var(--button-darkgreen);
 }
-
 .GameList .ButtonBig:active {
-  background: 97% center/16px no-repeat url(/src/img/buttons/right-arrow_dark-green.svg), -webkit-gradient(linear, left top, right top, from(#279654), to(#2eb062));
   background: 97% center/16px no-repeat url(/src/img/buttons/right-arrow_dark-green.svg), linear-gradient(90deg, #279654 0%, #2eb062 100%);
 }
-
 .GameList .SubMenu {
-  display: -ms-grid;
   display: grid;
   grid-auto-flow: column;
-  -ms-grid-columns: 1fr max-content;
-      grid-template-columns: 1fr -webkit-max-content;
-      grid-template-columns: 1fr max-content;
-  -webkit-column-gap: 12px;
-          column-gap: 12px;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  grid-template-columns: 1fr -webkit-max-content;
+  grid-template-columns: 1fr max-content;
+  -moz-column-gap: 12px;
+       column-gap: 12px;
+  align-items: center;
 }
-
 .GameList .List {
   -ms-overflow-style: none;
   scrollbar-width: none;
   padding-bottom: 75px;
   overflow-y: auto;
 }
-
 .GameList .List::-webkit-scrollbar {
   display: none;
 }
-
 .GameList .List > .Finished {
   --finished-margin-top: 12px;
   position: relative;
@@ -1167,13 +998,10 @@ input.InPopup::-webkit-input-placeholder {
   height: -webkit-max-content;
   height: -moz-max-content;
   height: max-content;
-  display: -ms-grid;
   display: grid;
   row-gap: 12px;
-  -ms-flex-line-pack: start;
-      align-content: start;
+  align-content: start;
 }
-
 .GameList .List > .Finished::after {
   position: absolute;
   top: 0;
@@ -1183,40 +1011,30 @@ input.InPopup::-webkit-input-placeholder {
   height: 100%;
   background-color: var(--brand-color);
 }
-
 .GameList .List ul {
-  display: -ms-grid;
   display: grid;
   row-gap: 5px;
 }
-
 .GameList .List ul li {
-  display: -ms-grid;
   display: grid;
   overflow: hidden;
 }
-
 .GameList .List ul li > .ListInfo {
   padding: 5px;
-  display: -ms-grid;
   display: grid;
   grid-auto-flow: column;
-  -ms-grid-columns: max-content 1fr max-content;
-      grid-template-columns: -webkit-max-content 1fr -webkit-max-content;
-      grid-template-columns: max-content 1fr max-content;
+  grid-template-columns: -webkit-max-content 1fr -webkit-max-content;
+  grid-template-columns: max-content 1fr max-content;
   place-items: center;
 }
-
 .GameList .List ul li > .ListInfo > .PlayerContainer {
   width: 90px;
   height: 100%;
-  display: -ms-grid;
   display: grid;
   row-gap: 5px;
   justify-items: center;
   overflow: hidden;
 }
-
 .GameList .List ul li > .ListInfo > .PlayerContainer p {
   font-size: calc(var(--font-size) - 4px);
   font-weight: 300;
@@ -1229,15 +1047,12 @@ input.InPopup::-webkit-input-placeholder {
   overflow-wrap: anywhere;
   overflow: hidden;
 }
-
 .GameList .List ul li > .ListInfo > .PlayerContainer > .Avatar[data-bot="1"] {
   background-image: url(../img/icon/bot.svg);
 }
-
 .GameList .List ul li > .ListInfo > .PlayerContainer > .Avatar[data-bot="1"] > img {
   display: none;
 }
-
 .GameList .List ul li > .ListInfo > .PlayerContainer[data-win="1"] .Avatar::after {
   position: absolute;
   right: -5px;
@@ -1248,54 +1063,44 @@ input.InPopup::-webkit-input-placeholder {
   height: 18px;
   background-image: url(../img/icon/medal.svg);
 }
-
 .GameList .List ul li > .ListInfo > .RoundNameContainer {
-  display: -ms-grid;
   display: grid;
   row-gap: 7px;
   justify-items: center;
 }
-
 .GameList .List ul li > .ListInfo > .RoundNameContainer p {
   text-align: center;
   text-transform: uppercase;
   line-height: 1;
 }
-
 .GameList .List ul li > .ListInfo > .RoundNameContainer > p.Title {
   font-size: calc(var(--font-size) + 2px);
 }
-
 .GameList .List ul li > .ListInfo > .RoundNameContainer .Cup {
   margin-bottom: -3px;
   /* Смещение вниз для визуального расположения по центру*/
-  display: -ms-grid;
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: -webkit-max-content;
   grid-auto-columns: max-content;
-  -webkit-column-gap: 3px;
-          column-gap: 3px;
+  -moz-column-gap: 3px;
+       column-gap: 3px;
   place-items: center;
 }
-
 .GameList .List ul li > .ListInfo > .RoundNameContainer .Cup > p {
   font-size: calc(var(--font-size) - 4px);
   font-weight: 300;
 }
-
 .GameList .List ul li > .ListInfo > .RoundNameContainer .Cup > .IconCup {
   width: 10px;
   height: 10px;
   background-image: url(../img/icon/cup.svg);
 }
-
 .GameList .List ul li > .ListBar {
   position: relative;
   padding: 5px 0 3px 0;
   background-color: rgba(0, 0, 0, 0.25);
 }
-
 .GameList .List ul li > .ListBar p {
   font-size: calc(var(--font-size) - 4px);
   font-weight: 300;
@@ -1303,7 +1108,6 @@ input.InPopup::-webkit-input-placeholder {
   text-align: center;
   text-transform: uppercase;
 }
-
 .GameList .List ul li > .ListBar > .ELO {
   position: absolute;
   top: 0;
@@ -1311,24 +1115,19 @@ input.InPopup::-webkit-input-placeholder {
   width: 100%;
   height: 100%;
 }
-
 .GameList .List ul li > .ListBar > .ELO > p {
   position: absolute;
   top: 50%;
-  -webkit-transform: translateY(-40%);
-          transform: translateY(-40%);
+  transform: translateY(-40%);
   width: 90px;
 }
-
 .GameList .List ul li > .ListBar > .ELO > p:nth-child(1) {
   left: 0;
 }
-
 .GameList .List ul li > .ListBar > .ELO > p:nth-child(2) {
   right: 0;
 }
-
-.GameList .List ul li[data-win="left"] > *:first-child img::after {
+.GameList .List ul li[data-win=left] > *:first-child img::after {
   position: absolute;
   right: -5px;
   bottom: -5px;
@@ -1340,7 +1139,6 @@ input.InPopup::-webkit-input-placeholder {
 }
 
 .GameStart .Buttons {
-  display: -ms-grid;
   display: grid;
   row-gap: 7px;
 }
@@ -1350,9 +1148,9 @@ input.InPopup::-webkit-input-placeholder {
   top: 0;
   left: 0;
   /*
-	! height - вычитается нижние поле AdHolder.
-	! Необходимо убрать его после всей вёрстки игры
-	*/
+  ! height - вычитается нижние поле AdHolder.
+  ! Необходимо убрать его после всей вёрстки игры
+  */
   width: 100%;
   height: calc(100% - 50px);
   background-color: rgba(0, 0, 0, 0.6);
@@ -1361,85 +1159,68 @@ input.InPopup::-webkit-input-placeholder {
 .Modal {
   position: absolute;
   /*
-	* Поднимаем чуть выше середины, чтобы визуально лучше воспринималось
-	*/
+  * Поднимаем чуть выше середины, чтобы визуально лучше воспринималось
+  */
   top: 40%;
   left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
   z-index: 10;
   width: calc(100% - 60px);
   max-width: 300px;
   pointer-events: all;
 }
-
 .Modal p,
 .Modal span,
 .Modal label {
   color: var(--modal-font-color);
 }
-
 .Modal b {
   font-weight: 500;
 }
-
 .Modal p > span {
   display: block;
 }
-
-.Modal p > span:nth-child(n + 2) {
+.Modal p > span:nth-child(n+2) {
   margin-top: 5px;
 }
-
-.Modal > *:nth-child(n + 2) {
+.Modal > *:nth-child(n+2) {
   margin-top: 12px;
 }
-
 .Modal .ModalBody {
   padding: 12px;
   min-height: 40px;
   background-color: #fff;
   border-radius: 5px;
-  -webkit-box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.15);
-          box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.15);
+  box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.15);
   /* MailCode */
   /* END */
 }
-
-.Modal .ModalBody > div > *:nth-child(n + 2) {
+.Modal .ModalBody > div > *:nth-child(n+2) {
   margin-top: 12px;
 }
-
 .Modal .ModalBody > div > .Content {
-  display: -ms-grid;
   display: grid;
   row-gap: 10px;
 }
-
 .Modal .ModalBody > div > .Content header {
-  display: -ms-grid;
   display: grid;
   row-gap: 7px;
 }
-
 .Modal .ModalBody > div > .Content header .WarningIcon {
   height: 30px;
   background-image: url(/src/img/icon/warning.svg);
 }
-
 .Modal .ModalBody > div > .Content header .Title {
   font-size: calc(var(--font-size) + 1px);
   font-weight: 500;
   line-height: 1;
   text-align: center;
 }
-
 .Modal .ModalBody > div > .Content > p {
   font-size: calc(var(--font-size) - 1px);
   font-weight: 300;
   line-height: 1.4;
 }
-
 .Modal .ModalBody > div > .Content > a {
   display: block;
   color: var(--link-color);
@@ -1448,33 +1229,25 @@ input.InPopup::-webkit-input-placeholder {
   text-align: center;
   text-decoration: none;
 }
-
 .Modal .ModalBody > div > .Content > a:active {
   text-decoration: underline;
 }
-
 .Modal .ModalBody .MailCode {
-  display: -ms-grid;
   display: grid;
   row-gap: 5px;
 }
-
 .Modal .ModalBody .MailCode label {
   font-size: calc(var(--font-size) - 1px);
   font-weight: 500;
 }
-
 .Modal > .Buttons {
-  display: -ms-grid;
   display: grid;
   grid-auto-flow: column;
   background-color: #fff;
   border-radius: 5px;
-  -webkit-box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.15);
-          box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.15);
+  box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.15);
   overflow: hidden;
 }
-
 .Modal > .Buttons > button {
   --font-color: #000;
   position: relative;
@@ -1484,28 +1257,23 @@ input.InPopup::-webkit-input-placeholder {
   font-size: calc(var(--font-size) + 1px);
   text-transform: uppercase;
 }
-
 .Modal > .Buttons > button:active {
   background-color: var(--button-footer-bg-hover);
 }
-
 .Modal > .Buttons > button::after {
   position: absolute;
   top: 50%;
   left: 0;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+  transform: translateY(-50%);
   content: "";
   width: 1px;
   height: 50%;
   background-color: #ccc;
   opacity: 0;
 }
-
-.Modal > .Buttons > button:nth-child(n + 2)::after {
+.Modal > .Buttons > button:nth-child(n+2)::after {
   opacity: 1;
 }
-
 .Modal > .Buttons:active button::after {
   opacity: 0;
 }
@@ -1517,63 +1285,47 @@ input.InPopup::-webkit-input-placeholder {
   height: 100%;
   overflow-y: auto;
 }
-
 .FindUser::-webkit-scrollbar {
   display: none;
 }
-
 .FindUser .Results {
-  display: -ms-grid;
   display: grid;
   row-gap: 7px;
 }
-
 .FindUser .Results .Search {
   position: relative;
 }
-
 .FindUser .Results .Search input.General {
   padding-left: calc(3px + 30px);
 }
-
 .FindUser .Results .Search button {
   position: absolute;
   top: 50%;
   left: 0;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+  transform: translateY(-50%);
   width: 30px;
   height: 100%;
   background-image: url(../img/icon/search.svg);
   background-size: 14px;
 }
-
 .FindUser .Results .Search button:disabled {
   opacity: 0.4;
 }
-
 .FindUser .Players {
-  display: -ms-grid;
   display: grid;
   row-gap: 5px;
 }
-
 .FindUser .Players > li {
   padding: 5px;
   width: 100%;
-  display: -ms-grid;
   display: grid;
   grid-auto-flow: column;
-  -ms-grid-columns: max-content 1fr max-content;
-      grid-template-columns: -webkit-max-content 1fr -webkit-max-content;
-      grid-template-columns: max-content 1fr max-content;
-  -webkit-column-gap: 10px;
-          column-gap: 10px;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  grid-template-columns: -webkit-max-content 1fr -webkit-max-content;
+  grid-template-columns: max-content 1fr max-content;
+  -moz-column-gap: 10px;
+       column-gap: 10px;
+  align-items: center;
 }
-
 .FindUser .Players > li .Avatar {
   width: 28px;
   height: 28px;
@@ -1581,7 +1333,6 @@ input.InPopup::-webkit-input-placeholder {
   border-radius: 5px;
   overflow: hidden;
 }
-
 .FindUser .Players > li > p {
   width: 100%;
   text-overflow: ellipsis;
@@ -1591,11 +1342,9 @@ input.InPopup::-webkit-input-placeholder {
   font-weight: 300;
   text-transform: uppercase;
 }
-
 .FindUser .Players > li button {
   background-size: 18px;
 }
-
 .FindUser .Players > li button > .IconSword {
   width: 14px;
   height: 14px;
@@ -1604,25 +1353,20 @@ input.InPopup::-webkit-input-placeholder {
 
 .ConditionPage {
   height: 100%;
-  display: -ms-grid;
   display: grid;
-  -ms-grid-rows: max-content 1fr;
-      grid-template-rows: -webkit-max-content 1fr;
-      grid-template-rows: max-content 1fr;
+  grid-template-rows: -webkit-max-content 1fr;
+  grid-template-rows: max-content 1fr;
   row-gap: 10px;
   overflow: hidden;
 }
-
 .ConditionPage .Content {
   position: relative;
   height: 100%;
   overflow: hidden;
 }
-
-.ConditionPage .Content[data-shadow="top"]::after, .ConditionPage .Content[data-shadow="bottom"]::before, .ConditionPage .Content[data-shadow="both"]::after, .ConditionPage .Content[data-shadow="both"]::before {
+.ConditionPage .Content[data-shadow=top]::after, .ConditionPage .Content[data-shadow=bottom]::before, .ConditionPage .Content[data-shadow=both]::after, .ConditionPage .Content[data-shadow=both]::before {
   display: block;
 }
-
 .ConditionPage .Content::after, .ConditionPage .Content::before {
   position: absolute;
   left: 0;
@@ -1631,19 +1375,14 @@ input.InPopup::-webkit-input-placeholder {
   width: calc(100% - 9px);
   height: 20px;
 }
-
 .ConditionPage .Content::after {
   top: 0;
-  background: -webkit-gradient(linear, left top, left bottom, from(#0b7738), to(rgba(11, 119, 56, 0)));
   background: linear-gradient(#0b7738 0%, rgba(11, 119, 56, 0) 100%);
 }
-
 .ConditionPage .Content::before {
   bottom: 0;
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(9, 122, 58, 0)), to(#097a3a));
   background: linear-gradient(rgba(9, 122, 58, 0) 0%, #097a3a 100%);
 }
-
 .ConditionPage .Content p {
   height: 100%;
   overflow: auto;
@@ -1654,24 +1393,19 @@ input.InPopup::-webkit-input-placeholder {
 
 .RulesPage {
   height: 100%;
-  display: -ms-grid;
   display: grid;
-  -ms-grid-rows: max-content 1fr;
-      grid-template-rows: -webkit-max-content 1fr;
-      grid-template-rows: max-content 1fr;
+  grid-template-rows: -webkit-max-content 1fr;
+  grid-template-rows: max-content 1fr;
   overflow: hidden;
 }
-
 .RulesPage .Content {
   position: relative;
   height: 100%;
   overflow: scroll;
 }
-
-.RulesPage .Content[data-shadow="top"]::after, .RulesPage .Content[data-shadow="bottom"]::before, .RulesPage .Content[data-shadow="both"]::after, .RulesPage .Content[data-shadow="both"]::before {
+.RulesPage .Content[data-shadow=top]::after, .RulesPage .Content[data-shadow=bottom]::before, .RulesPage .Content[data-shadow=both]::after, .RulesPage .Content[data-shadow=both]::before {
   display: block;
 }
-
 .RulesPage .Content::after, .RulesPage .Content::before {
   position: absolute;
   left: 0;
@@ -1680,19 +1414,14 @@ input.InPopup::-webkit-input-placeholder {
   width: calc(100% - 9px);
   height: 20px;
 }
-
 .RulesPage .Content::after {
   top: 0;
-  background: -webkit-gradient(linear, left top, left bottom, from(#0b7738), to(rgba(11, 119, 56, 0)));
   background: linear-gradient(#0b7738 0%, rgba(11, 119, 56, 0) 100%);
 }
-
 .RulesPage .Content::before {
   bottom: 0;
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(9, 122, 58, 0)), to(#097a3a));
   background: linear-gradient(rgba(9, 122, 58, 0) 0%, #097a3a 100%);
 }
-
 .RulesPage .Content p {
   height: 100%;
   overflow: auto;
@@ -1704,75 +1433,65 @@ input.InPopup::-webkit-input-placeholder {
 /******** Игровая область **********/
 .Gameground {
   margin-top: 12px;
-  display: -ms-grid;
   display: grid;
   grid-auto-rows: -webkit-max-content;
   grid-auto-rows: max-content;
   row-gap: 20px;
 }
-
 .Gameground .FaceToFace {
   width: 100%;
-  display: -ms-grid;
   display: grid;
   grid-auto-flow: column;
-  -ms-grid-columns: max-content 1fr max-content;
-      grid-template-columns: -webkit-max-content 1fr -webkit-max-content;
-      grid-template-columns: max-content 1fr max-content;
-  -webkit-column-gap: 5px;
-          column-gap: 5px;
+  grid-template-columns: -webkit-max-content 1fr -webkit-max-content;
+  grid-template-columns: max-content 1fr max-content;
+  -moz-column-gap: 5px;
+       column-gap: 5px;
 }
-
 .Gameground .FaceToFace .CurrentInfo {
-  display: -ms-grid;
   display: grid;
   row-gap: 3px;
   place-items: center;
 }
-
 .Gameground .FaceToFace .CurrentInfo p.Score {
   font-size: calc(var(--font-size) + 24px);
   font-weight: 300;
   line-height: 1;
 }
-
 .Gameground .FaceToFace .CurrentInfo .Status {
   padding: 10px 5px;
   width: 84px;
   height: 64px;
-  display: -ms-grid;
   display: grid;
-  -ms-grid-rows: 1fr max-content;
-      grid-template-rows: 1fr -webkit-max-content;
-      grid-template-rows: 1fr max-content;
-  row-gap: 4px;
+  grid-template-rows: 1fr -webkit-max-content;
+  grid-template-rows: 1fr max-content;
+  row-gap: 3px;
   place-items: center;
   border-radius: 10px;
   background-color: rgba(0, 0, 0, 0.1);
-  -webkit-box-shadow: inset 0px 0px 6px 2px rgba(0, 0, 0, 0.1);
-          box-shadow: inset 0px 0px 6px 2px rgba(0, 0, 0, 0.1);
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-shadow: inset 0px 0px 6px 2px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
 }
-
 .Gameground .FaceToFace .CurrentInfo .Status > .IconStatus {
   width: 32px;
   height: 32px;
-  background-size: 32px;
 }
-
-.Gameground .FaceToFace .CurrentInfo .Status > .IconStatus.Winner {
-  background-image: url(/src/img/gamestatus/winner.svg);
+.Gameground .FaceToFace .CurrentInfo .Status > .IconStatus[data-status=win] {
+  background-image: url(/src/img/gamestatus/win.svg);
 }
-
-.Gameground .FaceToFace .CurrentInfo .Status > .IconStatus.YourTurn {
+.Gameground .FaceToFace .CurrentInfo .Status > .IconStatus[data-status=lose] {
+  background-image: url(/src/img/gamestatus/lose.svg);
+}
+.Gameground .FaceToFace .CurrentInfo .Status > .IconStatus[data-status=draw] {
+  width: 40px;
+  background-size: 40px;
+  background-image: url(/src/img/gamestatus/draw.svg);
+}
+.Gameground .FaceToFace .CurrentInfo .Status > .IconStatus[data-status=yourturn] {
   background-image: url(/src/img/gamestatus/your-turn.svg);
 }
-
-.Gameground .FaceToFace .CurrentInfo .Status > .IconStatus.Waiting {
+.Gameground .FaceToFace .CurrentInfo .Status > .IconStatus[data-status=waiting] {
   background-image: url(/src/img/gamestatus/waiting.svg);
 }
-
 .Gameground .FaceToFace .CurrentInfo .Status > p {
   width: 100%;
   text-overflow: ellipsis;
@@ -1783,27 +1502,21 @@ input.InPopup::-webkit-input-placeholder {
   font-size: calc(var(--font-size) - 3px);
   text-align: center;
 }
-
 .Gameground .RoundsContainer {
-  display: -ms-grid;
   display: grid;
   row-gap: 10px;
 }
-
 .Gameground .RoundsContainer > .Round {
   padding-top: 3px;
-  display: -ms-grid;
   display: grid;
   grid-auto-flow: column;
-  -ms-grid-columns: max-content 1fr max-content;
-      grid-template-columns: -webkit-max-content 1fr -webkit-max-content;
-      grid-template-columns: max-content 1fr max-content;
-  -webkit-column-gap: 10px;
-          column-gap: 10px;
+  grid-template-columns: -webkit-max-content 1fr -webkit-max-content;
+  grid-template-columns: max-content 1fr max-content;
+  -moz-column-gap: 10px;
+       column-gap: 10px;
   place-items: center;
   border-top: 1px solid #fff;
 }
-
 .Gameground .RoundsContainer > .Round > p {
   width: 100%;
   text-overflow: ellipsis;
@@ -1813,17 +1526,14 @@ input.InPopup::-webkit-input-placeholder {
   font-weight: 600;
   text-align: center;
 }
-
 .Gameground .RoundsContainer > .Round > .DigitContainer {
-  display: -ms-grid;
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: -webkit-max-content;
   grid-auto-columns: max-content;
-  -webkit-column-gap: 6px;
-          column-gap: 6px;
+  -moz-column-gap: 6px;
+       column-gap: 6px;
 }
-
 .Gameground .RoundsContainer > .Round > .DigitContainer > p {
   width: 26px;
   height: 26px;
@@ -1834,120 +1544,93 @@ input.InPopup::-webkit-input-placeholder {
   text-align: center;
   line-height: 110%;
 }
-
-.Gameground .RoundsContainer > .Round > .DigitContainer > p[data-color="red"] {
+.Gameground .RoundsContainer > .Round > .DigitContainer > p[data-color=red] {
   background-color: #fd0148;
 }
-
-.Gameground .RoundsContainer > .Round > .DigitContainer > p[data-color="green"] {
+.Gameground .RoundsContainer > .Round > .DigitContainer > p[data-color=green] {
   background-color: var(--button-green);
 }
-
-.Gameground .RoundsContainer > .Round > .DigitContainer > p[data-color="yellow"] {
+.Gameground .RoundsContainer > .Round > .DigitContainer > p[data-color=yellow] {
   background-color: #ddb937;
 }
-
 .Gameground .RoundsContainer > .Round[data-active="0"] {
   opacity: 0.3;
 }
-
 .Gameground .RoundsContainer > .Round[data-active="0"] > .DigitContainer > p {
   opacity: 0.5;
 }
-
 .Gameground .Playground {
   --width: 230px;
-  display: -ms-grid;
   display: grid;
   grid-auto-rows: -webkit-max-content;
   grid-auto-rows: max-content;
   row-gap: 12px;
   justify-items: center;
 }
-
 .Gameground .Playground .Card {
   width: 28px;
   height: 44px;
   border-radius: 5px;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  -webkit-box-shadow: 0 1px 2px 0.5px rgba(0, 0, 0, 0.15);
-          box-shadow: 0 1px 2px 0.5px rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
+  box-shadow: 0 1px 2px 0.5px rgba(0, 0, 0, 0.15);
   overflow: hidden;
 }
-
 .Gameground .Playground .Card.Shirt {
   border: 3px solid #eee;
   background-color: #d95454;
 }
-
 .Gameground .Playground .Card.IconPlace {
   background-image: url(/src/img/icon/place-card.svg);
-  -webkit-box-shadow: unset;
-          box-shadow: unset;
+  box-shadow: unset;
   opacity: 0.5;
 }
-
 .Gameground .Playground .Table {
   position: relative;
   padding: 5px 50px;
   width: var(--width);
-  display: -ms-grid;
   display: grid;
   row-gap: 12px;
   place-items: center;
   background-color: var(--brand-color);
   border: 6px solid #9c6027;
   border-radius: 100px;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  -webkit-box-shadow: 0 1px 2px 0.5px rgba(0, 0, 0, 0.25);
-          box-shadow: 0 1px 2px 0.5px rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
+  box-shadow: 0 1px 2px 0.5px rgba(0, 0, 0, 0.25);
 }
-
 .Gameground .Playground .Table .CardsContainer {
-  display: -ms-grid;
   display: grid;
   grid-auto-flow: column;
-  -webkit-column-gap: 12px;
-          column-gap: 12px;
+  -moz-column-gap: 12px;
+       column-gap: 12px;
 }
-
 .Gameground .Playground .YourCardsContainer {
   --column-gap: 20px;
   width: var(--width);
-  display: -ms-grid;
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: -webkit-max-content;
   grid-auto-columns: max-content;
-  -webkit-column-gap: var(--column-gap);
-          column-gap: var(--column-gap);
+  -moz-column-gap: var(--column-gap);
+       column-gap: var(--column-gap);
   place-items: center;
   place-content: center;
 }
-
 .Gameground .Playground .YourCardsContainer > .RowsContainer {
   width: 100%;
-  display: -ms-grid;
   display: grid;
   row-gap: 12px;
 }
-
 .Gameground .Playground .YourCardsContainer > .RowsContainer > .Row {
-  display: -ms-grid;
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: -webkit-max-content;
   grid-auto-columns: max-content;
-  -webkit-column-gap: var(--column-gap);
-          column-gap: var(--column-gap);
+  -moz-column-gap: var(--column-gap);
+       column-gap: var(--column-gap);
 }
-
 .Gameground .Playground .YourCardsContainer > .RowsContainer > .Row > .Card {
   background-color: red;
 }
-
 .Gameground > .UserTip {
   margin-top: 20px;
   max-height: 150px;
@@ -1966,91 +1649,89 @@ input.InPopup::-webkit-input-placeholder {
   background-image: none !important;
 }
 
-.DigitIcon[data-digit="2"][data-color="red"] {
+.DigitIcon[data-digit="2"][data-color=red] {
   background-image: url(../img/digits/Red2.png);
 }
 
-.DigitIcon[data-digit="3"][data-color="red"] {
+.DigitIcon[data-digit="3"][data-color=red] {
   background-image: url(../img/digits/Red3.png);
 }
 
-.DigitIcon[data-digit="4"][data-color="red"] {
+.DigitIcon[data-digit="4"][data-color=red] {
   background-image: url(../img/digits/Red4.png);
 }
 
-.DigitIcon[data-digit="5"][data-color="red"] {
+.DigitIcon[data-digit="5"][data-color=red] {
   background-image: url(../img/digits/Red5.png);
 }
 
-.DigitIcon[data-digit="6"][data-color="red"] {
+.DigitIcon[data-digit="6"][data-color=red] {
   background-image: url(../img/digits/Red6.png);
 }
 
-.DigitIcon[data-digit="7"][data-color="red"] {
+.DigitIcon[data-digit="7"][data-color=red] {
   background-image: url(../img/digits/Red7.png);
 }
 
-.DigitIcon[data-digit="8"][data-color="red"] {
+.DigitIcon[data-digit="8"][data-color=red] {
   background-image: url(../img/digits/Red8.png);
 }
 
-.DigitIcon[data-digit="9"][data-color="red"] {
+.DigitIcon[data-digit="9"][data-color=red] {
   background-image: url(../img/digits/Red9.png);
 }
 
-.DigitIcon[data-digit="J"][data-color="red"] {
+.DigitIcon[data-digit=J][data-color=red] {
   background-image: url(../img/digits/RedJ.png);
 }
 
-.DigitIcon[data-digit="11"][data-color="red"] {
+.DigitIcon[data-digit="11"][data-color=red] {
   background-image: url(../img/digits/RedJ.png);
 }
 
-.DigitIcon[data-digit="2"][data-color="blue"] {
+.DigitIcon[data-digit="2"][data-color=blue] {
   background-image: url(../img/digits/Blue2.png);
 }
 
-.DigitIcon[data-digit="3"][data-color="blue"] {
+.DigitIcon[data-digit="3"][data-color=blue] {
   background-image: url(../img/digits/Blue3.png);
 }
 
-.DigitIcon[data-digit="4"][data-color="blue"] {
+.DigitIcon[data-digit="4"][data-color=blue] {
   background-image: url(../img/digits/Blue4.png);
 }
 
-.DigitIcon[data-digit="5"][data-color="blue"] {
+.DigitIcon[data-digit="5"][data-color=blue] {
   background-image: url(../img/digits/Blue5.png);
 }
 
-.DigitIcon[data-digit="6"][data-color="blue"] {
+.DigitIcon[data-digit="6"][data-color=blue] {
   background-image: url(../img/digits/Blue6.png);
 }
 
-.DigitIcon[data-digit="7"][data-color="blue"] {
+.DigitIcon[data-digit="7"][data-color=blue] {
   background-image: url(../img/digits/Blue7.png);
 }
 
-.DigitIcon[data-digit="8"][data-color="blue"] {
+.DigitIcon[data-digit="8"][data-color=blue] {
   background-image: url(../img/digits/Blue8.png);
 }
 
-.DigitIcon[data-digit="9"][data-color="blue"] {
+.DigitIcon[data-digit="9"][data-color=blue] {
   background-image: url(../img/digits/Blue9.png);
 }
 
-.DigitIcon[data-digit="J"][data-color="blue"] {
+.DigitIcon[data-digit=J][data-color=blue] {
   background-image: url(../img/digits/BlueJ.png);
 }
 
-.DigitIcon[data-digit="11"][data-color="blue"] {
+.DigitIcon[data-digit="11"][data-color=blue] {
   background-image: url(../img/digits/BlueJ.png);
 }
 
 .ScoreOnDesktop {
-  display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr 1fr 1fr;
-      grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
 .ScoreOnDesktop div {
@@ -2059,6 +1740,5 @@ input.InPopup::-webkit-input-placeholder {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
-/*# sourceMappingURL=style.css.map */
