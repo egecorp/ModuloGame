@@ -665,6 +665,7 @@ input.InPopup::-webkit-input-placeholder {
 }
 .Main {
   --main-margin-top: 0px;
+  --main-row-gap: 12px;
   position: relative;
   margin-top: var(--main-margin-top);
   /* Статус бар */
@@ -674,7 +675,7 @@ input.InPopup::-webkit-input-placeholder {
   display: grid;
   grid-template-rows: -webkit-max-content 1fr -webkit-max-content;
   grid-template-rows: max-content 1fr max-content;
-  row-gap: 12px;
+  row-gap: var(--main-row-gap);
   overflow: hidden;
 }
 
@@ -957,7 +958,8 @@ input.InPopup::-webkit-input-placeholder {
 }
 
 .GameList {
-  height: 100%;
+  height: calc(100% + var(--main-row-gap));
+  /* Добавляем отступ для полной высоты */
   display: grid;
   grid-template-rows: -webkit-max-content 1fr;
   grid-template-rows: max-content 1fr;
