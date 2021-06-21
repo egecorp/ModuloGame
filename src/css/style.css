@@ -1460,7 +1460,7 @@ input.InPopup::-webkit-input-placeholder {
   line-height: 1;
 }
 .Gameground .FaceToFace .CurrentInfo .Status {
-  padding: 10px 5px;
+  padding: 10px 3px;
   width: 84px;
   height: 64px;
   display: grid;
