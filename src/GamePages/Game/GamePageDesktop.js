@@ -185,18 +185,18 @@ export default class GamePageDesktop extends React.Component {
                     var score3 = GetScore(round.myDigit3, round.competitorDigit3);
 
                     cardsSetArea = (<div className="ScoreOnDesktop">
-                        <div data-positive={(score1 > 0) ? "1" : "0"}>{score1}</div>
-                        <div data-positive={(score2 > 0) ? "1" : "0"}>{score2}</div>
-                        <div data-positive={(score3 > 0) ? "1" : "0"}>{score3}</div>
+                        <p data-positive={(score1 > 0) ? "1" : "0"}>{score1}</p>
+                        <p data-positive={(score2 > 0) ? "1" : "0"}>{score2}</p>
+                        <p data-positive={(score3 > 0) ? "1" : "0"}>{score3}</p>
                     </div>)
 
                     var competitorScore1 = GetScore(round.competitorDigit1, round.myDigit1);
                     var competitorScore2 = GetScore(round.competitorDigit2, round.myDigit2);
                     var competitorScore3 = GetScore(round.competitorDigit3, round.myDigit3);
                     competitorScoreArea= (<div className="ScoreOnDesktop">
-                        <div data-positive={(competitorScore1 > 0) ? "1" : "0"}>{competitorScore1}</div>
-                        <div data-positive={(competitorScore2 > 0) ? "1" : "0"}>{competitorScore2}</div>
-                        <div data-positive={(competitorScore3 > 0) ? "1" : "0"}>{competitorScore3}</div>
+                        <p data-positive={(competitorScore1 > 0) ? "1" : "0"}>{competitorScore1}</p>
+                        <p data-positive={(competitorScore2 > 0) ? "1" : "0"}>{competitorScore2}</p>
+                        <p data-positive={(competitorScore3 > 0) ? "1" : "0"}>{competitorScore3}</p>
                     </div>)
 
                 }

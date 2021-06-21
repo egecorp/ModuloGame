@@ -1634,6 +1634,25 @@ input.InPopup::-webkit-input-placeholder {
 .Gameground .Playground .YourCardsContainer > .RowsContainer > .Row > .Card {
   background-color: red;
 }
+.Gameground .Playground .ScoreOnDesktop {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: -webkit-max-content;
+  grid-auto-columns: max-content;
+  -moz-column-gap: 12px;
+       column-gap: 12px;
+}
+.Gameground .Playground .ScoreOnDesktop > p {
+  padding: 3px 7px;
+  background-color: rgba(100, 17, 17, 0.8);
+  border-radius: 30px;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1;
+}
+.Gameground .Playground .ScoreOnDesktop > p[data-positive="1"] {
+  background-color: rgba(17, 100, 46, 0.8);
+}
 .Gameground > .UserTip {
   margin-top: 20px;
   max-height: 150px;
@@ -1730,16 +1749,6 @@ input.InPopup::-webkit-input-placeholder {
 
 .DigitIcon[data-digit="11"][data-color=blue] {
   background-image: url(../img/digits/BlueJ.png);
-}
-
-.ScoreOnDesktop {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-}
-
-.ScoreOnDesktop div {
-  margin-left: 5px;
-  margin-right: 5px;
 }
 
 code {
