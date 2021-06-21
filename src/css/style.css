@@ -1488,7 +1488,7 @@ input.InPopup::-webkit-input-placeholder {
   background-size: 40px;
   background-image: url(/src/img/gamestatus/draw.svg);
 }
-.Gameground .FaceToFace .CurrentInfo .Status > .IconStatus[data-status=yourturn] {
+.Gameground .FaceToFace .CurrentInfo .Status > .IconStatus[data-status=playround] {
   background-image: url(/src/img/gamestatus/your-turn.svg);
 }
 .Gameground .FaceToFace .CurrentInfo .Status > .IconStatus[data-status=waiting] {

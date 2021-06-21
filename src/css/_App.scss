@@ -1027,7 +1027,7 @@
 						background-size: 40px;
 						background-image: url(/src/img/gamestatus/draw.svg);
 					}
-					&[data-status="yourturn"] {
+					&[data-status="playround"] {
 						background-image: url(/src/img/gamestatus/your-turn.svg);
 					}
 					&[data-status="waiting"] {
