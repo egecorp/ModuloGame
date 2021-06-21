@@ -37,7 +37,7 @@ export default class GamePageFooterButton extends React.Component {
         }
 
         return (
-            <button onClick={this.props.OnButtonClick}>{buttonCaption}</button>
+            <button className="ButtonBig" onClick={this.props.OnButtonClick}>{buttonCaption}</button>
 		);
 
 	}
