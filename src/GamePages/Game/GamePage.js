@@ -321,7 +321,7 @@ export default class GamePage extends React.Component {
                     myDigit1 = {this.state.myDigit1 ? (this.state.myDigit1 + "") : null}
                     myDigit2 = {this.state.myDigit2 ? (this.state.myDigit2 + "") : null}
                     myDigit3 = {this.state.myDigit3 ? (this.state.myDigit3 + "") : null}
-                    canUseJoker = {this.state.canUseJoker}
+                    canUseJoker = {this.state.game.MyUserCanUseJoker}
                     SetGamePageStatus = {this.setGamePageStatus}
                     RoundNumber = {this.currentShownRoundNumber}
                     >				
@@ -345,7 +345,7 @@ export default class GamePage extends React.Component {
                     myDigit1 = {this.state.myDigit1 ? (this.state.myDigit1 + "") : null}
                     myDigit2 = {this.state.myDigit2 ? (this.state.myDigit2 + "") : null}
                     myDigit3 = {this.state.myDigit3 ? (this.state.myDigit3 + "") : null}*/
-                    canUseJoker = {this.state.canUseJoker}
+                    canUseJoker = {this.state.game.MyUserCanUseJoker}
                     SetGamePageStatus = {this.setGamePageStatus}
                     CurrentRound = {this.state.currentRound}
                     >				
