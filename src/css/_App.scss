@@ -1,6 +1,7 @@
 .Main {
 	// --main-margin-top: 20px;
 	--main-margin-top: 0px;
+	--main-row-gap: 12px;
 
 	position: relative;
 
@@ -11,7 +12,7 @@
 
 	display: grid;
 	grid-template-rows: max-content 1fr max-content;
-	row-gap: 12px;
+	row-gap: var(--main-row-gap);
 
 	overflow: hidden;
 }
@@ -289,7 +290,7 @@
 }
 
 .FooterArea {
-	padding: 10px 0;
+	padding-bottom: 10px;
 
 	display: grid;
 	row-gap: 10px;
@@ -362,7 +363,7 @@
 }
 
 .GameList {
-	height: 100%;
+	height: calc(100% + var(--main-row-gap)); /* Добавляем отступ для полной высоты */
 
 	display: grid;
 	grid-template-rows: max-content 1fr;
@@ -393,7 +394,7 @@
 	.List {
 		@include scrollhide;
 
-		padding-bottom: 75px;
+		padding-bottom: 55px;
 		overflow-y: auto;
 
 		> .Finished {
@@ -996,14 +997,14 @@
 			}
 
 			.Status {
-				padding: 10px 5px;
+				padding: 10px 3px;
 
 				width: 84px;
 				height: 64px;
 
 				display: grid;
 				grid-template-rows: 1fr max-content;
-				row-gap: 4px;
+				row-gap: 3px;
 				place-items: center;
 
 				border-radius: 10px;
@@ -1014,15 +1015,22 @@
 				> .IconStatus {
 					width: 32px;
 					height: 32px;
-					background-size: 32px;
 
-					&.Winner {
-						background-image: url(/src/img/gamestatus/winner.svg);
+					&[data-status="win"] {
+						background-image: url(/src/img/gamestatus/win.svg);
 					}
-					&.YourTurn {
+					&[data-status="lose"] {
+						background-image: url(/src/img/gamestatus/lose.svg);
+					}
+					&[data-status="draw"] {
+						width: 40px;
+						background-size: 40px;
+						background-image: url(/src/img/gamestatus/draw.svg);
+					}
+					&[data-status="playround"] {
 						background-image: url(/src/img/gamestatus/your-turn.svg);
 					}
-					&.Waiting {
+					&[data-status="waiting"] {
 						background-image: url(/src/img/gamestatus/waiting.svg);
 					}
 				}
@@ -1032,6 +1040,7 @@
 
 					color: #fed61f;
 					font-size: calc(var(--font-size) - 3px);
+					font-weight: 600;
 					text-align: center;
 				}
 			}
@@ -1189,6 +1198,27 @@
 				}
 			}
 		}
+
+		.ScoreOnDesktop {
+			display: grid;
+			grid-auto-flow: column;
+			grid-auto-columns: max-content;
+			column-gap: 12px;
+		
+			> p {
+				padding: 3px 7px;
+				background-color: rgba(100,17,17,0.8);
+				border-radius: 30px;
+		
+				font-size: 18px;
+				font-weight: 600;
+				line-height: 1;
+		
+				&[data-positive="1"] {
+					background-color: rgba(17,100,46,0.8);
+				}
+			}
+		}
 	}
 
 	> .UserTip {
@@ -1270,14 +1300,4 @@
 }
 .DigitIcon[data-digit="11"][data-color="blue"] {
 	background-image: url(../img/digits/BlueJ.png);
-}
-
-.ScoreOnDesktop{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-}
-
-.ScoreOnDesktop div{
-    margin-left: 5px;
-    margin-right: 5px;
 }

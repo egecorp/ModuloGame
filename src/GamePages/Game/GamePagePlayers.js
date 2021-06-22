@@ -119,16 +119,16 @@ export default class GamePagePlayers extends React.Component {
         
                         <div className="IconVip"></div>
         
-                        <div className="IconJoker Red">
+                        <div className="IconJoker Red" data-show="1">
                             {this.props.CurrentGame.MyUserCanUseJoker ? (<div className="DigitIcon" data-digit="J" data-color="blue"></div>) : null}
                         </div>
                     </div>
         
                     <div className="CurrentInfo">
-                        <p className="Score">{myUserScore} : {competitorUserScore}</p>
+                        <p className="Score">{myUserScore}:{competitorUserScore}</p>
         
                         <div className="Status">
-                            <div className="IconStatus Waiting"></div>
+                            <div className="IconStatus" data-status="win"></div>
                             <p>{labelText}</p>
                         </div>
                     </div>
@@ -145,7 +145,7 @@ export default class GamePagePlayers extends React.Component {
         
                         <div className="IconVip"></div>
         
-                        <div className="IconJoker Red">
+                        <div className="IconJoker Red" data-show="1">
                             {this.props.CurrentGame.CompetitorUserCanUseJoker ? (<div className="DigitIcon" data-digit="J" data-color="blue"></div>) : null}
                         </div>
                     </div>
