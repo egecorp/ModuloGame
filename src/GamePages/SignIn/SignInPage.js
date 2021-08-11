@@ -1,9 +1,9 @@
 import React from 'react'
-import SignInLanguagePanel from '../Components/SignInLanguagePanel'
-import CheckBoxButton from '../Components/CheckBoxButton'
-import {LanguageContext} from '../Language/LangPack'
-import HeadNavigation from '../Components/HeadNavigation'
-import DEVICE_STATUS from '../Lib/DeviceStatus'
+import SignInLanguagePanel from '../../Components/SignInLanguagePanel'
+import CheckBoxButton from '../../Components/CheckBoxButton'
+import {LanguageContext} from '../../Language/LangPack'
+import HeadNavigation from '../../Components/HeadNavigation'
+import DEVICE_STATUS from '../../Lib/DeviceStatus'
 
 
 export default class SignInPage extends React.Component {

@@ -1,8 +1,6 @@
 import React from 'react'
 import './css/style.css';
-// import './css/App.css';
-// import './css/Common.css';
-import Game from './GamePages/Game.js';
+import GameLayout from './GamePages/GameLayout.js';
 import Device from './Model/Device';
 import {LanguageContext, LanguagePacketsHolder} from './Language/LangPack'
 
@@ -22,7 +20,7 @@ export default class App extends React.Component{
   render()   
   {
     return (<LanguageContext.Provider value={this.myLanguagePack}>
-      <Game Device={this.myDevice}></Game>  
+      <GameLayout Device={this.myDevice}></GameLayout>  
       </LanguageContext.Provider> );
   }
 }

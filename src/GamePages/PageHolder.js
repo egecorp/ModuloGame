@@ -1,7 +1,7 @@
 import React from 'react'
 
 import HelloPage from './HelloPage.js'
-import SignInPage from './SignInPage.js'
+import SignInPage from './SignIn/SignInPage.js'
 import SignUpPage from './SignIn/SignUpPage.js'
 import SignInAuthPage from './SignIn/SignInAuthPage.js'
 import SignInAnonim from './SignIn/SignInAnonimPage.js'

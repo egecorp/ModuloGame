@@ -3,15 +3,18 @@ import { LanguageContext } from '../../Language/LangPack';
 import HeadNavigation from '../../Components/HeadNavigation';
 import DEVICE_STATUS from '../../Lib/DeviceStatus';
 import OneGame from '../../Components/OneGame';
-
+import Menu from "../../Components/Menu";
 
 
 export default class GameListPage extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {};
+		this.state = {
+            showMenu : false
+        };
 		this.createGame = this.createGame.bind(this);
 		this.onGameClick = this.onGameClick.bind(this);
+        this.onShowMenuClick = this.onShowMenuClick.bind(this);
 	}
 
 	createGame() {
@@ -20,10 +23,17 @@ export default class GameListPage extends React.Component {
 
 	onGameClick(g) {
 		this.props.NavigationButtonCallBack(DEVICE_STATUS.GAME_SHOW_GAME, g);
+	}
 
+    onShowMenuClick() {
+		this.setState({showMenu : true});
+		//this.props.NavigationButtonCallBack(DEVICE_STATUS.GAME_SHOW_GAME, g);
 	}
 
 	render() {
+
+        var MenuHTML = (this.state.showMenu === true) ? (<Menu></Menu>) : null;
+        
 
 		let activeGames = this.props.Device.myUser.ActiveGames.map((g) =>
 			<OneGame key={g.Id} game={g} onGameClickCallBack={this.onGameClick} />
@@ -42,7 +52,7 @@ export default class GameListPage extends React.Component {
 						<HeadNavigation column="2">
 							<p className="Modulo">{context.GetText('gamelist', 'labelWindow')}</p>
 
-							<button className="ButtonGreen IconMenu"></button>
+							<button onClick={this.onShowMenuClick} className="ButtonGreen IconMenu"></button>
 						</HeadNavigation>
 
 						<div className="GameList">
@@ -87,6 +97,7 @@ export default class GameListPage extends React.Component {
 								</li>
 							</ul>
 						</div>
+                        { MenuHTML }
 					</>
 				)}
 			</LanguageContext.Consumer>

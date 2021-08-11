@@ -365,6 +365,19 @@ export function AddPackets(addPackFunction)
         'RoundName5':'Раунд 5',
 	});
 
+
+    pack.AddDictionary('menu', 
+    {
+        'menu' : 'Меню',
+        'statistic' : 'Статистика',
+        'rules' : 'Правила игры',
+        'conditions' : 'Пользовательское соглашение',
+        'settings' : 'Настройки',
+        'exit' : 'Выход',
+    });
+
+
+
 	pack.AddDictionary('country',
 	{
 		"AU":"\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
