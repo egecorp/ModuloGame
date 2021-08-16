@@ -197,6 +197,29 @@ export default class GameLayout extends React.Component {
                         currentPage: 'ConditionPage'
                     }));
                 break;
+
+
+            case DEVICE_STATUS.USERINFO_SHOW_SIGNIN_DONE:
+                this.setState(state => (
+                    { 
+                        currentDeviceStatus: DEVICE_STATUS.USERINFO_SHOW_SIGNIN_DONE, 
+                        currentPage: 'SignIn:SignIn:EnterCode'
+                    }));
+                break;
+            case DEVICE_STATUS.USERINFO_SHOW_SIGNIN_FAIL:
+                this.setState(state => (
+                    { 
+                        currentDeviceStatus: DEVICE_STATUS.USERINFO_SHOW_SIGNIN_FAIL, 
+                        currentPage: 'SignIn:SignIn:Fail'
+                    }));
+                break;
+            case DEVICE_STATUS.USERINFO_SHOW_SIGNIN_SEND_CODE_FAIL:
+                this.setState(state => (
+                    { 
+                        currentDeviceStatus: DEVICE_STATUS.USERINFO_SHOW_SIGNIN_SEND_CODE_FAIL, 
+                        currentPage: 'SignIn:SignIn:FailCode'
+                    }));
+                break;
             default:
                 console.log("WTF?")
         }

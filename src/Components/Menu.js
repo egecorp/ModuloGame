@@ -34,7 +34,7 @@ export default class Menu extends React.Component {
     }
 
     onItemClick(item){
-        console.log(item);
+        if (typeof(this.props.onMenuClick) === "function") this.props.onMenuClick(item);
     }
 
     render() { 

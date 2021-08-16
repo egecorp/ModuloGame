@@ -63,8 +63,6 @@ checkCreateUser(newStatus)
         console.log(this.myDevice.CurrentError);
         this.nextButtonCallBack(DEVICE_STATUS.USERINFO_SHOW_CREATE_FAIL);
     }
-
-    
 }
 
 modalButtonOnClick()

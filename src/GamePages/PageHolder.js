@@ -14,7 +14,7 @@ import GamePage from './Game/GamePage.js'
 
 import ConditionPage from './Common/ConditionPage.js'
 import RulesPage from './Common/RulesPage.js'
-import SettingsAvatarPage from './Settings/SettingsAvatarPage.js'
+import StatisticPage from './Statistic/StatisticPage.js'
 import SettingsSettingsPage from './Settings/SettingsSettingsPage.js'
 
 
@@ -43,15 +43,38 @@ export default class PageHolder extends React.Component {
         }
         else if (this.props.currentPage === 'SignIn:SignIn')
         {
-            CPage = (<SignInAuthPage NextButtonCallBack={this.props.NextButtonCallBack}></SignInAuthPage>)
+            CPage = (<SignInAuthPage   
+                            Device={this.props.Device}  
+                            NextButtonCallBack={this.props.NextButtonCallBack}
+                        ></SignInAuthPage>)
+        }
+        else if (this.props.currentPage === 'SignIn:SignIn:Fail')
+        {
+            CPage = (<SignInAuthPage   
+                            Device={this.props.Device} 
+                            modalstate='Fail' 
+                            UserMail={this.props.Device.tempUserMail} 
+                            NextButtonCallBack={this.props.NextButtonCallBack}
+                        ></SignInAuthPage>)
         }
         else if (this.props.currentPage === 'SignIn:SignIn:EnterCode')
         {
-            CPage = (<SignInAuthPage modalstate='EnterCode' UserMail='acid@gmail.dot' NextButtonCallBack={this.props.NextButtonCallBack}></SignInAuthPage>)
+            CPage = (<SignInAuthPage   
+                            Device={this.props.Device}  
+                            modalstate='EnterCode' 
+                            UserMail={this.props.Device.UserMail} 
+                            NextButtonCallBack={this.props.NextButtonCallBack}
+                        ></SignInAuthPage>)
         }
         else if (this.props.currentPage === 'SignIn:SignIn:FailCode')
         {
-            CPage = (<SignInAuthPage modalstate='FailCode' OldCode='321' UserMail='acid@gmail.dot' NextButtonCallBack={this.props.NextButtonCallBack}></SignInAuthPage>)
+            CPage = (<SignInAuthPage   
+                            Device={this.props.Device}  
+                            modalstate='FailCode' 
+                            OldCode={this.props.Device.tempCode} 
+                            UserMail={this.props.Device.UserMail} 
+                            NextButtonCallBack={this.props.NextButtonCallBack}
+                        ></SignInAuthPage>)
         }
         else if (this.props.currentPage === 'SignIn:SignUp')
         {
@@ -94,22 +117,31 @@ export default class PageHolder extends React.Component {
         }
 
 
-        else if (this.props.currentPage === 'ConditionPage')
-        {
-            CPage = (<ConditionPage></ConditionPage>)
-        }
-        else if (this.props.currentPage === 'RulesPage')
-        {
-            CPage = (<RulesPage></RulesPage>)
-        }
-        else if (this.props.currentPage === 'Settings:Settings')
-        {
-            CPage = (<SettingsSettingsPage></SettingsSettingsPage>)
-        }
-        else if (this.props.currentPage === 'Settings:Avatar')
-        {
-            CPage = (<SettingsAvatarPage></SettingsAvatarPage>)
-        }
+		else if (this.props.currentPage === 'Info:ConditionPage')
+		{
+			CPage = (<ConditionPage OnBackButton={this.props.OnBackButton}/>)
+		}
+		else if (this.props.currentPage === 'Info:RulesPage')
+		{
+			CPage = (<RulesPage OnBackButton={this.props.OnBackButton} />)
+		}
+		else if (this.props.currentPage === 'Settings:Settings')
+		{
+			CPage = (<SettingsSettingsPage 
+                        Device={this.props.Device}
+                        CurrentGame={this.props.CurrentGame}
+                        NavigationButtonCallBack={this.props.NavigationButtonCallBack}
+                        OnBackButton={this.props.OnBackButton}
+                    />)
+		}        
+		else if (this.props.currentPage === 'Statistic:Statistic')
+		{
+			CPage = (<StatisticPage
+                        Device={this.props.Device}
+                        OnBackButton={this.props.OnBackButton}
+                        NextButtonCallBack={this.props.NextButtonCallBack}
+                    />)
+		}
         
 
         else

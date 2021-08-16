@@ -31,9 +31,15 @@ export default class Device
     // Пользовательское описание устройства
     Caption = undefined;
 
+    // Ожидание подтверждения пользователя
+    WaitConfirmation = false;
+
+    // Почта пользователя, ожидающего подтверждения
+    UserMail = null;
+
     //Необходимо зарегистрировать устройство
     NeedRegisterDevice = false;
-
+    
     // Текущий пользователь
     myUser = null;
 
@@ -70,7 +76,7 @@ export default class Device
         else
         {
             console.log("Устройство было зарегистрировано ранее, DeviceToken = " + this.DeviceToken);
-        }        
+        }
 
        // this._GetErrorOrDefault =  this._GetErrorOrDefault.bind(this);
     }
@@ -171,7 +177,14 @@ export default class Device
     {
         if (!this.UserId)
         {
-            callBack.call(context,  DEVICE_STATUS.USERINFO_NOUSER);
+            if (this.WaitConfirmation)
+            {
+                callBack.call(context,  DEVICE_STATUS.USERINFO_SHOW_SIGNIN_DONE);
+            }
+            else
+            {
+                callBack.call(context,  DEVICE_STATUS.USERINFO_NOUSER);
+            }
             return;
         }
         
@@ -290,6 +303,57 @@ export default class Device
         var _ErrorResult = ErrorResult.bind(this);
         this.myServer.Get.call(this.myServer).CreateVerifiedUser(postObject).then(_GoodResult, _ErrorResult);
         
+    }
+
+    
+    SignInUser(callBack, context, postObject)
+    {
+        function GoodResult(response)
+        {
+            if (!response)
+            {
+                this.CurrentError = this._SERVER_ERROR.SERVER_ERROR;
+                callBack.call(context,  DEVICE_STATUS.USERINFO_SHOW_SIGNIN_FAIL);
+                return;
+            }
+            else if (response.Error)
+            {
+                if (response.IsWorkflowError === true)
+                {
+                    this.CurrentError = this._GetErrorOrDefault(response.Error);
+                }
+                else
+                {
+                    this.CurrentError = this._SERVER_ERROR.SERVER_ERROR;
+                }
+                callBack.call(context,  DEVICE_STATUS.USERINFO_SHOW_SIGNIN_FAIL);
+                return;
+            }
+            this.CurrentError = null;
+            if (response.Id)
+            {
+                console.info("Device has got UserId = " + response.Id);
+                this.UserId = response.Id;
+                this.myUser = {};
+                this.NeedRegisterDevice = false;
+            }
+            callBack.call(context,  DEVICE_STATUS.USERINFO_SHOW_SIGNIN_DONE);
+        }
+        
+        function ErrorResult(e)
+        {
+            console.error(e);
+            this.CurrentError = this._SERVER_ERROR.SERVER_ERROR;
+            callBack.call(context,  DEVICE_STATUS.USERINFO_SHOW_SIGNIN_FAIL);
+        }
+
+        this.CurrentError = null;
+
+        var _GoodResult = GoodResult.bind(this);
+        var _ErrorResult = ErrorResult.bind(this);
+        this.myServer.Get.call(this.myServer).SignInExistUser(postObject).then(_GoodResult, _ErrorResult);
+        callBack.call(context,  DEVICE_STATUS.USERINFO_SHOW_SIGNIN_TRYING);
+
     }
 
 
