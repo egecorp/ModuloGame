@@ -23,6 +23,10 @@ export default class SignInAuthPage extends React.Component {
 
         this.checkSignInUser = this.checkSignInUser.bind(this);
         this.nextButtonOnClick = this.nextButtonOnClick.bind(this);
+        this.onFailMessageButtonClick = this.onFailMessageButtonClick.bind(this);
+        this.onFailCodeMessageButtonClick = this.onFailCodeMessageButtonClick.bind(this);
+        this.onRepeateConfirmationLinkClick = this.onRepeateConfirmationLinkClick.bind(this);
+        this.onCancelConfirmationLinkClick = this.onCancelConfirmationLinkClick.bind(this);
 	}
 
 
@@ -55,6 +59,31 @@ checkSignInUser(newStatus)
     }
 }
 
+onFailMessageButtonClick()
+{
+    this.nextButtonCallBack(DEVICE_STATUS.USERINFO_SHOW_SIGNIN);
+}
+
+onFailCodeMessageButtonClick()
+{
+    console.log('onFailCodeMessageButtonClick');
+    this.nextButtonCallBack(DEVICE_STATUS.USERINFO_SHOW_SIGNIN_DONE);
+}
+
+onRepeateConfirmationLinkClick()
+{
+    let postObject = {};
+    
+    postObject.EMail = this.props.UserMail;
+    postObject.DeviceWorkToken = this.props.Device.DeviceWorkToken;
+
+    this.props.Device.RepeateVerifyingMail.call(this.props.Device, this.checkSignInUser, this, postObject);
+}
+
+onCancelConfirmationLinkClick()
+{
+    //this.nextButtonCallBack(DEVICE_STATUS.USERINFO_SHOW_SIGNIN);
+}
 
 render() {
 		var MsgBoxHTML = null;
@@ -79,13 +108,28 @@ render() {
 						<label htmlFor="CheckMailCode">{this.currentContext.GetText('signin.modal.MailCode', 'formLabel')}</label>
 						<input type="text" className="InPopup" placeholder={this.currentContext.GetText('signin.modal.MailCode', 'formPlaceholderCode')}></input>
 					</form>
+
+                    <div className="Content">
+						<p>
+							<span onClick={this.onRepeateConfirmationLinkClick}>
+								{this.currentContext.GetText('signin.modal.MailCode', 'linkRepeate')}
+							</span>
+                        </p>
+                        <p>
+							<span>{this.currentContext.GetText('signin.modal.MailCode', 'linkCancelTitle')}</span>
+                            <span>{this.currentContext.GetText('signin.modal.MailCode', 'linkCancel')}</span>
+						</p>
+					</div>
 				</MsgBox>
 			)
 		} 
 		else if (this.props.modalstate === 'FailCode')
 		{
 			MsgBoxHTML = (
-				<MsgBox ModalButton={this.currentContext.GetText('common', 'popupButtonSend')}>
+				<MsgBox 
+                    ModalButton={this.currentContext.GetText('common', 'popupButtonSend')} 
+                    OnButtonClick={this.onFailCodeMessageButtonClick}
+                >
 					<div className="Content">
 						<p>
 							<span>
@@ -102,22 +146,57 @@ render() {
 						<label htmlFor="CheckMailCode">{this.currentContext.GetText('signin.modal.MailCode', 'formLabel')}</label>
 						<input type="text" className="InPopup" id="CheckMailCode" value={this.props.OldCode} placeholder={this.currentContext.GetText('signin.modal.MailCode', 'formPlaceholderCode')}></input>
 					</form>
+
+
 				</MsgBox>
 			)
 		} 
 		else if (this.props.modalstate === 'Fail')
 		{
+
+            let errorTitle = this.currentContext.GetText('signup.ShowError.ServerError', 'title');
+            let errorText = this.currentContext.GetText('signup.ShowError.ServerError', 'text');
+   
+            
+            if (this.props.Device.CurrentError === SERVER_ERROR.SIGNIN_USER_NOT_FOUND)
+            {
+                errorTitle = this.currentContext.GetText('SignIn.ShowError.UserNotFound', 'title');
+                errorText = this.currentContext.GetText('SignIn.ShowError.UserNotFound', 'text');
+            }
+            else if (this.props.Device.CurrentError === SERVER_ERROR.SIGNIN_ALREADY_BOUND)
+            {
+                errorTitle = this.currentContext.GetText('SignIn.ShowError.AlreadyBound', 'title');
+                errorText = this.currentContext.GetText('SignIn.ShowError.AlreadyBound', 'text');
+            }
+            else if (this.props.Device.CurrentError === SERVER_ERROR.SIGNIN_USER_BLOCKED)
+            {
+                errorTitle = this.currentContext.GetText('SignIn.ShowError.UserBlocked', 'title');
+                errorText = this.currentContext.GetText('SignIn.ShowError.UserBlocked', 'text');
+            }
+            else if (this.props.Device.CurrentError === SERVER_ERROR.SIGNIN_BADUSER)
+            {
+                errorTitle = this.currentContext.GetText('SignIn.ShowError.BadUser', 'title');
+                errorText = this.currentContext.GetText('SignIn.ShowError.BadUser', 'text');
+            }
+            else if (this.props.Device.CurrentError === SERVER_ERROR.SIGNIN_TOO_QUICK)
+            {
+                errorTitle = this.currentContext.GetText('SignIn.ShowError.TooQuick', 'title');
+                errorText = this.currentContext.GetText('SignIn.ShowError.TooQuick', 'text');
+            }
+            
+            
 			MsgBoxHTML = (
-				<MsgBox ModalButton={this.currentContext.GetText('common', 'popupButtonSend')}>
+				<MsgBox 
+                    ModalButton={this.currentContext.GetText('common', 'popupButtonBack')} 
+                    OnButtonClick={this.onFailMessageButtonClick}
+                >
 					<div className="Content">
 						<p>
 							<span>
-								{this.currentContext.GetText('signin.modal.MailCode', 'text_1_Start')}
-								<b>{this.props.UserMail ?? ""}</b>
-								{this.currentContext.GetText('signin.modal.MailCode', 'text_1_End')}
+								{errorTitle}
 							</span>
 
-							<span className="Error">{this.currentContext.GetText('signin.modal.MailCode', 'formError')}</span>
+							<span className="Error">{errorText}</span>
 						</p>
 					</div>
 				</MsgBox>

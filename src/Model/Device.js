@@ -141,6 +141,11 @@ export default class Device
                     deviceObject.myUser = {};
                 }
 
+                if (response.WaitConfirmation === true)
+                {
+                    deviceObject.WaitConfirmation = true;
+                    deviceObject.UserMail = response.UserMail;
+                }
 
                 callBack.call(context,  DEVICE_STATUS.AUTH_GOOD);
             }
@@ -171,7 +176,6 @@ export default class Device
             callBack.call(context,  DEVICE_STATUS.AUTH_CONNTECTING);
         }
     }
-
 
     GetUserInfo(callBack, context)
     {
@@ -221,7 +225,6 @@ export default class Device
         callBack.call(context,  DEVICE_STATUS.USERINFO_GETIING);
         
     }
-
 
     CreateAnonim(callBack, context)
     {
@@ -304,7 +307,6 @@ export default class Device
         this.myServer.Get.call(this.myServer).CreateVerifiedUser(postObject).then(_GoodResult, _ErrorResult);
         
     }
-
     
     SignInUser(callBack, context, postObject)
     {
@@ -356,6 +358,105 @@ export default class Device
 
     }
 
+    RepeateVerifyingMail(callBack, context, postObject)
+    {
+        function GoodResult(response)
+        {
+            if (!response)
+            {
+                this.CurrentError = this._SERVER_ERROR.SERVER_ERROR;
+                callBack.call(context,  DEVICE_STATUS.USERINFO_SHOW_SIGNIN_FAIL);
+                return;
+            }
+            else if (response.Error)
+            {
+                if (response.IsWorkflowError === true)
+                {
+                    this.CurrentError = this._GetErrorOrDefault(response.Error);
+                }
+                else
+                {
+                    this.CurrentError = this._SERVER_ERROR.SERVER_ERROR;
+                }
+                callBack.call(context,  DEVICE_STATUS.USERINFO_SHOW_SIGNIN_FAIL);
+                return;
+            }
+            this.CurrentError = null;
+            if (response.Id)
+            {
+                console.info("Device has got UserId = " + response.Id);
+                this.UserId = response.Id;
+                this.myUser = {};
+                this.NeedRegisterDevice = false;
+            }
+            callBack.call(context,  DEVICE_STATUS.USERINFO_SHOW_SIGNIN_DONE);
+        }
+        
+        function ErrorResult(e)
+        {
+            console.error(e);
+            this.CurrentError = this._SERVER_ERROR.SERVER_ERROR;
+            callBack.call(context,  DEVICE_STATUS.USERINFO_SHOW_SIGNIN_FAIL);
+        }
+
+        this.CurrentError = null;
+
+        var _GoodResult = GoodResult.bind(this);
+        var _ErrorResult = ErrorResult.bind(this);
+        this.myServer.Get.call(this.myServer).RepeateVerifyingMail(postObject).then(_GoodResult, _ErrorResult);
+        callBack.call(context,  DEVICE_STATUS.USERINFO_SHOW_SIGNIN_TRYING);
+
+    }
+
+    EnterVerifyingCode(callBack, context, postObject)
+    {
+        function GoodResult(response)
+        {
+            if (!response)
+            {
+                this.CurrentError = this._SERVER_ERROR.SERVER_ERROR;
+                callBack.call(context,  DEVICE_STATUS.USERINFO_SHOW_SIGNIN_FAIL);
+                return;
+            }
+            else if (response.Error)
+            {
+                if (response.IsWorkflowError === true)
+                {
+                    this.CurrentError = this._GetErrorOrDefault(response.Error);
+                }
+                else
+                {
+                    this.CurrentError = this._SERVER_ERROR.SERVER_ERROR;
+                }
+                callBack.call(context,  DEVICE_STATUS.USERINFO_SHOW_SIGNIN_FAIL);
+                return;
+            }
+            this.CurrentError = null;
+            if (response.Id)
+            {
+                console.info("Device has got UserId = " + response.Id);
+                this.UserId = response.Id;
+                this.myUser = {};
+                this.NeedRegisterDevice = false;
+            }
+            callBack.call(context,  DEVICE_STATUS.USERINFO_SHOW_SIGNIN_DONE);
+        }
+        
+        function ErrorResult(e)
+        {
+            console.error(e);
+            this.CurrentError = this._SERVER_ERROR.SERVER_ERROR;
+            callBack.call(context,  DEVICE_STATUS.USERINFO_SHOW_SIGNIN_FAIL);
+        }
+
+        this.CurrentError = null;
+
+        var _GoodResult = GoodResult.bind(this);
+        var _ErrorResult = ErrorResult.bind(this);
+        this.myServer.Get.call(this.myServer).EnterVerifyingCode(postObject).then(_GoodResult, _ErrorResult);
+        callBack.call(context,  DEVICE_STATUS.USERINFO_SHOW_SIGNIN_TRYING);
+
+    }
 
     GetGameList(callBack, context)
     {
@@ -389,7 +490,6 @@ export default class Device
         
     }
 
-
     GetUserList(searchString, callBack, context)
     {
         if (!this.UserId) return;
@@ -411,7 +511,6 @@ export default class Device
     
         Server.Get().FindUsersByNic(postObject).then(GoodResult, ErrorResult);
     }
-
 
     GetBotList(searchString, callBack, context)
     {
@@ -668,7 +767,6 @@ export default class Device
         var _ErrorResult = ErrorResult.bind(this);
         this.myServer.Get.call(this.myServer).PlayRound(postObject).then(_GoodResult, _ErrorResult);
     }	
-
     
     GiveUpGame(callBack, context, postObject)
     {

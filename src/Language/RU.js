@@ -77,7 +77,10 @@ export function AddPackets(addPackFunction)
 		'text_2' : 'Пожалуйста, введите код в поле ниже для входа в игру:',
 		'formLabel' : 'Код из письма:',
 		'formPlaceholderCode' : 'Введите код...',
-		'formError' : 'Неверный код, попробуйте ещё раз!'
+		'formError' : 'Неверный код, попробуйте ещё раз!',
+        'linkRepeate' : 'Повторить отправку',
+        'linkCancelTitle' : 'Если желаете изменить адрес почты или способ авторизации, нажмите',
+        'linkCancel' : 'Отменить'
 	});
 
 	pack.AddDictionary('signup.ShowError.BadEmail', 
@@ -100,7 +103,6 @@ export function AddPackets(addPackFunction)
 		'text' : 'Проверьте подключение и попробуйте ещё раз.',
 		'continueButton' : 'Назад'
 	});
-
 
     pack.AddDictionary('signinauth', 
 	{
@@ -375,6 +377,33 @@ export function AddPackets(addPackFunction)
         'settings' : 'Настройки',
         'exit' : 'Выход',
     });
+
+    pack.AddDictionary('SignIn.ShowError.UserNotFound', 
+    {
+        'title' : 'Пользователь не найден',
+        'text' : 'Неверно указанна электронная почта',
+    });
+    pack.AddDictionary('SignIn.ShowError.AlreadyBound', 
+    {
+        'title' : 'Ошибка входа',
+        'text' : 'Данное устройство уже привязано, попробуйте перезагрузить приложение',
+    });
+    pack.AddDictionary('SignIn.ShowError.UserBlocked', 
+    {
+        'title' : 'Пользователь заблокирован',
+        'text' : 'Вы не можете привязать устройство к данному пользователю',
+    }); 
+    pack.AddDictionary('SignIn.ShowError.BadUser', 
+    {
+        'title' : 'Ошибка входа',
+        'text' : 'Вы не можете привязать устройство к данному пользователю',
+    });           
+
+    pack.AddDictionary('SignIn.ShowError.TooQuick', 
+	{
+		'title' : 'Слишком быстро',
+		'text' : 'Нельзя запрашивать повтор отправки так часто.',
+	});
 
 
 

@@ -102,18 +102,6 @@ render() {
         let errorText = this.currentContext.GetText('signup.ShowError.ServerError', 'text');
         let errorLink = null;
         let errorNextButton = this.currentContext.GetText('signup.ShowError.ServerError', 'continueButton');
-        
-          
-
-    //SERVER_ERROR.SERVER_ERROR 
-    //SERVER_ERROR.ACCESS_ERROR
-    //SERVER_ERROR.BAD_DATA 
-    //SERVER_ERROR.SIGNUP_ALREADY_BOUND 
-    //SERVER_ERROR.SIGNUP_EMAIL_EXISTS 
-    //SERVER_ERROR.SIGNUP_BAD_EMAIL 
-    //SERVER_ERROR.SIGNUP_BAD_NICKNAME
-    //SERVER_ERROR.SIGNUP_PHONE_EXISTS 
-
 
         if (this.props.Device.CurrentError === SERVER_ERROR.SIGNUP_EMAIL_EXISTS)
         {
@@ -142,9 +130,8 @@ render() {
 					<div className="WarningIcon"></div>
 					<p className="Title">{errorTitle}</p>
 				</header>
-				
-				<p>{errorText}</p>
 
+				<p>{errorText}</p>
 				{
 					errorLink ? (<span href="/">{errorLink}</span>) : null
 				}                

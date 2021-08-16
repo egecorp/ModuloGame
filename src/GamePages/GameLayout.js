@@ -101,6 +101,14 @@ export default class GameLayout extends React.Component {
                 }));
            
         }
+        else if (result = DEVICE_STATUS.USERINFO_SHOW_SIGNIN_DONE)
+        {
+            this.setState(state => (
+                { 
+                    currentDeviceStatus: DEVICE_STATUS.USERINFO_SHOW_SIGNIN_DONE, 
+                    currentPage: 'SignIn:SignIn:EnterCode'
+                }));
+        }
         else if (result === DEVICE_STATUS.USERINFO_GOOD)
         {
             let thisObject = this;
@@ -109,7 +117,6 @@ export default class GameLayout extends React.Component {
                 currentPage: 'Game:GameList'            
             }));
             setInterval( () => thisObject.myDevice.GetGameList.call(thisObject.myDevice, thisObject.CheckGameList, thisObject), 3000);
-
         }
     }
 
