@@ -79,8 +79,8 @@ export function AddPackets(addPackFunction)
 		'formPlaceholderCode' : 'Введите код...',
 		'formError' : 'Неверный код, попробуйте ещё раз!',
         'linkRepeate' : 'Повторить отправку',
-        'linkCancelTitle' : 'Если желаете изменить адрес почты или способ авторизации, нажмите',
-        'linkCancel' : 'Отменить'
+        'linkCancelTitle' : 'Чтобы изменить адрес почты или способ авторизации, нажмите',
+        'linkCancel' : 'отменить'
 	});
 
 	pack.AddDictionary('signup.ShowError.BadEmail', 
@@ -405,7 +405,24 @@ export function AddPackets(addPackFunction)
 		'text' : 'Нельзя запрашивать повтор отправки так часто.',
 	});
 
+    pack.AddDictionary('SignIn.ShowError.BadCode', 
+	{
+		'title' : 'Внимание',
+		'text' : 'Некорректный код.',
+	});
+    
+    pack.AddDictionary('SignIn.ShowError.BadCode', 
+	{
+		'title' : 'Внимание',
+		'text' : 'Некорректный код.',
+	});
 
+    pack.AddDictionary('SignIn.ShowError.ExpiredCode', 
+	{
+		'title' : 'Внимание',
+		'text' : 'Срок действия кода истёк.',
+	});
+    
 
 	pack.AddDictionary('country',
 	{

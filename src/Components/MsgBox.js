@@ -7,21 +7,19 @@ const modalRoot = document.getElementById('modal-root');
 
 export default class MsgBox extends React.Component {
 
-    callBackFunction = null;
 
     constructor(props, context) {
       super(props);
       this.el = document.createElement('div');
       // this.el.className = 'Modal';
 
-      this.callBackFunction = props.OnButtonClick;
       this.buttonOnClick = this.buttonOnClick.bind(this);
     }
 
     
     buttonOnClick()
     {
-        if (typeof(this.callBackFunction) === "function") this.callBackFunction();
+        if (typeof(this.props.OnButtonClick) === "function") this.props.OnButtonClick();
     }
 
 
@@ -57,7 +55,11 @@ export default class MsgBox extends React.Component {
                                         (this.props.NoButton !== true) &&
                                         (
                                             <div className="Buttons">
-                                                <button onClick={this.buttonOnClick}>{this.props.ModalButton ?? context.GetText('common', 'modalButtonClose')}</button>
+                                                <button 
+                                                    onClick={this.buttonOnClick}
+                                                >
+                                                {this.props.ModalButton ?? context.GetText('common', 'modalButtonClose')}
+                                                </button>
                                             </div>
                                         )
                                     }

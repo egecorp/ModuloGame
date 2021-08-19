@@ -51,8 +51,6 @@ export default class Device
     CurrentError = null;
 
 
-    _SERVER_ERROR = SERVER_ERROR;
-    _GetErrorOrDefault = GetErrorOrDefault;
 
 
 
@@ -78,7 +76,29 @@ export default class Device
             console.log("Устройство было зарегистрировано ранее, DeviceToken = " + this.DeviceToken);
         }
 
-       // this._GetErrorOrDefault =  this._GetErrorOrDefault.bind(this);
+        this.GetPostObject = this.GetPostObject.bind(this);
+        this.GetUserPostObject = this.GetUserPostObject.bind(this);
+        this.TryAuth = this.TryAuth.bind(this);
+        this.GetUserInfo = this.GetUserInfo.bind(this);
+        this.CreateAnonim = this.CreateAnonim.bind(this);
+        this.CreateUser = this.CreateUser.bind(this);
+        this.SignInUser = this.SignInUser.bind(this);
+        this.RepeateVerifyingMail = this.RepeateVerifyingMail.bind(this);
+        this.EnterVerifyingCode = this.EnterVerifyingCode.bind(this);
+        this.GetGameList = this.GetGameList.bind(this);
+        this.GetUserList = this.GetUserList.bind(this);
+        this.GetBotList = this.GetBotList.bind(this);
+        this.GetGameInfo = this.GetGameInfo.bind(this);
+        this.CreateGame = this.CreateGame.bind(this);
+        this.AcceptGame = this.AcceptGame.bind(this);
+        this.DeclineGame = this.DeclineGame.bind(this);
+        this.WithdrawGame = this.WithdrawGame.bind(this);
+        this.PlayRound = this.PlayRound.bind(this);
+        this.GiveUpGame = this.GiveUpGame.bind(this);
+
+        this._SERVER_ERROR = SERVER_ERROR;
+        this._GetErrorOrDefault = GetErrorOrDefault;
+    
     }
 
     GetPostObject(withServerToken)
@@ -145,6 +165,11 @@ export default class Device
                 {
                     deviceObject.WaitConfirmation = true;
                     deviceObject.UserMail = response.UserMail;
+                }
+                else
+                {
+                    deviceObject.WaitConfirmation = false;
+                    deviceObject.UserMail = undefined;
                 }
 
                 callBack.call(context,  DEVICE_STATUS.AUTH_GOOD);
@@ -332,13 +357,6 @@ export default class Device
                 return;
             }
             this.CurrentError = null;
-            if (response.Id)
-            {
-                console.info("Device has got UserId = " + response.Id);
-                this.UserId = response.Id;
-                this.myUser = {};
-                this.NeedRegisterDevice = false;
-            }
             callBack.call(context,  DEVICE_STATUS.USERINFO_SHOW_SIGNIN_DONE);
         }
         
@@ -365,7 +383,7 @@ export default class Device
             if (!response)
             {
                 this.CurrentError = this._SERVER_ERROR.SERVER_ERROR;
-                callBack.call(context,  DEVICE_STATUS.USERINFO_SHOW_SIGNIN_FAIL);
+                callBack.call(context,  DEVICE_STATUS.USERINFO_SHOW_REPEATE_FAIL);
                 return;
             }
             else if (response.Error)
@@ -378,25 +396,18 @@ export default class Device
                 {
                     this.CurrentError = this._SERVER_ERROR.SERVER_ERROR;
                 }
-                callBack.call(context,  DEVICE_STATUS.USERINFO_SHOW_SIGNIN_FAIL);
+                callBack.call(context,  DEVICE_STATUS.USERINFO_SHOW_REPEATE_FAIL);
                 return;
             }
             this.CurrentError = null;
-            if (response.Id)
-            {
-                console.info("Device has got UserId = " + response.Id);
-                this.UserId = response.Id;
-                this.myUser = {};
-                this.NeedRegisterDevice = false;
-            }
-            callBack.call(context,  DEVICE_STATUS.USERINFO_SHOW_SIGNIN_DONE);
+            callBack.call(context,  DEVICE_STATUS.USERINFO_SHOW_REPEATE_DONE);
         }
         
         function ErrorResult(e)
         {
             console.error(e);
             this.CurrentError = this._SERVER_ERROR.SERVER_ERROR;
-            callBack.call(context,  DEVICE_STATUS.USERINFO_SHOW_SIGNIN_FAIL);
+            callBack.call(context,  DEVICE_STATUS.USERINFO_SHOW_REPEATE_FAIL);
         }
 
         this.CurrentError = null;
@@ -404,8 +415,7 @@ export default class Device
         var _GoodResult = GoodResult.bind(this);
         var _ErrorResult = ErrorResult.bind(this);
         this.myServer.Get.call(this.myServer).RepeateVerifyingMail(postObject).then(_GoodResult, _ErrorResult);
-        callBack.call(context,  DEVICE_STATUS.USERINFO_SHOW_SIGNIN_TRYING);
-
+        callBack.call(context,  DEVICE_STATUS.USERINFO_SHOW_REPEATE_TRYING);
     }
 
     EnterVerifyingCode(callBack, context, postObject)
@@ -415,7 +425,7 @@ export default class Device
             if (!response)
             {
                 this.CurrentError = this._SERVER_ERROR.SERVER_ERROR;
-                callBack.call(context,  DEVICE_STATUS.USERINFO_SHOW_SIGNIN_FAIL);
+                callBack.call(context,  DEVICE_STATUS.USERINFO_SHOW_SIGNIN_SEND_CODE_FAIL);
                 return;
             }
             else if (response.Error)
@@ -428,7 +438,7 @@ export default class Device
                 {
                     this.CurrentError = this._SERVER_ERROR.SERVER_ERROR;
                 }
-                callBack.call(context,  DEVICE_STATUS.USERINFO_SHOW_SIGNIN_FAIL);
+                callBack.call(context,  DEVICE_STATUS.USERINFO_SHOW_SIGNIN_SEND_CODE_FAIL);
                 return;
             }
             this.CurrentError = null;
@@ -439,14 +449,14 @@ export default class Device
                 this.myUser = {};
                 this.NeedRegisterDevice = false;
             }
-            callBack.call(context,  DEVICE_STATUS.USERINFO_SHOW_SIGNIN_DONE);
+            callBack.call(context,  DEVICE_STATUS.NEED_REAUTH);
         }
         
         function ErrorResult(e)
         {
             console.error(e);
             this.CurrentError = this._SERVER_ERROR.SERVER_ERROR;
-            callBack.call(context,  DEVICE_STATUS.USERINFO_SHOW_SIGNIN_FAIL);
+            callBack.call(context,  DEVICE_STATUS.USERINFO_SHOW_SIGNIN_SEND_CODE_FAIL);
         }
 
         this.CurrentError = null;
@@ -454,7 +464,50 @@ export default class Device
         var _GoodResult = GoodResult.bind(this);
         var _ErrorResult = ErrorResult.bind(this);
         this.myServer.Get.call(this.myServer).EnterVerifyingCode(postObject).then(_GoodResult, _ErrorResult);
-        callBack.call(context,  DEVICE_STATUS.USERINFO_SHOW_SIGNIN_TRYING);
+        callBack.call(context,  DEVICE_STATUS.USERINFO_SHOW_SIGNIN_SEND_CODE_TRYING);
+
+    }
+
+    CancelVerifying(callBack, context, postObject)
+    {
+        function GoodResult(response)
+        {
+            if (!response)
+            {
+                this.CurrentError = this._SERVER_ERROR.SERVER_ERROR;
+                callBack.call(context,  DEVICE_STATUS.USERINFO_SHOW_SIGNIN_SEND_CODE_FAIL);
+                return;
+            }
+            else if (response.Error)
+            {
+                if (response.IsWorkflowError === true)
+                {
+                    this.CurrentError = this._GetErrorOrDefault(response.Error);
+                }
+                else
+                {
+                    this.CurrentError = this._SERVER_ERROR.SERVER_ERROR;
+                }
+                callBack.call(context,  DEVICE_STATUS.USERINFO_SHOW_SIGNIN_SEND_CODE_FAIL);
+                return;
+            }
+            this.CurrentError = null;
+            callBack.call(context,  DEVICE_STATUS.NEED_REAUTH);
+        }
+        
+        function ErrorResult(e)
+        {
+            console.error(e);
+            this.CurrentError = this._SERVER_ERROR.SERVER_ERROR;
+            callBack.call(context,  DEVICE_STATUS.USERINFO_SHOW_SIGNIN_SEND_CODE_FAIL);
+        }
+
+        this.CurrentError = null;
+
+        var _GoodResult = GoodResult.bind(this);
+        var _ErrorResult = ErrorResult.bind(this);
+        this.myServer.Get.call(this.myServer).CancelVerifying(postObject).then(_GoodResult, _ErrorResult);
+        callBack.call(context,  DEVICE_STATUS.USERINFO_SHOW_SIGNIN_SEND_CODE_TRYING);
 
     }
 

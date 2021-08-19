@@ -27,9 +27,9 @@ constructor(props, context) {
 
     this.inputNicName = React.createRef();
     this.inputEmail = React.createRef();
-    this.inputCountry = React.createRef();
-    this.inputPhoneNumber = React.createRef();
-    this.inputDob = React.createRef();
+    //this.inputCountry = React.createRef();
+    //this.inputPhoneNumber = React.createRef();
+    //this.inputDob = React.createRef();
 
 }
   
@@ -40,8 +40,8 @@ nextButtonOnClick()
 
     postObject.NicName = this.inputNicName.current.value;
     postObject.EMail = this.inputEmail.current.value;
-    postObject.NicCountryName = this.inputCountry.current.value;
-    postObject.TNumber = this.inputPhoneNumber.current.value;
+    //postObject.NicCountryName = this.inputCountry.current.value;
+    //postObject.TNumber = this.inputPhoneNumber.current.value;
     //postObject.Birthday = this.inputDob.current.value;
     postObject.DeviceWorkToken = this.props.Device.DeviceWorkToken;
 
@@ -182,32 +182,6 @@ render() {
 								<label htmlFor="inputEMail">{context.GetText('signup', 'formLabelEMail')}</label>
 								<input ref={this.inputEmail} type="text" className="General" name="inputEMail" placeholder={context.GetText('signup', 'formPlaceholderEMail')} />
 							</div>
-
-							<div className="LabelInput">
-								<label htmlFor="inputCountry">{context.GetText('signup', 'formLabelCountry')}</label>
-								<select ref={this.inputCountry} className="General" name="inputCountry" placeholder={context.GetText('signup', 'formPlaceholderCountry')}>
-									{Array.from(context.GetDictionary('country').entries()).map(x => <option key={x[0]} value={x[0]}>{x[1]}</option>)}
-									{/*context.GetDictionary('country')  */}
-								</select>
-							</div>
-
-							<div className="LabelInput">
-								<label htmlFor="inputPhone">{context.GetText('signup', 'formLabelPhone')}</label>
-								<input  ref={this.inputPhoneNumber}type="tel" className="General" name="inputPhone" placeholder={context.GetText('signup', 'formPlaceholderPhone')} />
-							</div>
-
-							<div className="LabelInput">
-								<label htmlFor="inputDOB">{context.GetText('signup', 'formLabelDOB')}</label>
-								{/* <input type="date" name="inputDOB" placeholder={context.GetText('signup', 'formPlaceholderDOB')} /> */}
-								<input
-									ref={this.inputDob}
-									type="text"
-									className="General Date"
-									onFocus={(e) => (e.currentTarget.type = "date")}
-									onBlur={(e) => (e.currentTarget.type = "text")}
-									placeholder={context.GetText('signup', 'formPlaceholderDOB')}
-								/>
-							</div>
 						</form>
 					</div>
 
@@ -227,6 +201,32 @@ render() {
 				)}
 			</LanguageContext.Consumer>
 		);
+
+        /*
+            <div className="LabelInput">
+                <label htmlFor="inputCountry">{context.GetText('signup', 'formLabelCountry')}</label>
+                <select ref={this.inputCountry} className="General" name="inputCountry" placeholder={context.GetText('signup', 'formPlaceholderCountry')}>
+                    {Array.from(context.GetDictionary('country').entries()).map(x => <option key={x[0]} value={x[0]}>{x[1]}</option>)}
+                    </select>
+                    </div>
+
+                    <div className="LabelInput">
+                        <label htmlFor="inputPhone">{context.GetText('signup', 'formLabelPhone')}</label>
+                        <input  ref={this.inputPhoneNumber}type="tel" className="General" name="inputPhone" placeholder={context.GetText('signup', 'formPlaceholderPhone')} />
+                    </div>
+
+                    <div className="LabelInput">
+                        <label htmlFor="inputDOB">{context.GetText('signup', 'formLabelDOB')}</label>
+                        <input
+                            ref={this.inputDob}
+                            type="text"
+                            className="General Date"
+                            onFocus={(e) => (e.currentTarget.type = "date")}
+                            onBlur={(e) => (e.currentTarget.type = "text")}
+                            placeholder={context.GetText('signup', 'formPlaceholderDOB')}
+                        />
+                    </div>
+            */
 	}
 }
 

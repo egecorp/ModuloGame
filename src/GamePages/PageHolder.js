@@ -48,7 +48,9 @@ export default class PageHolder extends React.Component {
                             NextButtonCallBack={this.props.NextButtonCallBack}
                         ></SignInAuthPage>)
         }
-        else if (this.props.currentPage === 'SignIn:SignIn:Fail')
+        else if (
+                    (this.props.currentPage === 'SignIn:SignIn:Fail')
+                ) 
         {
             CPage = (<SignInAuthPage   
                             Device={this.props.Device} 
@@ -57,16 +59,23 @@ export default class PageHolder extends React.Component {
                             NextButtonCallBack={this.props.NextButtonCallBack}
                         ></SignInAuthPage>)
         }
-        else if (this.props.currentPage === 'SignIn:SignIn:EnterCode')
+        else if (
+                    (this.props.currentPage === 'SignIn:SignIn:EnterCode')  ||
+                    (this.props.currentPage === 'SignIn:SignIn:EnterRepeatedCode')
+                )
         {
             CPage = (<SignInAuthPage   
                             Device={this.props.Device}  
                             modalstate='EnterCode' 
                             UserMail={this.props.Device.UserMail} 
                             NextButtonCallBack={this.props.NextButtonCallBack}
+                            IsRepeatedCode={(this.props.currentPage === 'SignIn:SignIn:EnterRepeatedCode')}
                         ></SignInAuthPage>)
         }
-        else if (this.props.currentPage === 'SignIn:SignIn:FailCode')
+        else if (
+                    (this.props.currentPage === 'SignIn:SignIn:FailCode') ||
+                    (this.props.currentPage === 'SignIn:SignIn:RepeateFail')
+                )
         {
             CPage = (<SignInAuthPage   
                             Device={this.props.Device}  
@@ -74,6 +83,7 @@ export default class PageHolder extends React.Component {
                             OldCode={this.props.Device.tempCode} 
                             UserMail={this.props.Device.UserMail} 
                             NextButtonCallBack={this.props.NextButtonCallBack}
+                            IsRepeatedCode={(this.props.currentPage === 'SignIn:SignIn:RepeateFail')}
                         ></SignInAuthPage>)
         }
         else if (this.props.currentPage === 'SignIn:SignUp')

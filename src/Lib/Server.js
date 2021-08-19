@@ -11,6 +11,8 @@ const URL_SignInExistUser = 'SignInExistUser';
 const URL_AnonimUserAddMail = 'AnonimUserAddMail';
 const URL_RepeateVerifyingMail = 'RepeateVerifyingMail';
 const URL_EnterVerifyingCode = 'EnterVerifyingCode';
+const URL_CancelVerifying = 'CancelVerifying';
+
 const URL_SignOutVerifyingUser = 'SignOutVerifyingUser';
 const URL_RemoveDevice = 'RemoveDevice';
 const URL_SetUserInfo = 'SetUserInfo';
@@ -92,6 +94,10 @@ export default class Server {
     async EnterVerifyingCode(data)
     {
         return await this.postData( SERVER_URL +  URL_EnterVerifyingCode, data);
+    }    
+    async CancelVerifying(data)
+    {
+        return await this.postData( SERVER_URL +  URL_CancelVerifying, data);
     }
     async SignOutVerifyingUser(data)
     {

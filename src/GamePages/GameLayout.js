@@ -82,6 +82,14 @@ export default class GameLayout extends React.Component {
             this.setState(state => ({ currentDeviceStatus: DEVICE_STATUS.AUTH_GOOD }));
             setTimeout( () => thisObject.myDevice.GetUserInfo(thisObject.checkUserInfo, thisObject), 2000);
         }
+        else if (result === DEVICE_STATUS.NEED_REAUTH)
+        {
+            this.setState(state => ({ 
+                    currentDeviceStatus: DEVICE_STATUS.AUTH_CONNTECTING,
+                    currentPage: 'Hello' 
+                }));
+            this.myDevice.TryAuth(this.checkDeviceAuth, this);
+        }
     }
 
 
@@ -101,7 +109,7 @@ export default class GameLayout extends React.Component {
                 }));
            
         }
-        else if (result = DEVICE_STATUS.USERINFO_SHOW_SIGNIN_DONE)
+        else if (result === DEVICE_STATUS.USERINFO_SHOW_SIGNIN_DONE)
         {
             this.setState(state => (
                 { 
@@ -145,6 +153,9 @@ export default class GameLayout extends React.Component {
         //console.log(nextState);
         switch(nextState)
         {
+            case DEVICE_STATUS.NEED_REAUTH:
+                this.checkDeviceAuth(nextState);
+                return;
             case DEVICE_STATUS.USERINFO_NOUSER:
                 this.setState(state => (
                     { 
@@ -213,11 +224,26 @@ export default class GameLayout extends React.Component {
                         currentPage: 'SignIn:SignIn:EnterCode'
                     }));
                 break;
+            case DEVICE_STATUS.USERINFO_SHOW_REPEATE_DONE:
+                this.setState(state => (
+                    { 
+                        currentDeviceStatus: DEVICE_STATUS.USERINFO_SHOW_SIGNIN_DONE, 
+                        currentPage: 'SignIn:SignIn:EnterRepeatedCode'
+                    }));
+                break;
+                
             case DEVICE_STATUS.USERINFO_SHOW_SIGNIN_FAIL:
                 this.setState(state => (
                     { 
                         currentDeviceStatus: DEVICE_STATUS.USERINFO_SHOW_SIGNIN_FAIL, 
                         currentPage: 'SignIn:SignIn:Fail'
+                    }));
+                break;
+            case DEVICE_STATUS.USERINFO_SHOW_REPEATE_FAIL:
+                this.setState(state => (
+                    { 
+                        currentDeviceStatus: DEVICE_STATUS.USERINFO_SHOW_REPEATE_FAIL, 
+                        currentPage: 'SignIn:SignIn:RepeateFail'
                     }));
                 break;
             case DEVICE_STATUS.USERINFO_SHOW_SIGNIN_SEND_CODE_FAIL:
@@ -227,6 +253,13 @@ export default class GameLayout extends React.Component {
                         currentPage: 'SignIn:SignIn:FailCode'
                     }));
                 break;
+            case DEVICE_STATUS.USERINFO_SHOW_SIGNIN_SEND_CODE_TRYING:
+                this.setState(state => (
+                    { 
+                        currentDeviceStatus: DEVICE_STATUS.USERINFO_SHOW_SIGNIN_SEND_CODE_TRYING, 
+                    }));
+                break;
+
             default:
                 console.log("WTF?")
         }
